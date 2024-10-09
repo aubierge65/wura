@@ -1,0 +1,2 @@
+<div class="alert alert-danger d-none mt-0" role="alert" id="map_wrong_key_warning"></div>
+<?php /**PATH /var/www/vhosts/wura.africa/httpdocs/resources/views/components/website/map/map-warning.blade.php ENDPATH**/ ?>
