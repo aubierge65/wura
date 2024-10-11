@@ -78,15 +78,15 @@ $data = metaData('home');
                     <div class="row" style="margin-top:10%;">
                         <div class="col" style="margin-top:45px!important;">
                             <i class="fas fa-briefcase fa-3x"></i>
-                            <p style="margin-top:15px;"> Emplois en ligne</p>
+                            <p style="margin-top:15px;">{{ __('emplois_stats') }}</p>
                         </div>
                         <div class="col" style="margin-top:45px!important;">
                             <i class="fas fa-building fa-3x"></i>
-                            <p style="margin-top:15px;">Entreprises</p>
+                            <p style="margin-top:15px;">{{__('entreprises_stats')}}</p>
                         </div>
                         <div class="col" style="margin-top:45px!important;">
                             <i class="fas fa-user-check fa-3x"></i>
-                            <p style="margin-top:15px;">Candidats</p>
+                            <p style="margin-top:15px;">{{__('candidats_stats')}}</p>
                         </div>
                     </div>
                 </div>
@@ -95,6 +95,29 @@ $data = metaData('home');
         </div>
     </div>
 </section>
+
+<section class="tw-bg-primary-50">
+    <div class="container">
+        <div class="tw-relative tw-overflow-x-hidden tw-whitespace-nowrap">
+            <div id="category-slider" class="tw-flex tw-gap-6 tw-px-4 tw-animate-slide">
+                @foreach ($popular_categories as $key => $category)
+                @isset($category['slug'])
+                <a href="{{ route('website.job.category.slug', $category['slug']) }}"
+                    class="!tw-transition-all tw-duration-300 hover:-tw-translate-y-[2px] tw-flex tw-flex-col tw-items-center tw-w-1/2 md:tw-w-1/4 tw-py-2.5">
+                    <span class="tw-text-2xl d-flex justify-content-center align-items-center">
+                        <i class="{{ $category['icon'] }}"></i>
+                    </span>
+                    <div class="tw-flex-1 text-center">
+                        <h4 class="tw-mb-0 tw-text-lg">{{ $category['name'] }}</h4>
+                    </div>
+                </a>
+                @endisset
+                @endforeach
+            </div>
+        </div>
+    </div>
+</section>
+
 <section  class="tw-bg-primary-50">
     <div class="container">
         <div class=" tw-relative ">
@@ -602,6 +625,24 @@ $data = metaData('home');
 
 @section('script')
 <script>
+     document.addEventListener("DOMContentLoaded", function() {
+        const slider = document.getElementById("category-slider");
+        let scrollAmount = 0;
+        
+        function slide() {
+            scrollAmount += 2; 
+            if (scrollAmount >= slider.scrollWidth) {
+                scrollAmount = 0; 
+            }
+            slider.scrollTo({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+
+        setInterval(slide, 30); 
+    });
+
     $('.category-slider').slick({
         dots: true,
         arrows: false,

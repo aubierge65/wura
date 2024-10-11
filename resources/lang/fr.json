@@ -1530,5 +1530,10 @@
     "cover_latter": "Lettre de motivation",
     "applied_job_deatils": "Détails de l'emploi postulé",
     "verify_account": "Vérifier le compte",
-    "plan_already_purchased": "Plan déjà acheté"
+    "plan_already_purchased": "Plan déjà acheté",
+
+    "MES NOUVELLES MODIFICATIONS" : "MES NOUVELLES MODIFICATIONS",
+    "emplois_stats" : " Emplois en ligne",
+    "entreprises_stats" : "Entreprises",
+    "candidats_stats" : "Candidats"
 }
