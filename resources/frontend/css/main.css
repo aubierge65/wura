@@ -1,6 +1,6 @@
 body,
 html {
-    height: 100%
+    height: 100%;
 }
 
 .btn,
@@ -9007,3 +9007,28 @@ ul.job-details-social li a {
 body[dir=rtl] .date.datepicker input {
     direction: rtl
 }
+/**/
+.slick-prev, .slick-next {
+    display: none !important; 
+}
+
+.cat {
+    min-height: 20vh;
+    display: flex;
+    align-items: center; 
+}
+
+.category-slider {
+    display: flex;
+    justify-content: center; 
+}
+
+.tw-item {
+    text-align: center; 
+}
+
+.tw-text-yellow-500{
+color: yellow;
+}
+
+
