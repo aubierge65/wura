@@ -19867,3 +19867,525 @@
 #57 C:\\wamp64\\www\\wura\\public\\index.php(51): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
 #58 {main}
 "} 
+[2024-10-15 13:34:49] local.ERROR: Uncaught ErrorException: The use statement with non-compound name 'NumberFormatter' has no effect in C:\wamp64\www\wura\app\helpers.php:26
+Stack trace:
+#0 C:\wamp64\www\wura\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php(255): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'The use stateme...', 'C:\\wamp64\\www\\w...', 26)
+#1 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(576): Illuminate\Foundation\Bootstrap\HandleExceptions->Illuminate\Foundation\Bootstrap\{closure}(2, 'The use stateme...', 'C:\\wamp64\\www\\w...', 26)
+#2 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(576): include('C:\\wamp64\\www\\w...')
+#3 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(427): Composer\Autoload\{closure}('C:\\wamp64\\www\\w...')
+#4 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\helpers')
+#5 Command line code(1): class_exists('App\\helpers')
+#6 [internal function]: {closure}('App\\helpers')
+#7 Command line code(1): array_filter(Array, Object(Closure))
+#8 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught ErrorException: The use statement with non-compound name 'NumberFormatter' has no effect in C:\\wamp64\\www\\wura\\app\\helpers.php:26
+Stack trace:
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'The use stateme...', 'C:\\\\wamp64\\\\www\\\\w...', 26)
+#1 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(576): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'The use stateme...', 'C:\\\\wamp64\\\\www\\\\w...', 26)
+#2 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(576): include('C:\\\\wamp64\\\\www\\\\w...')
+#3 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('C:\\\\wamp64\\\\www\\\\w...')
+#4 [internal function]: Composer\\Autoload\\ClassLoader->loadClass('App\\\\helpers')
+#5 Command line code(1): class_exists('App\\\\helpers')
+#6 [internal function]: {closure}('App\\\\helpers')
+#7 Command line code(1): array_filter(Array, Object(Closure))
+#8 {main}
+  thrown at C:\\wamp64\\www\\wura\\app\\helpers.php:26)
+[stacktrace]
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(244): Symfony\\Component\\ErrorHandler\\Error\\FatalError->__construct(message: ''Uncaught Error...', code: '0', error: '['type' => 1, '...', traceOffset: '0', traceArgs: '???', trace: '???')
+#1 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(231): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->fatalErrorFromPhpError(error: '['type' => 1, '...', traceOffset: '0')
+#2 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleShutdown()
+#3 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(0): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure:C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php:254-256}()
+#4 {main}
+"} 
+[2024-10-15 13:34:49] local.ERROR: Uncaught ReflectionException: Class "App\Policies\ModelPolicy" does not exist in Command line code:1
+Stack trace:
+#0 Command line code(1): ReflectionClass->__construct('App\\Policies\\Mo...')
+#1 [internal function]: {closure}('App\\Policies\\Mo...', 'App\\Models\\Mode...')
+#2 Command line code(1): array_map(Object(Closure), Array, Array)
+#3 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught ReflectionException: Class \"App\\Policies\\ModelPolicy\" does not exist in Command line code:1
+Stack trace:
+#0 Command line code(1): ReflectionClass->__construct('App\\\\Policies\\\\Mo...')
+#1 [internal function]: {closure}('App\\\\Policies\\\\Mo...', 'App\\\\Models\\\\Mode...')
+#2 Command line code(1): array_map(Object(Closure), Array, Array)
+#3 {main}
+  thrown at Command line code:1)
+[stacktrace]
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(244): Symfony\\Component\\ErrorHandler\\Error\\FatalError->__construct(message: ''Uncaught Refle...', code: '0', error: '['type' => 1, '...', traceOffset: '0', traceArgs: '???', trace: '???')
+#1 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(231): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->fatalErrorFromPhpError(error: '['type' => 1, '...', traceOffset: '0')
+#2 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleShutdown()
+#3 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(0): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure:C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php:254-256}()
+#4 {main}
+"} 
+toload\\{closure}('C:\\\\wamp64\\\\www\\\\w...')
+#4 [internal function]: Composer\\Autoload\\ClassLoader->loadClass('App\\\\helpers')
+#5 Command line code(1): class_exists('App\\\\helpers')
+#6 [internal function]: {closure}('App\\\\helpers')
+#7 Command line code(1): array_filter(Array, Object(Closure))
+#8 {main}
+  thrown at C:\\wamp64\\www\\wura\\app\\helpers.php:26)
+[stacktrace]
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(244): Symfony\\Component\\ErrorHandler\\Error\\FatalError->__construct(message: ''Uncaught Error...', code: '0', error: '['type' => 1, '...', traceOffset: '0', traceArgs: '???', trace: '???')
+#1 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(231): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->fatalErrorFromPhpError(error: '['type' => 1, '...', traceOffset: '0')
+#2 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleShutdown()
+#3 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(0): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure:C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php:254-256}()
+#4 {main}
+"} 
+[2024-10-15 13:34:51] local.ERROR: Cannot declare class App\Models\Admin, because the name is already in use {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot declare class App\\Models\\Admin, because the name is already in use at C:\\wamp64\\www\\wura\\app\\Models\\__Admin.php:12)
+[stacktrace]
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(244): Symfony\\Component\\ErrorHandler\\Error\\FatalError->__construct(message: ''Cannot declare...', code: '0', error: '['type' => 64, ...', traceOffset: '0', traceArgs: '???', trace: '???')
+#1 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(231): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->fatalErrorFromPhpError(error: '['type' => 64, ...', traceOffset: '0')
+#2 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleShutdown()
+#3 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(0): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure:C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php:254-256}()
+#4 {main}
+"} 
+[2024-10-15 13:35:40] local.ERROR: Uncaught ReflectionException: Class "App\Policies\ModelPolicy" does not exist in Command line code:1
+Stack trace:
+#0 Command line code(1): ReflectionClass->__construct('App\\Policies\\Mo...')
+#1 [internal function]: {closure}('App\\Policies\\Mo...', 'App\\Models\\Mode...')
+#2 Command line code(1): array_map(Object(Closure), Array, Array)
+#3 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught ReflectionException: Class \"App\\Policies\\ModelPolicy\" does not exist in Command line code:1
+Stack trace:
+#0 Command line code(1): ReflectionClass->__construct('App\\\\Policies\\\\Mo...')
+#1 [internal function]: {closure}('App\\\\Policies\\\\Mo...', 'App\\\\Models\\\\Mode...')
+#2 Command line code(1): array_map(Object(Closure), Array, Array)
+#3 {main}
+  thrown at Command line code:1)
+[stacktrace]
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(244): Symfony\\Component\\ErrorHandler\\Error\\FatalError->__construct(message: ''Uncaught Refle...', code: '0', error: '['type' => 1, '...', traceOffset: '0', traceArgs: '???', trace: '???')
+#1 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(231): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->fatalErrorFromPhpError(error: '['type' => 1, '...', traceOffset: '0')
+#2 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleShutdown()
+#3 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(0): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure:C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php:254-256}()
+#4 {main}
+"} 
+[2024-10-15 13:35:40] local.ERROR: Uncaught ErrorException: The use statement with non-compound name 'NumberFormatter' has no effect in C:\wamp64\www\wura\app\helpers.php:26
+Stack trace:
+#0 C:\wamp64\www\wura\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php(255): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'The use stateme...', 'C:\\wamp64\\www\\w...', 26)
+#1 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(576): Illuminate\Foundation\Bootstrap\HandleExceptions->Illuminate\Foundation\Bootstrap\{closure}(2, 'The use stateme...', 'C:\\wamp64\\www\\w...', 26)
+#2 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(576): include('C:\\wamp64\\www\\w...')
+#3 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(427): Composer\Autoload\{closure}('C:\\wamp64\\www\\w...')
+#4 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\helpers')
+#5 Command line code(1): class_exists('App\\helpers')
+#6 [internal function]: {closure}('App\\helpers')
+#7 Command line code(1): array_filter(Array, Object(Closure))
+#8 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught ErrorException: The use statement with non-compound name 'NumberFormatter' has no effect in C:\\wamp64\\www\\wura\\app\\helpers.php:26
+Stack trace:
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'The use stateme...', 'C:\\\\wamp64\\\\www\\\\w...', 26)
+#1 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(576): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'The use stateme...', 'C:\\\\wamp64\\\\www\\\\w...', 26)
+#2 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(576): include('C:\\\\wamp64\\\\www\\\\w...')
+#3 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('C:\\\\wamp64\\\\www\\\\w...')
+#4 [internal function]: Composer\\Autoload\\ClassLoader->loadClass('App\\\\helpers')
+#5 Command line code(1): class_exists('App\\\\helpers')
+#6 [internal function]: {closure}('App\\\\helpers')
+#7 Command line code(1): array_filter(Array, Object(Closure))
+#8 {main}
+  thrown at C:\\wamp64\\www\\wura\\app\\helpers.php:26)
+[stacktrace]
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(244): Symfony\\Component\\ErrorHandler\\Error\\FatalError->__construct(message: ''Uncaught Error...', code: '0', error: '['type' => 1, '...', traceOffset: '0', traceArgs: '???', trace: '???')
+#1 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(231): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->fatalErrorFromPhpError(error: '['type' => 1, '...', traceOffset: '0')
+#2 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleShutdown()
+#3 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(0): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure:C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php:254-256}()
+#4 {main}
+"} 
+[2024-10-15 13:36:40] local.ERROR: Uncaught ReflectionException: Class "App\Policies\ModelPolicy" does not exist in Command line code:1
+Stack trace:
+#0 Command line code(1): ReflectionClass->__construct('App\\Policies\\Mo...')
+#1 [internal function]: {closure}('App\\Policies\\Mo...', 'App\\Models\\Mode...')
+#2 Command line code(1): array_map(Object(Closure), Array, Array)
+#3 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught ReflectionException: Class \"App\\Policies\\ModelPolicy\" does not exist in Command line code:1
+Stack trace:
+#0 Command line code(1): ReflectionClass->__construct('App\\\\Policies\\\\Mo...')
+#1 [internal function]: {closure}('App\\\\Policies\\\\Mo...', 'App\\\\Models\\\\Mode...')
+#2 Command line code(1): array_map(Object(Closure), Array, Array)
+#3 {main}
+  thrown at Command line code:1)
+[stacktrace]
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(244): Symfony\\Component\\ErrorHandler\\Error\\FatalError->__construct(message: ''Uncaught Refle...', code: '0', error: '['type' => 1, '...', traceOffset: '0', traceArgs: '???', trace: '???')
+#1 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(231): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->fatalErrorFromPhpError(error: '['type' => 1, '...', traceOffset: '0')
+#2 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleShutdown()
+#3 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(0): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure:C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php:254-256}()
+#4 {main}
+"} 
+[2024-10-15 13:36:40] local.ERROR: Uncaught ErrorException: The use statement with non-compound name 'NumberFormatter' has no effect in C:\wamp64\www\wura\app\helpers.php:26
+Stack trace:
+#0 C:\wamp64\www\wura\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php(255): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'The use stateme...', 'C:\\wamp64\\www\\w...', 26)
+#1 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(576): Illuminate\Foundation\Bootstrap\HandleExceptions->Illuminate\Foundation\Bootstrap\{closure}(2, 'The use stateme...', 'C:\\wamp64\\www\\w...', 26)
+#2 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(576): include('C:\\wamp64\\www\\w...')
+#3 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(427): Composer\Autoload\{closure}('C:\\wamp64\\www\\w...')
+#4 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\helpers')
+#5 Command line code(1): class_exists('App\\helpers')
+#6 [internal function]: {closure}('App\\helpers')
+#7 Command line code(1): array_filter(Array, Object(Closure))
+#8 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught ErrorException: The use statement with non-compound name 'NumberFormatter' has no effect in C:\\wamp64\\www\\wura\\app\\helpers.php:26
+Stack trace:
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'The use stateme...', 'C:\\\\wamp64\\\\www\\\\w...', 26)
+#1 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(576): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'The use stateme...', 'C:\\\\wamp64\\\\www\\\\w...', 26)
+#2 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(576): include('C:\\\\wamp64\\\\www\\\\w...')
+#3 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('C:\\\\wamp64\\\\www\\\\w...')
+#4 [internal function]: Composer\\Autoload\\ClassLoader->loadClass('App\\\\helpers')
+#5 Command line code(1): class_exists('App\\\\helpers')
+#6 [internal function]: {closure}('App\\\\helpers')
+#7 Command line code(1): array_filter(Array, Object(Closure))
+#8 {main}
+  thrown at C:\\wamp64\\www\\wura\\app\\helpers.php:26)
+[stacktrace]
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(244): Symfony\\Component\\ErrorHandler\\Error\\FatalError->__construct(message: ''Uncaught Error...', code: '0', error: '['type' => 1, '...', traceOffset: '0', traceArgs: '???', trace: '???')
+#1 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(231): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->fatalErrorFromPhpError(error: '['type' => 1, '...', traceOffset: '0')
+#2 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleShutdown()
+#3 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(0): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure:C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php:254-256}()
+#4 {main}
+"} 
+[2024-10-15 13:37:40] local.ERROR: Uncaught ErrorException: The use statement with non-compound name 'NumberFormatter' has no effect in C:\wamp64\www\wura\app\helpers.php:26
+Stack trace:
+#0 C:\wamp64\www\wura\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php(255): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'The use stateme...', 'C:\\wamp64\\www\\w...', 26)
+#1 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(576): Illuminate\Foundation\Bootstrap\HandleExceptions->Illuminate\Foundation\Bootstrap\{closure}(2, 'The use stateme...', 'C:\\wamp64\\www\\w...', 26)
+#2 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(576): include('C:\\wamp64\\www\\w...')
+#3 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(427): Composer\Autoload\{closure}('C:\\wamp64\\www\\w...')
+#4 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\helpers')
+#5 Command line code(1): class_exists('App\\helpers')
+#6 [internal function]: {closure}('App\\helpers')
+#7 Command line code(1): array_filter(Array, Object(Closure))
+#8 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught ErrorException: The use statement with non-compound name 'NumberFormatter' has no effect in C:\\wamp64\\www\\wura\\app\\helpers.php:26
+Stack trace:
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'The use stateme...', 'C:\\\\wamp64\\\\www\\\\w...', 26)
+#1 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(576): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'The use stateme...', 'C:\\\\wamp64\\\\www\\\\w...', 26)
+#2 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(576): include('C:\\\\wamp64\\\\www\\\\w...')
+#3 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('C:\\\\wamp64\\\\www\\\\w...')
+#4 [internal function]: Composer\\Autoload\\ClassLoader->loadClass('App\\\\helpers')
+#5 Command line code(1): class_exists('App\\\\helpers')
+#6 [internal function]: {closure}('App\\\\helpers')
+#7 Command line code(1): array_filter(Array, Object(Closure))
+#8 {main}
+  thrown at C:\\wamp64\\www\\wura\\app\\helpers.php:26)
+[stacktrace]
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(244): Symfony\\Component\\ErrorHandler\\Error\\FatalError->__construct(message: ''Uncaught Error...', code: '0', error: '['type' => 1, '...', traceOffset: '0', traceArgs: '???', trace: '???')
+#1 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(231): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->fatalErrorFromPhpError(error: '['type' => 1, '...', traceOffset: '0')
+#2 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleShutdown()
+#3 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(0): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure:C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php:254-256}()
+#4 {main}
+"} 
+[2024-10-15 13:37:40] local.ERROR: Uncaught ReflectionException: Class "App\Policies\ModelPolicy" does not exist in Command line code:1
+Stack trace:
+#0 Command line code(1): ReflectionClass->__construct('App\\Policies\\Mo...')
+#1 [internal function]: {closure}('App\\Policies\\Mo...', 'App\\Models\\Mode...')
+#2 Command line code(1): array_map(Object(Closure), Array, Array)
+#3 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught ReflectionException: Class \"App\\Policies\\ModelPolicy\" does not exist in Command line code:1
+Stack trace:
+#0 Command line code(1): ReflectionClass->__construct('App\\\\Policies\\\\Mo...')
+#1 [internal function]: {closure}('App\\\\Policies\\\\Mo...', 'App\\\\Models\\\\Mode...')
+#2 Command line code(1): array_map(Object(Closure), Array, Array)
+#3 {main}
+  thrown at Command line code:1)
+[stacktrace]
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(244): Symfony\\Component\\ErrorHandler\\Error\\FatalError->__construct(message: ''Uncaught Refle...', code: '0', error: '['type' => 1, '...', traceOffset: '0', traceArgs: '???', trace: '???')
+#1 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(231): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->fatalErrorFromPhpError(error: '['type' => 1, '...', traceOffset: '0')
+#2 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleShutdown()
+#3 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(0): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure:C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php:254-256}()
+#4 {main}
+"} 
+[2024-10-15 13:38:40] local.ERROR: Uncaught ReflectionException: Class "App\Policies\ModelPolicy" does not exist in Command line code:1
+Stack trace:
+#0 Command line code(1): ReflectionClass->__construct('App\\Policies\\Mo...')
+#1 [internal function]: {closure}('App\\Policies\\Mo...', 'App\\Models\\Mode...')
+#2 Command line code(1): array_map(Object(Closure), Array, Array)
+#3 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught ReflectionException: Class \"App\\Policies\\ModelPolicy\" does not exist in Command line code:1
+Stack trace:
+#0 Command line code(1): ReflectionClass->__construct('App\\\\Policies\\\\Mo...')
+#1 [internal function]: {closure}('App\\\\Policies\\\\Mo...', 'App\\\\Models\\\\Mode...')
+#2 Command line code(1): array_map(Object(Closure), Array, Array)
+#3 {main}
+  thrown at Command line code:1)
+[stacktrace]
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(244): Symfony\\Component\\ErrorHandler\\Error\\FatalError->__construct(message: ''Uncaught Refle...', code: '0', error: '['type' => 1, '...', traceOffset: '0', traceArgs: '???', trace: '???')
+#1 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(231): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->fatalErrorFromPhpError(error: '['type' => 1, '...', traceOffset: '0')
+#2 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleShutdown()
+#3 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(0): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure:C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php:254-256}()
+#4 {main}
+"} 
+[2024-10-15 13:38:40] local.ERROR: Uncaught ErrorException: The use statement with non-compound name 'NumberFormatter' has no effect in C:\wamp64\www\wura\app\helpers.php:26
+Stack trace:
+#0 C:\wamp64\www\wura\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php(255): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'The use stateme...', 'C:\\wamp64\\www\\w...', 26)
+#1 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(576): Illuminate\Foundation\Bootstrap\HandleExceptions->Illuminate\Foundation\Bootstrap\{closure}(2, 'The use stateme...', 'C:\\wamp64\\www\\w...', 26)
+#2 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(576): include('C:\\wamp64\\www\\w...')
+#3 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(427): Composer\Autoload\{closure}('C:\\wamp64\\www\\w...')
+#4 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\helpers')
+#5 Command line code(1): class_exists('App\\helpers')
+#6 [internal function]: {closure}('App\\helpers')
+#7 Command line code(1): array_filter(Array, Object(Closure))
+#8 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught ErrorException: The use statement with non-compound name 'NumberFormatter' has no effect in C:\\wamp64\\www\\wura\\app\\helpers.php:26
+Stack trace:
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'The use stateme...', 'C:\\\\wamp64\\\\www\\\\w...', 26)
+#1 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(576): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'The use stateme...', 'C:\\\\wamp64\\\\www\\\\w...', 26)
+#2 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(576): include('C:\\\\wamp64\\\\www\\\\w...')
+#3 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('C:\\\\wamp64\\\\www\\\\w...')
+#4 [internal function]: Composer\\Autoload\\ClassLoader->loadClass('App\\\\helpers')
+#5 Command line code(1): class_exists('App\\\\helpers')
+#6 [internal function]: {closure}('App\\\\helpers')
+#7 Command line code(1): array_filter(Array, Object(Closure))
+#8 {main}
+  thrown at C:\\wamp64\\www\\wura\\app\\helpers.php:26)
+[stacktrace]
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(244): Symfony\\Component\\ErrorHandler\\Error\\FatalError->__construct(message: ''Uncaught Error...', code: '0', error: '['type' => 1, '...', traceOffset: '0', traceArgs: '???', trace: '???')
+#1 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(231): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->fatalErrorFromPhpError(error: '['type' => 1, '...', traceOffset: '0')
+#2 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleShutdown()
+#3 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(0): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure:C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php:254-256}()
+#4 {main}
+"} 
+[2024-10-15 13:39:40] local.ERROR: Uncaught ReflectionException: Class "App\Policies\ModelPolicy" does not exist in Command line code:1
+Stack trace:
+#0 Command line code(1): ReflectionClass->__construct('App\\Policies\\Mo...')
+#1 [internal function]: {closure}('App\\Policies\\Mo...', 'App\\Models\\Mode...')
+#2 Command line code(1): array_map(Object(Closure), Array, Array)
+#3 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught ReflectionException: Class \"App\\Policies\\ModelPolicy\" does not exist in Command line code:1
+Stack trace:
+#0 Command line code(1): ReflectionClass->__construct('App\\\\Policies\\\\Mo...')
+#1 [internal function]: {closure}('App\\\\Policies\\\\Mo...', 'App\\\\Models\\\\Mode...')
+#2 Command line code(1): array_map(Object(Closure), Array, Array)
+#3 {main}
+  thrown at Command line code:1)
+[stacktrace]
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(244): Symfony\\Component\\ErrorHandler\\Error\\FatalError->__construct(message: ''Uncaught Refle...', code: '0', error: '['type' => 1, '...', traceOffset: '0', traceArgs: '???', trace: '???')
+#1 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(231): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->fatalErrorFromPhpError(error: '['type' => 1, '...', traceOffset: '0')
+#2 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleShutdown()
+#3 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(0): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure:C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php:254-256}()
+#4 {main}
+"} 
+[2024-10-15 13:39:40] local.ERROR: Uncaught ErrorException: The use statement with non-compound name 'NumberFormatter' has no effect in C:\wamp64\www\wura\app\helpers.php:26
+Stack trace:
+#0 C:\wamp64\www\wura\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php(255): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'The use stateme...', 'C:\\wamp64\\www\\w...', 26)
+#1 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(576): Illuminate\Foundation\Bootstrap\HandleExceptions->Illuminate\Foundation\Bootstrap\{closure}(2, 'The use stateme...', 'C:\\wamp64\\www\\w...', 26)
+#2 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(576): include('C:\\wamp64\\www\\w...')
+#3 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(427): Composer\Autoload\{closure}('C:\\wamp64\\www\\w...')
+#4 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\helpers')
+#5 Command line code(1): class_exists('App\\helpers')
+#6 [internal function]: {closure}('App\\helpers')
+#7 Command line code(1): array_filter(Array, Object(Closure))
+#8 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught ErrorException: The use statement with non-compound name 'NumberFormatter' has no effect in C:\\wamp64\\www\\wura\\app\\helpers.php:26
+Stack trace:
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'The use stateme...', 'C:\\\\wamp64\\\\www\\\\w...', 26)
+#1 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(576): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'The use stateme...', 'C:\\\\wamp64\\\\www\\\\w...', 26)
+#2 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(576): include('C:\\\\wamp64\\\\www\\\\w...')
+#3 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('C:\\\\wamp64\\\\www\\\\w...')
+#4 [internal function]: Composer\\Autoload\\ClassLoader->loadClass('App\\\\helpers')
+#5 Command line code(1): class_exists('App\\\\helpers')
+#6 [internal function]: {closure}('App\\\\helpers')
+#7 Command line code(1): array_filter(Array, Object(Closure))
+#8 {main}
+  thrown at C:\\wamp64\\www\\wura\\app\\helpers.php:26)
+[stacktrace]
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(244): Symfony\\Component\\ErrorHandler\\Error\\FatalError->__construct(message: ''Uncaught Error...', code: '0', error: '['type' => 1, '...', traceOffset: '0', traceArgs: '???', trace: '???')
+#1 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(231): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->fatalErrorFromPhpError(error: '['type' => 1, '...', traceOffset: '0')
+#2 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleShutdown()
+#3 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(0): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure:C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php:254-256}()
+#4 {main}
+"} 
+[2024-10-15 13:40:41] local.ERROR: Uncaught ReflectionException: Class "App\Policies\ModelPolicy" does not exist in Command line code:1
+Stack trace:
+#0 Command line code(1): ReflectionClass->__construct('App\\Policies\\Mo...')
+#1 [internal function]: {closure}('App\\Policies\\Mo...', 'App\\Models\\Mode...')
+#2 Command line code(1): array_map(Object(Closure), Array, Array)
+#3 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught ReflectionException: Class \"App\\Policies\\ModelPolicy\" does not exist in Command line code:1
+Stack trace:
+#0 Command line code(1): ReflectionClass->__construct('App\\\\Policies\\\\Mo...')
+#1 [internal function]: {closure}('App\\\\Policies\\\\Mo...', 'App\\\\Models\\\\Mode...')
+#2 Command line code(1): array_map(Object(Closure), Array, Array)
+#3 {main}
+  thrown at Command line code:1)
+[stacktrace]
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(244): Symfony\\Component\\ErrorHandler\\Error\\FatalError->__construct(message: ''Uncaught Refle...', code: '0', error: '['type' => 1, '...', traceOffset: '0', traceArgs: '???', trace: '???')
+#1 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(231): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->fatalErrorFromPhpError(error: '['type' => 1, '...', traceOffset: '0')
+#2 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleShutdown()
+#3 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(0): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure:C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php:254-256}()
+#4 {main}
+"} 
+[2024-10-15 13:40:41] local.ERROR: Uncaught ErrorException: The use statement with non-compound name 'NumberFormatter' has no effect in C:\wamp64\www\wura\app\helpers.php:26
+Stack trace:
+#0 C:\wamp64\www\wura\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php(255): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'The use stateme...', 'C:\\wamp64\\www\\w...', 26)
+#1 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(576): Illuminate\Foundation\Bootstrap\HandleExceptions->Illuminate\Foundation\Bootstrap\{closure}(2, 'The use stateme...', 'C:\\wamp64\\www\\w...', 26)
+#2 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(576): include('C:\\wamp64\\www\\w...')
+#3 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(427): Composer\Autoload\{closure}('C:\\wamp64\\www\\w...')
+#4 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\helpers')
+#5 Command line code(1): class_exists('App\\helpers')
+#6 [internal function]: {closure}('App\\helpers')
+#7 Command line code(1): array_filter(Array, Object(Closure))
+#8 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught ErrorException: The use statement with non-compound name 'NumberFormatter' has no effect in C:\\wamp64\\www\\wura\\app\\helpers.php:26
+Stack trace:
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'The use stateme...', 'C:\\\\wamp64\\\\www\\\\w...', 26)
+#1 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(576): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'The use stateme...', 'C:\\\\wamp64\\\\www\\\\w...', 26)
+#2 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(576): include('C:\\\\wamp64\\\\www\\\\w...')
+#3 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('C:\\\\wamp64\\\\www\\\\w...')
+#4 [internal function]: Composer\\Autoload\\ClassLoader->loadClass('App\\\\helpers')
+#5 Command line code(1): class_exists('App\\\\helpers')
+#6 [internal function]: {closure}('App\\\\helpers')
+#7 Command line code(1): array_filter(Array, Object(Closure))
+#8 {main}
+  thrown at C:\\wamp64\\www\\wura\\app\\helpers.php:26)
+[stacktrace]
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(244): Symfony\\Component\\ErrorHandler\\Error\\FatalError->__construct(message: ''Uncaught Error...', code: '0', error: '['type' => 1, '...', traceOffset: '0', traceArgs: '???', trace: '???')
+#1 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(231): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->fatalErrorFromPhpError(error: '['type' => 1, '...', traceOffset: '0')
+#2 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleShutdown()
+#3 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(0): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure:C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php:254-256}()
+#4 {main}
+"} 
+[2024-10-15 13:41:40] local.ERROR: Uncaught ReflectionException: Class "App\Policies\ModelPolicy" does not exist in Command line code:1
+Stack trace:
+#0 Command line code(1): ReflectionClass->__construct('App\\Policies\\Mo...')
+#1 [internal function]: {closure}('App\\Policies\\Mo...', 'App\\Models\\Mode...')
+#2 Command line code(1): array_map(Object(Closure), Array, Array)
+#3 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught ReflectionException: Class \"App\\Policies\\ModelPolicy\" does not exist in Command line code:1
+Stack trace:
+#0 Command line code(1): ReflectionClass->__construct('App\\\\Policies\\\\Mo...')
+#1 [internal function]: {closure}('App\\\\Policies\\\\Mo...', 'App\\\\Models\\\\Mode...')
+#2 Command line code(1): array_map(Object(Closure), Array, Array)
+#3 {main}
+  thrown at Command line code:1)
+[stacktrace]
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(244): Symfony\\Component\\ErrorHandler\\Error\\FatalError->__construct(message: ''Uncaught Refle...', code: '0', error: '['type' => 1, '...', traceOffset: '0', traceArgs: '???', trace: '???')
+#1 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(231): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->fatalErrorFromPhpError(error: '['type' => 1, '...', traceOffset: '0')
+#2 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleShutdown()
+#3 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(0): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure:C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php:254-256}()
+#4 {main}
+"} 
+[2024-10-15 13:41:40] local.ERROR: Uncaught ErrorException: The use statement with non-compound name 'NumberFormatter' has no effect in C:\wamp64\www\wura\app\helpers.php:26
+Stack trace:
+#0 C:\wamp64\www\wura\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php(255): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'The use stateme...', 'C:\\wamp64\\www\\w...', 26)
+#1 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(576): Illuminate\Foundation\Bootstrap\HandleExceptions->Illuminate\Foundation\Bootstrap\{closure}(2, 'The use stateme...', 'C:\\wamp64\\www\\w...', 26)
+#2 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(576): include('C:\\wamp64\\www\\w...')
+#3 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(427): Composer\Autoload\{closure}('C:\\wamp64\\www\\w...')
+#4 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\helpers')
+#5 Command line code(1): class_exists('App\\helpers')
+#6 [internal function]: {closure}('App\\helpers')
+#7 Command line code(1): array_filter(Array, Object(Closure))
+#8 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught ErrorException: The use statement with non-compound name 'NumberFormatter' has no effect in C:\\wamp64\\www\\wura\\app\\helpers.php:26
+Stack trace:
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'The use stateme...', 'C:\\\\wamp64\\\\www\\\\w...', 26)
+#1 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(576): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'The use stateme...', 'C:\\\\wamp64\\\\www\\\\w...', 26)
+#2 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(576): include('C:\\\\wamp64\\\\www\\\\w...')
+#3 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('C:\\\\wamp64\\\\www\\\\w...')
+#4 [internal function]: Composer\\Autoload\\ClassLoader->loadClass('App\\\\helpers')
+#5 Command line code(1): class_exists('App\\\\helpers')
+#6 [internal function]: {closure}('App\\\\helpers')
+#7 Command line code(1): array_filter(Array, Object(Closure))
+#8 {main}
+  thrown at C:\\wamp64\\www\\wura\\app\\helpers.php:26)
+[stacktrace]
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(244): Symfony\\Component\\ErrorHandler\\Error\\FatalError->__construct(message: ''Uncaught Error...', code: '0', error: '['type' => 1, '...', traceOffset: '0', traceArgs: '???', trace: '???')
+#1 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(231): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->fatalErrorFromPhpError(error: '['type' => 1, '...', traceOffset: '0')
+#2 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleShutdown()
+#3 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(0): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure:C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php:254-256}()
+#4 {main}
+"} 
+[2024-10-15 13:42:40] local.ERROR: Uncaught ReflectionException: Class "App\Policies\ModelPolicy" does not exist in Command line code:1
+Stack trace:
+#0 Command line code(1): ReflectionClass->__construct('App\\Policies\\Mo...')
+#1 [internal function]: {closure}('App\\Policies\\Mo...', 'App\\Models\\Mode...')
+#2 Command line code(1): array_map(Object(Closure), Array, Array)
+#3 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught ReflectionException: Class \"App\\Policies\\ModelPolicy\" does not exist in Command line code:1
+Stack trace:
+#0 Command line code(1): ReflectionClass->__construct('App\\\\Policies\\\\Mo...')
+#1 [internal function]: {closure}('App\\\\Policies\\\\Mo...', 'App\\\\Models\\\\Mode...')
+#2 Command line code(1): array_map(Object(Closure), Array, Array)
+#3 {main}
+  thrown at Command line code:1)
+[stacktrace]
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(244): Symfony\\Component\\ErrorHandler\\Error\\FatalError->__construct(message: ''Uncaught Refle...', code: '0', error: '['type' => 1, '...', traceOffset: '0', traceArgs: '???', trace: '???')
+#1 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(231): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->fatalErrorFromPhpError(error: '['type' => 1, '...', traceOffset: '0')
+#2 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleShutdown()
+#3 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(0): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure:C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php:254-256}()
+#4 {main}
+"} 
+[2024-10-15 13:42:40] local.ERROR: Uncaught ErrorException: The use statement with non-compound name 'NumberFormatter' has no effect in C:\wamp64\www\wura\app\helpers.php:26
+Stack trace:
+#0 C:\wamp64\www\wura\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php(255): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'The use stateme...', 'C:\\wamp64\\www\\w...', 26)
+#1 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(576): Illuminate\Foundation\Bootstrap\HandleExceptions->Illuminate\Foundation\Bootstrap\{closure}(2, 'The use stateme...', 'C:\\wamp64\\www\\w...', 26)
+#2 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(576): include('C:\\wamp64\\www\\w...')
+#3 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(427): Composer\Autoload\{closure}('C:\\wamp64\\www\\w...')
+#4 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\helpers')
+#5 Command line code(1): class_exists('App\\helpers')
+#6 [internal function]: {closure}('App\\helpers')
+#7 Command line code(1): array_filter(Array, Object(Closure))
+#8 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught ErrorException: The use statement with non-compound name 'NumberFormatter' has no effect in C:\\wamp64\\www\\wura\\app\\helpers.php:26
+Stack trace:
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'The use stateme...', 'C:\\\\wamp64\\\\www\\\\w...', 26)
+#1 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(576): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'The use stateme...', 'C:\\\\wamp64\\\\www\\\\w...', 26)
+#2 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(576): include('C:\\\\wamp64\\\\www\\\\w...')
+#3 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('C:\\\\wamp64\\\\www\\\\w...')
+#4 [internal function]: Composer\\Autoload\\ClassLoader->loadClass('App\\\\helpers')
+#5 Command line code(1): class_exists('App\\\\helpers')
+#6 [internal function]: {closure}('App\\\\helpers')
+#7 Command line code(1): array_filter(Array, Object(Closure))
+#8 {main}
+  thrown at C:\\wamp64\\www\\wura\\app\\helpers.php:26)
+[stacktrace]
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(244): Symfony\\Component\\ErrorHandler\\Error\\FatalError->__construct(message: ''Uncaught Error...', code: '0', error: '['type' => 1, '...', traceOffset: '0', traceArgs: '???', trace: '???')
+#1 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(231): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->fatalErrorFromPhpError(error: '['type' => 1, '...', traceOffset: '0')
+#2 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleShutdown()
+#3 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(0): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure:C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php:254-256}()
+#4 {main}
+"} 
+[2024-10-15 13:43:40] local.ERROR: Uncaught ReflectionException: Class "App\Policies\ModelPolicy" does not exist in Command line code:1
+Stack trace:
+#0 Command line code(1): ReflectionClass->__construct('App\\Policies\\Mo...')
+#1 [internal function]: {closure}('App\\Policies\\Mo...', 'App\\Models\\Mode...')
+#2 Command line code(1): array_map(Object(Closure), Array, Array)
+#3 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught ReflectionException: Class \"App\\Policies\\ModelPolicy\" does not exist in Command line code:1
+Stack trace:
+#0 Command line code(1): ReflectionClass->__construct('App\\\\Policies\\\\Mo...')
+#1 [internal function]: {closure}('App\\\\Policies\\\\Mo...', 'App\\\\Models\\\\Mode...')
+#2 Command line code(1): array_map(Object(Closure), Array, Array)
+#3 {main}
+  thrown at Command line code:1)
+[stacktrace]
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(244): Symfony\\Component\\ErrorHandler\\Error\\FatalError->__construct(message: ''Uncaught Refle...', code: '0', error: '['type' => 1, '...', traceOffset: '0', traceArgs: '???', trace: '???')
+#1 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(231): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->fatalErrorFromPhpError(error: '['type' => 1, '...', traceOffset: '0')
+#2 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleShutdown()
+#3 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(0): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure:C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php:254-256}()
+#4 {main}
+"} 
+[2024-10-15 13:43:40] local.ERROR: Uncaught ErrorException: The use statement with non-compound name 'NumberFormatter' has no effect in C:\wamp64\www\wura\app\helpers.php:26
+Stack trace:
+#0 C:\wamp64\www\wura\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php(255): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'The use stateme...', 'C:\\wamp64\\www\\w...', 26)
+#1 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(576): Illuminate\Foundation\Bootstrap\HandleExceptions->Illuminate\Foundation\Bootstrap\{closure}(2, 'The use stateme...', 'C:\\wamp64\\www\\w...', 26)
+#2 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(576): include('C:\\wamp64\\www\\w...')
+#3 C:\wamp64\www\wura\vendor\composer\ClassLoader.php(427): Composer\Autoload\{closure}('C:\\wamp64\\www\\w...')
+#4 [internal function]: Composer\Autoload\ClassLoader->loadClass('App\\helpers')
+#5 Command line code(1): class_exists('App\\helpers')
+#6 [internal function]: {closure}('App\\helpers')
+#7 Command line code(1): array_filter(Array, Object(Closure))
+#8 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught ErrorException: The use statement with non-compound name 'NumberFormatter' has no effect in C:\\wamp64\\www\\wura\\app\\helpers.php:26
+Stack trace:
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'The use stateme...', 'C:\\\\wamp64\\\\www\\\\w...', 26)
+#1 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(576): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'The use stateme...', 'C:\\\\wamp64\\\\www\\\\w...', 26)
+#2 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(576): include('C:\\\\wamp64\\\\www\\\\w...')
+#3 C:\\wamp64\\www\\wura\\vendor\\composer\\ClassLoader.php(427): Composer\\Autoload\\{closure}('C:\\\\wamp64\\\\www\\\\w...')
+#4 [internal function]: Composer\\Autoload\\ClassLoader->loadClass('App\\\\helpers')
+#5 Command line code(1): class_exists('App\\\\helpers')
+#6 [internal function]: {closure}('App\\\\helpers')
+#7 Command line code(1): array_filter(Array, Object(Closure))
+#8 {main}
+  thrown at C:\\wamp64\\www\\wura\\app\\helpers.php:26)
+[stacktrace]
+#0 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(244): Symfony\\Component\\ErrorHandler\\Error\\FatalError->__construct(message: ''Uncaught Error...', code: '0', error: '['type' => 1, '...', traceOffset: '0', traceArgs: '???', trace: '???')
+#1 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(231): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->fatalErrorFromPhpError(error: '['type' => 1, '...', traceOffset: '0')
+#2 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(255): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleShutdown()
+#3 C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(0): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure:C:\\wamp64\\www\\wura\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php:254-256}()
+#4 {main}
+"} 
