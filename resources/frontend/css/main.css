@@ -1,6 +1,6 @@
 body,
 html {
-    height: 100%
+    height: 100%;
 }
 
 .btn,
@@ -41,6 +41,7 @@ body {
     --gray-10: #fff;
     --primary-900: hsl(216deg, 100%, 20%);
     --primary-600: hsl(216deg, 100%, 40%);
+    --primary-700: hsl(210, 11%, 4%);
     --primary-500: #0A65CC;
     --primary-400: hsl(216deg, 100%, 60%);
     --primary-300: hsl(216deg, 100%, 60%);
@@ -80,7 +81,9 @@ body {
     --fs-xss-12: 12px;
     --fs-xss-lineheight: 20px
 }
-
+/* .tw-bg-primary-50{
+    background-color: whitesmoke!important;
+} */
 *,
 ::after,
 ::before {
@@ -9007,3 +9010,27 @@ ul.job-details-social li a {
 body[dir=rtl] .date.datepicker input {
     direction: rtl
 }
+/**/
+.slick-prev, .slick-next {
+    display: none !important; 
+}
+
+.cat {
+    min-height: 20vh;
+    display: flex;
+    align-items: center; 
+}
+
+.category-slider {
+    display: flex;
+    justify-content: center; 
+}
+
+.tw-item {
+    text-align: center; 
+}
+
+.tw-text-yellow-500{
+color: yellow;
+}
+
