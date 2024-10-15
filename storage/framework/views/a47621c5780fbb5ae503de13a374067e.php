@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('meta'); ?>
     <?php
         $data = metaData('login');

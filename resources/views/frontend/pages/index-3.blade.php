@@ -19,7 +19,7 @@ $data = metaData('home');
     <div class="container">
         <div class="tw-flex tw-justify-center tw-items-center tw-relative tw-z-50">
             <div class="tw-max-w-3xl tw-text-white tw-text-center">
-                <h1 class="tw-text-white" >{!! __('no_1_job_portal_home_3') !!}</h1>
+                <h1 class="tw-text-white">{!! __('no_1_job_portal_home_3') !!}</h1>
                 <p>{{ __('job_seekers_stats') }}</p>
                 <form action="{{ route('website.job') }}" method="GET" id="job_search_form" style="margin-top:10%!important">
                     <div class="jobsearchBox d-flex flex-column flex-md-row bg-gray-10 input-transparent rt-mb-24"
@@ -78,15 +78,15 @@ $data = metaData('home');
                     <div class="row" style="margin-top:10%;">
                         <div class="col" style="margin-top:45px!important;">
                             <i class="fas fa-briefcase fa-3x"></i>
-                            <p style="margin-top:15px;"> Emplois en ligne</p>
+                            <p style="margin-top:15px;">{{ livejob() }} {{ __('emplois_stats') }}</p>
                         </div>
                         <div class="col" style="margin-top:45px!important;">
                             <i class="fas fa-building fa-3x"></i>
-                            <p style="margin-top:15px;">Entreprises</p>
+                            <p style="margin-top:15px;">{{ companies() }} {{__('entreprises_stats')}}</p>
                         </div>
                         <div class="col" style="margin-top:45px!important;">
                             <i class="fas fa-user-check fa-3x"></i>
-                            <p style="margin-top:15px;">Candidats</p>
+                            <p style="margin-top:15px;">{{ $candidates }} {{__('candidats_stats')}}</p>
                         </div>
                     </div>
                 </div>
@@ -95,33 +95,9 @@ $data = metaData('home');
         </div>
     </div>
 </section>
-<section  class="tw-bg-primary-50">
-    <div class="container">
-        <div class=" tw-relative ">
-            <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-4 tw-gap-6">
-                @php
-                //dd(ksort( $popular_categories));
-               // $popular_categories = $popular_categories->toArray();
-                // ksort($popular_categories);
-                @endphp
-                @foreach ($popular_categories as $key => $category)
-                @isset($category['slug'])
-                <a href="{{ route('website.job.category.slug', $category['slug']) }}"
-                    class="!tw-transition-all tw-duration-300 hover:-tw-translate-y-[2px]  tw-py-2.5 tw-items-center">
-                    <span class="tw-text-2xl d-flex justify-content-center align-items-center ">
-                        <i class="{{ $category['icon'] }}"></i>
-                    </span>
-                    <div class=" tw-flex-1 text-center">
-                        <h4 class="tw-mb-0 tw-text-lg">{{ $category['name'] }}</h4>
-                        {{-- <p class="tw-mb-0 tw-text-sm">{{ $category['jobs_count'] }} {{ __('open_positions') }}</p> --}}
-                    </div>
-                </a>
-                @endisset
-                @endforeach
-            </div>
-        </div>
-    </div>
-</section>
+
+
+
 <!-- google adsense area -->
 @if (advertisement_status('home_page_ad'))
 @if (advertisementCode('home_page_thin_ad_after_counter_section'))
@@ -131,8 +107,40 @@ $data = metaData('home');
 @endif
 @endif
 <!-- google adsense area end -->
+
 <!-- category section -->
-<section class="tw-bg-primary-50 md:tw-py-20 tw-py-12">
+<section class="tw-bg-primary-50 cat">
+    <div class="container">
+        <div class="category-slider">
+            @foreach ($popular_categories as $category)
+            @isset($category['slug'])
+            <div class="tw-item tw-text-center">
+                <a href="{{ route('website.job.category.slug', $category['slug']) }}"
+                    class="!tw-transition-all tw-duration-300 hover:-tw-translate-y-[2px] tw-py-2.5 tw-items-center tw-flex tw-flex-col">
+                    <div class="tw-flex tw-justify-between tw-items-center tw-w-full">
+                        <span class="tw-text-2xl tw-text-left">
+                            <i class="{{ $category['icon'] }}"></i>
+                        </span>
+                        <!-- <p class="tw-mb-0 tw-text-sm"> 
+                            {{ $category['jobs_count'] }} {{ __('open_positions') }}
+                        </p> -->
+                    </div>
+
+                    <!-- Titre au centre -->
+                    <div class="tw-flex-1 tw-w-full tw-text-left">
+                        <h4 class="tw-mb-0 tw-text-lg">{{ $category['name'] }}</h4>
+                    </div>
+                </a>
+            </div>
+            @endisset
+            @endforeach
+        </div>
+    </div>
+</section>
+
+<!-- Old category section -->
+
+<!-- <section class="tw-bg-primary-50 md:tw-py-20 tw-py-12">
     <div class="container">
         <div>
             <h2>{{ __('top_categories') }}</h2>
@@ -161,191 +169,17 @@ $data = metaData('home');
 
         </div>
     </div>
-</section>
-
-
-<!--My category-->
-<div class="categories-container">
-    <div class="category">
-        <i class="icon">📁</i>
-        <h3>Titre 1</h3>
-        <p>10 postes ouverts</p>
-    </div>
-    <div class="separator"></div>
-    <div class="category">
-        <i class="icon">📊</i>
-        <h3>Titre 2</h3>
-        <p>5 postes ouverts</p>
-    </div>
-    <div class="separator"></div>
-    <div class="category">
-        <i class="icon">👨‍💻</i>
-        <h3>Titre 3</h3>
-        <p>8 postes ouverts</p>
-    </div>
-    <div class="separator"></div>
-    <div class="category">
-        <i class="icon">🎨</i>
-        <h3>Titre 4</h3>
-        <p>12 postes ouverts</p>
-    </div>
-    <div class="separator"></div>
-    <div class="category">
-        <i class="icon">📝</i>
-        <h3>Titre 5</h3>
-        <p>6 postes ouverts</p>
-    </div>
-    <div class="separator"></div>
-    <div class="category">
-        <i class="icon">🛠️</i>
-        <h3>Titre 6</h3>
-        <p>4 postes ouverts</p>
-    </div>
-    <div class="separator"></div>
-    <div class="category">
-        <i class="icon">📦</i>
-        <h3>Titre 7</h3>
-        <p>15 postes ouverts</p>
-    </div>
-    <div class="separator"></div>
-    <div class="category">
-        <i class="icon">📧</i>
-        <h3>Titre 8</h3>
-        <p>7 postes ouverts</p>
-    </div>
-</div>
-
-<!-- create profile -->
-<section class="md:tw-py-20 tw-py-12 !tw-border-t !tw-border-b !tw-border-primary-100">
-    <div class="container">
-        <div class="row tw-items-center">
-            <div class="col-lg-6">
-                <img class="tw-rounded-lg" src="https://jobbox.archielite.com/storage/pages/img-profile.png"
-                    alt="jobBox">
-            </div>
-            <div class="col-lg-6">
-                <div class="lg:tw-ps-12 tw-pt-6 lg:tw-pt-0">
-                    <h5 class="tw-text-primary-500 tw-mb-4">{{ __('create_profile') }}</h5>
-                    <h2 class="">{{ __('create_your_personal_account_profile') }}</h2>
-                    <p class="">{{ __('work_profile_description') }}</p>
-                    <div class="">
-                        <a href="{{ route('register') }}" class="btn btn-primary">{{ __('create_profile') }}</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- working process section -->
-<section class="working-process tw-bg-white">
-    <div class="rt-spacer-100 rt-spacer-md-50"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 text-center text-h4 ft-wt-5">
-                <span class="text-primary-500 has-title-shape">{{ config('app.name') }}
-                    <img src="{{ asset('frontend') }}/assets/images/all-img/title-shape.png" alt="">
-                </span>
-                <label for="">{{ __('working_process') }}</label>
-            </div>
-        </div>
-        <div class="rt-spacer-50"></div>
-        <div class="row">
-            <div class="col-lg-3 col-sm-6 rt-mb-24 position-relative">
-                <div class="has-arrow first">
-                    <img src="{{ asset('frontend') }}/assets/images/all-img/arrow-1.png" alt=""
-                        draggable="false">
-                </div>
-                <div class="rt-single-icon-box hover:!tw-bg-primary-50 working-progress icon-center">
-                    <div class="icon-thumb rt-mb-24">
-                        <div class="icon-72">
-                            <i class="ph-user-plus"></i>
-                        </div>
-                    </div>
-                    <div class="iconbox-content">
-                        <div class="body-font-2 rt-mb-12">{{ __('explore_opportunities') }}</div>
-                        <div class="body-font-4 text-gray-400">
-                            {{ __('browse_through_a_diverse_range_of_job_listings_tailored_to_your_interests_and_expertise') }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 rt-mb-24 col-sm-6 position-relative">
-                <div class="has-arrow middle">
-                    <img src="{{ asset('frontend') }}/assets/images/all-img/arrow-2.png" alt=""
-                        draggable="false">
-                </div>
-                <div class="rt-single-icon-box hover:!tw-bg-primary-50 working-progress icon-center">
-                    <div class="icon-thumb rt-mb-24">
-                        <div class="icon-72">
-                            <i class="ph-cloud-arrow-up"></i>
-                        </div>
-                    </div>
-                    <div class="iconbox-content">
-                        <div class="body-font-2 rt-mb-12">{{ __('create_your_profile') }}</div>
-                        <div class="body-font-4 text-gray-400">
-                            {{ __('build_a_standout_profile_highlighting_your_skills_experience_and_qualifications') }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 rt-mb-24 col-sm-6 position-relative">
-                <div class="has-arrow last">
-                    <img src="{{ asset('frontend') }}/assets/images/all-img/arrow-1.png" alt=""
-                        draggable="false">
-                </div>
-                <div class="rt-single-icon-box hover:!tw-bg-primary-50 working-progress icon-center">
-                    <div class="icon-thumb rt-mb-24">
-                        <div class="icon-72">
-                            <i class="ph-magnifying-glass-plus"></i>
-                        </div>
-                    </div>
-                    <div class="iconbox-content">
-                        <div class="body-font-2 rt-mb-12">{{ __('apply_with_ease') }}</div>
-                        <div class="body-font-4 text-gray-400">
-                            {{ __('effortlessly_apply_to_jobs_that_match_your_preferences_with_just_a_few_clicks') }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 rt-mb-24 col-sm-6">
-                <div class="rt-single-icon-box hover:!tw-bg-primary-50 working-progress icon-center">
-                    <div class="icon-thumb rt-mb-24">
-                        <div class="icon-72">
-                            <i class="ph-circle-wavy-check"></i>
-                        </div>
-                    </div>
-                    <div class="iconbox-content">
-                        <div class="body-font-2 rt-mb-12">{{ __('track_your_progress') }}</div>
-                        <div class="body-font-4 text-gray-400">
-                            {{ __('stay_informed_on_your_applications_and_manage_your_job_seeking_journey_effectively') }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="rt-spacer-100 rt-spacer-md-50"></div>
-</section>
-<!-- google adsense area -->
-@if (advertisement_status('home_page_ad'))
-@if (advertisementCode('home_page_fat_ad_after_workingprocess_section'))
-<div class="container my-4">
-    {!! advertisementCode('home_page_fat_ad_after_workingprocess_section') !!}
-</div>
-@endif
-@endif
-<!-- google adsense area end -->
+</section>  -->
 <!-- jobs card -->
-<section class="tw-bg-primary-50 md:tw-py-20 tw-py-12">
+<section class="md:tw-py-20 tw-py-12">
     <div class="container">
         <div class="row md:tw-pb-12 tw-pb-8">
             <div class="col-12">
                 <div class="tw-flex tw-gap-3 tw-items-center tw-flex-wrap">
                     <div class="flex-grow-1">
                         <h4 class="tw-mb-0">
-                            {{ __('top') }}
-                            <span class="text-primary-500 has-title-shape">{{ __('featured_job') }}
+                            <!-- {{ __('top') }} -->
+                            <span class="text-primary-700 has-title-shape tw-text-3xl" st>{{ __('featured_job') }}
                                 <img src="{{ asset('frontend') }}/assets/images/all-img/title-shape.png"
                                     alt="">
                             </span>
@@ -430,6 +264,130 @@ $data = metaData('home');
         </div>
     </div>
 </section>
+<!-- create profile -->
+<section class="tw-bg-primary-50 md:tw-py-20 tw-py-12 !tw-border-t !tw-border-b !tw-border-primary-100">
+    <div class="container">
+        <div class="row tw-items-center">
+            <div class="col-lg-6">
+                <img class="tw-rounded-lg" src="https://jobbox.archielite.com/storage/pages/img-profile.png"
+                    alt="jobBox">
+            </div>
+            <div class="col-lg-6">
+                <div class="lg:tw-ps-12 tw-pt-6 lg:tw-pt-0">
+                    <h5 class="tw-text-primary-500 tw-mb-4">{{ __('create_profile') }}</h5>
+                    <h2 class="">{{ __('create_your_personal_account_profile') }}</h2>
+                    <p class="">{{ __('work_profile_description') }}</p>
+                    <div class="">
+                        <a href="{{ route('register') }}" class="btn btn-primary">{{ __('create_profile') }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- working process section or why wura ? -->
+<section class="working-process tw-bg-white">
+    <div class="rt-spacer-100 rt-spacer-md-50"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center text-h4 ft-wt-5">
+                <span class="text-primary-700 has-title-shape">{{ __('why_choose_us') }} ?
+                    <img src="{{ asset('frontend') }}/assets/images/all-img/title-shape.png" alt="">
+                </span>
+                <!-- <label for="" >{{ __('why_choose_us') }} ?</label> -->
+            </div>
+        </div>
+        <div class="rt-spacer-50"></div>
+        <div class="row">
+            <div class="col-lg-3 col-sm-6 rt-mb-24 position-relative">
+                <div class="has-arrow first">
+                    <img src="{{ asset('frontend') }}/assets/images/all-img/arrow-1.png" alt=""
+                        draggable="false">
+                </div>
+                <div class="rt-single-icon-box hover:!tw-bg-primary-50 working-progress icon-center">
+                    <div class="icon-thumb rt-mb-24">
+                        <div class="icon-72">
+                            <i class="ph-briefcase"></i>
+                        </div>
+                    </div>
+                    <div class="iconbox-content">
+                        <div class="body-font-2 rt-mb-12">{{ __('professionalisme') }}</div>
+                        <div class="body-font-4 text-gray-400">
+                            {{ __('professionalisme_sentence') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 rt-mb-24 col-sm-6 position-relative">
+                <div class="has-arrow middle">
+                    <img src="{{ asset('frontend') }}/assets/images/all-img/arrow-2.png" alt=""
+                        draggable="false">
+                </div>
+                <div class="rt-single-icon-box hover:!tw-bg-primary-50 working-progress icon-center">
+                    <div class="icon-thumb rt-mb-24">
+                        <div class="icon-72">
+                            <i class="ph-circle-wavy-check"></i>
+                        </div>
+                    </div>
+                    <div class="iconbox-content">
+                        <div class="body-font-2 rt-mb-12">{{ __('announce') }}</div>
+                        <div class="body-font-4 text-gray-400">
+                            {{ __('announce_sentence') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 rt-mb-24 col-sm-6 position-relative">
+                <div class="has-arrow last">
+                    <img src="{{ asset('frontend') }}/assets/images/all-img/arrow-1.png" alt=""
+                        draggable="false">
+                </div>
+                <div class="rt-single-icon-box hover:!tw-bg-primary-50 working-progress icon-center">
+                    <div class="icon-thumb rt-mb-24">
+                        <div class="icon-72">
+                            <i class="ph-handshake"></i>
+                        </div>
+                    </div>
+                    <div class="iconbox-content">
+                        <div class="body-font-2 rt-mb-12">{{ __('community') }}</div>
+                        <div class="body-font-4 text-gray-400">
+                            {{ __('community_sentence') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 rt-mb-24 col-sm-6">
+                <div class="rt-single-icon-box hover:!tw-bg-primary-50 working-progress icon-center">
+                    <div class="icon-thumb rt-mb-24">
+                        <div class="icon-72">
+                            <i class="ph-bell"></i>
+                        </div>
+                    </div>
+                    <div class="iconbox-content">
+                        <div class="body-font-2 rt-mb-12">{{ __('update_notif') }}</div>
+                        <div class="body-font-4 text-gray-400">
+                            {{ __('update_sentence') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="rt-spacer-100 rt-spacer-md-50"></div>
+</section>
+
+
+<!-- google adsense area -->
+@if (advertisement_status('home_page_ad'))
+@if (advertisementCode('home_page_fat_ad_after_workingprocess_section'))
+<div class="container my-4">
+    {!! advertisementCode('home_page_fat_ad_after_workingprocess_section') !!}
+</div>
+@endif
+@endif
+<!-- google adsense area end -->
+
 <!-- google adsense area -->
 @if (advertisement_status('home_page_ad'))
 @if (advertisementCode('home_page_fat_ad_after_featuredjob_section'))
@@ -442,20 +400,23 @@ $data = metaData('home');
 <!-- top companaies -->
 @if ($top_companies && count($top_companies) > 0)
 @if (!auth('user')->check() || (auth('user')->check() && authUser()->role == 'candidate'))
-<section class="md:tw-py-20 tw-py-12">
+<section class=" tw-bg-primary-50 md:tw-py-20 tw-py-12">
     <div class="container">
         <div class="row md:tw-pb-12 tw-pb-8">
             <div class="col-12">
                 <div class="d-flex flex-wrap">
                     <div class="flex-grow-1">
-                        <h4>{{ __('top') }} <span
-                                class="text-primary-500 has-title-shape">{{ __('companies') }}
+                        <h4>
+                            <!-- {{ __('top') }} -->
+                            <span
+                                class="text-primary-700 tw-text-3xl has-title-shape">{{ __('companies') }}
                                 <img src="{{ asset('frontend') }}/assets/images/all-img/title-shape.png"
                                     alt="">
-                            </span></h4>
+                            </span>
+                        </h4>
                     </div>
                     <a href="{{ route('website.company') }}" class="flex-grow-0 rt-pt-md-10">
-                        <button class="btn btn-outline-primary">
+                        <button class="btn btn-primary">
                             <span class="button-content-wrapper ">
                                 <span class="button-icon align-icon-right">
                                     <i class="ph-arrow-right"></i>
@@ -508,6 +469,63 @@ $data = metaData('home');
 </section>
 @endif
 @endif
+<!--Testimonials section-->
+<section class="md:tw-py-20 tw-py-12">
+    <div class="container">
+        <div class="row md:tw-pb-12 tw-pb-8">
+            <div class="col-12">
+                <div class="d-flex flex-wrap">
+                    <div class="flex-grow-1">
+                        <h4>
+                            <span class="text-primary-700 tw-text-3xl has-title-shape">
+                                {{ __('testimonials') }}
+                                <img src="{{ asset('frontend') }}/assets/images/all-img/title-shape.png" alt="">
+                            </span>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row category-slider"> <!-- Ajout de la classe category-slider -->
+            @foreach ($top_companies as $company)
+            <div class="col-xl-3 col-md-4 fade-in-bottom condition_class rt-mb-24 tw-self-stretch">
+                <a href="" class="card jobcardStyle1 tw-bg-primary-50 tw-h-full hover:!-tw-translate-y-1">
+                    <div class="tw-p-6 tw-flex tw-flex-col tw-items-center">
+                        <!-- Étoiles jaunes au-dessus -->
+                        <div class="tw-flex tw-gap-1 tw-mb-3">
+                            <span class="tw-text-yellow-500">&#9733;</span>
+                            <span class="tw-text-yellow-500">&#9733;</span>
+                            <span class="tw-text-yellow-500">&#9733;</span>
+                            <span class="tw-text-yellow-500">&#9733;</span>
+                            <span class="tw-text-yellow-500">&#9733;</span>
+                        </div>
+                        <p class="tw-text-gray-500 tw-text-center tw-mb-4">
+                            "Un service exceptionnel! L'équipe a vraiment pris en charge mes besoins et a dépassé mes attentes."
+                        </p>
+                        <div class="tw-flex tw-items-center tw-gap-2">
+                            <div class="tw-w-10 tw-h-10 tw-rounded-full tw-overflow-hidden">
+                                <img class="tw-w-full tw-h-full tw-object-cover"
+                                    src="{{ $company->logo_url }}" alt="" draggable="false">
+                            </div>
+                            <span class="tw-text-[#191F33] tw-text-base tw-font-medium">
+                                {{ $company->user->name }}
+                            </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            @endforeach
+        </div>
+    </div>
+</section>
+ {{-- Subscribe Newsletter --}}
+ <x-website.subscribe-newsletter />
+
+<form action="{{ route('website.indeed.job') }}" id="affiliate_form">
+    <input type="hidden" name="keyword" value="{{ request('keyword') }}">
+    <input type="hidden" name="category" value="{{ Route::current()->parameter('category') }}">
+</form>
 <!-- google adsense area -->
 @if (advertisement_status('home_page_ad'))
 @if (advertisementCode('home_page_fat_ad_after_client_section'))
@@ -526,19 +544,18 @@ $data = metaData('home');
 <x-map.leaflet.autocomplete_links />
 @include('map::links')
 <style>
-   
     .hero-section-3 {
-        padding: 100px 0px;
-        background-image: url('{{ asset(' frontend/assets/images/hero-bg-3.jpeg') }}');
+        padding: 100px 0;
+        background-image: url('{{ asset('frontend/assets/images/hero-bg-3.jpeg') }}');
         background-repeat: no-repeat;
         background-size: cover;
         position: relative;
         height: 100vh;
     }
 
+
     .hero-section-3::after {
         background-color: black;
-        content: "";
         height: 100%;
         left: 0;
         opacity: .5;
@@ -593,47 +610,90 @@ $data = metaData('home');
     }
 
     body:has(.hero-section-2) .n-header--bottom {
-        box-shadow: none;
-        !important;
+        box-shadow: none !important;
     }
-    
 </style>
 @endsection
 
 @section('script')
 <script>
-    $('.category-slider').slick({
-        dots: true,
-        arrows: false,
-        infinite: true,
-        autoplay: true,
-        speed: 300,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        responsive: [{
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                    infinite: true,
-                    dots: true
+    /** For all categorie slide */
+    $(document).ready(function() {
+        $('.category-slider').slick({
+            dots: false,
+            arrows: false,
+            infinite: true,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            speed: 300,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            responsive: [{
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        infinite: true,
+                        dots: false
+                    }
+                },
+                {
+                    breakpoint: 600, // Pour les petits écrans
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        dots: false,
+                    }
+                },
+                {
+                    breakpoint: 480, // Pour les très petits écrans (mobiles)
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        dots: false
+                    }
                 }
-            },
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1
+            ]
+        });
+
+        $('.category-slider').slick({
+            dots: false,
+            arrows: false,
+            infinite: true,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            speed: 300,
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            responsive: [{
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                        infinite: true,
+                        dots: false
+                    }
+                },
+                {
+                    breakpoint: 600, // Pour les petits écrans
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        dots: false,
+                    }
+                },
+                {
+                    breakpoint: 480, // Pour les très petits écrans (mobiles)
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        dots: false
+                    }
                 }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            }
-        ]
+            ]
+        });
     });
 </script>
+
+
 @endsection

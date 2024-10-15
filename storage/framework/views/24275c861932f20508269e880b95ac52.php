@@ -1,0 +1,2 @@
+<link href="<?php echo e(asset('backend/css/leaflet.css')); ?>" rel="stylesheet"/>
+<?php /**PATH /opt/lampp/htdocs/MEGATECH/wura/resources/views/components/map/leaflet/map_links.blade.php ENDPATH**/ ?>

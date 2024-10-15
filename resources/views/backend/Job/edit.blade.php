@@ -826,8 +826,6 @@
 @section('script')
     @livewireScripts
     <script>
-     
-           
         let langueCounter = 0;
         document.getElementById('addLangue').addEventListener('click', function() {
             const langueContainer = document.getElementById('langues-container');
@@ -878,29 +876,31 @@
                                            `;
             langueContainer.appendChild(divLangue);
             divLangue.querySelector('.remove-langue').addEventListener('click', function() {
-                var languesDivs = langueContainer.children('div'); 
-                if (languesDivs.length > 1){
+                var languesContainer = $('#langues-container');
+                var languesDivs = languesContainer.children('div');
+                if (languesDivs.length > 1) {
                     langueContainer.removeChild(divLangue);
-                }else{
-                    alert("Vous devez laisser au moins une langue.");
-                }
-             
+            } else {
+                alert("Vous devez laisser au moins une langue.");
+            }
+                
+
             });
         });
 
         $('.remove-langue').on('click', function() {
-        
-                var languesContainer = $('#langues-container');
-                var languesDivs = languesContainer.children('div'); 
-              
-                
-                if (languesDivs.length > 1){
-                    $(this).closest('.langues-div').remove();
-                }else{
-                    alert("Vous devez laisser au moins une langue.");
-                }
-                
-            });
+
+            var languesContainer = $('#langues-container');
+            var languesDivs = languesContainer.children('div');
+
+
+            if (languesDivs.length > 1) {
+                $(this).closest('.langues-div').remove();
+            } else {
+                alert("Vous devez laisser au moins une langue.");
+            }
+
+        });
     </script>
     <script>
         $(document).ready(function() {

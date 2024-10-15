@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('title', __('messenger')); ?>
 
 <?php $__env->startSection('main'); ?>

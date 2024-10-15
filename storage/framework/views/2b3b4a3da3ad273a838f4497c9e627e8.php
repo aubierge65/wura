@@ -1,0 +1,2 @@
+<link rel="stylesheet" href="<?php echo e(asset('frontend/plugins/leaflet/autocomplete.min.css')); ?>">
+<?php /**PATH /var/www/vhosts/wura.africa/httpdocs/resources/views/components/map/leaflet/autocomplete_links.blade.php ENDPATH**/ ?>

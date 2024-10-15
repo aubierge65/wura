@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('description'); ?>
     <?php
         $data = metaData('candidates');
