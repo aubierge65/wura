@@ -257,6 +257,30 @@ class Job extends Model
     }
 
     /**
+     * Get the contrat that owns the Job
+     */
+    public function contract(): BelongsTo
+    {
+        return $this->belongsTo(JobContract::class, 'job_contracts_id', 'id');
+    }
+    /**
+     * Get the mode that owns the Job
+     */
+    public function mode(): BelongsTo
+    {
+        return $this->belongsTo(JobMode::class, 'job_mode_id', 'id');
+    }
+
+  
+    public function languages()
+    {
+        return $this->belongsToMany(CandidateLanguage::class, 'job_language_pivots', 'job_id', 'candidate_languages_id')
+                    ->withPivot('level_id') // Inclure le niveau dans la relation pivot
+                    ; 
+    }
+
+
+    /**
      * Get the role that owns the Job
      */
     public function role(): BelongsTo
@@ -386,4 +410,9 @@ class Job extends Model
     {
         return $query->where('deadline', '>', now());
     }
+
+    // public function languePivots()
+    // {
+    //     return $this->hasMany(JobLanguagePivot::class, 'job_id');
+    // }
 }

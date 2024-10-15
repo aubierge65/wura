@@ -76,33 +76,34 @@ class PayPerJobService
 
         // Experience
         $education_request = $request->education;
-        $education = Education::where('id', $education_request)->orWhere('name', $education_request)->first();
-        if (! $education) {
-            $education = Education::where('name', $education_request)->first();
+      
+        // $education = Education::where('id', $education_request)->orWhere('name', $education_request)->first();  dd($education);
+        // if (! $education) {
+        //     $education = Education::where('name', $education_request)->first();
 
-            if (! $education) {
-                $education = Education::create(['name' => $education_request]);
-            }
-        }
+        //     if (! $education) {
+        //         $education = Education::create(['name' => $education_request]);
+        //     }
+        // }
 
         // Education
         $experience_request = $request->experience;
-        $experience = Experience::where('id', $experience_request)->orWhere('name', $experience_request)->first();
-        if (! $experience) {
-            $experience = Experience::where('name', $experience_request)->first();
+        // $experience = Experience::where('id', $experience_request)->orWhere('name', $experience_request)->first();
+        // if (! $experience) {
+        //     $experience = Experience::where('name', $experience_request)->first();
 
-            if (! $experience) {
-                $experience = Experience::create(['name' => $experience_request]);
-            }
-        }
+        //     if (! $experience) {
+        //         $experience = Experience::create(['name' => $experience_request]);
+        //     }
+        // }
 
         $jobCreated = Job::create([
             'title' => $request->title,
             'company_id' => currentCompany()->id,
             'category_id' => $job_category_id,
             'role_id' => $job_role_id,
-            'education_id' => $education->id,
-            'experience_id' => $experience->id,
+            'education_id' => $education_request,
+            'experience_id' => $experience_request,
             'salary_mode' => $request->salary_mode,
             'custom_salary' => $request->custom_salary,
             'min_salary' => $request->min_salary,
@@ -121,6 +122,8 @@ class PayPerJobService
             'highlight_until' => $highlight_days,
             'is_remote' => $request->is_remote ?? 0,
             'status' => setting('job_auto_approved') ? 'active' : 'pending',
+            'disponibilite' => 'Temps plein',
+            'job_type_work_id' => 1
         ]);
 
         // Location

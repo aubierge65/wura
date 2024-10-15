@@ -44,8 +44,10 @@
                                         <hr>
                                         @php $i=1; @endphp
                                         @foreach ($permission_groups as $group)
-                                            @php
+                                        
+                                            @php  
                                                 $permissionsInGroup = App\Models\Admin::getpermissionsByGroupName($group->name);
+                                             
                                                 $j = 1;
                                             @endphp
                                             <div class="row">

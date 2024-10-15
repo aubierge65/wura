@@ -53,7 +53,7 @@
                                             @endphp
                                             <div class="iconbox-content !tw-m-0">
                                                 <div class="job-mini-title">
-                                                    @if (auth('user')->check())
+                                                    @if (auth('user')->check() && authUser()->role !== 'candidate' )
                                                         <span>
                                                             {{ $candidate->user->name }}
                                                         </span>
@@ -72,10 +72,13 @@
                                                     </span>
                                                 @endif
                                                 <div class="bottom-link mt-1">
-                                                    @if (auth('user')->check())
+                                                    @if (auth('user')->check() )
+                                                    @if (authUser()->role !== 'candidate')
                                                         <span class="body-font-4 text-primary-500">{{ __('view_resume') }}
                                                             <x-svg.arrow-right-icon />
                                                         </span>
+                                                    @endif
+                                                        
                                                     @else
                                                         <span
                                                             class="body-font-4 text-primary-500 login_required">{{ __('view_resume') }}

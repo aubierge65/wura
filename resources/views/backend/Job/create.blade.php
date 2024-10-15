@@ -196,63 +196,63 @@
                                     </div>
                                 </div> --}}
                                 @if (config('templatecookie.map_show'))
-                                <div class="card-header">
-                                    <div class="card-title">
-                                        {{ __('location') }}
-                                        <span class="text-red font-weight-bold">*</span>
-                                        <small class="h6">
-                                            ({{ __('click_to_add_a_pointer') }})
-                                        </small>
+                                    <div class="card-header">
+                                        <div class="card-title">
+                                            {{ __('location') }}
+                                            <span class="text-red font-weight-bold">*</span>
+                                            <small class="h6">
+                                                ({{ __('click_to_add_a_pointer') }})
+                                            </small>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="card-body">
-                                    <x-website.map.map-warning />
-                                    @php
-                                        $map = $setting->default_map;
-                                    @endphp
-                                    <div id="google-map-div" class="{{ $map == 'google-map' ? '' : 'd-none' }}">
-                                        <input id="searchInput" class="mapClass" type="text"
-                                            placeholder="Enter a location">
-                                        <div class="map mymap" id="google-map"></div>
-                                    </div>
-                                    <div class="{{ $map == 'leaflet' ? '' : 'd-none' }}">
-                                        <input type="text" autocomplete="off" id="leaflet_search"
-                                            placeholder="{{ __('enter_city_name') }}" class="form-control" /> <br>
-                                        <div id="leaflet-map"></div>
-                                    </div>
-                                    @error('location')
-                                        <span class="ml-3 text-md text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                @php
-                                    $location = session()->get('location');
-                                @endphp
-                                <div class="card-footer location_footer d-none">
-                                    <span>
-                                        <img src="{{ asset('frontend/assets/images/loader.gif') }}" alt="loader"
-                                            width="50px" height="50px" class="loader_position d-none">
-                                    </span>
-                                    <div class="location_secion">
-                                        {{ __('country') }}: <span
-                                            class="location_country">{{ $location && array_key_exists('country', $location) ? $location['country'] : '-' }}</span>
-                                        <br>
-                                        {{ __('full_address') }}: <span
-                                            class="location_full_address">{{ $location && array_key_exists('exact_location', $location) ? $location['exact_location'] : '-' }}</span>
-                                    </div>
-                                </div>
-                                @else
-                                <div class="card-header border-0">
-                                    {{ __('location') }}
-                                    <span class="text-red font-weight-bold">*</span>
-                                </div>
-                                <div class="card-body pt-0 row">
-                                    <div class="col-12">
-                                        @livewire('country-state-city')
+                                    <div class="card-body">
+                                        <x-website.map.map-warning />
+                                        @php
+                                            $map = $setting->default_map;
+                                        @endphp
+                                        <div id="google-map-div" class="{{ $map == 'google-map' ? '' : 'd-none' }}">
+                                            <input id="searchInput" class="mapClass" type="text"
+                                                placeholder="Enter a location">
+                                            <div class="map mymap" id="google-map"></div>
+                                        </div>
+                                        <div class="{{ $map == 'leaflet' ? '' : 'd-none' }}">
+                                            <input type="text" autocomplete="off" id="leaflet_search"
+                                                placeholder="{{ __('enter_city_name') }}" class="form-control" /> <br>
+                                            <div id="leaflet-map"></div>
+                                        </div>
                                         @error('location')
                                             <span class="ml-3 text-md text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                </div>
+                                    @php
+                                        $location = session()->get('location');
+                                    @endphp
+                                    <div class="card-footer location_footer d-none">
+                                        <span>
+                                            <img src="{{ asset('frontend/assets/images/loader.gif') }}" alt="loader"
+                                                width="50px" height="50px" class="loader_position d-none">
+                                        </span>
+                                        <div class="location_secion">
+                                            {{ __('country') }}: <span
+                                                class="location_country">{{ $location && array_key_exists('country', $location) ? $location['country'] : '-' }}</span>
+                                            <br>
+                                            {{ __('full_address') }}: <span
+                                                class="location_full_address">{{ $location && array_key_exists('exact_location', $location) ? $location['exact_location'] : '-' }}</span>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="card-header border-0">
+                                        {{ __('location') }}
+                                        <span class="text-red font-weight-bold">*</span>
+                                    </div>
+                                    <div class="card-body pt-0 row">
+                                        <div class="col-12">
+                                            @livewire('country-state-city')
+                                            @error('location')
+                                                <span class="ml-3 text-md text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 @endif
                             </div>
                         </div>
@@ -421,6 +421,82 @@
                                                     <strong>{{ __($message) }}</strong>
                                                 </span>
                                             @enderror
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-md-6">
+                                            <x-forms.label name="job_mode" for="job_mode_id" :required="true" />
+                                            <select id="job_mode_id" name="job_mode_id"
+                                                class="form-control select2bs4 @error('job_mode_id') is-invalid @enderror"
+                                                required>
+                                                <option value=""> {{ __('job_mode') }}</option>
+                                                @foreach ($modes as $mode)
+                                                    <option {{ $mode->id == old('job_mode_id') ? 'selected' : '' }}
+                                                        value="{{ $mode->id }}">{{ $mode->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('job_mode_id')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ __($message) }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6">
+                                            <x-forms.label name="job_contracts" for="job_contracts_id"
+                                                :required="true" />
+                                            <select id="job_contracts_id" name="job_contracts_id"
+                                                class="form-control select2bs4 @error('job_contracts_id') is-invalid @enderror"
+                                                required>
+                                                <option value=""> {{ __('job_contracts') }}</option>
+                                                @foreach ($contrats as $contrat)
+                                                    <option {{ $contrat->id == old('job_contracts_id') ? 'selected' : '' }}
+                                                        value="{{ $contrat->id }}">{{ $contrat->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('job_contracts_id')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ __($message) }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div id="langues-container">
+                                        <button type="button" id="addLangue" class="badge badge-primary border border-none">Ajouter</button>
+                                        <div class="row form-group langues-div">
+                                            <div class="col-md-6">
+                                                <x-forms.label name="langue" for="job_langue" :required="true" />
+                                                <select name="langue[]"
+                                                    class="form-control select2bs4 @error('langue') is-invalid @enderror"
+                                                    id="job_langue" required>
+                                                    @foreach ($langues as $langue)
+                                                        <option {{ $langue->id == old('langue') ? 'selected' : '' }}
+                                                            value="{{ $langue->id }}">{{ $langue->name }} </option>
+                                                    @endforeach
+                                                </select>
+                                                @error('langue')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ __($message) }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <div class="col-md-6">
+                                                <x-forms.label name="level" for="job_level" :required="true" />
+                                                <select name="level[]"
+                                                    class="form-control select2bs4 @error('level') is-invalid @enderror"
+                                                    id="job_level" required>
+                                                    @foreach ($levels as $level)
+                                                        <option {{ $level->id == old('level') ? 'selected' : '' }}
+                                                            value="{{ $level->id }}">{{ $level->name }} </option>
+                                                    @endforeach
+                                                </select>
+                                                @error('level')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ __($message) }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row form-group">
@@ -776,6 +852,63 @@
 @section('script')
     @livewireScripts
     <script>
+        let langueCounter = 0; 
+       document.getElementById('addLangue').addEventListener('click', function() {
+           const langueContainer = document.getElementById('langues-container');
+           if (!langueContainer) {
+           console.error("Element with id 'langues-container' not found!");
+           return;
+       }
+           const divLangue = document.createElement('div');
+           divLangue.classList.add('langues-div');
+           divLangue.innerHTML = `
+            <button type="button" class="btn btn-danger remove-langue" style="margin-top: 10px;">Supprimer</button>
+       
+       <div class='row'>
+            <div class="col-md-6">
+                                               <x-forms.label name="langue" for="job_langue_${langueCounter}" :required="true" />
+                                               <select name="langue[]"
+                                                   class="form-control select2bs4 @error('langue') is-invalid @enderror"
+                                                   id="job_langue_${langueCounter}" required>
+                                                   @foreach ($langues as $langue)
+                                                       <option {{ $langue->id == old('langue') ? 'selected' : '' }}
+                                                           value="{{ $langue->id }}">{{ $langue->name }} </option>
+                                                   @endforeach
+                                               </select>
+                                               @error('langue')
+                                                   <span class="invalid-feedback" role="alert">
+                                                       <strong>{{ __($message) }}</strong>
+                                                   </span>
+                                               @enderror
+                                           </div>
+                                           <div class="col-md-6">
+                                               <x-forms.label name="level" for="job_level_${langueCounter}" :required="true" />
+                                               <select name="level[]"
+                                                   class="form-control select2bs4 @error('level') is-invalid @enderror"
+                                                   id="job_level_${langueCounter}" required>
+                                                   @foreach ($levels as $level)
+                                                       <option {{ $level->id == old('level') ? 'selected' : '' }}
+                                                           value="{{ $level->id }}">{{ $level->name }} </option>
+                                                   @endforeach
+                                               </select>
+                                               @error('level')
+                                                   <span class="invalid-feedback" role="alert">
+                                                       <strong>{{ __($message) }}</strong>
+                                                   </span>
+                                               @enderror
+                                           </div>
+           </div>
+       
+                                           `;
+       langueContainer.appendChild(divLangue);
+       divLangue.querySelector('.remove-langue').addEventListener('click', function() {
+           langueContainer.removeChild(divLangue);
+       });
+       });
+      
+     
+   </script>
+    <script>
         $(document).ready(function() {
             $('.select21').select2();
         });
@@ -807,6 +940,7 @@
                     break;
                 }
             }
+
 
             stepMenus.forEach(menu => menu.classList.remove('active'));
 
@@ -846,7 +980,7 @@
     @if (app()->getLocale() == 'ar')
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.ar.min.js
-                                                                                                                                                                                                            ">
+                                                                                                                                                                                                                            ">
         </script>
     @endif
     <script>
@@ -951,36 +1085,40 @@
             }
         });
     </script>
-<script>
-    $(document).ready(function() {
-        $('#category_id').on('change', function() {
-            var categoryId = $(this).val();
+    <script>
+        $(document).ready(function() {
+            $('#category_id').on('change', function() {
+                var categoryId = $(this).val();
 
-            if (categoryId) {
-                $.ajax({
-                    url: 'https://wura.africa/admin/jobs/roles-by-category/' + categoryId,
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function(data) {
-                        $('#role_id').empty(); // Vider la liste actuelle des rôles
-                        $('#role_id').append('<option value="">Sélectionner un rôle</option>');
+                if (categoryId) {
+                    $.ajax({
+                        url: 'http://wura.locale/admin/jobs/roles-by-category/' + categoryId,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            $('#role_id').empty(); // Vider la liste actuelle des rôles
+                            $('#role_id').append(
+                                '<option value="">Sélectionner un rôle</option>');
 
-                        $.each(data, function(key, value) {
-                            $('#role_id').append('<option value="' + value.id + '">' + value.name + '</option>');
-                        });
-                    }
-                });
-            } else {
-                // Si aucune catégorie n'est sélectionnée, réafficher tous les rôles
-                $('#role_id').empty(); 
-                $('#role_id').append('<option value="">Sélectionner un rôle</option>');
-                @foreach ($job_roles as $role)
-                    $('#role_id').append('<option value="{{ $role->id }}">{{ $role->name }}</option>');
-                @endforeach
-            }
+                            $.each(data, function(key, value) {
+                                $('#role_id').append('<option value="' + value.id +
+                                    '">' + value.name + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    // Si aucune catégorie n'est sélectionnée, réafficher tous les rôles
+                    $('#role_id').empty();
+                    $('#role_id').append('<option value="">Sélectionner un rôle</option>');
+                    @foreach ($job_roles as $role)
+                        $('#role_id').append(
+                            '<option value="{{ $role->id }}">{{ $role->name }}</option>');
+                    @endforeach
+                }
+            });
         });
-    });
-</script>
+    </script>
+
 
     @include('map::set-leafletmap')
     @include('map::set-googlemap')

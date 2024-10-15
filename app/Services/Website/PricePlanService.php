@@ -27,6 +27,7 @@ class PricePlanService
         session()->forget('job_request');
 
         $payment_setting = PaymentSetting::first();
+        // dd($payment_setting);
         $manual_payments = ManualPayment::whereStatus(1)->get();
 
         // midtrans snap token

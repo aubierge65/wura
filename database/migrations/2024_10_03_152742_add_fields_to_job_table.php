@@ -17,7 +17,7 @@ return new class extends Migration
 			 }
 			if (!Schema::hasColumn('jobs', 'disponibilite')){
 				$table->string('disponibilite');
-			 }
+			}
             
             
 			

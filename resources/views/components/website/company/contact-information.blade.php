@@ -17,11 +17,11 @@
                     <a href="{{ $user->company->website }}" target="_blank" class="title">{{ $user->company->website }}</a>
                 </div>
             </div>
-            <div class="devider">
+            {{-- <div class="devider">
                 <hr>
-            </div>
+            </div> --}}
         @endif
-        <div class="contact-icon-box">
+        {{-- <div class="contact-icon-box">
             <div class="icon-img">
                 <x-svg.location2-icon />
             </div>
@@ -31,7 +31,7 @@
                     {{ $user->company->exact_location ? $user->company->exact_location: $user->company->full_address }}
                 </h2>
             </div>
-        </div>
+        </div> --}}
 
         @auth
             <div class="collapse" id="contact-more-collapse">

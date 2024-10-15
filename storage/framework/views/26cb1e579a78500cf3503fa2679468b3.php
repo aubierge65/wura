@@ -4,7 +4,10 @@
         $headerCountries = Modules\Location\Entities\Country::select('id', 'name', 'slug', 'icon')->active()->get();
         $headerCurrencies = Modules\Currency\Entities\Currency::all();
         $languages = loadLanguage();
-        $defaultLanguage = Modules\Language\Entities\Language::where('code', config('templatecookie.default_language'))->first();
+        $defaultLanguage = Modules\Language\Entities\Language::where(
+            'code',
+            config('templatecookie.default_language'),
+        )->first();
     ?>
 <?php endif; ?>
 
@@ -177,7 +180,10 @@
                                                 <li class="menu-item">
                                                     <?php
                                                         // Check if the URL starts with "http" or "https" to identify external links
-                                                        $isExternalLink = Str::startsWith($company_menu_list['url'], ['http://', 'https://']);
+                                                        $isExternalLink = Str::startsWith($company_menu_list['url'], [
+                                                            'http://',
+                                                            'https://',
+                                                        ]);
                                                     ?>
                                                     <a href="<?php echo e($company_menu_list['url']); ?>"
                                                         <?php if($isExternalLink): ?> target="_blank" <?php endif; ?>
@@ -194,22 +200,22 @@
                                                     </a>
                                                 </li>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                            <?php if($custom_pages->where('show_header', 1)->count() > 0 ): ?>
-                                            <li class="menu-item extra-page d-none d-lg-inline-block">
-                                                <a href="javascript:void(0)" class="dropdown-toggle">
-                                                    Extra Pages
-                                                </a>
-                                                <ul class="ll-dropdown-menu">
-                                                    <?php $__currentLoopData = $custom_pages->where('show_header', 1); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $page): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <li>
-                                                            <a class="!tw-px-5 !tw-py-2"
-                                                                href="<?php echo e(route('showCustomPage', $page->slug)); ?>"><?php echo e($page->title); ?></a>
-                                                        </li>
-                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                </ul>
-                                            </li>
+                                            <?php if($custom_pages->where('show_header', 1)->count() > 0): ?>
+                                                <li class="menu-item extra-page d-none d-lg-inline-block">
+                                                    <a href="javascript:void(0)" class="dropdown-toggle">
+                                                        Extra Pages
+                                                    </a>
+                                                    <ul class="ll-dropdown-menu">
+                                                        <?php $__currentLoopData = $custom_pages->where('show_header', 1); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $page): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <li>
+                                                                <a class="!tw-px-5 !tw-py-2"
+                                                                    href="<?php echo e(route('showCustomPage', $page->slug)); ?>"><?php echo e($page->title); ?></a>
+                                                            </li>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    </ul>
+                                                </li>
                                             <?php endif; ?>
-                                            
+
                                             <?php $__currentLoopData = $custom_pages->where('show_header', 1); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $page): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <li class="d-lg-none">
                                                     <a class=""
@@ -235,7 +241,10 @@
                                                 <li class="menu-item">
                                                     <?php
                                                         // Check if the URL starts with "http" or "https" to identify external links
-                                                        $isExternalLink = Str::startsWith($candidate_menu_list['url'], ['http://', 'https://']);
+                                                        $isExternalLink = Str::startsWith($candidate_menu_list['url'], [
+                                                            'http://',
+                                                            'https://',
+                                                        ]);
                                                     ?>
                                                     <a href="<?php echo e($candidate_menu_list['url']); ?>"
                                                         <?php if($isExternalLink): ?> target="_blank" <?php endif; ?>
@@ -252,19 +261,7 @@
                                                     </a>
                                                 </li>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                            <li class="menu-item extra-page d-none d-lg-inline-block">
-                                                <a href="javascript:void(0)" class="dropdown-toggle">
-                                                    Extra Pages
-                                                </a>
-                                                <ul class="ll-dropdown-menu">
-                                                    <?php $__currentLoopData = $custom_pages->where('show_header', 1); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $page): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <li>
-                                                            <a class="!tw-px-5 !tw-py-2"
-                                                                href="<?php echo e(route('showCustomPage', $page->slug)); ?>"><?php echo e($page->title); ?></a>
-                                                        </li>
-                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                </ul>
-                                            </li>
+                                            
                                             <?php $__currentLoopData = $custom_pages->where('show_header', 1); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $page): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <li class="d-lg-none">
                                                     <a class=""
@@ -283,7 +280,10 @@
                                             <li class="menu-item">
                                                 <?php
                                                     // Check if the URL starts with "http" or "https" to identify external links
-                                                    $isExternalLink = Str::startsWith($public_menu_list['url'], ['http://', 'https://']);
+                                                    $isExternalLink = Str::startsWith($public_menu_list['url'], [
+                                                        'http://',
+                                                        'https://',
+                                                    ]);
                                                 ?>
                                                 <a href="<?php echo e($public_menu_list['url']); ?>"
                                                     <?php if($isExternalLink): ?> target="_blank" <?php endif; ?>
@@ -300,22 +300,22 @@
                                                 </a>
                                             </li>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                        <?php if($custom_pages->where('show_header', 1)->count() > 0 ): ?>
-                                        <li class="menu-item extra-page d-none d-lg-inline-block">
-                                            <a href="javascript:void(0)" class="dropdown-toggle">
-                                                 <?php echo e(__('extra_pages')); ?>
+                                        <?php if($custom_pages->where('show_header', 1)->count() > 0): ?>
+                                            <li class="menu-item extra-page d-none d-lg-inline-block">
+                                                <a href="javascript:void(0)" class="dropdown-toggle">
+                                                    <?php echo e(__('extra_pages')); ?>
 
-                                            </a>
-                                            <ul class="ll-dropdown-menu">
-                                                <?php $__currentLoopData = $custom_pages->where('show_header', 1); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $page): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <li>
-                                                        <a class="!tw-px-5 !tw-py-2"
-                                                            href="<?php echo e(route('showCustomPage', $page->slug)); ?>"><?php echo e($page->title); ?></a>
-                                                    </li>
-                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                            </ul>
-                                        </li>
-                                         <?php endif; ?>
+                                                </a>
+                                                <ul class="ll-dropdown-menu">
+                                                    <?php $__currentLoopData = $custom_pages->where('show_header', 1); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $page): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <li>
+                                                            <a class="!tw-px-5 !tw-py-2"
+                                                                href="<?php echo e(route('showCustomPage', $page->slug)); ?>"><?php echo e($page->title); ?></a>
+                                                        </li>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                </ul>
+                                            </li>
+                                        <?php endif; ?>
                                         <?php $__currentLoopData = $custom_pages->where('show_header', 1); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $page): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <li class="d-lg-none">
                                                 <a class="<?php echo e(urlMatch(url()->current(), url($public_menu_list['url'])) ? 'text-primary active' : ''); ?>"
@@ -835,6 +835,17 @@
                                                     </button>
                                                 </a>
                                             </li>
+                                        <?php endif; ?>
+                                        <?php if (\Illuminate\Support\Facades\Blade::check('candidate')): ?>
+                                        <li class="tw-hidden sm:tw-block">
+
+                                            <a href="<?php echo e(route('website.job')); ?>">
+                                                <button class="btn btn-light">
+                                                    <?php echo e(__('find_job')); ?>
+
+                                                </button>
+                                            </a>
+                                        </li>
                                         <?php endif; ?>
                                     <?php endif; ?>
                                     <?php if(request()->is('email/verify')): ?>

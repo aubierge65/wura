@@ -61,6 +61,11 @@ return [
     'midtrans_active' => false,
     'midtrans_live_mode' => false,
 
+    'fedapay_api_key' => 'pk_live_wbCceLgbIce5ktu5__n_s82Q',
+    'fedapay_api_secret' => 'sk_sandbox_iAwGH5OcTOU9oSDtaqiMZwld',
+    'fedapay_active' => true,
+    'fedapay_live_mode' => 'sandbox',
+
     'mollie_key' => '',
     'mollie_active' => true,
 

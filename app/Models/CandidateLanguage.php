@@ -19,4 +19,19 @@ class CandidateLanguage extends Model
         $this->attributes['name'] = $value;
         $this->attributes['slug'] = Str::slug($value);
     }
+    public function jobs()
+    {
+        return $this->belongsToMany(Job::class, 'job_language_pivots', 'candidate_languages_id', 'job_id')
+                    ->withPivot('level_id'); // Inclure le niveau dans la relation
+    }
+
+    // Si tu veux aussi accéder au niveau de compétence directement depuis la langue
+    public function levels()
+    {
+        return $this->belongsToMany(Level::class, 'job_language_pivots', 'candidate_languages_id', 'level_id');
+    }
+    public function level()
+    {
+        return $this->belongsTo(Level::class, 'level_id');
+    }
 }
