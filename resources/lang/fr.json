@@ -517,7 +517,7 @@
     "example_file": "Fichier exemple",
     "expired_jobs": "Emplois expirés",
     "faq_category": "Catégorie de FAQ",
-    "featured_job": "Emplois en vedette",
+    "featured_job": "Emploi en vedette",
     "find_job_now": "Trouvez un emploi maintenant",
     "full_address": "Adresse complète",
     "get_in_touch": "Contactez-nous",
@@ -850,14 +850,8 @@
     "show_in_the_menu": "Afficher dans le menu",
     "supported_format": "Format pris en charge",
     "terms_conditions": "Termes & Conditions",
-    "professionalisme": "Professionalisme",
-    "professionalisme_sentence": "Assurez-vous d'une expérience sans faille, grâce à notre engagement à offrir un service de qualité supérieure.",
-    "announce"        : "Fiabilité des annonces",
-    "announce_sentence": "Accédez à des offres d'emploi authentiques et vérifiées, vous garantissant des opportunités solides et fiables.",
-    "community"       : "Communauté et réseautage",
-    "community_sentence": "Rejoignez une communauté active où les connexions professionnelles se multiplient.",
-    "update_notif"    : "Mises à jour en temps réèl",
-    "update_sentence" : "Profitez de notifications instantanées qui vous tiennent informé des nouvelles opportunités.",
+
+
     "terms_of_service":"Conditions d'utilisation",
     "testimonial_list":"Liste des témoignages",
     "total_candidates":"Nombre total de candidats",
@@ -1536,10 +1530,5 @@
     "cover_latter": "Lettre de motivation",
     "applied_job_deatils": "Détails de l'emploi postulé",
     "verify_account": "Vérifier le compte",
-    "plan_already_purchased": "Plan déjà acheté",
-    "testimonials": "Témoignages",
-    "MES NOUVELLES MODIFICATIONS" : "MES NOUVELLES MODIFICATIONS",
-    "emplois_stats" : " Postes",
-    "entreprises_stats" : "Entreprises",
-    "candidats_stats" : "Candidats"
+    "plan_already_purchased": "Plan déjà acheté"
 }
