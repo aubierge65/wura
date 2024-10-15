@@ -78,15 +78,15 @@ $data = metaData('home');
                     <div class="row" style="margin-top:10%;">
                         <div class="col" style="margin-top:45px!important;">
                             <i class="fas fa-briefcase fa-3x"></i>
-                            <p style="margin-top:15px;">{{ __('emplois_stats') }}</p>
+                            <p style="margin-top:15px;">{{ livejob() }} {{ __('emplois_stats') }}</p>
                         </div>
                         <div class="col" style="margin-top:45px!important;">
                             <i class="fas fa-building fa-3x"></i>
-                            <p style="margin-top:15px;">{{__('entreprises_stats')}}</p>
+                            <p style="margin-top:15px;">{{ companies() }} {{__('entreprises_stats')}}</p>
                         </div>
                         <div class="col" style="margin-top:45px!important;">
                             <i class="fas fa-user-check fa-3x"></i>
-                            <p style="margin-top:15px;">{{__('candidats_stats')}}</p>
+                            <p style="margin-top:15px;">{{ $candidates }} {{__('candidats_stats')}}</p>
                         </div>
                     </div>
                 </div>
@@ -130,7 +130,6 @@ $data = metaData('home');
                     <div class="tw-flex-1 tw-w-full tw-text-left">
                         <h4 class="tw-mb-0 tw-text-lg">{{ $category['name'] }}</h4>
                     </div>
-
                 </a>
             </div>
             @endisset
@@ -180,7 +179,7 @@ $data = metaData('home');
                     <div class="flex-grow-1">
                         <h4 class="tw-mb-0">
                             <!-- {{ __('top') }} -->
-                            <span class="text-primary-500 has-title-shape tw-text-3xl" st>{{ __('featured_job') }}
+                            <span class="text-primary-700 has-title-shape tw-text-3xl" st>{{ __('featured_job') }}
                                 <img src="{{ asset('frontend') }}/assets/images/all-img/title-shape.png"
                                     alt="">
                             </span>
@@ -293,7 +292,7 @@ $data = metaData('home');
     <div class="container">
         <div class="row">
             <div class="col-12 text-center text-h4 ft-wt-5">
-                <span class="text-primary-500 has-title-shape">{{ __('why_choose_us') }} ?
+                <span class="text-primary-700 has-title-shape">{{ __('why_choose_us') }} ?
                     <img src="{{ asset('frontend') }}/assets/images/all-img/title-shape.png" alt="">
                 </span>
                 <!-- <label for="" >{{ __('why_choose_us') }} ?</label> -->
@@ -410,7 +409,7 @@ $data = metaData('home');
                         <h4>
                             <!-- {{ __('top') }} -->
                             <span
-                                class="text-primary-500 tw-text-3xl has-title-shape">{{ __('companies') }}
+                                class="text-primary-700 tw-text-3xl has-title-shape">{{ __('companies') }}
                                 <img src="{{ asset('frontend') }}/assets/images/all-img/title-shape.png"
                                     alt="">
                             </span>
@@ -478,7 +477,7 @@ $data = metaData('home');
                 <div class="d-flex flex-wrap">
                     <div class="flex-grow-1">
                         <h4>
-                            <span class="text-primary-500 tw-text-3xl has-title-shape">
+                            <span class="text-primary-700 tw-text-3xl has-title-shape">
                                 {{ __('testimonials') }}
                                 <img src="{{ asset('frontend') }}/assets/images/all-img/title-shape.png" alt="">
                             </span>
@@ -490,37 +489,43 @@ $data = metaData('home');
         <div class="row category-slider"> <!-- Ajout de la classe category-slider -->
             @foreach ($top_companies as $company)
             <div class="col-xl-3 col-md-4 fade-in-bottom condition_class rt-mb-24 tw-self-stretch">
-    <a href="" class="card jobcardStyle1 tw-bg-primary-50 tw-h-full hover:!-tw-translate-y-1">
-        <div class="tw-p-6 tw-flex tw-flex-col tw-items-center">
-            <!-- Étoiles jaunes au-dessus -->
-            <div class="tw-flex tw-gap-1 tw-mb-3">
-                <span class="tw-text-yellow-500">&#9733;</span>
-                <span class="tw-text-yellow-500">&#9733;</span>
-                <span class="tw-text-yellow-500">&#9733;</span>
-                <span class="tw-text-yellow-500">&#9733;</span>
-                <span class="tw-text-yellow-500">&#9733;</span>
+                <a href="" class="card jobcardStyle1 tw-bg-primary-50 tw-h-full hover:!-tw-translate-y-1">
+                    <div class="tw-p-6 tw-flex tw-flex-col tw-items-center">
+                        <!-- Étoiles jaunes au-dessus -->
+                        <div class="tw-flex tw-gap-1 tw-mb-3">
+                            <span class="tw-text-yellow-500">&#9733;</span>
+                            <span class="tw-text-yellow-500">&#9733;</span>
+                            <span class="tw-text-yellow-500">&#9733;</span>
+                            <span class="tw-text-yellow-500">&#9733;</span>
+                            <span class="tw-text-yellow-500">&#9733;</span>
+                        </div>
+                        <p class="tw-text-gray-500 tw-text-center tw-mb-4">
+                            "Un service exceptionnel! L'équipe a vraiment pris en charge mes besoins et a dépassé mes attentes."
+                        </p>
+                        <div class="tw-flex tw-items-center tw-gap-2">
+                            <div class="tw-w-10 tw-h-10 tw-rounded-full tw-overflow-hidden">
+                                <img class="tw-w-full tw-h-full tw-object-cover"
+                                    src="{{ $company->logo_url }}" alt="" draggable="false">
+                            </div>
+                            <span class="tw-text-[#191F33] tw-text-base tw-font-medium">
+                                {{ $company->user->name }}
+                            </span>
+                        </div>
+                    </div>
+                </a>
             </div>
-            <p class="tw-text-gray-500 tw-text-center tw-mb-4">
-                "Un service exceptionnel! L'équipe a vraiment pris en charge mes besoins et a dépassé mes attentes."
-            </p>
-            <div class="tw-flex tw-items-center tw-gap-2">
-                <div class="tw-w-10 tw-h-10 tw-rounded-full tw-overflow-hidden">
-                    <img class="tw-w-full tw-h-full tw-object-cover"
-                        src="{{ $company->logo_url }}" alt="" draggable="false">
-                </div>
-                <span class="tw-text-[#191F33] tw-text-base tw-font-medium">
-                    {{ $company->user->name }}
-                </span>
-            </div>
-        </div>
-    </a>
-</div>
 
             @endforeach
         </div>
     </div>
 </section>
+ {{-- Subscribe Newsletter --}}
+ <x-website.subscribe-newsletter />
 
+<form action="{{ route('website.indeed.job') }}" id="affiliate_form">
+    <input type="hidden" name="keyword" value="{{ request('keyword') }}">
+    <input type="hidden" name="category" value="{{ Route::current()->parameter('category') }}">
+</form>
 <!-- google adsense area -->
 @if (advertisement_status('home_page_ad'))
 @if (advertisementCode('home_page_fat_ad_after_client_section'))
@@ -551,7 +556,6 @@ $data = metaData('home');
 
     .hero-section-3::after {
         background-color: black;
-        content: "";
         height: 100%;
         left: 0;
         opacity: .5;
@@ -606,8 +610,7 @@ $data = metaData('home');
     }
 
     body:has(.hero-section-2) .n-header--bottom {
-        box-shadow: none
-        !important;
+        box-shadow: none !important;
     }
 </style>
 @endsection
@@ -661,7 +664,7 @@ $data = metaData('home');
             autoplaySpeed: 3000,
             speed: 300,
             slidesToShow: 4,
-            slidesToScroll: 4, 
+            slidesToScroll: 4,
             responsive: [{
                     breakpoint: 1024,
                     settings: {
