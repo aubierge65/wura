@@ -15,9 +15,12 @@ use App\Http\Controllers\Admin\EmailTemplateController;
 use App\Http\Controllers\Admin\ExperienceController;
 use App\Http\Controllers\Admin\IndustryTypeController;
 use App\Http\Controllers\Admin\JobCategoryController;
+use App\Http\Controllers\Admin\JobContractController;
 use App\Http\Controllers\Admin\JobController;
+use App\Http\Controllers\Admin\JobModeController;
 use App\Http\Controllers\Admin\JobRoleController;
 use App\Http\Controllers\Admin\JobTypeController;
+use App\Http\Controllers\Admin\LevelController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\OrganizationTypeController;
@@ -34,6 +37,7 @@ use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\TeamSizeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CityController;
+
 use App\Http\Controllers\SearchCountryController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\Website\WebsiteSettingController;
@@ -137,6 +141,15 @@ Route::prefix('admin')->group(function () {
 
         //  team size route resource
         Route::resource('teamSize', TeamSizeController::class)->except('show', 'create');
+
+        //  job mode route resource
+        Route::resource('jobMode', JobModeController::class)->except('show', 'create');
+
+        //  job contart route resource
+        Route::resource('jobContract', JobContractController::class)->except('show', 'create');
+
+        //  job contart route resource
+        Route::resource('jobLevel', LevelController::class)->except('show', 'create');
 
         //  job type route resource
         Route::resource('jobType', JobTypeController::class)->except('show', 'create');

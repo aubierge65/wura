@@ -65,7 +65,6 @@
         </div>
     </div>
 
-
     <!-- Modal -->
     <x-website.modal.candidate-profile-modal />
     <x-website.modal.new-column-modal />

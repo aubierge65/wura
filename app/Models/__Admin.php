@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Traits\HasRoles;
 
-class Admin extends Authenticatable
+class Admins extends Authenticatable
 {
     use HasFactory, HasRoles, Notifiable;
 

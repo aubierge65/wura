@@ -367,6 +367,63 @@
                 </form>
             </div>
         </div>
+         {{-- fedapay Setting --}}
+         <div class="card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between">
+                    <h3 class="card-title line-height-36">
+                        {{ __('fedapay_setting') }}
+                        <a target="_blank" href="https://docs.fedapay.com/"><small>({{ __('get_help') }})</small></a>
+                    </h3>
+                </div>
+            </div>
+            <div class="card-body">
+                <form class="form-horizontal" action="{{ route('settings.payment.update') }}" method="POST"
+                    enctype="multipart/form-data">
+                    @method('PUT')
+                    @csrf
+                    <input type="hidden" value="fedapay" name="type">
+
+                    <div class="form-group row">
+                        <x-forms.label name="fedapay_api_key" class="col-sm-3" />
+                        <div class="col-sm-9">
+                            <input value="{{ config('templatecookie.fedapay_api_key') }}" name="fedapay_api_key" type="text"
+                                class="form-control @error('fedapay_api_key') is-invalid @enderror" autocomplete="off">
+                            @error('fedapay_api_key')
+                                <span class="invalid-feedback" role="alert"><span>{{ $message }}</span></span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <x-forms.label name="fedapay_api_secret" class="col-sm-3" />
+                        <div class="col-sm-9">
+                            <input value="{{ config('templatecookie.fedapay_api_secret') }}" name="fedapay_api_secret" type="text"
+                                class="form-control @error('fedapay_api_secret') is-invalid @enderror" autocomplete="off">
+                            @error('fedapay_api_secret')
+                                <span class="invalid-feedback" role="alert"><span>{{ $message }}</span></span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <x-forms.label name="status" class="col-sm-3" />
+                        <div class="col-sm-9">
+                            <input {{ config('templatecookie.fedapay_active') ? 'checked' : '' }} type="checkbox" name="fedapay_active"
+                            data-bootstrap-switch value="1" data-on-text="{{ __('on') }}"
+                            data-off-text="{{ __('off') }}">
+                        </div>
+                    </div>
+                    @if (userCan('setting.update'))
+                        <div class="form-group row">
+                            <div class="offset-sm-3 col-sm-9">
+                                <button type="submit" class="btn btn-success"><i
+                                        class="fas fa-sync"></i>
+                                    {{ __('update') }}</button>
+                            </div>
+                        </div>
+                    @endif
+                </form>
+            </div>
+        </div>
     </div>
 
     <div class="col-sm-6">

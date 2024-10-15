@@ -92,11 +92,19 @@ class RolesController extends Controller
      */
     public function edit(Role $role)
     {
-        try {
+      // $permission = Permission::findByName('job_modes.create', 'admin');
+    // Permission::create(['name' => 'job_modes.delete', 'guard_name' => 'admin', 'group_name'=> 'attributes']);
+        // $permission = Permission::findByName('job_modes.create', 'admin');
+
+        // // Modifie le nom de la permission
+        // $permission->group_name = 'attributes';
+        // $permission->save();
+         try {
             abort_if(! userCan('role.edit'), 403);
 
             $permissions = Permission::all();
             $permission_groups = Admin::getPermissionGroup();
+         
 
             return view('backend.roles.edit', compact('permissions', 'permission_groups', 'role'));
         } catch (\Exception $e) {

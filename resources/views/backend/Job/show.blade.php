@@ -53,7 +53,8 @@
                                             <div>
                                                 @if ($job->salary_mode == 'range')
                                                     <h3>{{ getFormattedNumber($job->min_salary) }} -
-                                                        {{ getFormattedNumber($job->max_salary) }} {{ currentCurrencyCode() }}
+                                                        {{ getFormattedNumber($job->max_salary) }}
+                                                        {{ currentCurrencyCode() }}
                                                     </h3>
                                                 @else
                                                     <h3>{{ $job->custom_salary }}</h3>
@@ -72,7 +73,8 @@
                                                             onclick="$('#job_status_pending_form_{{ $job->id }}').submit()"
                                                             type="radio" id="status_input_pending_{{ $job->id }}"
                                                             name="status" class="plan_type_selection custom-control-input"
-                                                            value="pending" {{ $job->status == 'pending' ? 'checked' : '' }}>
+                                                            value="pending"
+                                                            {{ $job->status == 'pending' ? 'checked' : '' }}>
                                                         <label class="custom-control-label"
                                                             for="status_input_pending_{{ $job->id }}">{{ __('pending') }}</label>
                                                     </form>
@@ -104,7 +106,8 @@
                                                             onclick="$('#job_status_unpublish_form_{{ $job->id }}').submit()"
                                                             type="radio" id="status_input_unpublish_{{ $job->id }}"
                                                             name="status" class="plan_type_selection custom-control-input"
-                                                            value="expired" {{ $job->status == 'expired' ? 'checked' : '' }}>
+                                                            value="expired"
+                                                            {{ $job->status == 'expired' ? 'checked' : '' }}>
                                                         <label
                                                             class="custom-control-label {{ $job->status == 'expired' ? 'expired_radio' : '' }}"
                                                             data-toggle="tooltip"
@@ -163,13 +166,26 @@
                                                 <div>
                                                     <p>{{ __('website') }}</p>
 
-                                                    <a href="{{ $job->company->website }}">{{ $job->company->website }}</a>
+                                                    <a
+                                                        href="{{ $job->company->website }}">{{ $job->company->website }}</a>
 
                                                 </div>
 
                                             </div>
                                         </div>
                                     @endif
+                                    <div class="four">
+                                        <div class="mb-4">
+                                            <x-svg.details-leyers />
+                                            <p>{{ __('contrat') }}</p>
+                                            <h4>{{ $job->contract ? $job->contract->name : '' }}</h4>
+                                        </div>
+                                        <div>
+                                            <x-svg.details-calendar-blank />
+                                            <p>{{ __('mode_de_travail') }}</p>
+                                            <h4>{{ $job->mode ? $job->mode->name : '' }}</h4>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -213,6 +229,33 @@
                                         <span class="skill-badge">{{ $skill->name }}</span>
                                     @endforeach
                                 </p>
+                            </div>
+                            <div class="ll-mb-4 mt-2">
+                                <h4 class="text-bold">
+                                    {{ __('languages') }}
+                                </h4>
+                                <ul>
+                                    @forelse($job->languages as $language)
+                                        <li>
+                                            {{ $language->name }} - Niveau :
+                                            @if ($language->pivot->level_id)
+                                                {{ \App\Models\Level::find($language->pivot->level_id)->name }}
+                                            @else
+                                                Niveau non défini
+                                            @endif
+                                        </li>
+                                    @empty
+                                        <li>Aucune langue associée à ce job.</li>
+                                    @endforelse
+                                </ul>
+
+                                {{-- @foreach ($langues as $langue)
+                                    <p>
+                                        {{ $langue->langue ? $langue->langue->name : '' }} /
+                                        {{ $langue->level ? $langue->level->name : '' }}
+                                    </p>
+                                @endforeach --}}
+
                             </div>
                         </div>
                     </div>

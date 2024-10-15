@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Modules\Seo\Entities\Seo;
 use App\Http\Controllers\Api\CompanyController as ApiCompanyController;
+use App\Http\Controllers\Payment\FedapayController;
 
 // Route::get('/test', function () {
 //     Seo::query()->delete();
@@ -324,5 +325,11 @@ Route::controller(PayPalController::class)->group(function () {
     Route::post('paypal/payment', 'processTransaction')->name('paypal.post');
     Route::get('success-transaction', 'successTransaction')->name('paypal.successTransaction');
     Route::get('cancel-transaction', 'cancelTransaction')->name('paypal.cancelTransaction');
+});
+Route::controller(FedapayController::class)->group(function () {
+    Route::post('fedapay/payment', 'proccessTransaction')->name('fedapay.post');
+    Route::get('fedapay/payment/callback', 'proccessTransactionCallback')->name('fedapay.callback');
+    Route::get('fedapay/success-transaction', 'successTransaction')->name('fedapay.successTransaction');
+    Route::get('fedapay/cancel-transaction', 'cancelTransaction')->name('fedapay.cancelTransaction');
 });
 Route::get('/payment-from-app/{label}',[ApiCompanyController::class, 'payment']);
