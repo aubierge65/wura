@@ -72,7 +72,10 @@ class Admin extends Authenticatable
     public static function roleHasPermission($role, $permissions)
     {
         $hasPermission = true;
+
+        
         foreach ($permissions as $permission) {
+            // dd($permission);
             if (! $role->hasPermissionTo($permission->name)) {
                 $hasPermission = false;
 

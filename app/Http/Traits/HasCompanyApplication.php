@@ -68,9 +68,10 @@ trait HasCompanyApplication
                 }]);
             }])
             ->get();
-
+           
         $job = Job::findOrFail($request->job, ['id', 'title', 'company_id']);
         abort_if(currentCompany()->id != $job->company_id, 404);
+   
 
         return view('frontend.pages.company.draggable-application', compact('application_groups', 'job'));
     }

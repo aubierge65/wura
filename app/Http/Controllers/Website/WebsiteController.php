@@ -280,7 +280,7 @@ class WebsiteController extends Controller
      */
     public function candidates(Request $request)
     {
-        abort_if(auth('user')->check() && authUser()->role == 'candidate', 404);
+        // abort_if(auth('user')->check() && authUser()->role == 'candidate', 404);
 
         try {
             $data['professions'] = Profession::all()->sortBy('name');
@@ -483,7 +483,7 @@ class WebsiteController extends Controller
     public function employees(Request $request)
     {
         try {
-            abort_if(auth('user')->check() && authUser()->role == 'company', 404);
+            // abort_if(auth('user')->check() && authUser()->role == 'company', 404);
 
             $data = (new CompanyListService())->execute($request);
 
@@ -504,7 +504,7 @@ class WebsiteController extends Controller
     {
         try {
 
-            $user = User::where('role', 'company')->where('username', $username)->first();
+            $user = User::where('role', 'company', 'posts')->where('username', $username)->first();
 
             $data = (new CompanyDetailsService())->execute($user);
 
@@ -587,6 +587,7 @@ class WebsiteController extends Controller
             abort_if(auth('user')->check() && auth('user')->user()->role == 'candidate', 404);
 
             $data = (new PricePlanService())->details($label);
+     
 
             return view('frontend.pages.plan-details', $data);
         } catch (\Exception $e) {

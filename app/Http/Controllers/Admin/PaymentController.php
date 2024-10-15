@@ -66,6 +66,10 @@ class PaymentController extends Controller
                 case 'iyzipay':
                     $this->iyzipayUpdate($request);
                     break;
+                case 'fedapay':
+                    $this->fedapayUpdate($request);
+                    break;
+                
             }
 
             SetupGuide::where('task_name', 'payment_setting')->update(['status' => 1]);
@@ -379,6 +383,38 @@ class PaymentController extends Controller
             checkSetConfig('templatecookie.Iyzipay_api_key', $request->Iyzipay_api_key);
             checkSetConfig('templatecookie.Iyzipay_api_secret', $request->Iyzipay_api_secret);
             checkSetConfig('templatecookie.Iyzipay_active', $request->Iyzipay_active ? true : false);
+
+            sleep(3);
+            Artisan::call('cache:clear');
+
+            flashSuccess(__('updated_successfully'));
+
+            return redirect()
+                ->route('settings.payment')
+                ->send();
+        } catch (\Exception $e) {
+            flashError('An error occurred: '.$e->getMessage());
+
+            return back();
+        }
+    }
+    public function fedapayUpdate(Request $request)
+    {
+        $request->validate(
+            [
+                'fedapay_api_key' => 'required',
+                'fedapay_api_secret' => 'required',
+            ],
+            [
+                'fedapay_api_key.required' => 'Instamojo Secret is required',
+                'fedapay_api_secret.required' => 'Instamojo Key is required',
+            ],
+        );
+
+        try {
+            checkSetConfig('templatecookie.fedapay_api_key', $request->fedapay_api_key);
+            checkSetConfig('templatecookie.fedapay_api_secret', $request->fedapay_api_secret);
+            checkSetConfig('templatecookie.fedapay_active', $request->fedapay_active ? true : false);
 
             sleep(3);
             Artisan::call('cache:clear');

@@ -919,7 +919,7 @@
 
             if (categoryId) {
                 $.ajax({
-                    url: 'https://wura.africa/company/create/job/rolebycategorie/' + categoryId,
+                    url: 'http://wura.locale/company/create/job/rolebycategorie/' + categoryId,
                     type: 'GET',
                     dataType: 'json',
                     success: function(data) {
