@@ -50,7 +50,7 @@
                     </address>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-6 rt-single-widget ">
-                    <h2 class="footer-title"><?php echo e(__('company')); ?></h2>
+                    <h2 class="footer-title"><?php echo e(__('util_links')); ?></h2>
                     <ul class="rt-usefulllinks2">
                         <li><a href="<?php echo e(route('website.about')); ?>"><?php echo e(__('about')); ?></a></li>
                         <li><a href="<?php echo e(route('website.contact')); ?>"><?php echo e(__('contact')); ?></a></li>

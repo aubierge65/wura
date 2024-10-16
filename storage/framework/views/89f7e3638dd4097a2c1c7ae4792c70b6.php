@@ -597,7 +597,6 @@ $data = metaData('home');
         </div>
     </div>
 </section>
-
 <!-- google adsense area -->
 <?php if(advertisement_status('home_page_ad')): ?>
 <?php if(advertisementCode('home_page_fat_ad_after_client_section')): ?>

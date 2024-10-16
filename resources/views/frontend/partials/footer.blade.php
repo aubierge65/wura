@@ -30,7 +30,7 @@
                     </address>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-6 rt-single-widget ">
-                    <h2 class="footer-title">{{ __('company') }}</h2>
+                    <h2 class="footer-title">{{ __('util_links') }}</h2>
                     <ul class="rt-usefulllinks2">
                         <li><a href="{{ route('website.about') }}">{{ __('about') }}</a></li>
                         <li><a href="{{ route('website.contact') }}">{{ __('contact') }}</a></li>
