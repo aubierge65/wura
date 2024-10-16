@@ -4,7 +4,7 @@ html {
 }
 
 .rt-site-footer .footer-logo {
-    width: 100px!important;
+    width: 120px!important;
 }
 
 .btn,
@@ -2305,7 +2305,7 @@ ul.recent-activity li:hover .icon-thumb {
     }
 
     .rt-site-footer .footer-logo {
-        max-width: 150px;
+        max-width: 150px!important;
     }
 }
 
@@ -2444,7 +2444,7 @@ a.active {
 }
 
 .rt-site-footer .footer-logo {
-    margin-bottom: 20px;
+    margin-bottom: 20px!important;
     display: block
 }
 
