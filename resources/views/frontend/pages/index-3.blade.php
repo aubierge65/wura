@@ -545,13 +545,15 @@ $data = metaData('home');
 @include('map::links')
 <style>
     .hero-section-3 {
-        padding: 100px 0;
-        background-image: url('{{ asset('frontend/assets/images/hero-bg-3.jpeg') }}');
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: relative;
-        height: 100vh;
-    }
+    padding: 100px 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                url('{{ asset('frontend/assets/images/working.jpg') }}');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    height: 85vh;
+}
+
 
 
     .hero-section-3::after {
