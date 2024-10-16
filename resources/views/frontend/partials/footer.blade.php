@@ -1,4 +1,12 @@
+
 <div class="rt-site-footer bg-gray-900 dark-footer">
+     {{-- Subscribe Newsletter --}}
+ <x-website.subscribe-newsletter />
+
+<form action="{{ route('website.indeed.job') }}" id="affiliate_form">
+    <input type="hidden" name="keyword" value="{{ request('keyword') }}">
+    <input type="hidden" name="category" value="{{ Route::current()->parameter('category') }}">
+</form>
     <div class="footer-top  bg-gray-900">
         <div class="container">
             <div class="row">

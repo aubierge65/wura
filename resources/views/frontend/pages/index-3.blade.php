@@ -519,13 +519,6 @@ $data = metaData('home');
         </div>
     </div>
 </section>
- {{-- Subscribe Newsletter --}}
- <x-website.subscribe-newsletter />
-
-<form action="{{ route('website.indeed.job') }}" id="affiliate_form">
-    <input type="hidden" name="keyword" value="{{ request('keyword') }}">
-    <input type="hidden" name="category" value="{{ Route::current()->parameter('category') }}">
-</form>
 <!-- google adsense area -->
 @if (advertisement_status('home_page_ad'))
 @if (advertisementCode('home_page_fat_ad_after_client_section'))
@@ -551,7 +544,7 @@ $data = metaData('home');
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    height: 85vh;
+    height: 90vh;
 }
 
 

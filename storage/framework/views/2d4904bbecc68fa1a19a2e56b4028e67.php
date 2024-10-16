@@ -1,4 +1,31 @@
+
 <div class="rt-site-footer bg-gray-900 dark-footer">
+     
+ <?php if (isset($component)) { $__componentOriginalf832c0f0b551a3ae4f576bd7e1fda30a = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalf832c0f0b551a3ae4f576bd7e1fda30a = $attributes; } ?>
+<?php $component = App\View\Components\Website\SubscribeNewsletter::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('website.subscribe-newsletter'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\Website\SubscribeNewsletter::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalf832c0f0b551a3ae4f576bd7e1fda30a)): ?>
+<?php $attributes = $__attributesOriginalf832c0f0b551a3ae4f576bd7e1fda30a; ?>
+<?php unset($__attributesOriginalf832c0f0b551a3ae4f576bd7e1fda30a); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalf832c0f0b551a3ae4f576bd7e1fda30a)): ?>
+<?php $component = $__componentOriginalf832c0f0b551a3ae4f576bd7e1fda30a; ?>
+<?php unset($__componentOriginalf832c0f0b551a3ae4f576bd7e1fda30a); ?>
+<?php endif; ?>
+
+<form action="<?php echo e(route('website.indeed.job')); ?>" id="affiliate_form">
+    <input type="hidden" name="keyword" value="<?php echo e(request('keyword')); ?>">
+    <input type="hidden" name="category" value="<?php echo e(Route::current()->parameter('category')); ?>">
+</form>
     <div class="footer-top  bg-gray-900">
         <div class="container">
             <div class="row">

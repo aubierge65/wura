@@ -22,72 +22,73 @@ $min_salary = $job->max_salary ? currencyConversion($job->max_salary, $currency)
 $max_salary = $job->max_salary ? currencyConversion($job->max_salary, $currency) : 0;
 @endphp
 
+
 <script type="application/ld+json">
-{
-    "@context": "https://schema.org/",
-    "@type": "JobPosting",
-    "title": "{{ $job->title }}",
-    "url": "{{ route('website.job.details', $job->slug) }}",
-    "description": "{!! $job->description !!}",
-    "identifier": {
-        "@type": "PropertyValue",
-        "name": "{{ optional(optional($job->company)->user)->name }}",
-        "value": "{{ optional(optional($job->company)->user)->id }}"
-    },
-    "datePosted": "{{ $job->created_at }}",
-    @if(!empty($job - > deadline))
-    "validThrough": "{{ $job->deadline }}",
-    @endif
-    @if($job - > is_remote)
-    "jobLocationType": "TELECOMMUTE"
-    @endif
-    @if(!empty($employment_type))
-    "employmentType": "{{ $employment_type }}",
-    @endif "hiringOrganization": {
-        "@type": "Organization",
-        "name": "{{ $job->company ? $job->company->user->name : 'JobPilot' }}",
-        "sameAs": "https://www.google.com",
-        "logo": "{{ $job->company ? $job->company->logo_url : '' }}"
-    },
-    "jobLocation": {
-        "@type": "Place",
-        "address": {
-            "@type": "PostalAddress",
-            @if(!empty($job - > locality))
-            "addressLocality": "{{ $job->locality }}",
-            @endif
-            @if(!empty($job - > region))
-            "addressRegion": "{{ $job->region }}",
-            @endif
-            @if(!empty($job - > postcode))
-            "postalCode": "{{ $job->postcode }}",
-            @endif
-            @if(!empty($job - > country))
-            "addressCountry": "{{ $job->country }}",
-            @endif
-        }
-    },
-    "baseSalary": {
-        "@type": "MonetaryAmount",
-        "currency": "USD",
-        "value": {
-            "@type": "QuantitativeValue",
-            "minValue": {
-                {
-                    $min_salary ?? 0
-                }
-            },
-            "maxValue": {
-                {
-                    $max_salary ?? 0
-                }
-            },
-            @if(!empty($salary_type))
-            "unitText": "{{ $salary_type }}"
-            @endif
+    {
+        "@context": "https://schema.org/",
+        "@type": "JobPosting",
+        "title": "{{ $job->title }}",
+        "url": "{{ route('website.job.details', $job->slug) }}",
+        "description": "{!! $job->description !!}",
+        "identifier": {
+            "@type": "PropertyValue",
+            "name": "{{ optional(optional($job->company)->user)->name }}",
+            "value": "{{ optional(optional($job->company)->user)->id }}"
+        },
+        "datePosted": "{{ $job->created_at }}",
+        @if(!empty($job -> deadline))
+        "validThrough": "{{ $job->deadline }}",
+        @endif
+        @if($job -> is_remote)
+        "jobLocationType": "TELECOMMUTE"
+        @endif
+        @if(!empty($employment_type))
+        "employmentType": "{{ $employment_type }}",
+        @endif "hiringOrganization": {
+            "@type": "Organization",
+            "name": "{{ $job->company ? $job->company->user->name : 'JobPilot' }}",
+            "sameAs": "https://www.google.com",
+            "logo": "{{ $job->company ? $job->company->logo_url : '' }}"
+        },
+        "jobLocation": {
+            "@type": "Place",
+            "address": {
+                "@type": "PostalAddress",
+                @if(!empty($job->locality))
+                "addressLocality": "{{ $job->locality }}",
+                @endif
+                @if(!empty($job->region))
+                "addressRegion": "{{ $job->region }}",
+                @endif
+                @if(!empty($job->postcode))
+                "postalCode": "{{ $job->postcode }}",
+                @endif
+                @if(!empty($job->country))
+                "addressCountry": "{{ $job->country }}",
+                @endif
+            }
+        },
+        "baseSalary": {
+            "@type": "MonetaryAmount",
+            "currency": "USD",
+            "value": {
+                "@type": "QuantitativeValue",
+                "minValue": {
+                    {
+                        $min_salary ?? 0
+                    }
+                },
+                "maxValue": {
+                    {
+                        $max_salary ?? 0
+                    }
+                },
+                @if(!empty($salary_type))
+                "unitText": "{{ $salary_type }}"
+                @endif
+            }
         }
     }
-}
 </script>
 @endsection
 
@@ -312,7 +313,7 @@ $long = $job->long;
             </div>
         </div> -->
     <div class="breadcrumbs-height job-details-title-box rt-pt-50 bg-white"
-        style="background-image: url('{{ asset('frontend/assets/images/job-bg1.jpg') }}'); background-size: cover; background-position: center; height: 50vh;">
+        style="background-image: url('{{ asset('frontend/assets/images/job-bg1.jpg') }}'); background-size: cover; background-position: center; height: 45vh;">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-12">
@@ -336,7 +337,7 @@ $long = $job->long;
                                 <a href="{{ route('website.employe.details', $job->company->user->username) }}"
                                     class="!tw-flex-shrink-0">
                                     <img src="{{ $job->company->getLogoUrl() }}" alt="logo" draggable="false"
-                                        style="width: 30vh;" class="tw-rounded-md object-cover">
+                                        style="width: 20vh;" class="tw-rounded-md object-cover">
                                 </a>
                                 @else
                                 <svg style="width: 150px; height: 150px; color: black"
@@ -356,10 +357,10 @@ $long = $job->long;
                                         </div>
                                         <div class="tw-flex tw-flex-wrap tw-items-center tw-gap-2">
 
-                                            <span class="tw-text-gray-600 tw-text-sm tw-flex tw-items-center">
+                                            <!-- <span class="tw-text-gray-600 tw-text-sm tw-flex tw-items-center">
                                                 <i class="ph-map-pin f-size-30 text-primary-500"></i>
                                                 {{ $job->country }}
-                                            </span>
+                                            </span> -->
                                             <!-- Type d'emploi -->
                                             <span class="tw-text-gray-600 tw-text-sm tw-flex tw-items-center">
                                                 <i class="ph-suitcase-simple f-size-30 text-primary-500"></i>
@@ -373,10 +374,10 @@ $long = $job->long;
                                             </span>
 
                                             <!-- Salaire -->
-                                            <span class="tw-text-gray-300 tw-text-sm tw-flex tw-items-center">
+                                            <!-- <span class="tw-text-gray-300 tw-text-sm tw-flex tw-items-center">
                                                 <i class="ph-currency-dollar f-size-30 text-primary-500 tw-mr-2"></i>
                                                 {{$job->min_salary}} - {{$job->max_salary}}
-                                            </span>
+                                            </span> -->
                                         </div>
                                     </div>
                                 </div>
@@ -516,335 +517,377 @@ $long = $job->long;
     <div class="container tw-pt-8">
         <div class="row">
             <div class="col-lg-7 rt-mb-lg-30">
-                {{-- <div class="body-font-1 ft-wt-5 rt-mb-20">
-                        {{ __('job_description') }}
-            </div> --}}
-            <div class="job-desc">
-                {!! $job->description !!}
-            </div>
-        </div>
-
-        <div class="col-lg-5">
-            <div class="p-32 border border-2 border-primary-50 rt-rounded-12 rt-mb-24 lg:max-536">
-                <div class="row">
-                    <!-- google adsense area -->
-                    @if (advertisement_status('job_detailpage_ad'))
-                    @if (advertisement_status('job_detailpage_right_ad'))
-                    @if (advertisementCode('job_detailpage_fat_ad_before_salary_section'))
-                    <div class="container my-4">
-                        {!! advertisementCode('job_detailpage_fat_ad_before_salary_section') !!}
-                    </div>
-                    @endif
-                    @endif
-                    @endif
-                    <!-- google adsense area end -->
-
-                    <div class="col-sm-6 salery tw-salery-border">
-                        <h4>{{ __('salary') }}</h4>
-
-                        @if ($job->salary_mode == 'range')
-                        <h2>
-                            {{$job->min_salary}} - {{$job->max_salary}} {{ currentCurrencyCode() }}
-                        </h2>
-                        {{-- <h2>{{ getFormattedNumber($job->min_salary) }} -
-                        {{ getFormattedNumber($job->max_salary) }} {{ currentCurrencyCode() }} </h2> --}}
-                        @else
-                        <h6 class="tw-text-center">{{ $job->custom_salary }}</h6>
-                        @endif
-                        <p>{{ $job->salary_type->name }} {{ __('based') }}</p>
-                    </div>
-                    @if ($job->is_remote)
-                    <div class="col-sm-6 job-type">
-                        <div class="remote">
-                            <div class="text-center tw-mb-2">
-                                <x-svg.briefcase-lg />
-                            </div>
-                            <h4 class="tw-mb-[2px]">{{ __('remote_job') }}</h4>
-                            <p class="tw-mb-0">{{ __('worldwide') }}</p>
-                        </div>
-                    </div>
-                    @else
-                    <div class="col-sm-6 job-type">
-                        <div class="remote">
-                            <div class="text-center tw-mb-2">
-                                <x-svg.map-tripod-icon />
-                            </div>
-                            <h4 class="tw-mb-[2px]">{{ __('location') }}</h4>
-                            <p class="tw-mb-0">
-                                {{ $job->exact_location ? $job->exact_location : $job->full_address }}
-                            </p>
-                        </div>
-                    </div>
-                    @endif
+                <div class="body-font-1 ft-wt-5 rt-mb-20 tw-text-2xl">
+                    {{ __('job_description') }}
+                </div>
+                <div class="job-desc">
+                    {!! $job->description !!}
+                </div>
+                <!-- Ajouter Emplacement sur la Carte (Statique) -->
+                <div class="body-font-1 ft-wt-5 rt-mb-20 tw-text-2xl">
+                    {{ __('location') }}
+                </div>
+                <div class="job-desc">
+                    <iframe
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=-180%2C-90%2C180%2C90&amp;layer=mapnik&amp;marker=0%2C0"
+                        width="100%"
+                        height="500"
+                        style="border: 1px solid black">
+                    </iframe>
                 </div>
             </div>
-            @if ($job->benefits && count($job->benefits))
-            <div class="p-32 border border-2 border-primary-50 rt-rounded-12 rt-mb-24 lg:max-536">
-                <div class="body-font-1 ft-wt-5 rt-mb-32 ">{{ __('job_benefits') }}</div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="tw-flex tw-flex-wrap tw-gap-2">
-                            @foreach ($job->benefits as $benefit)
-                            <span
+            <div class="col-lg-5">
+                <!--  <div class="p-32 border border-2 border-primary-50 rt-rounded-12 rt-mb-24 lg:max-536">
+                     <div class="row">
+                        @if (advertisement_status('job_detailpage_ad'))
+                        @if (advertisement_status('job_detailpage_right_ad'))
+                        @if (advertisementCode('job_detailpage_fat_ad_before_salary_section'))
+                        <div class="container my-4">
+                            {!! advertisementCode('job_detailpage_fat_ad_before_salary_section') !!}
+                        </div>
+                        @endif
+                        @endif
+                        @endif -->
+                <!-- google adsense area end -->
+
+                <!-- <div class="col-sm-6 salery tw-salery-border">
+                            <h4>{{ __('salary') }}</h4>
+
+                            @if ($job->salary_mode == 'range')
+                            <h2>
+                                {{$job->min_salary}} - {{$job->max_salary}} {{ currentCurrencyCode() }}
+                            </h2>
+                          @else
+                            <h6 class="tw-text-center">{{ $job->custom_salary }}</h6>
+                            @endif
+                            <p>{{ $job->salary_type->name }} {{ __('based') }}</p>
+                        </div> -->
+                <!-- @if ($job->is_remote)
+                        <div class="col-sm-6 job-type">
+                            <div class="remote">
+                                <div class="text-center tw-mb-2">
+                                    <x-svg.briefcase-lg />
+                                </div>
+                                <h4 class="tw-mb-[2px]">{{ __('remote_job') }}</h4>
+                                <p class="tw-mb-0">{{ __('worldwide') }}</p>
+                            </div>
+                        </div>
+                        @else
+                        <div class="col-sm-6 job-type">
+                            <div class="remote">
+                                <div class="text-center tw-mb-2">
+                                    <x-svg.map-tripod-icon />
+                                </div>
+                                <h4 class="tw-mb-[2px]">{{ __('location') }}</h4>
+                                <p class="tw-mb-0">
+                                    {{ $job->exact_location ? $job->exact_location : $job->full_address }}
+                                </p>
+                            </div>
+                        </div>
+                        @endif 
+                    </div>
+                </div>-->
+                @if ($job->benefits && count($job->benefits))
+                <div class="p-32 border border-2 border-primary-50 rt-rounded-12 rt-mb-24 lg:max-536">
+                    <div class="body-font-1 ft-wt-5 rt-mb-32 ">{{ __('job_benefits') }}</div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="tw-flex tw-flex-wrap tw-gap-2">
+                                @foreach ($job->benefits as $benefit)
+                                <span
+                                    class="text-capitalize tw-rounded-md tw-bg-green-50 tw-px-2 tw-py-1 tw-text-sm tw-font-medium tw-text-green-700 tw-ring-1 tw-ring-inset tw-ring-green-600/20">
+                                    {{ $benefit->name }}
+                                </span>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                <!-- google adsense area -->
+                @if (advertisement_status('job_detailpage_ad'))
+                @if (advertisement_status('job_detailpage_right_ad'))
+                @if (advertisementCode('job_detailpage_fat_ad_after_jobbenefits_section'))
+                <div class="container my-4">
+                    {!! advertisementCode('job_detailpage_fat_ad_after_jobbenefits_section') !!}
+                </div>
+                @endif
+                @endif
+                @endif
+                <!-- google adsense area end -->
+                <div class="border border-2 border-primary-50 rt-rounded-12 rt-mb-24 lg:max-536">
+                    <div class="tw-px-8 tw-pb-6 tw-pt-8">
+                        <div class="body-font-1 ft-wt-5 rt-mb-32 f-size-20">{{ __('job_overview') }}</div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="single-jSidebarWidget d-flex align-items-center mb-4">
+                                    <div class="icon-thumb me-3">
+                                        <i class="ph-calendar-blank f-size-30 text-primary-500"></i>
+                                    </div>
+                                    <div class="iconbox-content d-flex justify-content-between w-100">
+                                        <div class="f-size-16 text-gray-500 uppercase rt-mb-1">
+                                            {{ __('job_posted') }}:
+                                        </div>
+                                        <span class="d-block f-size-14 ft-wt-5 text-gray-900">
+                                            {{ Carbon\Carbon::parse($job->created_at)->diffForHumans() }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @if ($job->deadline_active)
+                            <div class="col-12">
+                                <div class="single-jSidebarWidget d-flex align-items-center mb-4">
+                                    <div class="icon-thumb me-3">
+                                        <i class="ph-timer f-size-30 text-primary-500"></i>
+                                    </div>
+                                    <div class="iconbox-content d-flex justify-content-between w-100">
+                                        <div class="f-size-16 text-gray-500 uppercase rt-mb-1">
+                                            {{ __('job_expire') }}:
+                                        </div>
+                                        <span class="d-block f-size-14 ft-wt-5 text-gray-900">
+                                            {{ $job->days_remaining }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+
+                            <div class="col-12">
+                                <div class="single-jSidebarWidget d-flex align-items-center mb-4">
+                                    <div class="icon-thumb me-3">
+                                        <i class="ph-suitcase-simple f-size-30 text-primary-500"></i>
+                                    </div>
+                                    <div class="iconbox-content d-flex justify-content-between w-100">
+                                        <div class="f-size-16 text-gray-500 uppercase rt-mb-1">
+                                            {{ __('job_type') }}
+                                        </div>
+                                        <span class="d-block f-size-14 ft-wt-5 text-gray-900">
+                                            {{ $job->job_type ? $job->job_type->name : '' }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="single-jSidebarWidget d-flex align-items-center mb-4">
+                                    <div class="icon-thumb me-3">
+                                        <i class="ph-user f-size-30 text-primary-500"></i>
+                                    </div>
+                                    <div class="iconbox-content d-flex justify-content-between w-100">
+                                        <div class="f-size-16 text-gray-500 uppercase rt-mb-1">
+                                            {{ __('job_role') }}
+                                        </div>
+                                        <span class="d-block f-size-14 ft-wt-5 text-gray-900">
+                                            {{ $job?->role?->name ?? '' }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @if ($job->education)
+                            <div class="col-12">
+                                <div class="single-jSidebarWidget d-flex align-items-center mb-4">
+                                    <div class="icon-thumb me-3">
+                                        <i class="ph-graduation-cap f-size-30 text-primary-500"></i>
+                                    </div>
+                                    <div class="iconbox-content d-flex justify-content-between w-100">
+                                        <div class="f-size-16 text-gray-500 uppercase rt-mb-1">
+                                            {{ __('education') }}
+                                        </div>
+                                        <span class="d-block f-size-14 ft-wt-5 text-gray-900">
+                                            {{ $job->education ? $job->education->name : '' }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+
+                            @if ($job->experience)
+                            <div class="col-12">
+                                <div class="single-jSidebarWidget d-flex align-items-center mb-4">
+                                    <div class="icon-thumb me-3">
+                                        <i class="ph-clipboard-text f-size-30 text-primary-500"></i>
+                                    </div>
+                                    <div class="iconbox-content d-flex justify-content-between w-100">
+                                        <div class="f-size-16 text-gray-500 uppercase rt-mb-1">
+                                            {{ __('experience') }}
+                                        </div>
+                                        <span class="d-block f-size-14 ft-wt-5 text-gray-900">
+                                            {{ $job->experience ? $job->experience->name : '' }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+
+                            @if ($job->vacancies)
+                            <div class="col-12">
+                                <div class="single-jSidebarWidget d-flex align-items-center mb-4">
+                                    <div class="icon-thumb me-3">
+                                        <i class="ph-users f-size-30 text-primary-500"></i>
+                                    </div>
+                                    <div class="iconbox-content d-flex justify-content-between w-100">
+                                        <div class="f-size-16 text-gray-500 uppercase rt-mb-1">
+                                            {{ __('vacancies') }}
+                                        </div>
+                                        <span class="d-block f-size-14 ft-wt-5 text-gray-900">
+                                            {{ $job->vacancies }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="tw-share-area tw-px-8 tw-pt-6 tw-pb-8">
+                        @if ($job->skills && count($job->skills))
+                        <h2 class="tw-text-[#18191C] tw-text-lg tw-font-medium tw-mb-2">{{ __('skills') }}:</h2>
+                        <div class="tw-flex tw-gap-2 tw-flex-wrap tw-items-center">
+                            @foreach ($job->skills as $skill)
+                            <a href="javascript:void(0)"
                                 class="text-capitalize tw-rounded-md tw-bg-green-50 tw-px-2 tw-py-1 tw-text-sm tw-font-medium tw-text-green-700 tw-ring-1 tw-ring-inset tw-ring-green-600/20">
-                                {{ $benefit->name }}
-                            </span>
+                                {{ $skill->name }}
+                            </a>
                             @endforeach
                         </div>
+                        @endif
                     </div>
-                </div>
-            </div>
-            @endif
-            <!-- google adsense area -->
-            @if (advertisement_status('job_detailpage_ad'))
-            @if (advertisement_status('job_detailpage_right_ad'))
-            @if (advertisementCode('job_detailpage_fat_ad_after_jobbenefits_section'))
-            <div class="container my-4">
-                {!! advertisementCode('job_detailpage_fat_ad_after_jobbenefits_section') !!}
-            </div>
-            @endif
-            @endif
-            @endif
-            <!-- google adsense area end -->
-            <div class="border border-2 border-primary-50 rt-rounded-12 rt-mb-24 lg:max-536">
-                <div class="tw-px-8 tw-pb-6 tw-pt-8">
-                    <div class="body-font-1 ft-wt-5 rt-mb-32 ">{{ __('job_overview') }}</div>
-                    <div class="row">
-                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-4 rt-mb-32">
-                            <div class="single-jSidebarWidget">
-                                <div class="icon-thumb">
-                                    <i class="ph-calendar-blank f-size-30 text-primary-500"></i>
-                                </div>
-                                <div class="iconbox-content">
-                                    <div class="f-size-12 text-gray-500 uppercase text-uppercase rt-mb-6">
-                                        {{ __('job_posted') }}:
-                                    </div>
-                                    <span class="d-block f-size-14 ft-wt-5 text-gray-900">
-                                        {{ Carbon\Carbon::parse($job->created_at)->diffForHumans() }}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        @if ($job->deadline_active)
-                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-4 rt-mb-32">
-                            <div class="single-jSidebarWidget">
-                                <div class="icon-thumb">
-                                    <i class="ph-timer f-size-30 text-primary-500"></i>
-                                </div>
-                                <div class="iconbox-content">
-                                    <div class="f-size-12 text-gray-500 uppercase text-uppercase rt-mb-6">
-                                        {{ __('job_expire') }}:
-                                    </div>
-                                    <span class="d-block f-size-14 ft-wt-5 text-gray-900">
-                                        {{ $job->days_remaining }}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        @endif
-                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-4 rt-mb-32">
-                            <div class="single-jSidebarWidget">
-                                <div class="icon-thumb">
-                                    <i class="ph-suitcase-simple f-size-30 text-primary-500"></i>
-                                </div>
-                                <div class="iconbox-content">
-                                    <div class="f-size-12 text-gray-500 uppercase text-uppercase rt-mb-6">
-                                        {{ __('job_type') }}
-                                    </div>
-                                    <span class="d-block f-size-14 ft-wt-5 text-gray-900">
-                                        {{ $job->job_type ? $job->job_type->name : '' }}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-4 rt-mb-32">
-                            <div class="single-jSidebarWidget">
-                                <div class="icon-thumb">
-                                    <i class="ph-user f-size-30 text-primary-500"></i>
-                                </div>
-                                <div class="iconbox-content">
-                                    <div class="f-size-12 text-gray-500 uppercase text-uppercase rt-mb-6">
-                                        {{ __('job_role') }}
-                                    </div>
-                                    <span class="d-block f-size-14 ft-wt-5 text-gray-900">
-                                        {{ $job?->role?->name ?? '' }}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        @if ($job->education)
-                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-4 rt-mb-32">
-                            <div class="single-jSidebarWidget">
-                                <div class="icon-thumb rt-mr-17">
-                                    <i class="ph-graduation-cap f-size-30 text-primary-500"></i>
-                                </div>
-                                <div class="iconbox-content">
-                                    <div class="f-size-12 text-gray-500 uppercase text-uppercase rt-mb-6">
-                                        {{ __('education') }}
-                                    </div>
-                                    <span class=d-block f-size-14 ft-wt-5 text-gray-900">
-                                        {{ $job->education ? $job->education->name : '' }}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        @endif
-                        @if ($job->experience)
-                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-4 rt-mb-32">
-                            <div class="single-jSidebarWidget">
-                                <div class="icon-thumb rt-mr-17">
-                                    <i class="ph-clipboard-text f-size-30 text-primary-500"></i>
-                                </div>
-                                <div class="iconbox-content">
-                                    <div class="f-size-12 text-gray-500 uppercase text-uppercase rt-mb-6">
-                                        {{ __('experience') }}
-                                    </div>
-                                    <span class=d-block f-size-14 ft-wt-5 text-gray-900">
-                                        {{ $job->experience ? $job->experience->name : '' }}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        @endif
-                        @if ($job->vacancies)
-                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-4 rt-mb-32">
-                            <div class="single-jSidebarWidget">
-                                <div class="icon-thumb rt-mr-17">
-                                    <i class="ph-users f-size-30 text-primary-500"></i>
-                                </div>
-                                <div class="iconbox-content">
-                                    <div class="f-size-12 text-gray-500 uppercase text-uppercase rt-mb-6">
-                                        {{ __('vacancies') }}
-                                    </div>
-                                    <span class=d-block f-size-14 ft-wt-5 text-gray-900">
-                                        {{ $job->vacancies }}
-                                    </span>
-                                </div>
-                            </div>
+                    <div class="tw-share-area tw-px-8 tw-pt-6 tw-pb-8">
+                        @if ($job->tags && count($job->tags))
+                        <h2 class="tw-text-[#18191C] tw-text-lg tw-font-medium tw-mb-2">{{ __('advantages') }}:</h2>
+                        <div class="tw-flex tw-gap-2 tw-flex-wrap tw-items-center">
+                            @foreach ($job->tags as $tag)
+                            <a href="javascript:void(0)"
+                                class="text-capitalize tw-rounded-md tw-bg-green-50 tw-px-2 tw-py-1 tw-text-sm tw-font-medium tw-text-green-700 tw-ring-1 tw-ring-inset tw-ring-green-600/20">
+                                {{ $tag->name }}
+                            </a>
+                            @endforeach
                         </div>
                         @endif
                     </div>
-                </div>
-                <div class="tw-share-area tw-px-8 tw-pt-6 tw-pb-8">
-                    @if ($job->tags && count($job->tags))
-                    <h2 class="tw-text-[#18191C] tw-text-lg tw-font-medium tw-mb-2">{{ __('job_tags') }}:</h2>
-                    <div class="tw-flex tw-gap-2 tw-flex-wrap tw-items-center">
-                        @foreach ($job->tags as $tag)
-                        <a href="javascript:void(0)"
-                            class="text-capitalize tw-rounded-md tw-bg-green-50 tw-px-2 tw-py-1 tw-text-sm tw-font-medium tw-text-green-700 tw-ring-1 tw-ring-inset tw-ring-green-600/20">
-                            {{ $tag->name }}
-                        </a>
-                        @endforeach
+                    <div class="tw-share-area tw-px-8 tw-pt-6 tw-pb-8">
+                        @if ($job->tags && count($job->tags))
+                        <h2 class="tw-text-[#18191C] tw-text-lg tw-font-medium tw-mb-2">{{ __('job_tags') }}:</h2>
+                        <div class="tw-flex tw-gap-2 tw-flex-wrap tw-items-center">
+                            @foreach ($job->tags as $tag)
+                            <a href="javascript:void(0)"
+                                class="text-capitalize tw-rounded-md tw-bg-green-50 tw-px-2 tw-py-1 tw-text-sm tw-font-medium tw-text-green-700 tw-ring-1 tw-ring-inset tw-ring-green-600/20">
+                                {{ $tag->name }}
+                            </a>
+                            @endforeach
+                        </div>
+                        @endif
                     </div>
-                    @endif
-                </div>
-                <div class="tw-share-area tw-px-8 tw-pt-6 tw-pb-8">
-                    <h2 class="tw-text-[#18191C] tw-text-lg tw-font-medium tw-mb-2">{{ __('share_this_job') }}:
-                    </h2>
+                    <div class="tw-share-area tw-px-8 tw-pt-6 tw-pb-8">
+                        <h2 class="tw-text-[#18191C] tw-text-lg tw-font-medium tw-mb-2">{{ __('share_this_job') }}:
+                        </h2>
 
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" value="{{ url()->current() }}"
-                            aria-label="Recipient's username" aria-describedby="basic-addon2">
-                        <span
-                            class="tw-text-primary-500 hover:tw-bg-primary-500 tw-cursor-pointer hover:tw-text-white tw-flex tw-gap-1.5 tw-items-center tw-text-base tw-font-medium tw-bg-[#E7F0FA] tw-px-4 tw-py-2 tw-rounded-[4px]"
-                            onclick="copyUrl('{{ url()->current() }}')" id="basic-addon2">
-                            <x-svg.link-sample-icon />
-                        </span>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" value="{{ url()->current() }}"
+                                aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <span
+                                class="tw-text-primary-500 hover:tw-bg-primary-500 tw-cursor-pointer hover:tw-text-white tw-flex tw-gap-1.5 tw-items-center tw-text-base tw-font-medium tw-bg-[#E7F0FA] tw-px-4 tw-py-2 tw-rounded-[4px]"
+                                onclick="copyUrl('{{ url()->current() }}')" id="basic-addon2">
+                                <x-svg.link-sample-icon />
+                            </span>
+                        </div>
+                        <ul class="tw-list-none tw-flex tw-flex-wrap tw-items-center tw-gap-2 tw-p-0 tw-m-0 tw-mb-6">
+                            <li>
+                                <a href="javascript:void(0);"
+                                    onclick="openPopUp('{{ socialMediaShareLinks(url()->current(), 'facebook') }}')"
+                                    class="tw-inline-flex tw-bg-[#E7F0FA] tw-text-[#0A65CC] hover:tw-bg-[#0A65CC] hover:tw-text-white tw-rounded-[4px] tw-p-2.5">
+                                    <x-svg.new-facebook-icon />
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);"
+                                    onclick="openPopUp('{{ socialMediaShareLinks(url()->current(), 'pinterest') }}')"
+                                    class="tw-inline-flex tw-bg-[#E7F0FA] tw-text-[#0A65CC] hover:tw-bg-[#0A65CC] hover:tw-text-white tw-rounded-[4px] tw-p-2.5">
+                                    <x-svg.pinterest-icon />
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);"
+                                    onclick="openPopUp('{{ socialMediaShareLinks(url()->current(), 'twitter') }}')"
+                                    class="tw-inline-flex tw-bg-[#E7F0FA] tw-text-primary-500 hover:tw-bg-primary-500 hover:tw-text-white tw-rounded-[4px] tw-p-2.5">
+                                    <x-svg.new-twitter-icon />
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);"
+                                    onclick="openPopUp('{{ socialMediaShareLinks(url()->current(), 'whatsapp') }}')"
+                                    class="tw-inline-flex tw-bg-[#E7F0FA] tw-text-primary-500 hover:tw-bg-primary-500 hover:tw-text-white tw-rounded-[4px] tw-p-2.5">
+                                    <x-svg.whatsapp-icon />
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);"
+                                    onclick="openPopUp('{{ socialMediaShareLinks(url()->current(), 'linkedin')}}')"
+                                    class="tw-inline-flex tw-bg-[#E7F0FA] tw-text-primary-500 hover:tw-bg-primary-500 hover:tw-text-white tw-rounded-[4px] tw-p-2.5">
+                                    <x-svg.linkedin-icon />
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="javascript:void(0);"
+                                    onclick="openPopUp('{{ socialMediaShareLinks(url()->current(), 'mail')}}')"
+                                    class="tw-inline-flex tw-bg-[#E7F0FA] tw-text-primary-500 hover:tw-bg-primary-500 hover:tw-text-white tw-rounded-[4px] tw-p-2.5">
+                                    <x-svg.mail-icon />
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);"
+                                    onclick="openPopUp('{{ socialMediaShareLinks(url()->current(), 'telegram')}}')"
+                                    class="tw-inline-flex tw-bg-[#E7F0FA] tw-text-primary-500 hover:tw-bg-primary-500 hover:tw-text-white tw-rounded-[4px] tw-p-2.5">
+                                    <x-svg.telegram-icon />
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="javascript:void(0);"
+                                    onclick="openPopUp('{{ socialMediaShareLinks(url()->current(), 'skype')}}')"
+                                    class="tw-inline-flex tw-bg-[#E7F0FA] tw-text-primary-500 hover:tw-bg-primary-500 hover:tw-text-white tw-rounded-[4px] tw-p-2.5">
+                                    <x-svg.skype-icon />
+                                </a>
+                            </li>
+                        </ul>
                     </div>
-                    <ul class="tw-list-none tw-flex tw-flex-wrap tw-items-center tw-gap-2 tw-p-0 tw-m-0 tw-mb-6">
-                        <li>
-                            <a href="javascript:void(0);"
-                                onclick="openPopUp('{{ socialMediaShareLinks(url()->current(), 'facebook') }}')"
-                                class="tw-inline-flex tw-bg-[#E7F0FA] tw-text-[#0A65CC] hover:tw-bg-[#0A65CC] hover:tw-text-white tw-rounded-[4px] tw-p-2.5">
-                                <x-svg.new-facebook-icon />
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);"
-                                onclick="openPopUp('{{ socialMediaShareLinks(url()->current(), 'pinterest') }}')"
-                                class="tw-inline-flex tw-bg-[#E7F0FA] tw-text-[#0A65CC] hover:tw-bg-[#0A65CC] hover:tw-text-white tw-rounded-[4px] tw-p-2.5">
-                                <x-svg.pinterest-icon />
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);"
-                                onclick="openPopUp('{{ socialMediaShareLinks(url()->current(), 'twitter') }}')"
-                                class="tw-inline-flex tw-bg-[#E7F0FA] tw-text-primary-500 hover:tw-bg-primary-500 hover:tw-text-white tw-rounded-[4px] tw-p-2.5">
-                                <x-svg.new-twitter-icon />
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);"
-                                onclick="openPopUp('{{ socialMediaShareLinks(url()->current(), 'whatsapp') }}')"
-                                class="tw-inline-flex tw-bg-[#E7F0FA] tw-text-primary-500 hover:tw-bg-primary-500 hover:tw-text-white tw-rounded-[4px] tw-p-2.5">
-                                <x-svg.whatsapp-icon />
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);"
-                                onclick="openPopUp('{{ socialMediaShareLinks(url()->current(), 'linkedin')}}')"
-                                class="tw-inline-flex tw-bg-[#E7F0FA] tw-text-primary-500 hover:tw-bg-primary-500 hover:tw-text-white tw-rounded-[4px] tw-p-2.5">
-                                <x-svg.linkedin-icon />
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="javascript:void(0);"
-                                onclick="openPopUp('{{ socialMediaShareLinks(url()->current(), 'mail')}}')"
-                                class="tw-inline-flex tw-bg-[#E7F0FA] tw-text-primary-500 hover:tw-bg-primary-500 hover:tw-text-white tw-rounded-[4px] tw-p-2.5">
-                                <x-svg.mail-icon />
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);"
-                                onclick="openPopUp('{{ socialMediaShareLinks(url()->current(), 'telegram')}}')"
-                                class="tw-inline-flex tw-bg-[#E7F0FA] tw-text-primary-500 hover:tw-bg-primary-500 hover:tw-text-white tw-rounded-[4px] tw-p-2.5">
-                                <x-svg.telegram-icon />
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="javascript:void(0);"
-                                onclick="openPopUp('{{ socialMediaShareLinks(url()->current(), 'skype')}}')"
-                                class="tw-inline-flex tw-bg-[#E7F0FA] tw-text-primary-500 hover:tw-bg-primary-500 hover:tw-text-white tw-rounded-[4px] tw-p-2.5">
-                                <x-svg.skype-icon />
-                            </a>
-                        </li>
-                    </ul>
                 </div>
-            </div>
-            <!-- google adsense area -->
-            @if (advertisement_status('job_detailpage_ad'))
-            @if (advertisement_status('job_detailpage_right_ad'))
-            @if (advertisementCode('job_detailpage_fat_ad_after_share_section'))
-            <div class="container my-4">
-                {!! advertisementCode('job_detailpage_fat_ad_after_share_section') !!}
-            </div>
-            @endif
-            @endif
-            @endif
-            <!-- google adsense area end -->
-            <div class="border border-2 border-primary-50 rt-rounded-12 rt-mb-24 lg:max-536">
-                <div class="body-font-1 ft-wt-5 custom-p">
-                    {{ __('location') }} <br>
-                    <p class="body-font-3">{{ $job->exact_location ? $job->exact_location : $job->full_address }}
-                    </p>
+                <!-- google adsense area -->
+                @if (advertisement_status('job_detailpage_ad'))
+                @if (advertisement_status('job_detailpage_right_ad'))
+                @if (advertisementCode('job_detailpage_fat_ad_after_share_section'))
+                <div class="container my-4">
+                    {!! advertisementCode('job_detailpage_fat_ad_after_share_section') !!}
                 </div>
-                <div>
-                    @php
-                    $map = $setting->default_map;
-                    @endphp
+                @endif
+                @endif
+                @endif
+                <!-- google adsense area end -->
+                <div class="border border-2 border-primary-50 rt-rounded-12 rt-mb-24 lg:max-536">
+                    <div class="body-font-1 ft-wt-5 custom-p">
+                        {{ __('location') }} <br>
+                        <p class="body-font-3">{{ $job->exact_location ? $job->exact_location : $job->full_address }}
+                        </p>
+                    </div>
+                    <div>
+                        @php
+                        $map = $setting->default_map;
+                        @endphp
 
-                    @if ($map == 'google-map')
-                    <div class="map mymap" id="google-map"></div>
-                    @else
-                    <div id="leaflet-map"></div>
-                    @endif
+                        @if ($map == 'google-map')
+                        <div class="map mymap" id="google-map"></div>
+                        @else
+                        <div id="leaflet-map"></div>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 
 @if (count($related_jobs))
@@ -895,7 +938,8 @@ $long = $job->long;
                             <option value="">{{ __('select_one') }}</option>
                             @foreach ($resumes as $resume)
                             <option {{ old('resume_id') == $resume->id ? 'selected' : '' }} value="{{ $resume->id }}">
-                                {{ $resume->name }}</option>
+                                {{ $resume->name }}
+                            </option>
                             @endforeach
                         </select>
                     </div>
@@ -950,139 +994,139 @@ $long = $job->long;
 @include('map::links')
 
 <style>
-.post-main-title2 h1 {
-    font-size: 22px;
-}
+    .post-main-title2 h1 {
+        font-size: 22px;
+    }
 
-.max-311 {
-    min-width: 70% !important;
-}
+    .max-311 {
+        min-width: 70% !important;
+    }
 
-.mymap {
-    border-radius: 0 0 12px 12px;
-}
+    .mymap {
+        border-radius: 0 0 12px 12px;
+    }
 
-.custom-p {
-    padding-top: 24px;
-    padding-bottom: 16px;
-    padding-left: 24px
-}
+    .custom-p {
+        padding-top: 24px;
+        padding-bottom: 16px;
+        padding-left: 24px
+    }
 
-/* Sticky Job Details Title Heading Start */
-.job-details-title-box-card {
-    border-bottom: 1px solid #f3f3f3;
-}
+    /* Sticky Job Details Title Heading Start */
+    .job-details-title-box-card {
+        border-bottom: 1px solid #f3f3f3;
+    }
 
-.job-details-title-box {
-    position: sticky;
-    top: 0;
-    z-index: 998 !important;
-    margin-bottom: 0 !important;
-}
+    .job-details-title-box {
+        position: sticky;
+        top: 0;
+        z-index: 998 !important;
+        margin-bottom: 0 !important;
+    }
 
-.leaflet-container {
-    position: relative;
-    z-index: 900 !important;
-}
+    .leaflet-container {
+        position: relative;
+        z-index: 900 !important;
+    }
 
-/* Sticky Job Details Title Heading End */
+    /* Sticky Job Details Title Heading End */
 </style>
 @endsection
 
 @section('script')
 <script>
-function applyJobb(id, name) {
-    $('#cvModal').modal('show');
-    $('#apply_job_id').val(id);
-    $('#apply_job_title').text(name);
-}
+    function applyJobb(id, name) {
+        $('#cvModal').modal('show');
+        $('#apply_job_id').val(id);
+        $('#apply_job_title').text(name);
+    }
 
-function copyToClipboard(text) {
-    var sampleTextarea = document.createElement("textarea");
-    document.body.appendChild(sampleTextarea);
-    sampleTextarea.value = text; //save main text in it
-    sampleTextarea.select(); //select textarea contenrs
-    document.execCommand("copy");
-    document.body.removeChild(sampleTextarea);
-}
+    function copyToClipboard(text) {
+        var sampleTextarea = document.createElement("textarea");
+        document.body.appendChild(sampleTextarea);
+        sampleTextarea.value = text; //save main text in it
+        sampleTextarea.select(); //select textarea contenrs
+        document.execCommand("copy");
+        document.body.removeChild(sampleTextarea);
+    }
 
-function copyUrl(value) {
-    copyToClipboard(value);
-    alert('Copyied to clipboard')
-}
+    function copyUrl(value) {
+        copyToClipboard(value);
+        alert('Copyied to clipboard')
+    }
 </script>
 {{-- Leaflet  --}}
 <x-map.leaflet.map_scripts />
 <script>
-var oldlat = {
-    !!$lat ? $lat : $setting - > default_lat!!
-};
-var oldlng = {
-    !!$long ? $long : $setting - > default_long!!
-};
+    var oldlat = {
+        !!$lat ? $lat : $setting - > default_lat!!
+    };
+    var oldlng = {
+        !!$long ? $long : $setting - > default_long!!
+    };
 
-// Map preview
-var element = document.getElementById('leaflet-map');
+    // Map preview
+    var element = document.getElementById('leaflet-map');
 
-// Height has to be set. You can do this in CSS too.
-element.style = 'height:300px;';
+    // Height has to be set. You can do this in CSS too.
+    element.style = 'height:300px;';
 
-// Create Leaflet map on map element.
-var leaflet_map = L.map(element);
+    // Create Leaflet map on map element.
+    var leaflet_map = L.map(element);
 
-// Add OSM tile layer to the Leaflet map.
-L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(leaflet_map);
+    // Add OSM tile layer to the Leaflet map.
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(leaflet_map);
 
-// Target's GPS coordinates.
-var target = L.latLng(oldlat, oldlng);
+    // Target's GPS coordinates.
+    var target = L.latLng(oldlat, oldlng);
 
-// Set map's center to target with zoom 14.
-const zoom = 7;
-leaflet_map.setView(target, zoom);
+    // Set map's center to target with zoom 14.
+    const zoom = 7;
+    leaflet_map.setView(target, zoom);
 
-// Place a marker on the same location.
-L.marker(target).addTo(leaflet_map);
+    // Place a marker on the same location.
+    L.marker(target).addTo(leaflet_map);
 </script>
 
 <!-- ================ google map ============== -->
 @if ($map == 'google-map')
 <script>
-function initMap() {
-    var token = "{{ $setting->google_map_key }}";
+    function initMap() {
+        var token = "{{ $setting->google_map_key }}";
 
-    const map = new google.maps.Map(document.getElementById("google-map"), {
-        zoom: 7,
-        center: {
-            lat: oldlat,
-            lng: oldlng
-        },
-    });
+        const map = new google.maps.Map(document.getElementById("google-map"), {
+            zoom: 7,
+            center: {
+                lat: oldlat,
+                lng: oldlng
+            },
+        });
 
-    const image =
-        "https://gisgeography.com/wp-content/uploads/2018/01/map-marker-3-116x200.png";
-    const beachMarker = new google.maps.Marker({
+        const image =
+            "https://gisgeography.com/wp-content/uploads/2018/01/map-marker-3-116x200.png";
+        const beachMarker = new google.maps.Marker({
 
-        draggable: false,
-        position: {
-            lat: oldlat,
-            lng: oldlng
-        },
-        map,
-        // icon: image
-    });
-}
-window.initMap = initMap;
+            draggable: false,
+            position: {
+                lat: oldlat,
+                lng: oldlng
+            },
+            map,
+            // icon: image
+        });
+    }
+    window.initMap = initMap;
 </script>
-<script>
+
 @php
 $link1 = 'https://maps.googleapis.com/maps/api/js?key=';
-$link2 = $setting - > google_map_key;
-$Link3 = '&callback=initMap&libraries=places,geometry';
-$scr = $link1.$link2.$Link3;
-@endphp;
-</script>
+$link2 = $setting->google_map_key;
+$link3 = '&callback=initMap&libraries=places,geometry';
+$scr = $link1 . $link2 . $link3;
+@endphp
+
 <script src="{{ $scr }}" async defer></script>
 @endif
 <!-- ================ google map ============== -->
@@ -1093,14 +1137,14 @@ $scr = $link1.$link2.$Link3;
 @endsection
 
 <script>
-function openPopUp(link) {
-    var popupWidth = 600;
-    var popupHeight = 400;
+    function openPopUp(link) {
+        var popupWidth = 600;
+        var popupHeight = 400;
 
-    var left = (window.innerWidth - popupWidth) / 2 + window.screenX;
-    var top = (window.innerHeight - popupHeight) / 2 + window.screenY;
+        var left = (window.innerWidth - popupWidth) / 2 + window.screenX;
+        var top = (window.innerHeight - popupHeight) / 2 + window.screenY;
 
-    window.open(link, 'popup', 'width=' + popupWidth + ',height=' + popupHeight + ',left=' + left + ',top=' + top);
+        window.open(link, 'popup', 'width=' + popupWidth + ',height=' + popupHeight + ',left=' + left + ',top=' + top);
 
-}
+    }
 </script>
