@@ -353,7 +353,7 @@
     <div class="rt-spacer-100 rt-spacer-md-50"></div>
         
     
-    <?php if (isset($component)) { $__componentOriginalf832c0f0b551a3ae4f576bd7e1fda30a = $component; } ?>
+    <!-- <?php if (isset($component)) { $__componentOriginalf832c0f0b551a3ae4f576bd7e1fda30a = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalf832c0f0b551a3ae4f576bd7e1fda30a = $attributes; } ?>
 <?php $component = App\View\Components\Website\SubscribeNewsletter::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
 <?php $component->withName('website.subscribe-newsletter'); ?>
@@ -372,7 +372,7 @@
 <?php if (isset($__componentOriginalf832c0f0b551a3ae4f576bd7e1fda30a)): ?>
 <?php $component = $__componentOriginalf832c0f0b551a3ae4f576bd7e1fda30a; ?>
 <?php unset($__componentOriginalf832c0f0b551a3ae4f576bd7e1fda30a); ?>
-<?php endif; ?>
+<?php endif; ?> -->
 
     
     <div class="modal fade" id="cvModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

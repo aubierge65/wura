@@ -843,7 +843,7 @@ $long = $job->long;
                             <div class="col-12">
                                 <div class="single-jSidebarWidget d-flex align-items-center mb-4">
                                     <div class="icon-thumb me-3">
-                                        <i class="ph-calendar-blank f-size-30 text-primary-500"></i>
+                                            <i class="ph-calendar-blank f-size-30 text-primary-500"></i>
                                     </div>
                                     <div class="iconbox-content d-flex justify-content-between w-100">
                                         <div class="f-size-16 text-gray-500 uppercase rt-mb-1">
