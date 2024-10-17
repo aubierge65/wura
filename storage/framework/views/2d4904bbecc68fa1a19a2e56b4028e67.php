@@ -49,7 +49,7 @@
                         </div>
                     </address>
                 </div>
-                <div class="col-lg-2 col-md-3 col-sm-6 rt-single-widget ">
+                <div class="col-lg-2 col-md-4 col-sm-6 rt-single-widget ">
                     <h2 class="footer-title"><?php echo e(__('util_links')); ?></h2>
                     <ul class="rt-usefulllinks2">
                         <li><a href="<?php echo e(route('website.about')); ?>"><?php echo e(__('about')); ?></a></li>
@@ -66,7 +66,7 @@
                         <li><a href="<?php echo e(route('website.posts')); ?>"><?php echo e(__('blog')); ?></a></li>
                     </ul>
                 </div>
-                <div class="col-lg-2 col-md-3 col-sm-6 rt-single-widget ">
+                <div class="col-lg-2 col-md-4 col-sm-6 rt-single-widget ">
                     <h2 class="footer-title"><?php echo e(__('services')); ?></h2>
                     <ul class="rt-usefulllinks2">
                         <li><a href="<?php echo e(route('website.job')); ?>"><?php echo e(__('browse_jobs')); ?></a></li>
@@ -80,7 +80,7 @@
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </ul>
                 </div>
-                <div class="col-lg-2 col-md-4 col-sm-6 rt-single-widget ">
+                <div class="col-lg-2 col-md-3 col-sm-6 rt-single-widget ">
                     <h2 class="footer-title"><?php echo e(__('support')); ?></h2>
                     <ul class="rt-usefulllinks2">
                     <li><a href="<?php echo e(route('website.faq')); ?>"><?php echo e(__('faq')); ?></a></li>

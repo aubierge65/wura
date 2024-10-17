@@ -29,7 +29,7 @@
                         </div>
                     </address>
                 </div>
-                <div class="col-lg-2 col-md-3 col-sm-6 rt-single-widget ">
+                <div class="col-lg-2 col-md-4 col-sm-6 rt-single-widget ">
                     <h2 class="footer-title">{{ __('util_links') }}</h2>
                     <ul class="rt-usefulllinks2">
                         <li><a href="{{ route('website.about') }}">{{ __('about') }}</a></li>
@@ -46,7 +46,7 @@
                         <li><a href="{{ route('website.posts') }}">{{ __('blog') }}</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-2 col-md-3 col-sm-6 rt-single-widget ">
+                <div class="col-lg-2 col-md-4 col-sm-6 rt-single-widget ">
                     <h2 class="footer-title">{{ __('services') }}</h2>
                     <ul class="rt-usefulllinks2">
                         <li><a href="{{ route('website.job') }}">{{ __('browse_jobs') }}</a></li>
@@ -60,7 +60,7 @@
                         @endforeach
                     </ul>
                 </div>
-                <div class="col-lg-2 col-md-4 col-sm-6 rt-single-widget ">
+                <div class="col-lg-2 col-md-3 col-sm-6 rt-single-widget ">
                     <h2 class="footer-title">{{ __('support') }}</h2>
                     <ul class="rt-usefulllinks2">
                     <li><a href="{{ route('website.faq') }}">{{ __('faq') }}</a></li>
