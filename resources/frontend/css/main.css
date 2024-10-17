@@ -94,6 +94,11 @@ body {
     box-sizing: inherit
 }
 
+.breadcrumbs-height {
+    overflow-y: auto;
+    position: relative;
+}
+
 html {
     box-sizing: border-box
 }

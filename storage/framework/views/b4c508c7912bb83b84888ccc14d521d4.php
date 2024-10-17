@@ -1,29 +1,30 @@
-@extends('frontend.layouts.app')
-
-@section('description')
-    @php
+<?php $__env->startSection('description'); ?>
+    <?php
         $data = metaData('company');
-    @endphp
-    {{ $data->description }}
-@endsection
-@section('og:image')
-    {{ asset($data->image) }}
-@endsection
-@section('title')
-    {{ $data->title }}
-@endsection
+    ?>
+    <?php echo e($data->description); ?>
 
-@section('main')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('og:image'); ?>
+    <?php echo e(asset($data->image)); ?>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('title'); ?>
+    <?php echo e($data->title); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('main'); ?>
     <div class="breadcrumbs style-two">
         <div class="container">
             <div class="row align-items-center ">
                 <div class="col-12 position-relative ">
                     <div class="breadcrumb-menu">
-                        <h6 class="f-size-18 m-0">{{ __('find_employers') }}</h6>
+                        <h6 class="f-size-18 m-0"><?php echo e(__('find_employers')); ?></h6>
                         <ul>
-                            <li><a href="{{ route('website.home') }}">{{ __('home') }}</a></li>
+                            <li><a href="<?php echo e(route('website.home')); ?>"><?php echo e(__('home')); ?></a></li>
                             <li>/</li>
-                            <li>{{ __('companies') }}</li>
+                            <li><?php echo e(__('companies')); ?></li>
                         </ul>
                     </div>
                 </div>
@@ -34,44 +35,81 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 tw-mb-6">
-                    <form action="{{ route('website.company') }}" id="formSubmit">
+                    <form action="<?php echo e(route('website.company')); ?>" id="formSubmit">
                         <div class="tw-mt-6">
                             <div class="top-content tw-flex tw-flex-col lg:tw-flex-row lg:tw-items-center tw-filter-box">
                                 <div class="tw-p-3 tw-flex-grow ll-input-border">
                                     <div class="fromGroup tw-w-full has-icon position-relative">
                                         <input id="search" name="keyword" type="text"
-                                            placeholder="{{ __('company_title_keyword') }}" value="{{ request('keyword') }}"
+                                            placeholder="<?php echo e(__('company_title_keyword')); ?>" value="<?php echo e(request('keyword')); ?>"
                                             autocomplete="off" class="tw-border-0">
                                         <div class="icon-badge">
-                                            <x-svg.search-icon />
+                                            <?php if (isset($component)) { $__componentOriginalaff82f5e25571a3aa5db317d7fd41a9a = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalaff82f5e25571a3aa5db317d7fd41a9a = $attributes; } ?>
+<?php $component = App\View\Components\Svg\SearchIcon::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('svg.search-icon'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\Svg\SearchIcon::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalaff82f5e25571a3aa5db317d7fd41a9a)): ?>
+<?php $attributes = $__attributesOriginalaff82f5e25571a3aa5db317d7fd41a9a; ?>
+<?php unset($__attributesOriginalaff82f5e25571a3aa5db317d7fd41a9a); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalaff82f5e25571a3aa5db317d7fd41a9a)): ?>
+<?php $component = $__componentOriginalaff82f5e25571a3aa5db317d7fd41a9a; ?>
+<?php unset($__componentOriginalaff82f5e25571a3aa5db317d7fd41a9a); ?>
+<?php endif; ?>
                                         </div>
                                         <span id="autocomplete_job_results"></span>
                                     </div>
                                 </div>
-                                @php
+                                <?php
                                     $oldLocation = request('location');
                                     $map = $setting->default_map;
-                                @endphp
+                                ?>
                                 <div class="fromGroup tw-px-3 position-relative">
 
-                                    @if ($map == 'google-map')
+                                    <?php if($map == 'google-map'): ?>
                                         <input type="hidden" name="lat" id="lat" value="">
                                         <input type="hidden" name="long" id="long" value="">
-                                        <input type="text" id="searchInput" placeholder="{{ __('enter_location') }}"
-                                            name="location" value="{{ request('location') }}"
+                                        <input type="text" id="searchInput" placeholder="<?php echo e(__('enter_location')); ?>"
+                                            name="location" value="<?php echo e(request('location')); ?>"
                                             class="tw-border-0 tw-pl-12" />
                                         <div id="google-map" class="d-none"></div>
-                                    @else
+                                    <?php else: ?>
                                         <input name="long" class="leaf_lon" type="hidden">
                                         <input name="lat" class="leaf_lat" type="hidden">
-                                        <input type="text" id="leaflet_search" placeholder="{{ __('enter_location') }}"
-                                            name="location" value="{{ request('location') }}" class="tw-border-0 tw-pl-12"
+                                        <input type="text" id="leaflet_search" placeholder="<?php echo e(__('enter_location')); ?>"
+                                            name="location" value="<?php echo e(request('location')); ?>" class="tw-border-0 tw-pl-12"
                                             autocomplete="off" />
-                                    @endif
+                                    <?php endif; ?>
 
                                     <div class="tw-absolute tw-top-1/2 -tw-translate-y-1/2 tw-left-3">
-                                        <x-svg.location-icon width="24" height="24"
-                                            stroke="{{ $setting->frontend_primary_color }}" />
+                                        <?php if (isset($component)) { $__componentOriginal3f359b2694db654dd0bf9b248c38ce64 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal3f359b2694db654dd0bf9b248c38ce64 = $attributes; } ?>
+<?php $component = App\View\Components\Svg\LocationIcon::resolve(['width' => '24','height' => '24','stroke' => ''.e($setting->frontend_primary_color).''] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('svg.location-icon'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\Svg\LocationIcon::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal3f359b2694db654dd0bf9b248c38ce64)): ?>
+<?php $attributes = $__attributesOriginal3f359b2694db654dd0bf9b248c38ce64; ?>
+<?php unset($__attributesOriginal3f359b2694db654dd0bf9b248c38ce64); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal3f359b2694db654dd0bf9b248c38ce64)): ?>
+<?php $component = $__componentOriginal3f359b2694db654dd0bf9b248c38ce64; ?>
+<?php unset($__componentOriginal3f359b2694db654dd0bf9b248c38ce64); ?>
+<?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="tw-p-3">
@@ -121,7 +159,8 @@
                                         <div>
                                             <button type="submit"
                                                 class="btn btn-primary md:tw-inline-block tw-w-full tw-block">
-                                                {{ __('search_employers') }}
+                                                <?php echo e(__('search_employers')); ?>
+
                                             </button>
                                         </div>
                                         <span id="autocomplete_job_results"></span>
@@ -133,111 +172,122 @@
                 </div>
             </div>
             <div class="row">
-                @if (request('keyword') || request('organization_type') || request('team_size') || request('industry_type'))
+                <?php if(request('keyword') || request('organization_type') || request('team_size') || request('industry_type')): ?>
                     <div class="col-12">
                         <div class="tw-flex tw-gap-2 tw-items-center tw-py-4 tw-mb-6"
                             style="border-top: 1px solid #E4E5E8; border-bottom: 1px solid #E4E5E8;">
 
                             <h2 class="tw-text-sm tw-text-[#767F8C] tw-whitespace-nowrap tw-mb-0">
-                                {{ __('active_filter') }}:</h2>
+                                <?php echo e(__('active_filter')); ?>:</h2>
 
 
                             <div class="d-flex w-100-p">
-                                @if (Request::get('keyword'))
+                                <?php if(Request::get('keyword')): ?>
                                     <div class="rt-mr-2 icon-badge">
-                                        <x-website.candidate.filter-data-component title="{{ __('keyword') }}"
-                                            filter="{{ request('keyword') }}" />
+                                        <?php if (isset($component)) { $__componentOriginalda80fd03a9c58602c6326f277f897225 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalda80fd03a9c58602c6326f277f897225 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.website.candidate.filter-data-component','data' => ['title' => ''.e(__('keyword')).'','filter' => ''.e(request('keyword')).'']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('website.candidate.filter-data-component'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['title' => ''.e(__('keyword')).'','filter' => ''.e(request('keyword')).'']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalda80fd03a9c58602c6326f277f897225)): ?>
+<?php $attributes = $__attributesOriginalda80fd03a9c58602c6326f277f897225; ?>
+<?php unset($__attributesOriginalda80fd03a9c58602c6326f277f897225); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalda80fd03a9c58602c6326f277f897225)): ?>
+<?php $component = $__componentOriginalda80fd03a9c58602c6326f277f897225; ?>
+<?php unset($__componentOriginalda80fd03a9c58602c6326f277f897225); ?>
+<?php endif; ?>
                                     </div>
-                                @endif
-                                @if (Request::get('industry_type') && Request::get('industry_type') != 'all')
+                                <?php endif; ?>
+                                <?php if(Request::get('industry_type') && Request::get('industry_type') != 'all'): ?>
                                     <div class="rt-mr-2 icon-badge">
-                                        <x-website.candidate.filter-data-component title="industry_type"
-                                            filter="{{ request('industry_type') }}" />
+                                        <?php if (isset($component)) { $__componentOriginalda80fd03a9c58602c6326f277f897225 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalda80fd03a9c58602c6326f277f897225 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.website.candidate.filter-data-component','data' => ['title' => 'industry_type','filter' => ''.e(request('industry_type')).'']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('website.candidate.filter-data-component'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['title' => 'industry_type','filter' => ''.e(request('industry_type')).'']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalda80fd03a9c58602c6326f277f897225)): ?>
+<?php $attributes = $__attributesOriginalda80fd03a9c58602c6326f277f897225; ?>
+<?php unset($__attributesOriginalda80fd03a9c58602c6326f277f897225); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalda80fd03a9c58602c6326f277f897225)): ?>
+<?php $component = $__componentOriginalda80fd03a9c58602c6326f277f897225; ?>
+<?php unset($__componentOriginalda80fd03a9c58602c6326f277f897225); ?>
+<?php endif; ?>
                                     </div>
-                                @endif
-                                @if (Request::get('organization_type') && Request::get('organization_type') != 'all')
+                                <?php endif; ?>
+                                <?php if(Request::get('organization_type') && Request::get('organization_type') != 'all'): ?>
                                     <div class="rt-mr-2 icon-badge">
-                                        <x-website.candidate.filter-data-component title="organization_type"
-                                            filter="{{ request('organization_type') }}" />
+                                        <?php if (isset($component)) { $__componentOriginalda80fd03a9c58602c6326f277f897225 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalda80fd03a9c58602c6326f277f897225 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.website.candidate.filter-data-component','data' => ['title' => 'organization_type','filter' => ''.e(request('organization_type')).'']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('website.candidate.filter-data-component'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['title' => 'organization_type','filter' => ''.e(request('organization_type')).'']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalda80fd03a9c58602c6326f277f897225)): ?>
+<?php $attributes = $__attributesOriginalda80fd03a9c58602c6326f277f897225; ?>
+<?php unset($__attributesOriginalda80fd03a9c58602c6326f277f897225); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalda80fd03a9c58602c6326f277f897225)): ?>
+<?php $component = $__componentOriginalda80fd03a9c58602c6326f277f897225; ?>
+<?php unset($__componentOriginalda80fd03a9c58602c6326f277f897225); ?>
+<?php endif; ?>
                                     </div>
-                                @endif
-                                @if (Request::get('team_size') && Request::get('team_size') != 'all')
+                                <?php endif; ?>
+                                <?php if(Request::get('team_size') && Request::get('team_size') != 'all'): ?>
                                     <div class="rt-mr-2 icon-badge">
-                                        <x-website.candidate.filter-data-component title="team_size"
-                                            filter="{{ request('team_size') }}" />
+                                        <?php if (isset($component)) { $__componentOriginalda80fd03a9c58602c6326f277f897225 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalda80fd03a9c58602c6326f277f897225 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.website.candidate.filter-data-component','data' => ['title' => 'team_size','filter' => ''.e(request('team_size')).'']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('website.candidate.filter-data-component'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['title' => 'team_size','filter' => ''.e(request('team_size')).'']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalda80fd03a9c58602c6326f277f897225)): ?>
+<?php $attributes = $__attributesOriginalda80fd03a9c58602c6326f277f897225; ?>
+<?php unset($__attributesOriginalda80fd03a9c58602c6326f277f897225); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalda80fd03a9c58602c6326f277f897225)): ?>
+<?php $component = $__componentOriginalda80fd03a9c58602c6326f277f897225; ?>
+<?php unset($__componentOriginalda80fd03a9c58602c6326f277f897225); ?>
+<?php endif; ?>
                                     </div>
-                                @endif
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
-                @endif
+                <?php endif; ?>
             </div>
         </div>
     </div>
 
-    {{-- Filter Section --}}
-    {{-- <form id="form" action="{{ route('website.company') }}" method="GET">
-        <div class="candidate-content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 rt-mb-24">
-                        <div class="joblist-left-content2">
-                            <div class="md:tw-w-3/4 rt-mb-24 tw-ml-auto">
-                                <div class="tw-flex md:tw-flex-row tw-flex-col tw-gap-5">
-                                    <div class="md:tw-w-1/3 tw-w-full">
-                                        <select onchange="$('#form').submit();" name="organization_type"
-                                            class="only-select2-search form-control rt-selectactive gap w-100-p">
-                                            <option {{ request('organization_type') ? '' : 'selected' }} value="">
-                                                {{ __('all') }} {{ __('organization_type') }}
-                                            </option>
-                                            @foreach ($organization_types as $organization_type)
-                                                <option
-                                                    {{ request('organization_type') == $organization_type['id'] ? 'selected' : '' }}
-                                                    value="{{ $organization_type['id'] }}">
-                                                    {{ $organization_type['name'] }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="md:tw-w-1/3 tw-w-full">
-                                        <select onchange="$('#form').submit();" name="industry_type"
-                                            class="only-select2-search form-control rt-selectactive gap w-100-p">
-                                            <option {{ request('industry_type') ? '' : 'selected' }} value="">
-                                                {{ __('all') }} {{ __('industry_type') }}
-                                            </option>
-                                            @foreach ($industry_types as $industry_type)
-                                                <option
-                                                    {{ request('industry_type') == $industry_type['id'] ? 'selected' : '' }}
-                                                    value="{{ $industry_type['id'] }}">
-                                                    {{ $industry_type['name'] }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="md:tw-w-1/3 tw-w-full">
-                                        <select onchange="$('#form').submit();" name="team_size"
-                                            class="only-select2-search form-control rt-selectactive gap w-100-p">
-                                            <option {{ request('team_size') ? '' : 'selected' }} value="">
-                                                {{ __('all') }} {{ __('team_size') }}
-                                            </option>
-                                            @foreach ($team_sizes as $team_size)
-                                                <option {{ request('team_size') == $team_size['id'] ? 'selected' : '' }}
-                                                    value="{{ $team_size['id'] }}">
-                                                    {{ $team_size['name'] }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="rt-spacer-10"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form> --}}
+    
+    
 
     <div class="container">
         <div class="row">
@@ -245,22 +295,22 @@
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                         <div class="row">
-                            @if ($companies->count() > 0)
-                                @foreach ($companies as $company)
+                            <?php if($companies->count() > 0): ?>
+                                <?php $__currentLoopData = $companies; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $company): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <div class="col-md-4 fade-in-bottom  condition_class rt-mb-24">
                                         <a 
-                                        @if ($company->activejobs == 0)
-                                           href="{{ route('website.employe.details', $company->user->username) }}" 
-                                        @else
-                                            href="{{ route('website.employe.details', $company->user->username) }}#open_position"
-                                        @endif
+                                        <?php if($company->activejobs == 0): ?>
+                                           href="<?php echo e(route('website.employe.details', $company->user->username)); ?>" 
+                                        <?php else: ?>
+                                            href="<?php echo e(route('website.employe.details', $company->user->username)); ?>#open_position"
+                                        <?php endif; ?>
                                         
                                         
                                             class="card jobcardStyle1">
                                             <div class="tw-p-6">
                                                 <div class="tw-flex tw-gap-4 tw-items-center">
                                                     <div class="tw-w-[56px] tw-h-[56px]">
-                                                        <img src="{{ url($company->logo_url) }}" alt="logo"
+                                                        <img src="<?php echo e(url($company->logo_url)); ?>" alt="logo"
                                                             draggable="false"
                                                             class="tw-w-full tw-h-full tw-rounded-[4px]">
                                                     </div>
@@ -270,8 +320,8 @@
                                                                 class="tw-flex tw-gap-3 tw-justify-start tw-items-center text-primary">
                                                                 <p
                                                                     class="tw-text-[#191F33] tw-text-lg tw-font-medium tw-mb-0">
-                                                                    {{ $company->user->name }}</p>
-                                                                @if ($company->is_profile_verified)
+                                                                    <?php echo e($company->user->name); ?></p>
+                                                                <?php if($company->is_profile_verified): ?>
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                         height="24" fill="currentColor"
                                                                         viewBox="0 0 256 256">
@@ -279,31 +329,33 @@
                                                                             d="M225.86,102.82c-3.77-3.94-7.67-8-9.14-11.57-1.36-3.27-1.44-8.69-1.52-13.94-.15-9.76-.31-20.82-8-28.51s-18.75-7.85-28.51-8c-5.25-.08-10.67-.16-13.94-1.52-3.56-1.47-7.63-5.37-11.57-9.14C146.28,23.51,138.44,16,128,16s-18.27,7.51-25.18,14.14c-3.94,3.77-8,7.67-11.57,9.14C88,40.64,82.56,40.72,77.31,40.8c-9.76.15-20.82.31-28.51,8S41,67.55,40.8,77.31c-.08,5.25-.16,10.67-1.52,13.94-1.47,3.56-5.37,7.63-9.14,11.57C23.51,109.72,16,117.56,16,128s7.51,18.27,14.14,25.18c3.77,3.94,7.67,8,9.14,11.57,1.36,3.27,1.44,8.69,1.52,13.94.15,9.76.31,20.82,8,28.51s18.75,7.85,28.51,8c5.25.08,10.67.16,13.94,1.52,3.56,1.47,7.63,5.37,11.57,9.14C109.72,232.49,117.56,240,128,240s18.27-7.51,25.18-14.14c3.94-3.77,8-7.67,11.57-9.14,3.27-1.36,8.69-1.44,13.94-1.52,9.76-.15,20.82-.31,28.51-8s7.85-18.75,8-28.51c.08-5.25.16-10.67,1.52-13.94,1.47-3.56,5.37-7.63,9.14-11.57C232.49,146.28,240,138.44,240,128S232.49,109.73,225.86,102.82Zm-52.2,6.84-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32Z">
                                                                         </path>
                                                                     </svg>
-                                                                @endif
+                                                                <?php endif; ?>
                                                             </div>
                                                             <p class="tw-text-[#767F8C] tw-text-sm tw-mb-0">
                                                                 <span class="tw-flex tw-items-center tw-gap-1">
                                                                     <i class="ph-map-pin"></i>
-                                                                    {{ $company->exact_location ? $company->exact_location : $company->full_address }}
+                                                                    <?php echo e($company->exact_location ? $company->exact_location : $company->full_address); ?>
+
                                                                 </span>
                                                             </p>
                                                             <span
-                                                            class="tw-px-3 tw-py-1 tw-inline-block tw-text-sm tw-font-medium tw-text-[#474C54] tw-rounded-[52px] ll-gray-border mt-1">{{ $company?->industry?->name ?? '' }}</span>
+                                                            class="tw-px-3 tw-py-1 tw-inline-block tw-text-sm tw-font-medium tw-text-[#474C54] tw-rounded-[52px] ll-gray-border mt-1"><?php echo e($company?->industry?->name ?? ''); ?></span>
 
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="post-info d-flex">
                                                     <div class="flex-grow-1">
-                                                        @if ($company->activejobs == 0)
+                                                        <?php if($company->activejobs == 0): ?>
                                                             <div class="d-block text-dark border-0 text-center">
                                                                 <div class="button-content-wrapper ">
                                                                     <span class="button-text btn btn-primary2-50 d-block mt-2">
-                                                                        {{ __('no_open_position') }}
+                                                                        <?php echo e(__('no_open_position')); ?>
+
                                                                     </span>
                                                                 </div>
                                                             </div>
-                                                        @else
+                                                        <?php else: ?>
                                                             <span>
                                                                 <button type="button"
                                                                     class="btn btn-primary2-50 d-block mt-2">
@@ -312,91 +364,67 @@
                                                                             <i class="ph-arrow-right"></i>
                                                                         </span>
                                                                         <span class="button-text">
-                                                                            {{ __('open_position') }} ({{ $company->activejobs }})
+                                                                            <?php echo e(__('open_position')); ?> (<?php echo e($company->activejobs); ?>)
                                                                         </span>
                                                                     </div>
                                                                 </button>
                                                             </span>
-                                                        @endif
+                                                        <?php endif; ?>
                                                     </div>
                                                 </div>
                                             </div>
                                         </a>
                                     </div>
-                                    {{-- <div
-                                        class="col-xl-4 col-md-6 fade-in-bottom  condition_class rt-mb-24 tw-self-stretch">
-                                        <a href="{{ route('website.employe.details', $company->user->username) }}"
-                                            class="card jobcardStyle1 tw-relative tw-h-full">
-                                            <div class="tw-p-6 !tw-pb-[72px]">
-                                                <div class="rt-single-icon-box tw-gap-3">
-                                                    <div class="tw-w-14 tw-h-14">
-                                                        <img class="tw-w-full tw-h-full tw-object-cover"
-                                                            src="{{ $company->logo_url }}" alt="logo"
-                                                            draggable="false" class="object-fit-contain">
-                                                    </div>
-                                                    <div class="iconbox-content">
-                                                        <div class="">
-                                                            <span
-                                                                class="tw-text-[#191F33] tw-text-lg tw-font-medium  tw-inline-block">{{ $company->user->name }}</span>
-                                                        </div>
-                                                        @isset($company->country)
-                                                            <span class="loacton text-gray-400 ">
-                                                                <i class="ph-map-pin"></i>
-                                                                {{ $company->country }}
-                                                            </span>
-                                                        @endisset
-                                                    </div>
-                                                </div>
-                                                <div class="post-info">
-                                                    <div class="tw-flex tw-flex-wrap tw-gap-3">
-                                                        <span
-                                                            class="tw-px-3 tw-py-1 tw-inline-block tw-text-sm tw-font-medium tw-text-[#474C54] tw-rounded-[52px] ll-gray-border">{{ $company?->industry?->name ?? '' }}</span>
-
-                                                        @if ($company->activejobs !== 0)
-                                                            <span
-                                                                class="tw-px-3 tw-py-1 tw-inline-block tw-text-sm tw-font-medium tw-text-[#474C54] tw-rounded-[52px] ll-gray-border">{{ $company->activejobs }}
-                                                                {{ __('open_job') }}</span>
-                                                        @endif
-
-                                                    </div>
-                                                    <div
-                                                        class="tw-absolute tw-bottom-6 tw-left-6 tw-text-base tw-font-semibold tw-capitalize tw-inline-flex tw-items-center tw-gap-1">
-                                                        <span>{{ __('view_profile') }}</span>
-                                                        <i class="ph-bold ph-arrow-right"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div> --}}
-                                @endforeach
-                            @else
+                                    
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php else: ?>
                                 <div class="col-md-12">
                                     <div class="card text-center">
-                                        <x-not-found message="{{ __('no_data_found') }}" />
+                                        <?php if (isset($component)) { $__componentOriginal29785112a59eec7800237cc87bc86e3e = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal29785112a59eec7800237cc87bc86e3e = $attributes; } ?>
+<?php $component = App\View\Components\NotFound::resolve(['message' => ''.e(__('no_data_found')).''] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('not-found'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\NotFound::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal29785112a59eec7800237cc87bc86e3e)): ?>
+<?php $attributes = $__attributesOriginal29785112a59eec7800237cc87bc86e3e; ?>
+<?php unset($__attributesOriginal29785112a59eec7800237cc87bc86e3e); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal29785112a59eec7800237cc87bc86e3e)): ?>
+<?php $component = $__componentOriginal29785112a59eec7800237cc87bc86e3e; ?>
+<?php unset($__componentOriginal29785112a59eec7800237cc87bc86e3e); ?>
+<?php endif; ?>
                                     </div>
                                 </div>
-                            @endif
+                            <?php endif; ?>
                         </div>
                         <div class="rt-pt-30">
                             <nav>
-                                {{ $companies->links('vendor.pagination.frontend') }}
+                                <?php echo e($companies->links('vendor.pagination.frontend')); ?>
+
                             </nav>
                         </div>
                     </div>
                     <div class="tab-pane" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                        @if ($companies->count() > 0)
-                            @foreach ($companies as $company)
+                        <?php if($companies->count() > 0): ?>
+                            <?php $__currentLoopData = $companies; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $company): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <div class="card jobcardStyle1 body-24 rt-mb-24">
                                     <div class="card-body">
                                         <div class="rt-single-icon-box tw-flex-wrap">
                                             <div class="icon-thumb">
-                                                <img src="{{ url($company->logo_url) }}" alt="logo"
+                                                <img src="<?php echo e(url($company->logo_url)); ?>" alt="logo"
                                                     draggable="false" class="object-fit-contain">
                                             </div>
                                             <div class="iconbox-content">
                                                 <div class="post-info2">
                                                     <div class="post-main-title"> <a
-                                                            href="{{ route('website.employe.details', $company->user->username) }}">{{ $company->user->name }}</a>
+                                                            href="<?php echo e(route('website.employe.details', $company->user->username)); ?>"><?php echo e($company->user->name); ?></a>
                                                     </div>
                                                     <div class="body-font-4 tw-space-y-2 text-gray-600 pt-2">
                                                         <span class="info-tools">
@@ -412,7 +440,8 @@
                                                                     stroke-linecap="round" stroke-linejoin="round" />
                                                             </svg>
 
-                                                            {{ $company->exact_location ? $company->exact_location : $company->full_address }}
+                                                            <?php echo e($company->exact_location ? $company->exact_location : $company->full_address); ?>
+
                                                         </span>
                                                         <span class="info-tools">
                                                             <svg width="22" height="22" viewBox="0 0 22 22"
@@ -434,56 +463,79 @@
                                                                     stroke-linejoin="round" />
                                                             </svg>
 
-                                                            {{ $company->activejobs }} - {{ __('open_job') }}
+                                                            <?php echo e($company->activejobs); ?> - <?php echo e(__('open_job')); ?>
+
                                                         </span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="iconbox-extra align-self-center">
                                                 <div>
-                                                    @if ($company->activejobs !== 0)
+                                                    <?php if($company->activejobs !== 0): ?>
                                                         <a
-                                                            href="{{ route('website.job', 'company=' . $company->user->username) }}">
+                                                            href="<?php echo e(route('website.job', 'company=' . $company->user->username)); ?>">
                                                             <button type="button" class="btn btn-primary2-50">
                                                                 <div class="button-content-wrapper ">
                                                                     <span class="button-icon align-icon-right">
                                                                         <i class="ph-arrow-right"></i>
                                                                     </span>
                                                                     <span class="button-text">
-                                                                        {{ __('open_position') }}
+                                                                        <?php echo e(__('open_position')); ?>
+
                                                                     </span>
                                                                 </div>
                                                             </button>
                                                         </a>
-                                                    @else
+                                                    <?php else: ?>
                                                         <div class="text-dark border-0 text-center">
                                                             <div class="button-content-wrapper ">
                                                                 <span class="button-text">
-                                                                    {{ __('no_open_position') }}
+                                                                    <?php echo e(__('no_open_position')); ?>
+
                                                                 </span>
                                                             </div>
                                                         </div>
-                                                    @endif
+                                                    <?php endif; ?>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
-                        @else
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php else: ?>
                             <div class="col-md-12">
                                 <div class="card text-center">
-                                    <x-not-found message="{{ __('no_data_found') }}" />
+                                    <?php if (isset($component)) { $__componentOriginal29785112a59eec7800237cc87bc86e3e = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal29785112a59eec7800237cc87bc86e3e = $attributes; } ?>
+<?php $component = App\View\Components\NotFound::resolve(['message' => ''.e(__('no_data_found')).''] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('not-found'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\NotFound::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal29785112a59eec7800237cc87bc86e3e)): ?>
+<?php $attributes = $__attributesOriginal29785112a59eec7800237cc87bc86e3e; ?>
+<?php unset($__attributesOriginal29785112a59eec7800237cc87bc86e3e); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal29785112a59eec7800237cc87bc86e3e)): ?>
+<?php $component = $__componentOriginal29785112a59eec7800237cc87bc86e3e; ?>
+<?php unset($__componentOriginal29785112a59eec7800237cc87bc86e3e); ?>
+<?php endif; ?>
                                 </div>
                             </div>
-                        @endif
-                        @if (request('perpage') != 'all')
+                        <?php endif; ?>
+                        <?php if(request('perpage') != 'all'): ?>
                             <div class="rt-pt-30">
                                 <nav>
-                                    {{ $companies->links('vendor.pagination.frontend') }}
+                                    <?php echo e($companies->links('vendor.pagination.frontend')); ?>
+
                                 </nav>
                             </div>
-                        @endif
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -491,10 +543,29 @@
     </div>
     <div class="rt-spacer-100 rt-spacer-md-50"></div>
 
-    {{-- Subscribe Newsletter --}}
-    <!-- <x-website.subscribe-newsletter /> -->
-    {{-- filter modal --}}
-    <form id="form" action="{{ route('website.company') }}">
+    
+    <?php if (isset($component)) { $__componentOriginalf832c0f0b551a3ae4f576bd7e1fda30a = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalf832c0f0b551a3ae4f576bd7e1fda30a = $attributes; } ?>
+<?php $component = App\View\Components\Website\SubscribeNewsletter::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('website.subscribe-newsletter'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\Website\SubscribeNewsletter::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalf832c0f0b551a3ae4f576bd7e1fda30a)): ?>
+<?php $attributes = $__attributesOriginalf832c0f0b551a3ae4f576bd7e1fda30a; ?>
+<?php unset($__attributesOriginalf832c0f0b551a3ae4f576bd7e1fda30a); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalf832c0f0b551a3ae4f576bd7e1fda30a)): ?>
+<?php $component = $__componentOriginalf832c0f0b551a3ae4f576bd7e1fda30a; ?>
+<?php unset($__componentOriginalf832c0f0b551a3ae4f576bd7e1fda30a); ?>
+<?php endif; ?>
+    
+    <form id="form" action="<?php echo e(route('website.company')); ?>">
         <div class="modal fade" id="companyFiltersModal" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div
@@ -506,7 +577,26 @@
                                 <h2 class="tw-text-[#18191C] tw-text-xl tw-font-medium tw-mb-0">Filter</h2>
                                 <button type="button" class="tw-p-0 tw-border-0 tw-bg-transparent"
                                     data-bs-dismiss="modal" aria-label="Close">
-                                    <x-svg.close-icon />
+                                    <?php if (isset($component)) { $__componentOriginalea0db84d645537b1ca75c6d9a16af7ce = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalea0db84d645537b1ca75c6d9a16af7ce = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.svg.close-icon','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('svg.close-icon'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalea0db84d645537b1ca75c6d9a16af7ce)): ?>
+<?php $attributes = $__attributesOriginalea0db84d645537b1ca75c6d9a16af7ce; ?>
+<?php unset($__attributesOriginalea0db84d645537b1ca75c6d9a16af7ce); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalea0db84d645537b1ca75c6d9a16af7ce)): ?>
+<?php $component = $__componentOriginalea0db84d645537b1ca75c6d9a16af7ce; ?>
+<?php unset($__componentOriginalea0db84d645537b1ca75c6d9a16af7ce); ?>
+<?php endif; ?>
                                 </button>
                             </div>
                         </div>
@@ -520,19 +610,20 @@
                                         class="tw-text-sm tw-text-[#18191C] tw-font-medium hover:tw-text-[#0A65CC] tw-flex tw-cursor-pointer hover:tw-bg-[#E7F0FA] tw-px-3 tw-py-2 tw-mt-[2px]">
                                         All Industry</div>
                                 </label>
-                                @foreach ($industries as $industry)
-                                    <label for="{{ $industry->name }}_{{ $industry->id }}"
+                                <?php $__currentLoopData = $industries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $industry): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <label for="<?php echo e($industry->name); ?>_<?php echo e($industry->id); ?>"
                                         class="tw-block ll-filter-category__item">
-                                        <input {{ $industry->name == request('industry_type') ? 'checked' : '' }}
-                                            data-id="{{ Route::current()->parameter('industry_type') }}"
+                                        <input <?php echo e($industry->name == request('industry_type') ? 'checked' : ''); ?>
+
+                                            data-id="<?php echo e(Route::current()->parameter('industry_type')); ?>"
                                             aria-data-id="category" type="radio" hidden
-                                            id="{{ $industry->name }}_{{ $industry->id }}" class="tw-scale-125"
-                                            name="industry_type" value="{{ $industry->name }}">
+                                            id="<?php echo e($industry->name); ?>_<?php echo e($industry->id); ?>" class="tw-scale-125"
+                                            name="industry_type" value="<?php echo e($industry->name); ?>">
                                         <div
                                             class="tw-text-sm tw-text-[#18191C] tw-font-medium hover:tw-text-[#0A65CC] tw-flex tw-cursor-pointer hover:tw-bg-[#E7F0FA] tw-px-3 tw-py-2 tw-mt-[2px]">
-                                            {{ $industry->name }}</div>
+                                            <?php echo e($industry->name); ?></div>
                                     </label>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ul>
                         </div>
                         <hr class="tw-bg-[#E4E5E8] tw-m-0">
@@ -544,18 +635,19 @@
                                 <label for="organization_type" class="tw-text-sm tw-text-[#18191C] tw-mt-[2px]">All
                                     Organization</label>
                             </div>
-                            @foreach ($organization_types as $organization_type)
+                            <?php $__currentLoopData = $organization_types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $organization_type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <div class="tw-flex tw-gap-2 tw-items-center tw-py-2">
-                                    <input {{ $organization_type->name == request('organization_type') ? 'checked' : '' }}
-                                        data-id="{{ Route::current()->parameter('organization_type') }}"
+                                    <input <?php echo e($organization_type->name == request('organization_type') ? 'checked' : ''); ?>
+
+                                        data-id="<?php echo e(Route::current()->parameter('organization_type')); ?>"
                                         aria-data-id="category" type="radio"
-                                        id="{{ $organization_type->name }}_{{ $organization_type->id }}"
+                                        id="<?php echo e($organization_type->name); ?>_<?php echo e($organization_type->id); ?>"
                                         class="tw-scale-125" name="organization_type"
-                                        value="{{ $organization_type->name }}">
-                                    <label for="{{ $organization_type->name }}_{{ $organization_type->id }}"
-                                        class="tw-text-sm tw-text-[#18191C] tw-mt-[2px]">{{ $organization_type->name }}</label>
+                                        value="<?php echo e($organization_type->name); ?>">
+                                    <label for="<?php echo e($organization_type->name); ?>_<?php echo e($organization_type->id); ?>"
+                                        class="tw-text-sm tw-text-[#18191C] tw-mt-[2px]"><?php echo e($organization_type->name); ?></label>
                                 </div>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
                         <hr class="tw-bg-[#E4E5E8] tw-m-0">
                         <div class="tw-p-5">
@@ -567,42 +659,81 @@
                                     Size</label>
                             </div>
 
-                            @foreach ($teamsizes as $teamsize)
+                            <?php $__currentLoopData = $teamsizes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $teamsize): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <div class="tw-flex tw-gap-2 tw-items-center tw-py-2">
-                                    <input {{ $teamsize->name == request('team_size') ? 'checked' : '' }}
-                                        data-id="{{ Route::current()->parameter('team_size') }}" aria-data-id="category"
-                                        type="radio" id="{{ $teamsize->name }}_{{ $teamsize->id }}"
-                                        class="tw-scale-125" name="team_size" value="{{ $teamsize->name }}">
-                                    <label for="{{ $teamsize->name }}_{{ $teamsize->id }}"
-                                        class="tw-text-sm tw-text-[#18191C] tw-mt-[2px]">{{ $teamsize->name }}</label>
+                                    <input <?php echo e($teamsize->name == request('team_size') ? 'checked' : ''); ?>
+
+                                        data-id="<?php echo e(Route::current()->parameter('team_size')); ?>" aria-data-id="category"
+                                        type="radio" id="<?php echo e($teamsize->name); ?>_<?php echo e($teamsize->id); ?>"
+                                        class="tw-scale-125" name="team_size" value="<?php echo e($teamsize->name); ?>">
+                                    <label for="<?php echo e($teamsize->name); ?>_<?php echo e($teamsize->id); ?>"
+                                        class="tw-text-sm tw-text-[#18191C] tw-mt-[2px]"><?php echo e($teamsize->name); ?></label>
                                 </div>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
                     </div>
                     <div
                         class="tw-absolute tw-bottom-0 tw-left-0 tw-right-0 tw-p-5 tw-bg-white tw-z-50 tw-flex tw-justify-end tw-items-center tw-mt-3">
                         <div>
                             <button type="submit"
-                                class="btn btn-primary tw-inline-block">{{ __('apply_filter') }}</button>
+                                class="btn btn-primary tw-inline-block"><?php echo e(__('apply_filter')); ?></button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </form>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('frontend_links')
-    <x-map.leaflet.autocomplete_links />
+<?php $__env->startPush('frontend_links'); ?>
+    <?php if (isset($component)) { $__componentOriginalc55f239e5bf30e5997dd7869a18fb76b = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalc55f239e5bf30e5997dd7869a18fb76b = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.map.leaflet.autocomplete_links','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('map.leaflet.autocomplete_links'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalc55f239e5bf30e5997dd7869a18fb76b)): ?>
+<?php $attributes = $__attributesOriginalc55f239e5bf30e5997dd7869a18fb76b; ?>
+<?php unset($__attributesOriginalc55f239e5bf30e5997dd7869a18fb76b); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc55f239e5bf30e5997dd7869a18fb76b)): ?>
+<?php $component = $__componentOriginalc55f239e5bf30e5997dd7869a18fb76b; ?>
+<?php unset($__componentOriginalc55f239e5bf30e5997dd7869a18fb76b); ?>
+<?php endif; ?>
     <style>
         .candidate-profession+.select2-container--default .select2-selection--single {
             border: none !important;
         }
     </style>
-@endpush
+<?php $__env->stopPush(); ?>
 
-@push('frontend_scripts')
-    <x-map.leaflet.autocomplete_scripts />
+<?php $__env->startPush('frontend_scripts'); ?>
+    <?php if (isset($component)) { $__componentOriginal513663b5c5fac5e7b3365170a423e764 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal513663b5c5fac5e7b3365170a423e764 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.map.leaflet.autocomplete_scripts','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('map.leaflet.autocomplete_scripts'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal513663b5c5fac5e7b3365170a423e764)): ?>
+<?php $attributes = $__attributesOriginal513663b5c5fac5e7b3365170a423e764; ?>
+<?php unset($__attributesOriginal513663b5c5fac5e7b3365170a423e764); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal513663b5c5fac5e7b3365170a423e764)): ?>
+<?php $component = $__componentOriginal513663b5c5fac5e7b3365170a423e764; ?>
+<?php unset($__componentOriginal513663b5c5fac5e7b3365170a423e764); ?>
+<?php endif; ?>
 
     <script>
         // filter close
@@ -612,7 +743,7 @@
             $('#form').submit();
         }
         // autocomplete
-        var path = "{{ route('website.job.autocomplete') }}";
+        var path = "<?php echo e(route('website.job.autocomplete')); ?>";
 
         $('#search').keyup(function(e) {
             var keyword = $(this).val();
@@ -636,12 +767,12 @@
         });
     </script>
     <!-- ============== gooogle map ========== -->
-    @if ($map == 'google-map')
+    <?php if($map == 'google-map'): ?>
         <script>
             function initMap() {
-                var token = "{{ $setting->google_map_key }}";
-                var oldlat = {{ Session::has('location') ? Session::get('location')['lat'] : $setting->default_lat }};
-                var oldlng = {{ Session::has('location') ? Session::get('location')['lng'] : $setting->default_long }};
+                var token = "<?php echo e($setting->google_map_key); ?>";
+                var oldlat = <?php echo e(Session::has('location') ? Session::get('location')['lat'] : $setting->default_lat); ?>;
+                var oldlng = <?php echo e(Session::has('location') ? Session::get('location')['lng'] : $setting->default_long); ?>;
                 const map = new google.maps.Map(document.getElementById("google-map"), {
                     zoom: 7,
                     center: {
@@ -653,7 +784,7 @@
                 var input = document.getElementById('searchInput');
                 map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-                let country_code = '{{ current_country_code() }}';
+                let country_code = '<?php echo e(current_country_code()); ?>';
                 if (country_code) {
                     var options = {
                         componentRestrictions: {
@@ -709,14 +840,16 @@
             window.initMap = initMap;
         </script>
         <script>
-            @php
+            <?php
                 $link1 = 'https://maps.googleapis.com/maps/api/js?key=';
                 $link2 = $setting->google_map_key;
                 $Link3 = '&callback=initMap&libraries=places,geometry';
                 $scr = $link1 . $link2 . $Link3;
-            @endphp;
+            ?>;
         </script>
-        <script src="{{ $scr }}" async defer></script>
-    @endif
+        <script src="<?php echo e($scr); ?>" async defer></script>
+    <?php endif; ?>
     <!-- ============== gooogle map ========== -->
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('frontend.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /opt/lampp/htdocs/MEGATECH/wura1/resources/views/frontend/pages/employees.blade.php ENDPATH**/ ?>

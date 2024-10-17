@@ -47,13 +47,13 @@
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-6 rt-single-widget ">
-                    <h2 class="footer-title">{{ __('candidate') }}</h2>
+                    <h2 class="footer-title">{{ __('services') }}</h2>
                     <ul class="rt-usefulllinks2">
                         <li><a href="{{ route('website.job') }}">{{ __('browse_jobs') }}</a></li>
-                        @if (!auth('user')->check() || authUser()->role != 'candidate')
-                            <li><a href="{{ route('website.candidate') }}">{{ __('browse_candidates') }}</a></li>
+                        @if (!auth('user')->check() || authUser()->role != 'company')
+                            <li><a href="{{ route('website.company') }}">{{ __('browse_employers') }}</a></li>
                         @endif
-                        <li><a href="{{ route('candidate.dashboard') }}">{{ __('candidate_dashboard') }}</a></li>
+                        <li><a href="{{ route('company.job.create') }}">{{ __('post_a_job') }}</a></li>
                         <li><a href="{{ route('candidate.bookmark') }}">{{ __('saved_jobs') }}</a></li>
                         @foreach ($custom_pages->where('show_footer', 1)->where('footer_column_position', 2) as $page)
                         <li><a href="{{ route('showCustomPage', $page->slug) }}">{{ $page->title }}</a></li>
@@ -61,25 +61,16 @@
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-6 rt-single-widget ">
-                    <h2 class="footer-title">{{ __('employer') }}</h2>
+                    <h2 class="footer-title">{{ __('support') }}</h2>
                     <ul class="rt-usefulllinks2">
-                        <li><a href="{{ route('company.job.create') }}">{{ __('post_a_job') }}</a></li>
-                        @if (!auth('user')->check() || authUser()->role != 'company')
-                            <li><a href="{{ route('website.company') }}">{{ __('browse_employers') }}</a></li>
-                        @endif
-                        <li><a href="{{ route('company.dashboard') }}">{{ __('employers_dashboard') }}</a></li>
-                        <li><a href="{{ route('company.myjob') }}">{{ __('applications') }}</a></li>
-                        @foreach ($custom_pages->where('show_footer', 1)->where('footer_column_position', 3) as $page)
-                        <li><a href="{{ route('showCustomPage', $page->slug) }}">{{ $page->title }}</a></li>
-                        @endforeach
+                    <li><a href="{{ route('website.faq') }}">{{ __('faq') }}</a></li>
+                        <li><a href="{{ route('website.privacyPolicy') }}">{{ __('privacy_policy') }}</a></li>                       
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-6 rt-single-widget ">
-                    <h2 class="footer-title">{{ __('support') }}</h2>
+                    <h2 class="footer-title">{{ __('reglementation') }}</h2>
                     <ul class="rt-usefulllinks2">
-                        <li><a href="{{ route('website.faq') }}">{{ __('faq') }}</a></li>
-                        <li><a href="{{ route('website.privacyPolicy') }}">{{ __('privacy_policy') }}</a></li>
-                        <li><a href="{{ route('website.termsCondition') }}">{{ __('terms_condition') }}</a></li>
+                       <li><a href="{{ route('website.termsCondition') }}">{{ __('terms_condition') }}</a></li>
                         <li><a href="{{ route('website.refundPolicy') }}">{{ __('refund_policy') }}</a></li>
                         @foreach ($custom_pages->where('show_footer', 1)->where('footer_column_position', 4) as $page)
                         <li><a href="{{ route('showCustomPage', $page->slug) }}">{{ $page->title }}</a></li>

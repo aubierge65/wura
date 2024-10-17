@@ -136,10 +136,6 @@
     </div>
 
     <div class="rt-spacer-100 rt-spacer-md-50"></div>
-
-    {{-- Subscribe Newsletter --}}
-    <x-website.subscribe-newsletter />
-
     <!-- ===================================== -->
     <div class="modal fade cadidate-modal" id="aemploye-profile" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-modal="true" role="dialog">

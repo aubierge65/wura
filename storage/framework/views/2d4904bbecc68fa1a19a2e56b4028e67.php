@@ -67,13 +67,13 @@
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-6 rt-single-widget ">
-                    <h2 class="footer-title"><?php echo e(__('candidate')); ?></h2>
+                    <h2 class="footer-title"><?php echo e(__('services')); ?></h2>
                     <ul class="rt-usefulllinks2">
                         <li><a href="<?php echo e(route('website.job')); ?>"><?php echo e(__('browse_jobs')); ?></a></li>
-                        <?php if(!auth('user')->check() || authUser()->role != 'candidate'): ?>
-                            <li><a href="<?php echo e(route('website.candidate')); ?>"><?php echo e(__('browse_candidates')); ?></a></li>
+                        <?php if(!auth('user')->check() || authUser()->role != 'company'): ?>
+                            <li><a href="<?php echo e(route('website.company')); ?>"><?php echo e(__('browse_employers')); ?></a></li>
                         <?php endif; ?>
-                        <li><a href="<?php echo e(route('candidate.dashboard')); ?>"><?php echo e(__('candidate_dashboard')); ?></a></li>
+                        <li><a href="<?php echo e(route('company.job.create')); ?>"><?php echo e(__('post_a_job')); ?></a></li>
                         <li><a href="<?php echo e(route('candidate.bookmark')); ?>"><?php echo e(__('saved_jobs')); ?></a></li>
                         <?php $__currentLoopData = $custom_pages->where('show_footer', 1)->where('footer_column_position', 2); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $page): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <li><a href="<?php echo e(route('showCustomPage', $page->slug)); ?>"><?php echo e($page->title); ?></a></li>
@@ -81,25 +81,16 @@
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-6 rt-single-widget ">
-                    <h2 class="footer-title"><?php echo e(__('employer')); ?></h2>
+                    <h2 class="footer-title"><?php echo e(__('support')); ?></h2>
                     <ul class="rt-usefulllinks2">
-                        <li><a href="<?php echo e(route('company.job.create')); ?>"><?php echo e(__('post_a_job')); ?></a></li>
-                        <?php if(!auth('user')->check() || authUser()->role != 'company'): ?>
-                            <li><a href="<?php echo e(route('website.company')); ?>"><?php echo e(__('browse_employers')); ?></a></li>
-                        <?php endif; ?>
-                        <li><a href="<?php echo e(route('company.dashboard')); ?>"><?php echo e(__('employers_dashboard')); ?></a></li>
-                        <li><a href="<?php echo e(route('company.myjob')); ?>"><?php echo e(__('applications')); ?></a></li>
-                        <?php $__currentLoopData = $custom_pages->where('show_footer', 1)->where('footer_column_position', 3); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $page): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <li><a href="<?php echo e(route('showCustomPage', $page->slug)); ?>"><?php echo e($page->title); ?></a></li>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <li><a href="<?php echo e(route('website.faq')); ?>"><?php echo e(__('faq')); ?></a></li>
+                        <li><a href="<?php echo e(route('website.privacyPolicy')); ?>"><?php echo e(__('privacy_policy')); ?></a></li>                       
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-6 rt-single-widget ">
-                    <h2 class="footer-title"><?php echo e(__('support')); ?></h2>
+                    <h2 class="footer-title"><?php echo e(__('reglementation')); ?></h2>
                     <ul class="rt-usefulllinks2">
-                        <li><a href="<?php echo e(route('website.faq')); ?>"><?php echo e(__('faq')); ?></a></li>
-                        <li><a href="<?php echo e(route('website.privacyPolicy')); ?>"><?php echo e(__('privacy_policy')); ?></a></li>
-                        <li><a href="<?php echo e(route('website.termsCondition')); ?>"><?php echo e(__('terms_condition')); ?></a></li>
+                       <li><a href="<?php echo e(route('website.termsCondition')); ?>"><?php echo e(__('terms_condition')); ?></a></li>
                         <li><a href="<?php echo e(route('website.refundPolicy')); ?>"><?php echo e(__('refund_policy')); ?></a></li>
                         <?php $__currentLoopData = $custom_pages->where('show_footer', 1)->where('footer_column_position', 4); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $page): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <li><a href="<?php echo e(route('showCustomPage', $page->slug)); ?>"><?php echo e($page->title); ?></a></li>
