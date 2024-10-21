@@ -1,12 +1,11 @@
-
 <div class="rt-site-footer bg-gray-900 dark-footer">
-     {{-- Subscribe Newsletter --}}
- <x-website.subscribe-newsletter />
+    {{-- Subscribe Newsletter --}}
+    <x-website.subscribe-newsletter />
 
-<form action="{{ route('website.indeed.job') }}" id="affiliate_form">
-    <input type="hidden" name="keyword" value="{{ request('keyword') }}">
-    <input type="hidden" name="category" value="{{ Route::current()->parameter('category') }}">
-</form>
+    <form action="{{ route('website.indeed.job') }}" id="affiliate_form">
+        <input type="hidden" name="keyword" value="{{ request('keyword') }}">
+        <input type="hidden" name="category" value="{{ Route::current()->parameter('category') }}">
+    </form>
     <div class="footer-top  bg-gray-900">
         <div class="container">
             <div class="row">
@@ -17,11 +16,11 @@
                     <address>
                         <div class="body-font-2 text-gray-500">
                             @if ($cms_setting?->footer_phone_no)
-                                <div class="body-font-2 text-gray-500">
-                                    <span>{{ __('call_now') }}:</span>
-                                    <a href="tel:{{ $cms_setting?->footer_phone_no }}" class="text-gray-10">
-                                        {{ $cms_setting?->footer_phone_no }}</a>
-                                </div>
+                            <div class="body-font-2 text-gray-500">
+                                <span>{{ __('call_now') }}:</span>
+                                <a href="tel:{{ $cms_setting?->footer_phone_no }}" class="text-gray-10">
+                                    {{ $cms_setting?->footer_phone_no }}</a>
+                            </div>
                             @endif
                             <div class="max-312 body-font-4 mt-2 text-gray-500">
                                 {{ __('footer_description') }}
@@ -35,10 +34,10 @@
                         <li><a href="{{ route('website.about') }}">{{ __('about') }}</a></li>
                         <li><a href="{{ route('website.contact') }}">{{ __('contact') }}</a></li>
                         @guest
-                            <li><a href="{{ route('website.plan') }}">{{ __('pricing') }}</a></li>
+                        <li><a href="{{ route('website.plan') }}">{{ __('pricing') }}</a></li>
                         @endguest
                         @if (auth('user')->check() && authUser()->role != 'candidate')
-                            <li><a href="{{ route('website.plan') }}">{{ __('pricing') }}</a></li>
+                        <li><a href="{{ route('website.plan') }}">{{ __('pricing') }}</a></li>
                         @endif
                         @foreach ($custom_pages->where('show_footer', 1)->where('footer_column_position', 1) as $page)
                         <li><a href="{{ route('showCustomPage', $page->slug) }}">{{ $page->title }}</a></li>
@@ -51,7 +50,7 @@
                     <ul class="rt-usefulllinks2">
                         <li><a href="{{ route('website.job') }}">{{ __('browse_jobs') }}</a></li>
                         @if (!auth('user')->check() || authUser()->role != 'company')
-                            <li><a href="{{ route('website.company') }}">{{ __('browse_employers') }}</a></li>
+                        <li><a href="{{ route('website.company') }}">{{ __('browse_employers') }}</a></li>
                         @endif
                         <li><a href="{{ route('company.job.create') }}">{{ __('post_a_job') }}</a></li>
                         <li><a href="{{ route('candidate.bookmark') }}">{{ __('saved_jobs') }}</a></li>
@@ -63,14 +62,14 @@
                 <div class="col-lg-2 col-md-3 col-sm-6 rt-single-widget ">
                     <h2 class="footer-title">{{ __('support') }}</h2>
                     <ul class="rt-usefulllinks2">
-                    <li><a href="{{ route('website.faq') }}">{{ __('faq') }}</a></li>
-                        <li><a href="{{ route('website.privacyPolicy') }}">{{ __('privacy_policy') }}</a></li>                       
+                        <li><a href="{{ route('website.faq') }}">{{ __('faq') }}</a></li>
+                        <li><a href="{{ route('website.privacyPolicy') }}">{{ __('privacy_policy') }}</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-6 rt-single-widget ">
                     <h2 class="footer-title">{{ __('reglementation') }}</h2>
                     <ul class="rt-usefulllinks2">
-                       <li><a href="{{ route('website.termsCondition') }}">{{ __('terms_condition') }}</a></li>
+                        <li><a href="{{ route('website.termsCondition') }}">{{ __('terms_condition') }}</a></li>
                         <li><a href="{{ route('website.refundPolicy') }}">{{ __('refund_policy') }}</a></li>
                         @foreach ($custom_pages->where('show_footer', 1)->where('footer_column_position', 4) as $page)
                         <li><a href="{{ route('showCustomPage', $page->slug) }}">{{ $page->title }}</a></li>
@@ -89,21 +88,21 @@
                 <div class="col-lg-6 text-center text-lg-end">
                     <ul class="footer-social-links">
                         @if ($cms_setting?->footer_facebook_link)
-                            <li>
-                                <a href="{{ $cms_setting->footer_facebook_link }}" title="facebook">
-                                    <svg width="20" height="20" viewBox="0 0 10 20" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M8.17403 3.32083H9.99986V0.140833C9.68486 0.0975 8.60153 0 7.33986 0C4.70736 0 2.90402 1.65583 2.90402 4.69917V7.5H-0.000976562V11.055H2.90402V20H6.46569V11.0558H9.25319L9.69569 7.50083H6.46486V5.05167C6.46569 4.02417 6.74236 3.32083 8.17403 3.32083Z"
-                                            fill="#767E94" />
-                                    </svg>
-                                </a>
-                            </li>
+                        <li>
+                            <a href="{{ $cms_setting->footer_facebook_link }}" title="facebook">
+                                <svg width="20" height="20" viewBox="0 0 10 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M8.17403 3.32083H9.99986V0.140833C9.68486 0.0975 8.60153 0 7.33986 0C4.70736 0 2.90402 1.65583 2.90402 4.69917V7.5H-0.000976562V11.055H2.90402V20H6.46569V11.0558H9.25319L9.69569 7.50083H6.46486V5.05167C6.46569 4.02417 6.74236 3.32083 8.17403 3.32083Z"
+                                        fill="#767E94" />
+                                </svg>
+                            </a>
+                        </li>
                         @endif
                         @if ($cms_setting?->footer_instagram_link)
-                            <li>
-                                <a href="{{ $cms_setting->footer_instagram_link }}" title="Instagram">
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                        <li>
+                            <a href="{{ $cms_setting->footer_instagram_link }}" title="Instagram">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip01)">
                                         <path
@@ -122,13 +121,13 @@
                                         </clipPath>
                                     </defs>
                                 </svg>
-                                </a>
-                            </li>
+                            </a>
+                        </li>
                         @endif
                         @if ($cms_setting?->footer_youtube_link)
-                            <li>
-                                <a href="{{ $cms_setting->footer_youtube_link }}" title="YouTube">
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                        <li>
+                            <a href="{{ $cms_setting->footer_youtube_link }}" title="YouTube">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip3)">
                                         <path
@@ -144,16 +143,34 @@
                                         </clipPath>
                                     </defs>
                                 </svg>
-                                </a>
-                            </li>
+                            </a>
+                        </li>
                         @endif
                         @if ($cms_setting?->footer_twitter_link)
-                            <li>
-                                <a href="{{ $cms_setting->footer_twitter_link }}" title="Twitter">
-                                    <x-svg.new-twitter-icon width="20" height="20" fill="#727279"/>
-                                </a>
-                            </li>
+                        <li>
+                            <a href="{{ $cms_setting->footer_twitter_link }}" title="Twitter">
+                                <x-svg.new-twitter-icon width="20" height="20" fill="#727279" />
+                            </a>
+                        </li>
                         @endif
+                        <li>
+                            <a href="" title="LinkedIn">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clipLinkedin)">
+                                        <path
+                                            d="M10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0ZM7.3375 14.4975H5.2375V8.0025H7.3375V14.4975ZM6.2875 6.9975H6.2725C5.5475 6.9975 5 6.445 5 5.7325C5 5.005 5.5625 4.465 6.2875 4.465C7.0125 4.465 7.55 5.0075 7.565 5.7325C7.565 6.445 7.0125 6.9975 6.2875 6.9975ZM15.0025 14.4975H12.8925V11.635C12.8925 10.8875 12.8575 9.9325 11.875 9.9325C10.8725 9.9325 10.7325 10.7625 10.7325 11.58V14.4975H8.6225V8.0025H10.6675V8.805C10.955 8.2975 11.64 7.735 12.67 7.735C14.435 7.735 15.0025 8.9325 15.0025 10.6125V14.4975Z"
+                                            fill="#767E94" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clipLinkedin">
+                                            <rect width="20" height="20" fill="transparent" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </a>
+                        </li>
+
                     </ul>
                 </div><!-- /.col-lg-6 -->
             </div><!-- /.row -->

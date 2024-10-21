@@ -1,7 +1,6 @@
-
 <div class="rt-site-footer bg-gray-900 dark-footer">
-     
- <?php if (isset($component)) { $__componentOriginalf832c0f0b551a3ae4f576bd7e1fda30a = $component; } ?>
+    
+    <?php if (isset($component)) { $__componentOriginalf832c0f0b551a3ae4f576bd7e1fda30a = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalf832c0f0b551a3ae4f576bd7e1fda30a = $attributes; } ?>
 <?php $component = App\View\Components\Website\SubscribeNewsletter::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
 <?php $component->withName('website.subscribe-newsletter'); ?>
@@ -22,10 +21,10 @@
 <?php unset($__componentOriginalf832c0f0b551a3ae4f576bd7e1fda30a); ?>
 <?php endif; ?>
 
-<form action="<?php echo e(route('website.indeed.job')); ?>" id="affiliate_form">
-    <input type="hidden" name="keyword" value="<?php echo e(request('keyword')); ?>">
-    <input type="hidden" name="category" value="<?php echo e(Route::current()->parameter('category')); ?>">
-</form>
+    <form action="<?php echo e(route('website.indeed.job')); ?>" id="affiliate_form">
+        <input type="hidden" name="keyword" value="<?php echo e(request('keyword')); ?>">
+        <input type="hidden" name="category" value="<?php echo e(Route::current()->parameter('category')); ?>">
+    </form>
     <div class="footer-top  bg-gray-900">
         <div class="container">
             <div class="row">
@@ -36,11 +35,11 @@
                     <address>
                         <div class="body-font-2 text-gray-500">
                             <?php if($cms_setting?->footer_phone_no): ?>
-                                <div class="body-font-2 text-gray-500">
-                                    <span><?php echo e(__('call_now')); ?>:</span>
-                                    <a href="tel:<?php echo e($cms_setting?->footer_phone_no); ?>" class="text-gray-10">
-                                        <?php echo e($cms_setting?->footer_phone_no); ?></a>
-                                </div>
+                            <div class="body-font-2 text-gray-500">
+                                <span><?php echo e(__('call_now')); ?>:</span>
+                                <a href="tel:<?php echo e($cms_setting?->footer_phone_no); ?>" class="text-gray-10">
+                                    <?php echo e($cms_setting?->footer_phone_no); ?></a>
+                            </div>
                             <?php endif; ?>
                             <div class="max-312 body-font-4 mt-2 text-gray-500">
                                 <?php echo e(__('footer_description')); ?>
@@ -55,10 +54,10 @@
                         <li><a href="<?php echo e(route('website.about')); ?>"><?php echo e(__('about')); ?></a></li>
                         <li><a href="<?php echo e(route('website.contact')); ?>"><?php echo e(__('contact')); ?></a></li>
                         <?php if(auth()->guard()->guest()): ?>
-                            <li><a href="<?php echo e(route('website.plan')); ?>"><?php echo e(__('pricing')); ?></a></li>
+                        <li><a href="<?php echo e(route('website.plan')); ?>"><?php echo e(__('pricing')); ?></a></li>
                         <?php endif; ?>
                         <?php if(auth('user')->check() && authUser()->role != 'candidate'): ?>
-                            <li><a href="<?php echo e(route('website.plan')); ?>"><?php echo e(__('pricing')); ?></a></li>
+                        <li><a href="<?php echo e(route('website.plan')); ?>"><?php echo e(__('pricing')); ?></a></li>
                         <?php endif; ?>
                         <?php $__currentLoopData = $custom_pages->where('show_footer', 1)->where('footer_column_position', 1); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $page): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <li><a href="<?php echo e(route('showCustomPage', $page->slug)); ?>"><?php echo e($page->title); ?></a></li>
@@ -71,7 +70,7 @@
                     <ul class="rt-usefulllinks2">
                         <li><a href="<?php echo e(route('website.job')); ?>"><?php echo e(__('browse_jobs')); ?></a></li>
                         <?php if(!auth('user')->check() || authUser()->role != 'company'): ?>
-                            <li><a href="<?php echo e(route('website.company')); ?>"><?php echo e(__('browse_employers')); ?></a></li>
+                        <li><a href="<?php echo e(route('website.company')); ?>"><?php echo e(__('browse_employers')); ?></a></li>
                         <?php endif; ?>
                         <li><a href="<?php echo e(route('company.job.create')); ?>"><?php echo e(__('post_a_job')); ?></a></li>
                         <li><a href="<?php echo e(route('candidate.bookmark')); ?>"><?php echo e(__('saved_jobs')); ?></a></li>
@@ -83,14 +82,14 @@
                 <div class="col-lg-2 col-md-3 col-sm-6 rt-single-widget ">
                     <h2 class="footer-title"><?php echo e(__('support')); ?></h2>
                     <ul class="rt-usefulllinks2">
-                    <li><a href="<?php echo e(route('website.faq')); ?>"><?php echo e(__('faq')); ?></a></li>
-                        <li><a href="<?php echo e(route('website.privacyPolicy')); ?>"><?php echo e(__('privacy_policy')); ?></a></li>                       
+                        <li><a href="<?php echo e(route('website.faq')); ?>"><?php echo e(__('faq')); ?></a></li>
+                        <li><a href="<?php echo e(route('website.privacyPolicy')); ?>"><?php echo e(__('privacy_policy')); ?></a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-6 rt-single-widget ">
                     <h2 class="footer-title"><?php echo e(__('reglementation')); ?></h2>
                     <ul class="rt-usefulllinks2">
-                       <li><a href="<?php echo e(route('website.termsCondition')); ?>"><?php echo e(__('terms_condition')); ?></a></li>
+                        <li><a href="<?php echo e(route('website.termsCondition')); ?>"><?php echo e(__('terms_condition')); ?></a></li>
                         <li><a href="<?php echo e(route('website.refundPolicy')); ?>"><?php echo e(__('refund_policy')); ?></a></li>
                         <?php $__currentLoopData = $custom_pages->where('show_footer', 1)->where('footer_column_position', 4); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $page): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <li><a href="<?php echo e(route('showCustomPage', $page->slug)); ?>"><?php echo e($page->title); ?></a></li>
@@ -128,21 +127,21 @@
                 <div class="col-lg-6 text-center text-lg-end">
                     <ul class="footer-social-links">
                         <?php if($cms_setting?->footer_facebook_link): ?>
-                            <li>
-                                <a href="<?php echo e($cms_setting->footer_facebook_link); ?>" title="facebook">
-                                    <svg width="20" height="20" viewBox="0 0 10 20" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M8.17403 3.32083H9.99986V0.140833C9.68486 0.0975 8.60153 0 7.33986 0C4.70736 0 2.90402 1.65583 2.90402 4.69917V7.5H-0.000976562V11.055H2.90402V20H6.46569V11.0558H9.25319L9.69569 7.50083H6.46486V5.05167C6.46569 4.02417 6.74236 3.32083 8.17403 3.32083Z"
-                                            fill="#767E94" />
-                                    </svg>
-                                </a>
-                            </li>
+                        <li>
+                            <a href="<?php echo e($cms_setting->footer_facebook_link); ?>" title="facebook">
+                                <svg width="20" height="20" viewBox="0 0 10 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M8.17403 3.32083H9.99986V0.140833C9.68486 0.0975 8.60153 0 7.33986 0C4.70736 0 2.90402 1.65583 2.90402 4.69917V7.5H-0.000976562V11.055H2.90402V20H6.46569V11.0558H9.25319L9.69569 7.50083H6.46486V5.05167C6.46569 4.02417 6.74236 3.32083 8.17403 3.32083Z"
+                                        fill="#767E94" />
+                                </svg>
+                            </a>
+                        </li>
                         <?php endif; ?>
                         <?php if($cms_setting?->footer_instagram_link): ?>
-                            <li>
-                                <a href="<?php echo e($cms_setting->footer_instagram_link); ?>" title="Instagram">
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                        <li>
+                            <a href="<?php echo e($cms_setting->footer_instagram_link); ?>" title="Instagram">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip01)">
                                         <path
@@ -161,13 +160,13 @@
                                         </clipPath>
                                     </defs>
                                 </svg>
-                                </a>
-                            </li>
+                            </a>
+                        </li>
                         <?php endif; ?>
                         <?php if($cms_setting?->footer_youtube_link): ?>
-                            <li>
-                                <a href="<?php echo e($cms_setting->footer_youtube_link); ?>" title="YouTube">
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                        <li>
+                            <a href="<?php echo e($cms_setting->footer_youtube_link); ?>" title="YouTube">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip3)">
                                         <path
@@ -183,13 +182,13 @@
                                         </clipPath>
                                     </defs>
                                 </svg>
-                                </a>
-                            </li>
+                            </a>
+                        </li>
                         <?php endif; ?>
                         <?php if($cms_setting?->footer_twitter_link): ?>
-                            <li>
-                                <a href="<?php echo e($cms_setting->footer_twitter_link); ?>" title="Twitter">
-                                    <?php if (isset($component)) { $__componentOriginalceb10757c371be92d54d23fb6aa0e339 = $component; } ?>
+                        <li>
+                            <a href="<?php echo e($cms_setting->footer_twitter_link); ?>" title="Twitter">
+                                <?php if (isset($component)) { $__componentOriginalceb10757c371be92d54d23fb6aa0e339 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalceb10757c371be92d54d23fb6aa0e339 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.svg.new-twitter-icon','data' => ['width' => '20','height' => '20','fill' => '#727279']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
 <?php $component->withName('svg.new-twitter-icon'); ?>
@@ -209,13 +208,30 @@
 <?php $component = $__componentOriginalceb10757c371be92d54d23fb6aa0e339; ?>
 <?php unset($__componentOriginalceb10757c371be92d54d23fb6aa0e339); ?>
 <?php endif; ?>
-                                </a>
-                            </li>
+                            </a>
+                        </li>
                         <?php endif; ?>
+                        <li>
+                            <a href="" title="LinkedIn">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clipLinkedin)">
+                                        <path
+                                            d="M10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20C15.5228 20 20 15.5228 20 10C20 4.47715 15.5228 0 10 0ZM7.3375 14.4975H5.2375V8.0025H7.3375V14.4975ZM6.2875 6.9975H6.2725C5.5475 6.9975 5 6.445 5 5.7325C5 5.005 5.5625 4.465 6.2875 4.465C7.0125 4.465 7.55 5.0075 7.565 5.7325C7.565 6.445 7.0125 6.9975 6.2875 6.9975ZM15.0025 14.4975H12.8925V11.635C12.8925 10.8875 12.8575 9.9325 11.875 9.9325C10.8725 9.9325 10.7325 10.7625 10.7325 11.58V14.4975H8.6225V8.0025H10.6675V8.805C10.955 8.2975 11.64 7.735 12.67 7.735C14.435 7.735 15.0025 8.9325 15.0025 10.6125V14.4975Z"
+                                            fill="#767E94" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clipLinkedin">
+                                            <rect width="20" height="20" fill="transparent" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </a>
+                        </li>
+
                     </ul>
                 </div><!-- /.col-lg-6 -->
             </div><!-- /.row -->
         </div><!-- /.container -->
     </div><!-- /.footer-bottom -->
-</div><!-- /.rt-site-footer -->
-<?php /**PATH /opt/lampp/htdocs/MEGATECH/wura1/resources/views/frontend/partials/footer.blade.php ENDPATH**/ ?>
+</div><!-- /.rt-site-footer --><?php /**PATH /opt/lampp/htdocs/MEGATECH/wura1/resources/views/frontend/partials/footer.blade.php ENDPATH**/ ?>
