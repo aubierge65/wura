@@ -197,7 +197,7 @@
         @endif
         <!-- google adsense area end --> --}}
     {{-- Subscribe Newsletter --}}
-    <x-website.subscribe-newsletter />
+    <!-- <x-website.subscribe-newsletter /> -->
 
     {{-- Apply job Modal --}}
     <div class="modal fade" id="cvModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

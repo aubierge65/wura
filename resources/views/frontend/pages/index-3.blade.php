@@ -519,13 +519,6 @@ $data = metaData('home');
         </div>
     </div>
 </section>
- {{-- Subscribe Newsletter --}}
- <x-website.subscribe-newsletter />
-
-<form action="{{ route('website.indeed.job') }}" id="affiliate_form">
-    <input type="hidden" name="keyword" value="{{ request('keyword') }}">
-    <input type="hidden" name="category" value="{{ Route::current()->parameter('category') }}">
-</form>
 <!-- google adsense area -->
 @if (advertisement_status('home_page_ad'))
 @if (advertisementCode('home_page_fat_ad_after_client_section'))
@@ -545,13 +538,15 @@ $data = metaData('home');
 @include('map::links')
 <style>
     .hero-section-3 {
-        padding: 100px 0;
-        background-image: url('{{ asset('frontend/assets/images/hero-bg-3.jpeg') }}');
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: relative;
-        height: 100vh;
-    }
+    padding: 100px 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                url('{{ asset('frontend/assets/images/working.jpg') }}');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    height: 90vh;
+}
+
 
 
     .hero-section-3::after {

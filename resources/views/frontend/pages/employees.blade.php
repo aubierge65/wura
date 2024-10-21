@@ -492,7 +492,7 @@
     <div class="rt-spacer-100 rt-spacer-md-50"></div>
 
     {{-- Subscribe Newsletter --}}
-    <x-website.subscribe-newsletter />
+    <!-- <x-website.subscribe-newsletter /> -->
     {{-- filter modal --}}
     <form id="form" action="{{ route('website.company') }}">
         <div class="modal fade" id="companyFiltersModal" tabindex="-1" aria-labelledby="exampleModalLabel"
