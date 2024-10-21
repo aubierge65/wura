@@ -49,7 +49,7 @@
                     </div>
                     <div class="tw-flex tw-justify-between tw-items-center tw-mb-4">
                         <p class="tw-text-sm tw-text-[#767F8C] tw-mb-0">Min:
-                            {{ $currentCurrency->symbol }}<span>0</span></p>
+                            <span>0</span>{{ $currentCurrency->symbol }}</p>
                         <p class="tw-text-sm tw-text-[#767F8C] tw-mb-0">Max:
                             {{ $currentCurrency->symbol }}<span>{{ round($maxSalary, 0) }}</span></p>
                     </div>

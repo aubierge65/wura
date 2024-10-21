@@ -467,6 +467,12 @@ class CompanyController extends Controller
                 ->company->questions()
                 ->where('reuse', true)
                 ->get();
+            
+            $data['modes'] = JobMode::all()->sortBy('name');
+            $data['langues'] = CandidateLanguage::all()->sortBy('name');
+            $data['contrats'] = JobContract::all()->sortBy('name');
+            $data['levels'] = Level::all()->sortBy('name');
+
 
             return view('frontend.pages.company.editjob', $data);
         } catch (\Exception $e) {

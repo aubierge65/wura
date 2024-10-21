@@ -215,7 +215,7 @@
                                         <x-forms.label name="job_mode_id" :required="true" class="tw-text-sm tw-mb-2" />
                                         <select
                                             class="select2-taggable form-control @error('job_mode') is-invalid @enderror "
-                                            name="job_mode">
+                                            name="job_mode_id">
                                             @foreach ($modes as $job_mode)
                                                 <option {{ old('job_mode') == $job_mode->id ? 'selected' : '' }}
                                                     value="{{ $job_mode->id }}">
@@ -232,7 +232,7 @@
                                             class="tw-text-sm tw-mb-2" />
                                         <select
                                             class="select2-taggable form-control @error('job_contracts') is-invalid @enderror "
-                                            name="job_contracts">
+                                            name="job_contracts_id">
                                             @foreach ($contrats as $job_contracts)
                                                 <option {{ old('job_contracts') == $job_contracts->id ? 'selected' : '' }}
                                                     value="{{ $job_contracts->id }}">

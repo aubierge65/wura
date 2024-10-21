@@ -901,7 +901,7 @@ trait JobAble
         }
     }
 
-    public function jobLanguageLevelUpdate($job, $languages, $levels)
+    public function jobLanguageUpdate($job, $languages, $levels)
     {
         $existingLanguages = JobLanguagePivot::where('job_id', $job->id)->pluck('candidate_languages_id')->toArray();
         $languagesToRemove = array_diff($existingLanguages, $languages);

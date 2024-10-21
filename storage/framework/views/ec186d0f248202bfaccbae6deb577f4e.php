@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('description'); ?>
     <?php echo e(strip_tags($job->description)); ?>
 
