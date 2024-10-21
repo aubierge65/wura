@@ -2,60 +2,60 @@
 
 namespace App\Http\Controllers\Website;
 
-use Carbon\Carbon;
-use App\Models\Job;
-use App\Models\Tag;
-use App\Models\User;
-use App\Models\Skill;
-use App\Models\Company;
-use App\Models\Candidate;
-use App\Models\Education;
-use App\Models\Experience;
-use App\Models\Profession;
-use Illuminate\Support\Str;
+use App\Http\Controllers\Controller;
+use App\Http\Traits\CandidateAble;
+use App\Http\Traits\HasCountryBasedJobs;
 use App\Http\Traits\JobAble;
-use Illuminate\Http\Request;
-use Modules\Faq\Entities\Faq;
+use App\Http\Traits\ResetCvViewsHistoryTrait;
+use App\Models\Candidate;
 use App\Models\CandidateCvView;
 use App\Models\CandidateResume;
-use Modules\Blog\Entities\Post;
-use Modules\Plan\Entities\Plan;
-use App\Http\Traits\CandidateAble;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-use App\Http\Controllers\Controller;
-use Srmklive\PayPal\Services\PayPal;
-use Illuminate\Support\Facades\Cache;
-use Modules\Faq\Entities\FaqCategory;
-use Modules\Blog\Entities\PostComment;
-use Modules\Location\Entities\Country;
-use Modules\Blog\Entities\PostCategory;
-use Modules\Language\Entities\Language;
-use App\Http\Traits\HasCountryBasedJobs;
-use Illuminate\Support\Facades\Validator;
-use App\Services\Website\IndexPageService;
-use App\Services\Website\PricePlanService;
-use Stevebauman\Location\Facades\Location;
-use App\Services\Website\Job\JobListService;
-use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Support\Facades\Notification;
-use App\Http\Traits\ResetCvViewsHistoryTrait;
-use App\Services\Website\RefundPolicyService;
-use Modules\Testimonial\Entities\Testimonial;
-use App\Services\Website\PrivacyPolicyService;
-use App\Services\Website\TermsConditionService;
-use App\Services\Website\Company\CompanyListService;
-use App\Services\Website\Company\CompanyDetailsService;
-use Modules\Currency\Entities\Currency as CurrencyModel;
+use App\Models\Company;
+use App\Models\Education;
+use App\Models\Experience;
+use App\Models\Job;
+use App\Models\Profession;
+use App\Models\Skill;
+use App\Models\Tag;
+use App\Models\User;
 use App\Notifications\Website\Candidate\ApplyJobNotification;
 use App\Notifications\Website\Candidate\BookmarkJobNotification;
 use App\Services\Website\Candidate\CandidateProfileDetailsService;
+use App\Services\Website\Company\CompanyDetailsService;
+use App\Services\Website\Company\CompanyListService;
+use App\Services\Website\IndexPageService;
+use App\Services\Website\Job\JobListService;
+use App\Services\Website\PricePlanService;
+use App\Services\Website\PrivacyPolicyService;
+use App\Services\Website\RefundPolicyService;
+use App\Services\Website\TermsConditionService;
+use Carbon\Carbon;
+use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Modules\Blog\Entities\Post;
+use Modules\Blog\Entities\PostCategory;
+use Modules\Blog\Entities\PostComment;
+use Modules\Currency\Entities\Currency as CurrencyModel;
+use Modules\Faq\Entities\Faq;
+use Modules\Faq\Entities\FaqCategory;
+use Modules\Language\Entities\Language;
+use Modules\Location\Entities\Country;
+use Modules\Plan\Entities\Plan;
+use Modules\Testimonial\Entities\Testimonial;
+use Srmklive\PayPal\Services\PayPal;
+use Stevebauman\Location\Facades\Location;
 
 class WebsiteController extends Controller
 {
     use CandidateAble, HasCountryBasedJobs, JobAble, ResetCvViewsHistoryTrait;
 
     public $setting;
+
     public function __construct()
     {
         $this->setting = loadSetting(); // see helpers.php
@@ -112,65 +112,25 @@ class WebsiteController extends Controller
      * @param  Request  $request
      * @return void
      */
-    // public function index()
-    // {
-    //     try {
-    //         $data = (new IndexPageService())->execute();
-    //        // dd(env('APP_DEFAULT_LANGUAGE'));
-    //         if ($this?->setting?->landing_page == 2) {
-    //             return view('frontend.pages.index-2', $data);
-    //         } elseif ($this->setting->landing_page == 3) {
-    //             return view('frontend.pages.index-3', $data);
-    //         } else {
-    //             return view('frontend.pages.index', $data);
-    //         }
-    //     } catch (\Exception $e) {
-    //         flashError('An error occurred: '.$e->getMessage());
-
-    //         return back();
-    //     }
-    // }
-
-
     public function index()
     {
-        // Set the maximum execution time to 120 seconds
-        ini_set('max_execution_time', 600); // 120 seconds
-    
         try {
-            // Log when the index method is accessed
-            Log::info('Accessing index method.');
-    
-            // Execute the IndexPageService and log the result
             $data = (new IndexPageService())->execute();
-            Log::info('Data retrieved from IndexPageService', ['data' => $data]);
-    
-            // Check if $this->setting is initialized and retrieve the landing_page value
-            $landingPage = $this->setting->landing_page ?? null;
-            Log::info('Landing page setting', ['landing_page' => $landingPage]);
-    
-            // Determine which view to return based on landing_page setting
-            switch ($landingPage) {
-                case 2:
-                    return view('frontend.pages.index-2', $data);
-                case 3:
-                    return view('frontend.pages.index-3', $data);
-                default:
-                    return view('frontend.pages.index', $data);
+
+           // dd(env('APP_DEFAULT_LANGUAGE'));
+            if ($this?->setting?->landing_page == 2) {
+                return view('frontend.pages.index-2', $data);
+            } elseif ($this->setting->landing_page == 3) {
+                return view('frontend.pages.index-3', $data);
+            } else {
+                return view('frontend.pages.index', $data);
             }
         } catch (\Exception $e) {
-            // Log the error message
-            Log::error('An error occurred in index method: ' . $e->getMessage(), [
-                'exception' => $e,
-            ]);
-    
-            flashError('An error occurred: ' . $e->getMessage());
-    
+            flashError('An error occurred: '.$e->getMessage());
+
             return back();
         }
     }
-    
-
 
     /**
      * Terms and condition page view
@@ -320,7 +280,7 @@ class WebsiteController extends Controller
      */
     public function candidates(Request $request)
     {
-        abort_if(auth('user')->check() && authUser()->role == 'candidate', 404);
+        // abort_if(auth('user')->check() && authUser()->role == 'candidate', 404);
 
         try {
             $data['professions'] = Profession::all()->sortBy('name');
@@ -523,7 +483,7 @@ class WebsiteController extends Controller
     public function employees(Request $request)
     {
         try {
-            abort_if(auth('user')->check() && authUser()->role == 'company', 404);
+            // abort_if(auth('user')->check() && authUser()->role == 'company', 404);
 
             $data = (new CompanyListService())->execute($request);
 
@@ -544,7 +504,7 @@ class WebsiteController extends Controller
     {
         try {
 
-            $user = User::where('role', 'company')->where('username', $username)->first();
+            $user = User::where('role', 'company', 'posts')->where('username', $username)->first();
 
             $data = (new CompanyDetailsService())->execute($user);
 
@@ -627,6 +587,7 @@ class WebsiteController extends Controller
             abort_if(auth('user')->check() && auth('user')->user()->role == 'candidate', 404);
 
             $data = (new PricePlanService())->details($label);
+     
 
             return view('frontend.pages.plan-details', $data);
         } catch (\Exception $e) {

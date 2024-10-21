@@ -53,7 +53,7 @@
                                             @endphp
                                             <div class="iconbox-content !tw-m-0">
                                                 <div class="job-mini-title">
-                                                    @if (auth('user')->check())
+                                                    @if (auth('user')->check() && authUser()->role !== 'candidate' )
                                                         <span>
                                                             {{ $candidate->user->name }}
                                                         </span>
@@ -72,10 +72,13 @@
                                                     </span>
                                                 @endif
                                                 <div class="bottom-link mt-1">
-                                                    @if (auth('user')->check())
+                                                    @if (auth('user')->check() )
+                                                    @if (authUser()->role !== 'candidate')
                                                         <span class="body-font-4 text-primary-500">{{ __('view_resume') }}
                                                             <x-svg.arrow-right-icon />
                                                         </span>
+                                                    @endif
+                                                        
                                                     @else
                                                         <span
                                                             class="body-font-4 text-primary-500 login_required">{{ __('view_resume') }}
@@ -133,10 +136,6 @@
     </div>
 
     <div class="rt-spacer-100 rt-spacer-md-50"></div>
-
-    {{-- Subscribe Newsletter --}}
-    <x-website.subscribe-newsletter />
-
     <!-- ===================================== -->
     <div class="modal fade cadidate-modal" id="aemploye-profile" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-modal="true" role="dialog">

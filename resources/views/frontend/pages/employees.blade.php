@@ -247,8 +247,15 @@
                         <div class="row">
                             @if ($companies->count() > 0)
                                 @foreach ($companies as $company)
-                                    {{-- <div class="col-md-4 fade-in-bottom  condition_class rt-mb-24">
-                                        <a href="{{ route('website.employe.details', $company->user->username) }}"
+                                    <div class="col-md-4 fade-in-bottom  condition_class rt-mb-24">
+                                        <a 
+                                        @if ($company->activejobs == 0)
+                                           href="{{ route('website.employe.details', $company->user->username) }}" 
+                                        @else
+                                            href="{{ route('website.employe.details', $company->user->username) }}#open_position"
+                                        @endif
+                                        
+                                        
                                             class="card jobcardStyle1">
                                             <div class="tw-p-6">
                                                 <div class="tw-flex tw-gap-4 tw-items-center">
@@ -280,6 +287,9 @@
                                                                     {{ $company->exact_location ? $company->exact_location : $company->full_address }}
                                                                 </span>
                                                             </p>
+                                                            <span
+                                                            class="tw-px-3 tw-py-1 tw-inline-block tw-text-sm tw-font-medium tw-text-[#474C54] tw-rounded-[52px] ll-gray-border mt-1">{{ $company?->industry?->name ?? '' }}</span>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -288,7 +298,7 @@
                                                         @if ($company->activejobs == 0)
                                                             <div class="d-block text-dark border-0 text-center">
                                                                 <div class="button-content-wrapper ">
-                                                                    <span class="button-text">
+                                                                    <span class="button-text btn btn-primary2-50 d-block mt-2">
                                                                         {{ __('no_open_position') }}
                                                                     </span>
                                                                 </div>
@@ -302,7 +312,7 @@
                                                                             <i class="ph-arrow-right"></i>
                                                                         </span>
                                                                         <span class="button-text">
-                                                                            {{ __('open_position') }}
+                                                                            {{ __('open_position') }} ({{ $company->activejobs }})
                                                                         </span>
                                                                     </div>
                                                                 </button>
@@ -312,8 +322,8 @@
                                                 </div>
                                             </div>
                                         </a>
-                                    </div> --}}
-                                    <div
+                                    </div>
+                                    {{-- <div
                                         class="col-xl-4 col-md-6 fade-in-bottom  condition_class rt-mb-24 tw-self-stretch">
                                         <a href="{{ route('website.employe.details', $company->user->username) }}"
                                             class="card jobcardStyle1 tw-relative tw-h-full">
@@ -357,7 +367,7 @@
                                                 </div>
                                             </div>
                                         </a>
-                                    </div>
+                                    </div> --}}
                                 @endforeach
                             @else
                                 <div class="col-md-12">
@@ -482,7 +492,7 @@
     <div class="rt-spacer-100 rt-spacer-md-50"></div>
 
     {{-- Subscribe Newsletter --}}
-    <x-website.subscribe-newsletter />
+    <!-- <x-website.subscribe-newsletter /> -->
     {{-- filter modal --}}
     <form id="form" action="{{ route('website.company') }}">
         <div class="modal fade" id="companyFiltersModal" tabindex="-1" aria-labelledby="exampleModalLabel"

@@ -46,5 +46,5 @@
     </section>
 
     {{-- Subscribe Newsletter --}}
-    <x-website.subscribe-newsletter />
+    <!-- <x-website.subscribe-newsletter /> -->
 @endsection

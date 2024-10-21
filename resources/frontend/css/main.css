@@ -3,6 +3,10 @@ html {
     height: 100%;
 }
 
+.rt-site-footer .footer-logo {
+    width: 120px!important;
+}
+
 .btn,
 .main-menu>ul>li>a,
 body {
@@ -88,6 +92,11 @@ body {
 ::after,
 ::before {
     box-sizing: inherit
+}
+
+.breadcrumbs-height {
+    overflow-y: auto;
+    position: relative;
 }
 
 html {
@@ -2114,6 +2123,7 @@ ul.recent-activity li:hover .icon-thumb {
         padding-top: 100px
     }
 
+
     .rt-spacer-lg-100 {
         height: 100px
     }
@@ -2300,7 +2310,7 @@ ul.recent-activity li:hover .icon-thumb {
     }
 
     .rt-site-footer .footer-logo {
-        max-width: 150px
+        max-width: 150px!important;
     }
 }
 
@@ -2439,7 +2449,7 @@ a.active {
 }
 
 .rt-site-footer .footer-logo {
-    margin-bottom: 20px;
+    margin-bottom: 20px!important;
     display: block
 }
 
@@ -9033,5 +9043,4 @@ body[dir=rtl] .date.datepicker input {
 .tw-text-yellow-500{
 color: yellow;
 }
-
 

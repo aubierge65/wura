@@ -9,13 +9,18 @@ use App\Imports\JobsImport;
 use App\Models\AppliedJob;
 use App\Models\Benefit;
 use App\Models\CandidateJobAlert;
+use App\Models\CandidateLanguage;
 use App\Models\Company;
 use App\Models\Education;
 use App\Models\Experience;
 use App\Models\Job;
 use App\Models\JobCategory;
+use App\Models\JobContract;
+use App\Models\JobLanguagePivot;
+use App\Models\JobMode;
 use App\Models\JobRole;
 use App\Models\JobType;
+use App\Models\Level;
 use App\Models\SalaryType;
 use App\Models\Skill;
 use App\Models\Tag;
@@ -93,6 +98,10 @@ class JobController extends Controller
             $data['benefits'] = Benefit::whereNull('company_id')->get()->sortBy('name');
             $data['tags'] = Tag::all()->sortBy('name');
             $data['skills'] = Skill::all()->sortBy('name');
+            $data['modes'] = JobMode::all()->sortBy('name');
+            $data['langues'] = CandidateLanguage::all()->sortBy('name');
+            $data['contrats'] = JobContract::all()->sortBy('name');
+            $data['levels'] = Level::all()->sortBy('name');
 
             return view('backend.Job.create', $data);
         } catch (\Exception $e) {
@@ -166,7 +175,7 @@ class JobController extends Controller
     {
         try {
             abort_if(! userCan('job.view'), 403);
-
+        
             return view('backend.Job.show', compact('job'));
         } catch (\Exception $e) {
             flashError('An error occurred: '.$e->getMessage());
@@ -199,7 +208,10 @@ class JobController extends Controller
             $data['lat'] = $job->lat ? floatval($job->lat) : floatval(setting('default_lat'));
             $data['long'] = $job->long ? floatval($job->long) : floatval(setting('default_long'));
             $data['skills'] = Skill::all()->sortBy('name');
-
+            $data['modes'] = JobMode::all()->sortBy('name');
+            $data['langues'] = CandidateLanguage::all()->sortBy('name');
+            $data['contrats'] = JobContract::all()->sortBy('name');
+            $data['levels'] = Level::all()->sortBy('name');
             return view('backend.Job.edit', $data);
         } catch (\Exception $e) {
             flashError('An error occurred: '.$e->getMessage());

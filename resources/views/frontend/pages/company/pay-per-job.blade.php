@@ -32,7 +32,7 @@
                                     </div>
                                     <div class="col-lg-4 rt-mb-20 col-md-4">
                                         <x-forms.label name="job_category" :required="true" />
-                                        <select
+                                        <select id="category_id"
                                             class="w-100-p select2-taggable select2-search form-control @error('category_id') is-invalid @enderror"
                                             name="category_id">
                                             @foreach ($jobCategories as $category)
@@ -63,7 +63,7 @@
                                     </div>
                                     <div class="col-lg-4 rt-mb-20 col-md-4">
                                         <x-forms.label name="job_role" :required="true" class="tw-text-sm tw-mb-2" />
-                                        <select
+                                        <select id="role_id"
                                             class="w-100-p select2-taggable select2-search form-control @error('role_id') is-invalid @enderror"
                                             name="role_id">
                                             @foreach ($roles as $role)
@@ -108,7 +108,7 @@
                                     <div class="rt-mb-20 col-md-4 salary_range_part">
                                         <x-forms.label name="min_salary" :required="false" class="tw-text-sm tw-mb-2" />
                                         <div class="position-relative">
-                                            <input step="0.01" value="{{ old('min_salary', '50.00') }}"
+                                            <input value="{{ old('min_salary') }}"
                                                 class="form-control @error('min_salary') is-invalid @enderror"
                                                 name="min_salary" type="number" placeholder="{{ __('min_salary') }}"
                                                 id="m">
@@ -121,7 +121,7 @@
                                     <div class="rt-mb-20 col-md-4 salary_range_part">
                                         <x-forms.label name="max_salary" :required="false" class="tw-text-sm tw-mb-2" />
                                         <div class="position-relative">
-                                            <input step="0.01" value="{{ old('max_salary', '100.00') }}"
+                                            <input value="{{ old('max_salary') }}"
                                                 class="form-control @error('max_salary') is-invalid @enderror"
                                                 name="max_salary" type="number" placeholder="{{ __('max_salary') }}"
                                                 id="m">
@@ -216,7 +216,7 @@
                                         <div class="fromGroup">
                                             <div class="form-control-icon date datepicker">
                                                 <input value="{{ old('deadline') }}" name="deadline"
-                                                    class="form-control !tw-ps-[55px] @error('deadline') is-invalid @enderror"
+                                                    class="form-control !tw-ps-[] @error('deadline') is-invalid @enderror"
                                                     type="text" value="{{ old('deadline') ? old('deadline') : '' }}"
                                                     id="date" placeholder="d/m/y">
                                                 <span class="input-group-addon has-badge">
@@ -891,4 +891,35 @@
             });
         }
     </script>
+
+<script>
+    $(document).ready(function() {
+        $('#category_id').on('change', function() {
+            var categoryId = $(this).val();
+
+            if (categoryId) {
+                console.log(categoryId);
+                
+                $.ajax({
+                    url: 'http://wura.locale/company/create/job/rolebycategorie/' + categoryId,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#role_id').empty(); // Vider la liste actuelle des rôles
+                        $('#role_id').append('<option value="">Sélectionner un rôle</option>');
+
+                        $.each(data, function(key, value) {
+                            $('#role_id').append('<option value="' + value.id + '">' + value.name + '</option>');
+                        });
+                    }
+                });
+            } else {
+                // Si aucune catégorie n'est sélectionnée, réafficher tous les rôles
+                $('#role_id').empty(); 
+                $('#role_id').append('<option value="">Sélectionner un rôle</option>');
+             
+            }
+        });
+    });
+</script>
 @endsection

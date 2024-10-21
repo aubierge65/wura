@@ -59,6 +59,8 @@ class JobCreateService
             'featured_until' => $featured_days,
             'highlight_until' => $highlight_days,
             'is_remote' => $request->is_remote ?? 0,
+            'job_mode_id' => $request->job_mode_id,
+            'job_contracts_id' => $request->job_contracts_id
         ]);
 
         // Benefits insert
@@ -78,6 +80,12 @@ class JobCreateService
         if ($skills) {
             $this->jobSkillsInsert($request->skills, $jobCreated);
         }
+        $langues = $request->langue ?? [];
+        $levels = $request->level ?? [];
+        if($langues && $levels){
+            $this->jobLangueInsert($jobCreated, $langues, $levels);
+        }
+       
 
         // location insert
         updateMap($jobCreated);

@@ -14,6 +14,7 @@
 @endsection
 
 @section('main')
+
     <div class="breadcrumbs-custom breadcrumbs-height">
         <div class="container">
             <div class="row align-items-center breadcrumbs-height">
@@ -30,40 +31,10 @@
         </div>
     </div>
 
+  
     <section class="terms-condition ">
         <div class="container">
-            <div class="pricing-options tw-justify-between">
-                <div class="choose-pricing">
-                    <h2>{{ __('buy_premium_subscription_to_post_job') }}</h2>
-                    <p>{{ __('elevate_your_job_postings_with_a_premium_subscription_get_expanded_reach_targeted_promotion_and_advanced_applicant_filtering') }}
-                    </p>
-                    <a href="#premium_pricing_package">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.875 13.75L8.125 17.5L4.375 13.75" stroke="#0A65CC" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                                d="M15.625 2.5C13.6359 2.5 11.7282 3.29018 10.3217 4.6967C8.91518 6.10322 8.125 8.01088 8.125 10V17.5"
-                                stroke="#0A65CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                        {{ __('choose_a_pricing_plan_from_below') }}
-                    </a>
-                </div>
-                @if ($setting->per_job_active)
-                    <div class="pay-per-job">
-                        <h2 class="">{{ __('Or_pay_per_job_post') }}</h2>
-                        <p>{{ __('pay_only_for_a_single_job_creation_and_you_can_also_highlight_or_featured_them') }}</p>
-                        @auth('user')
-                            <a href="{{ route('company.job.payPerJobCreate') }}"
-                                class="btn btn-primary">{{ __('pay_per_job') }}</a>
-                        @else
-                            <a href="{{ route('company.job.payPerJobCreate') }}"
-                                class="btn btn-primary login_required">{{ __('pay_per_job') }}</a>
-                        @endauth
-                    </div>
-                @endif
-
-            </div>
+            
             @if ($plans->count() > 0)
                 <div class="row justify-content-center text-center" id="premium_pricing_package">
                     <div class="col-12">
@@ -82,8 +53,8 @@
                     @forelse ($plans as $plan)
                         @if ($plan->frontend_show)
                             <div class="col-xl-4 col-lg-4 col-md-6 rt-mb-24">
-                                <div class="single-price-table mb-4 mb-md-0 {{ $plan->recommended ? 'active' : '' }}">
-                                    <div class="price-header">
+                            <div class="single-price-table mb-4 mb-md-0 {{ $plan->recommended ? 'active' : '' }} {{ $plan->recommended ? 'bg-primary-50': 'bg-default' }}">
+                            <div class="price-header">
                                         <h6 class="rt-mb-10">{{ $plan->label }}</h6>
                                         @if ($plan->recommended)
                                             <span class="badge bg-primary-500 text-white">{{ __('recommanded') }}</span>
@@ -245,44 +216,26 @@
                     @endforelse
                 </div>
             </section>
+            <div class="pricing-options tw-justify-between justify-content-center align-items-center">
+               
+                @if ($setting->per_job_active)
+                    <div class="pay-per-job">
+                        <h2 class="">{{ __('Or_pay_per_job_post') }}</h2>
+                        <p>{{ __('pay_only_for_a_single_job_creation_and_you_can_also_highlight_or_featured_them') }}</p>
+                        @auth('user')
+                            <a href="{{ route('company.job.payPerJobCreate') }}"
+                                class="btn btn-primary">{{ __('pay_per_job') }}</a>
+                        @else
+                            <a href="{{ route('company.job.payPerJobCreate') }}"
+                                class="btn btn-primary login_required">{{ __('pay_per_job') }}</a>
+                        @endauth
+                    </div>
+                @endif
+
+            </div>
         </div>
     </section>
 
-    @if ($cms_setting->payment_logo1 || $cms_setting->payment_logo2 || $cms_setting->payment_logo3 || $cms_setting->payment_logo4 ||$cms_setting->payment_logo5 || $cms_setting->payment_logo6)
-        <section class="tw-py-10">
-            <div class="container">
-                <div
-                    class="tw-max-w-max tw-mx-auto tw-px-8 tw-py-4 tw-rounded-lg tw-shadow-[0px_0px_32px_0px_rgba(0,0,0,0.12)] tw-bg-white">
-                    <ul class="tw-flex tw-justify-center tw-gap-2 tw-items-center tw-list-none tw-p-0 tw-m-0">
-                        @if ($cms_setting->payment_logo1)
-                            <li><img class="tw-w-14 tw-h-14 tw-object-contain"
-                                    src="{{ asset($cms_setting->payment_logo1) }}" alt="payment_logo"></li>
-                        @endif
-                        @if ($cms_setting->payment_logo2)
-                            <li><img class="tw-w-14 tw-h-14 tw-object-contain"
-                                    src="{{ asset($cms_setting->payment_logo2) }}" alt="payment_logo"></li>
-                        @endif
-                        @if ($cms_setting->payment_logo3)
-                            <li><img class="tw-w-14 tw-h-14 tw-object-contain"
-                                    src="{{ asset($cms_setting->payment_logo3) }}" alt="payment_logo"></li>
-                        @endif
-                        @if ($cms_setting->payment_logo4)
-                            <li><img class="tw-w-14 tw-h-14 tw-object-contain"
-                                    src="{{ asset($cms_setting->payment_logo4) }}" alt="payment_logo"></li>
-                        @endif
-                        @if ($cms_setting->payment_logo5)
-                            <li><img class="tw-w-14 tw-h-14 tw-object-contain"
-                                    src="{{ asset($cms_setting->payment_logo5) }}" alt="payment_logo"></li>
-                        @endif
-                        @if ($cms_setting->payment_logo6)
-                            <li><img class="tw-w-14 tw-h-14 tw-object-contain"
-                                    src="{{ asset($cms_setting->payment_logo6) }}" alt="payment_logo"></li>
-                        @endif
-                    </ul>
-                </div>
-            </div>
-        </section>
-    @endif
     @if ($faqs->count())
         <section class="tw-py-16">
             <div class="container">
@@ -346,11 +299,14 @@
         </div>
     </section>
 
-    {{-- Subscribe Newsletter --}}
-    <x-website.subscribe-newsletter />
+    
 @endsection
 @section('css')
     <style>
+        .bg-blue {
+    background-color: blue; 
+    color: white; 
+}
         .breadcrumbs-custom {
             padding: 20px;
             background-color: var(--gray-20);

@@ -8,6 +8,7 @@ use App\Models\Education;
 use App\Models\Experience;
 use App\Models\Job;
 use App\Models\JobCategory;
+use App\Models\JobLanguagePivot;
 use App\Models\JobRole;
 use App\Models\JobType;
 use App\Models\JobTypeTranslation;
@@ -882,6 +883,21 @@ trait JobAble
             }
 
             $job->skills()->attach($skillsArray);
+        }
+    }
+
+    public function jobLangueInsert($job, $langues, $levels) {
+        if(count($langues) > 0 && count($levels) > 0){
+            for($i=0; $i<count($langues); $i++){
+                if(isset($levels[$i]) && isset($langues[$i])){
+                   $pivot = new JobLanguagePivot();
+                $pivot->job_id = $job->id;
+                $pivot->level_id = $levels[$i];
+                $pivot->candidate_languages_id = $langues[$i]; 
+                $pivot->save();
+                }
+                
+            }
         }
     }
 

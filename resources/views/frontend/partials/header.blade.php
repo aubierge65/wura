@@ -4,7 +4,10 @@
         $headerCountries = Modules\Location\Entities\Country::select('id', 'name', 'slug', 'icon')->active()->get();
         $headerCurrencies = Modules\Currency\Entities\Currency::all();
         $languages = loadLanguage();
-        $defaultLanguage = Modules\Language\Entities\Language::where('code', config('templatecookie.default_language'))->first();
+        $defaultLanguage = Modules\Language\Entities\Language::where(
+            'code',
+            config('templatecookie.default_language'),
+        )->first();
     @endphp
 @endif
 {{-- For testing environment --}}
@@ -135,7 +138,10 @@
                                                 <li class="menu-item">
                                                     @php
                                                         // Check if the URL starts with "http" or "https" to identify external links
-                                                        $isExternalLink = Str::startsWith($company_menu_list['url'], ['http://', 'https://']);
+                                                        $isExternalLink = Str::startsWith($company_menu_list['url'], [
+                                                            'http://',
+                                                            'https://',
+                                                        ]);
                                                     @endphp
                                                     <a href="{{ $company_menu_list['url'] }}"
                                                         @if ($isExternalLink) target="_blank" @endif
@@ -150,22 +156,22 @@
                                                     </a>
                                                 </li>
                                             @endforeach
-                                            @if ($custom_pages->where('show_header', 1)->count() > 0 )
-                                            <li class="menu-item extra-page d-none d-lg-inline-block">
-                                                <a href="javascript:void(0)" class="dropdown-toggle">
-                                                    Extra Pages
-                                                </a>
-                                                <ul class="ll-dropdown-menu">
-                                                    @foreach ($custom_pages->where('show_header', 1) as $page)
-                                                        <li>
-                                                            <a class="!tw-px-5 !tw-py-2"
-                                                                href="{{ route('showCustomPage', $page->slug) }}">{{ $page->title }}</a>
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
-                                            </li>
+                                            @if ($custom_pages->where('show_header', 1)->count() > 0)
+                                                <li class="menu-item extra-page d-none d-lg-inline-block">
+                                                    <a href="javascript:void(0)" class="dropdown-toggle">
+                                                        Extra Pages
+                                                    </a>
+                                                    <ul class="ll-dropdown-menu">
+                                                        @foreach ($custom_pages->where('show_header', 1) as $page)
+                                                            <li>
+                                                                <a class="!tw-px-5 !tw-py-2"
+                                                                    href="{{ route('showCustomPage', $page->slug) }}">{{ $page->title }}</a>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                </li>
                                             @endif
-                                            
+
                                             @foreach ($custom_pages->where('show_header', 1) as $page)
                                                 <li class="d-lg-none">
                                                     <a class=""
@@ -190,7 +196,10 @@
                                                 <li class="menu-item">
                                                     @php
                                                         // Check if the URL starts with "http" or "https" to identify external links
-                                                        $isExternalLink = Str::startsWith($candidate_menu_list['url'], ['http://', 'https://']);
+                                                        $isExternalLink = Str::startsWith($candidate_menu_list['url'], [
+                                                            'http://',
+                                                            'https://',
+                                                        ]);
                                                     @endphp
                                                     <a href="{{ $candidate_menu_list['url'] }}"
                                                         @if ($isExternalLink) target="_blank" @endif
@@ -205,7 +214,7 @@
                                                     </a>
                                                 </li>
                                             @endforeach
-                                            <li class="menu-item extra-page d-none d-lg-inline-block">
+                                            {{-- <li class="menu-item extra-page d-none d-lg-inline-block">
                                                 <a href="javascript:void(0)" class="dropdown-toggle">
                                                     Extra Pages
                                                 </a>
@@ -217,7 +226,7 @@
                                                         </li>
                                                     @endforeach
                                                 </ul>
-                                            </li>
+                                            </li> --}}
                                             @foreach ($custom_pages->where('show_header', 1) as $page)
                                                 <li class="d-lg-none">
                                                     <a class=""
@@ -236,7 +245,10 @@
                                             <li class="menu-item">
                                                 @php
                                                     // Check if the URL starts with "http" or "https" to identify external links
-                                                    $isExternalLink = Str::startsWith($public_menu_list['url'], ['http://', 'https://']);
+                                                    $isExternalLink = Str::startsWith($public_menu_list['url'], [
+                                                        'http://',
+                                                        'https://',
+                                                    ]);
                                                 @endphp
                                                 <a href="{{ $public_menu_list['url'] }}"
                                                     @if ($isExternalLink) target="_blank" @endif
@@ -251,21 +263,21 @@
                                                 </a>
                                             </li>
                                         @endforeach
-                                        @if ($custom_pages->where('show_header', 1)->count() > 0 )
-                                        <li class="menu-item extra-page d-none d-lg-inline-block">
-                                            <a href="javascript:void(0)" class="dropdown-toggle">
-                                                 {{__('extra_pages')}}
-                                            </a>
-                                            <ul class="ll-dropdown-menu">
-                                                @foreach ($custom_pages->where('show_header', 1) as $page)
-                                                    <li>
-                                                        <a class="!tw-px-5 !tw-py-2"
-                                                            href="{{ route('showCustomPage', $page->slug) }}">{{ $page->title }}</a>
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        </li>
-                                         @endif
+                                        @if ($custom_pages->where('show_header', 1)->count() > 0)
+                                            <li class="menu-item extra-page d-none d-lg-inline-block">
+                                                <a href="javascript:void(0)" class="dropdown-toggle">
+                                                    {{ __('extra_pages') }}
+                                                </a>
+                                                <ul class="ll-dropdown-menu">
+                                                    @foreach ($custom_pages->where('show_header', 1) as $page)
+                                                        <li>
+                                                            <a class="!tw-px-5 !tw-py-2"
+                                                                href="{{ route('showCustomPage', $page->slug) }}">{{ $page->title }}</a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </li>
+                                        @endif
                                         @foreach ($custom_pages->where('show_header', 1) as $page)
                                             <li class="d-lg-none">
                                                 <a class="{{ urlMatch(url()->current(), url($public_menu_list['url'])) ? 'text-primary active' : '' }}"
@@ -693,6 +705,16 @@
                                                 </a>
                                             </li>
                                         @endcompany
+                                        @candidate
+                                        <li class="tw-hidden sm:tw-block">
+
+                                            <a href="{{ route('website.job') }}">
+                                                <button class="btn btn-light">
+                                                    {{ __('find_job') }}
+                                                </button>
+                                            </a>
+                                        </li>
+                                        @endcandidate
                                     @endif
                                     @if (request()->is('email/verify'))
                                         <li>

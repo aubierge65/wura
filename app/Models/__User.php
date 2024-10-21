@@ -11,7 +11,7 @@ use Illuminate\Notifications\Notifiable;
 use Modules\Blog\Entities\PostComment;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable implements MustVerifyEmail
+class Users extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable, HasApiTokens;
 

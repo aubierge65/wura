@@ -21,6 +21,7 @@ class MessengerController extends Controller
         $users = $this->fetchCompanyUserList();
         $jobs = Job::where('company_id', currentCompany()->id)->active()->get(['id', 'title']);
 
+      
         return view('frontend.pages.company.message', compact('users', 'jobs'));
     }
 
