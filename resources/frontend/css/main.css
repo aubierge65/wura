@@ -3,6 +3,9 @@ html {
     height: 100%;
 }
 
+.categorie-ic:hover{
+    color: #027373;
+}
 .rt-site-footer .footer-logo {
     width: 120px!important;
 }

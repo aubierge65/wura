@@ -1,0 +1,176 @@
+[33mcommit 3803ed49c9928dfce6a7cad5cdde6eb2940b7138[m[33m ([m[1;36mHEAD -> [m[1;32mfawoziath[m[33m, [m[1;31morigin/fawoziath[m[33m)[m
+Author: aubierge65 <aubieguin@gmail.com>
+Date:   Mon Oct 21 12:03:42 2024 +0200
+
+    Log file
+
+[33mcommit 52925e362e40377a426c0c97c331e0949648d122[m
+Merge: 306d8b8 4044b7c
+Author: aubierge65 <aubieguin@gmail.com>
+Date:   Mon Oct 21 12:01:34 2024 +0200
+
+    Merge branch 'fawoziath' of https://github.com/aubierge65/wura into fawoziath
+
+[33mcommit 4044b7c8d4fca20733ecea931d179ab809f76c44[m
+Author: Fawoziath0501 <saloufawoziath236@gmail.com>
+Date:   Mon Oct 21 08:41:30 2024 +0100
+
+    A propos page & Test de l'administration Entreprise
+
+[33mcommit ba9a1af0c302ed272ef733fe1d63448804825391[m
+Author: Fawoziath0501 <saloufawoziath236@gmail.com>
+Date:   Thu Oct 17 17:24:25 2024 +0100
+
+    About page redesign
+
+[33mcommit b08d4e88d34b20d7d8a55bc2bff42c4eb58100b7[m
+Author: Fawoziath0501 <saloufawoziath236@gmail.com>
+Date:   Thu Oct 17 14:06:01 2024 +0100
+
+    Contact Page updating
+
+[33mcommit 39a3e7f580ee6f0da1a4df2a151f9edbe5b36988[m
+Author: Fawoziath0501 <saloufawoziath236@gmail.com>
+Date:   Thu Oct 17 12:13:34 2024 +0100
+
+    Footer section updating & uniformization of subscribe form
+
+[33mcommit 87cea7a18172e0644742e0330fc47a7612773b9f[m
+Author: Fawoziath0501 <saloufawoziath236@gmail.com>
+Date:   Wed Oct 16 17:09:00 2024 +0100
+
+    Pricing page updating
+
+[33mcommit e166a3a86f23ceac83fe1050f2468bdf37a50e3b[m
+Author: Fawoziath0501 <saloufawoziath236@gmail.com>
+Date:   Wed Oct 16 16:00:31 2024 +0100
+
+    Footer uniformization
+
+[33mcommit ab5a7aefd5da6f14e52e99cf124c4a2c97f810a0[m
+Author: Fawoziath0501 <saloufawoziath236@gmail.com>
+Date:   Wed Oct 16 11:53:28 2024 +0100
+
+    Job detail first section updating
+
+[33mcommit f872af9eaddc262abc6348c960e57f4bff8125bd[m
+Author: Fawoziath0501 <saloufawoziath236@gmail.com>
+Date:   Wed Oct 16 10:06:21 2024 +0100
+
+    Changement image de l accueil
+
+[33mcommit 2b0e659c7d67a4c73fe25f2e60da44995c8a9deb[m
+Author: Fawoziath0501 <saloufawoziath236@gmail.com>
+Date:   Tue Oct 15 17:43:43 2024 +0100
+
+    Recuperation du projet et affichage
+
+[33mcommit ab6e1bf11dc06f01b025ca4a3f4ba2aac0633373[m
+Merge: 43e85ca c3958bf
+Author: Fawoziath0501 <saloufawoziath236@gmail.com>
+Date:   Tue Oct 15 17:27:07 2024 +0100
+
+    Merge branch 'fawoziath' of https://github.com/aubierge65/wura into fawoziath
+
+[33mcommit 43e85ca4f2dc0a69576b38c9c5cabb99cace2b32[m
+Author: Fawoziath0501 <saloufawoziath236@gmail.com>
+Date:   Tue Oct 15 17:25:06 2024 +0100
+
+    page blache problem
+
+[33mcommit c3958bfc811a46e92aed2ce76b17a7cbbed6cac6[m
+Author: Fawoziath0501 <saloufawoziath236@gmail.com>
+Date:   Tue Oct 15 16:15:55 2024 +0100
+
+    old commit
+
+[33mcommit d830d6421f4154be42a34b22d592819618b47808[m
+Merge: b2aeed6 4a24505
+Author: Fawoziath0501 <saloufawoziath236@gmail.com>
+Date:   Tue Oct 15 15:34:44 2024 +0100
+
+    Merge branch aubierge into fawoziath
+
+[33mcommit b2aeed64a44cece3be8270b59d4a687d754206b8[m
+Author: FawoziathW <fawoziath.salou@waouhmonde.com>
+Date:   Tue Oct 15 14:11:52 2024 +0100
+
+    index.lock deleting
+
+[33mcommit 4a24505d6da0d1c15aedf82e5adb0fdad66ba742[m
+Author: aubierge65 <aubieguin@gmail.com>
+Date:   Tue Oct 15 15:01:50 2024 +0200
+
+    ok
+
+[33mcommit 306d8b80f3b4f4728769f55f74f4f17d9f980253[m
+Author: aubierge65 <aubieguin@gmail.com>
+Date:   Tue Oct 15 14:55:35 2024 +0200
+
+    dd
+
+[33mcommit 5b1d0d807cf5fa48be2399644743c53c42548d40[m
+Author: FawoziathW <fawoziath.salou@waouhmonde.com>
+Date:   Tue Oct 15 13:24:30 2024 +0100
+
+    Permission to laravel log file
+
+[33mcommit 8ea8948c880e303385b4f8bab8aacc1ffaba3205[m
+Author: FawoziathW <fawoziath.salou@waouhmonde.com>
+Date:   Tue Oct 15 12:59:53 2024 +0100
+
+    Update branch v1
+
+[33mcommit ac63926e486ad1299f076f401bcb5c2962631d60[m
+Author: aubierge65 <aubieguin@gmail.com>
+Date:   Tue Oct 15 13:55:45 2024 +0200
+
+    message
+
+[33mcommit 16a82d52a8cd886e115b057fda9677f0a008e845[m
+Author: aubierge65 <aubieguin@gmail.com>
+Date:   Tue Oct 15 13:50:59 2024 +0200
+
+    message
+
+[33mcommit c62414d9ebb7b765e7740ea9472290d536c0b0c0[m
+Author: aubierge65 <aubieguin@gmail.com>
+Date:   Tue Oct 15 13:48:59 2024 +0200
+
+    message dedans
+
+[33mcommit a2b25e058b92e4376b42f28e8f62b852e496be88[m
+Author: FawoziathW <fawoziath.salou@waouhmonde.com>
+Date:   Tue Oct 15 12:33:34 2024 +0100
+
+    Title color updating
+
+[33mcommit 07e871625922ad38511ec2ce80effccdc25db45c[m
+Author: FawoziathW <fawoziath.salou@waouhmonde.com>
+Date:   Mon Oct 14 16:00:39 2024 +0100
+
+    Arrangement de l'accueil + section testimonial
+
+[33mcommit 12e555bad33b0f506e06ad8a021be26a7de6148c[m
+Author: FawoziathW <fawoziath.salou@waouhmonde.com>
+Date:   Fri Oct 11 17:34:44 2024 +0100
+
+    Home page updating
+
+[33mcommit 2abff4e0709e55a6b17e8fdd875a360fc94417f7[m
+Author: FawoziathW <fawoziath.salou@waouhmonde.com>
+Date:   Fri Oct 11 16:52:21 2024 +0100
+
+    APP_URL value updating on .env file
+
+[33mcommit 4bc1e2981f4c19ae09af013d68b5f202bd9b1041[m
+Author: FawoziathW <fawoziath.salou@waouhmonde.com>
+Date:   Fri Oct 11 14:03:33 2024 +0100
+
+    Database & laravel_log file right & virtual host creating
+
+[33mcommit 846c8e4426a8083945d8da84213daac67daf70d2[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: aubierge65 <aubieguin@gmail.com>
+Date:   Wed Oct 9 18:30:23 2024 +0200
+
+    premier commit

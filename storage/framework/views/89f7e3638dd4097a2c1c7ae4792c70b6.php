@@ -121,7 +121,7 @@ $data = metaData('home');
                         <?php endif; ?>
                         <div class="flex-grow-0">
                             <button type="submit"
-                                class="btn btn-primary d-block d-md-inline-block "><?php echo e(__('find_job_now')); ?></button>
+                                class="btn btn-primary d-block d-md-inline-block"><?php echo e(__('find_job_now')); ?></button>
                         </div>
 
                     </div>
@@ -174,18 +174,16 @@ $data = metaData('home');
             <div class="tw-item tw-text-center">
                 <a href="<?php echo e(route('website.job.category.slug', $category['slug'])); ?>"
                     class="!tw-transition-all tw-duration-300 hover:-tw-translate-y-[2px] tw-py-2.5 tw-items-center tw-flex tw-flex-col">
-                    <div class="tw-flex tw-justify-between tw-items-center tw-w-full">
-                        <span class="tw-text-2xl tw-text-left">
+                    
+                    <!-- Icône centrée -->
+                    <div class="tw-flex tw-justify-center tw-items-center tw-w-full tw-mb-2">
+                        <span class="tw-text-2xl">
                             <i class="<?php echo e($category['icon']); ?>"></i>
                         </span>
-                        <!-- <p class="tw-mb-0 tw-text-sm"> 
-                            <?php echo e($category['jobs_count']); ?> <?php echo e(__('open_positions')); ?>
-
-                        </p> -->
                     </div>
 
-                    <!-- Titre au centre -->
-                    <div class="tw-flex-1 tw-w-full tw-text-left">
+                    <!-- Titre centré -->
+                    <div class="tw-w-full tw-text-center">
                         <h4 class="tw-mb-0 tw-text-lg"><?php echo e($category['name']); ?></h4>
                     </div>
                 </a>
@@ -195,6 +193,7 @@ $data = metaData('home');
         </div>
     </div>
 </section>
+
 
 <!-- Old category section -->
 
@@ -509,8 +508,8 @@ $data = metaData('home');
                 <a href="<?php echo e(route('website.employe.details', $company->user->username)); ?>"
                     class="card jobcardStyle1 tw-h-full hover:!-tw-translate-y-1">
                     <div class="tw-p-6 tw-flex tw-flex-col tw-gap-1.5">
-                        <div class="tw-w-14 tw-h-14">
-                            <img class="tw-w-full tw-h-full tw-object-cover"
+                        <div class="tw-w-14 tw-h-14 tw-rounded-lg">
+                            <img class="tw-w-full tw-h-full tw-object-cover tw-rounded-lg"
                                 src="<?php echo e($company->logo_url); ?>" alt="" draggable="false">
                         </div>
                         <div>

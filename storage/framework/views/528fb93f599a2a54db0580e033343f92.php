@@ -18,7 +18,11 @@ $data = metaData('contact');
 <div class="breadcrumbs-custom breadcrumbs-height">
     <div class="container">
         <div class="breadcrumb-menu">
-            <h6 class="f-size-18 m-0"><?php echo e(__('contact')); ?></h6>
+            <h6 class="f-size-18 m-0" style="display: inline-flex; align-items: center;">
+                <i class="ph ph-arrow-elbow-down-right f-size-25" style="margin-right: 8px;"></i> 
+                <?php echo e(__('contact')); ?>
+
+            </h6>
             <ul>
                 <li><a href="<?php echo e(route('website.home')); ?>"><?php echo e(__('home')); ?></a></li>
                 <li>/</li>
@@ -27,6 +31,8 @@ $data = metaData('contact');
         </div>
     </div>
 </div>
+
+
 <div class="card-container">
     <div class="card bg-primary-50">
         <div class="icon-container">
@@ -42,7 +48,7 @@ $data = metaData('contact');
             <i class="ph-phone f-size-30 text-primary-500"></i>
         </div>
         <div class="content">
-            <h5 class="">Téléphone:<br> <span class="body-font-2 text-gray-500"> +22968002667</span></h5>
+            <h5 class="">Téléphone:<br> <span class="body-font-2 text-gray-500"> +22968002667/+22900000000</span></h5>
         </div>
     </div>
 
@@ -52,8 +58,14 @@ $data = metaData('contact');
 
         </div>
         <div class="content">
-            <h5 class="">Email:<br> <span class="body-font-2 text-gray-500">wura@gmail.com</span></h5>
+            <h5 class="">Email:<br>
+                <span class="body-font-2 text-gray-500">
+                    <a href="mailto:wura@gmail.com">wura@gmail.com</a> /
+                    <a href="mailto:hello@wura.bj">hello@wura.bj</a>
+                </span>
+            </h5>
         </div>
+
     </div>
 </div>
 
@@ -249,24 +261,26 @@ unset($__errorArgs, $__bag); ?>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('css'); ?>
 <style>
+    /*  */
     .breadcrumbs-custom {
         padding: 20px;
-        background-color: var(--gray-20);
+        background-color: var(--gray-50);
         transition: all 0.24s ease-in-out;
+        height: 12vh;
     }
 
     .card-container {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 5%;
+        gap: 10%;
     }
 
     .card {
         background: white;
         border-radius: 8px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        width: calc(20% - 10px);
+        width: calc(25% - 10px);
         margin-top: 5%;
         position: relative;
         padding: 10px;
@@ -276,7 +290,7 @@ unset($__errorArgs, $__bag); ?>
         position: absolute;
         top: -12px;
         left: 10px;
-        background:white;
+        background: white;
         color: white;
         border-radius: 50%;
         width: 30px;
@@ -288,6 +302,8 @@ unset($__errorArgs, $__bag); ?>
 
     .content {
         margin-top: 20px;
+        justify-content: center !important;
+        align-items: center !important;
     }
 
     .content h4 {
