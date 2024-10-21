@@ -87,7 +87,7 @@ class JobUpdateService
         $levels = $request->level ?? [];
          
          if(isset($langues) && isset($levels)){
-            $this->jobLanguageLevelUpdate($job, $langues, $levels);
+            // $this->jobLanguageLevelUpdate($job, $langues, $levels);
          }
         // location
         updateMap($job);
