@@ -154,7 +154,7 @@
                         </li>
                         @endif
                         <li>
-                            <a href="" title="LinkedIn">
+                            <a href="https://www.linkedin.com/company/wura-africa" title="LinkedIn">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clipLinkedin)">
@@ -177,3 +177,13 @@
         </div><!-- /.container -->
     </div><!-- /.footer-bottom -->
 </div><!-- /.rt-site-footer -->
+
+@section('style')
+<style>
+    .rt-usefulllinks2{
+        color: green!important;
+        font-size: 10px;
+    }
+</style>
+
+@endsection
