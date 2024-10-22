@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('title'); ?>
     <?php echo e(__('post_job')); ?>
 
@@ -596,6 +594,108 @@ unset($__errorArgs, $__bag); ?>
                                     <div class="col-lg-6 col-md-6 rt-mb-20">
                                         <?php if (isset($component)) { $__componentOriginal89b295b0763c93abe0143426334eb5d6 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal89b295b0763c93abe0143426334eb5d6 = $attributes; } ?>
+<?php $component = App\View\Components\Forms\Label::resolve(['name' => 'mode','required' => true,'class' => 'tw-text-sm tw-mb-2'] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('forms.label'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\Forms\Label::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal89b295b0763c93abe0143426334eb5d6)): ?>
+<?php $attributes = $__attributesOriginal89b295b0763c93abe0143426334eb5d6; ?>
+<?php unset($__attributesOriginal89b295b0763c93abe0143426334eb5d6); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal89b295b0763c93abe0143426334eb5d6)): ?>
+<?php $component = $__componentOriginal89b295b0763c93abe0143426334eb5d6; ?>
+<?php unset($__componentOriginal89b295b0763c93abe0143426334eb5d6); ?>
+<?php endif; ?>
+                                        <select
+                                            class="select2-taggable form-control <?php $__errorArgs = ['job_mode'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?> "
+                                            name="job_mode_id">
+                                            <?php $__currentLoopData = $modes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $job_mode): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option <?php echo e(old('job_mode') == $job_mode->id ? 'selected' : ''); ?>
+
+                                                    value="<?php echo e($job_mode->id); ?>">
+                                                    <?php echo e($job_mode->name); ?>
+
+                                                </option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </select>
+                                        <?php $__errorArgs = ['job_mode'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <span class="error invalid-feedback"><?php echo e($message); ?></span>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 rt-mb-20">
+                                        <?php if (isset($component)) { $__componentOriginal89b295b0763c93abe0143426334eb5d6 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal89b295b0763c93abe0143426334eb5d6 = $attributes; } ?>
+<?php $component = App\View\Components\Forms\Label::resolve(['name' => 'contract','required' => true,'class' => 'tw-text-sm tw-mb-2'] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('forms.label'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\Forms\Label::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal89b295b0763c93abe0143426334eb5d6)): ?>
+<?php $attributes = $__attributesOriginal89b295b0763c93abe0143426334eb5d6; ?>
+<?php unset($__attributesOriginal89b295b0763c93abe0143426334eb5d6); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal89b295b0763c93abe0143426334eb5d6)): ?>
+<?php $component = $__componentOriginal89b295b0763c93abe0143426334eb5d6; ?>
+<?php unset($__componentOriginal89b295b0763c93abe0143426334eb5d6); ?>
+<?php endif; ?>
+                                        <select
+                                            class="select2-taggable form-control <?php $__errorArgs = ['job_contracts'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?> "
+                                            name="job_contracts_id">
+                                            <?php $__currentLoopData = $contrats; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $job_contracts): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option <?php echo e(old('job_contracts') == $job_contracts->id ? 'selected' : ''); ?>
+
+                                                    value="<?php echo e($job_contracts->id); ?>">
+                                                    <?php echo e($job_contracts->name); ?>
+
+                                                </option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </select>
+                                        <?php $__errorArgs = ['job_contracts'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <span class="error invalid-feedback"><?php echo e($message); ?></span>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 rt-mb-20">
+                                        <?php if (isset($component)) { $__componentOriginal89b295b0763c93abe0143426334eb5d6 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal89b295b0763c93abe0143426334eb5d6 = $attributes; } ?>
 <?php $component = App\View\Components\Forms\Label::resolve(['name' => 'vacancies','required' => true,'class' => 'tw-text-sm tw-mb-2'] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
 <?php $component->withName('forms.label'); ?>
 <?php if ($component->shouldRender()): ?>
@@ -718,8 +818,108 @@ unset($__errorArgs, $__bag); ?>
 
                                         </div>
                                     </div>
-                                </div>
 
+                                </div>
+                                <div id="langues-container">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <h4 class="f-size-18 ft-wt-5 rt-mb-20 lh-1"><?php echo e(__('language_wish')); ?></h4>
+                                        </div>
+                                        <div class="col-md-3">
+                                             <div class="d-flex justify-content-end">
+                                                <button type="button" id="addLangue"
+                                                class="btn btn-primary rt-mr-10">Ajouter</button>
+                                             </div>
+                                        </div>
+                                    </div>
+                                  
+                                    <div class="row form-group langues-div">
+                                        <div class="col-md-6">
+                                            <?php if (isset($component)) { $__componentOriginal89b295b0763c93abe0143426334eb5d6 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal89b295b0763c93abe0143426334eb5d6 = $attributes; } ?>
+<?php $component = App\View\Components\Forms\Label::resolve(['name' => 'language','for' => 'job_langue','required' => true] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('forms.label'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\Forms\Label::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal89b295b0763c93abe0143426334eb5d6)): ?>
+<?php $attributes = $__attributesOriginal89b295b0763c93abe0143426334eb5d6; ?>
+<?php unset($__attributesOriginal89b295b0763c93abe0143426334eb5d6); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal89b295b0763c93abe0143426334eb5d6)): ?>
+<?php $component = $__componentOriginal89b295b0763c93abe0143426334eb5d6; ?>
+<?php unset($__componentOriginal89b295b0763c93abe0143426334eb5d6); ?>
+<?php endif; ?>
+                                            <select name="langue[]" class="select2-taggable select2-search form-control"
+                                                id="job_langue" required>
+                                                <?php $__currentLoopData = $langues; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $langue): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <option <?php echo e($langue->id == old('langue') ? 'selected' : ''); ?>
+
+                                                        value="<?php echo e($langue->id); ?>"><?php echo e($langue->name); ?> </option>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            </select>
+                                            <?php $__errorArgs = ['langue'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong><?php echo e(__($message)); ?></strong>
+                                                </span>
+                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <?php if (isset($component)) { $__componentOriginal89b295b0763c93abe0143426334eb5d6 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal89b295b0763c93abe0143426334eb5d6 = $attributes; } ?>
+<?php $component = App\View\Components\Forms\Label::resolve(['name' => 'level','for' => 'job_level','required' => true] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('forms.label'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\Forms\Label::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal89b295b0763c93abe0143426334eb5d6)): ?>
+<?php $attributes = $__attributesOriginal89b295b0763c93abe0143426334eb5d6; ?>
+<?php unset($__attributesOriginal89b295b0763c93abe0143426334eb5d6); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal89b295b0763c93abe0143426334eb5d6)): ?>
+<?php $component = $__componentOriginal89b295b0763c93abe0143426334eb5d6; ?>
+<?php unset($__componentOriginal89b295b0763c93abe0143426334eb5d6); ?>
+<?php endif; ?>
+                                            <select name="level[]" class="select2-taggable select2-search form-control"
+                                                id="job_level" required>
+                                                <?php $__currentLoopData = $levels; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $level): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <option <?php echo e($level->id == old('level') ? 'selected' : ''); ?>
+
+                                                        value="<?php echo e($level->id); ?>"><?php echo e($level->name); ?> </option>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            </select>
+                                            <?php $__errorArgs = ['level'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong><?php echo e(__($message)); ?></strong>
+                                                </span>
+                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-12 rt-mb-15">
@@ -916,7 +1116,7 @@ unset($__errorArgs, $__bag); ?>
                                                         href="#"><?php echo e(__('create_new_screening_question')); ?></a>
                                                 </div>
                                                 <input x-show="isAddingNewQuestion" value="" x-model="newQuestion"
-                                                    class="form-control " type="text" placeholder="Add Question">
+                                                    class="form-control " type="text" placeholder="Ajouter une question">
                                             </div>
                                             <div x-show="isAddingNewQuestion"
                                                 class="tw-flex tw-gap-5 mb-3 flex justify-content-between tw-mt-4">
@@ -949,7 +1149,7 @@ unset($__errorArgs, $__bag); ?>
                                     </div>
                                     <div x-show="isAddingNewQuestion == false" class="q-select">
                                         <select id="questionSelect" multiple="multiple" x-ref="select"
-                                            data-placeholder="Select Questions" name="companyQuestions[]" class="">
+                                            data-placeholder="Selectionner les questions" name="companyQuestions[]" class="">
                                             <option></option>
                                             <?php $__currentLoopData = $questions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $question): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <option value="<?php echo e($question->id); ?>"> <?php echo e($question->title); ?>
@@ -1343,6 +1543,7 @@ unset($__errorArgs, $__bag); ?>
                 }
             });
         });
+
         function appQuestion() {
             return {
                 allQuestions: <?php echo json_encode($questions, 15, 512) ?>,
@@ -1599,36 +1800,166 @@ unset($__errorArgs, $__bag); ?>
         }
     </script>
 
-<script>
-    $(document).ready(function() {
-        $('#category_id').on('change', function() {
-            var categoryId = $(this).val();
+    <script>
+        $(document).ready(function() {
+            $('#category_id').on('change', function() {
+                var categoryId = $(this).val();
 
-            if (categoryId) {
-                console.log(categoryId);
-                
-                $.ajax({
-                    url: 'http://wura.locale/company/create/job/rolebycategorie/' + categoryId,
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function(data) {
-                        $('#role_id').empty(); // Vider la liste actuelle des rôles
-                        $('#role_id').append('<option value="">Sélectionner un rôle</option>');
+                if (categoryId) {
+                    console.log(categoryId);
 
-                        $.each(data, function(key, value) {
-                            $('#role_id').append('<option value="' + value.id + '">' + value.name + '</option>');
-                        });
-                    }
-                });
-            } else {
-                // Si aucune catégorie n'est sélectionnée, réafficher tous les rôles
-                $('#role_id').empty(); 
-                $('#role_id').append('<option value="">Sélectionner un rôle</option>');
-             
-            }
+                    $.ajax({
+                        url: 'http://wura.locale/company/create/job/rolebycategorie/' + categoryId,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            $('#role_id').empty(); // Vider la liste actuelle des rôles
+                            $('#role_id').append(
+                                '<option value="">Sélectionner un rôle</option>');
+
+                            $.each(data, function(key, value) {
+                                $('#role_id').append('<option value="' + value.id +
+                                    '">' + value.name + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    // Si aucune catégorie n'est sélectionnée, réafficher tous les rôles
+                    $('#role_id').empty();
+                    $('#role_id').append('<option value="">Sélectionner un rôle</option>');
+
+                }
+            });
         });
-    });
-</script>
+    </script>
+    <script>
+        let langueCounter = 0;
+        document.getElementById('addLangue').addEventListener('click', function() {
+            const langueContainer = document.getElementById('langues-container');
+            if (!langueContainer) {
+                console.error("Element with id 'langues-container' not found!");
+                return;
+            }
+            const divLangue = document.createElement('div');
+            divLangue.classList.add('langues-div');
+            divLangue.innerHTML = `
+            <hr>
+<div class='d-flex justify-content-end mt-3'>
+    <button type="button" class="btn-close remove-langue" aria-label="Effacer"></button>
+    
+    </div>
+
+
+<div class='row'>
+<div class="col-md-6">
+                                   <?php if (isset($component)) { $__componentOriginal89b295b0763c93abe0143426334eb5d6 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal89b295b0763c93abe0143426334eb5d6 = $attributes; } ?>
+<?php $component = App\View\Components\Forms\Label::resolve(['name' => 'Langue','for' => 'job_langue_${langueCounter}','required' => true] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('forms.label'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\Forms\Label::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal89b295b0763c93abe0143426334eb5d6)): ?>
+<?php $attributes = $__attributesOriginal89b295b0763c93abe0143426334eb5d6; ?>
+<?php unset($__attributesOriginal89b295b0763c93abe0143426334eb5d6); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal89b295b0763c93abe0143426334eb5d6)): ?>
+<?php $component = $__componentOriginal89b295b0763c93abe0143426334eb5d6; ?>
+<?php unset($__componentOriginal89b295b0763c93abe0143426334eb5d6); ?>
+<?php endif; ?>
+                                   <select name="langue[]"
+                                       class="form-control select2bs4 <?php $__errorArgs = ['langue'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
+                                       id="job_langue_${langueCounter}" required>
+                                       <?php $__currentLoopData = $langues; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $langue): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                           <option <?php echo e($langue->id == old('langue') ? 'selected' : ''); ?>
+
+                                               value="<?php echo e($langue->id); ?>"><?php echo e($langue->name); ?> </option>
+                                       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                   </select>
+                                   <?php $__errorArgs = ['langue'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                       <span class="invalid-feedback" role="alert">
+                                           <strong><?php echo e(__($message)); ?></strong>
+                                       </span>
+                                   <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                               </div>
+                               <div class="col-md-6">
+                                   <?php if (isset($component)) { $__componentOriginal89b295b0763c93abe0143426334eb5d6 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal89b295b0763c93abe0143426334eb5d6 = $attributes; } ?>
+<?php $component = App\View\Components\Forms\Label::resolve(['name' => 'level','for' => 'job_level_${langueCounter}','required' => true] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('forms.label'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\Forms\Label::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal89b295b0763c93abe0143426334eb5d6)): ?>
+<?php $attributes = $__attributesOriginal89b295b0763c93abe0143426334eb5d6; ?>
+<?php unset($__attributesOriginal89b295b0763c93abe0143426334eb5d6); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal89b295b0763c93abe0143426334eb5d6)): ?>
+<?php $component = $__componentOriginal89b295b0763c93abe0143426334eb5d6; ?>
+<?php unset($__componentOriginal89b295b0763c93abe0143426334eb5d6); ?>
+<?php endif; ?>
+                                   <select name="level[]"
+                                       class="form-control select2bs4 <?php $__errorArgs = ['level'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
+                                       id="job_level_${langueCounter}" required>
+                                       <?php $__currentLoopData = $levels; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $level): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                           <option <?php echo e($level->id == old('level') ? 'selected' : ''); ?>
+
+                                               value="<?php echo e($level->id); ?>"><?php echo e($level->name); ?> </option>
+                                       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                   </select>
+                                   <?php $__errorArgs = ['level'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                       <span class="invalid-feedback" role="alert">
+                                           <strong><?php echo e(__($message)); ?></strong>
+                                       </span>
+                                   <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                               </div>
+</div>
+
+                               `;
+            langueContainer.appendChild(divLangue);
+            divLangue.querySelector('.remove-langue').addEventListener('click', function() {
+                langueContainer.removeChild(divLangue);
+            });
+        });
+    </script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('frontend.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp64\www\wura\resources\views/frontend/pages/company/pay-per-job.blade.php ENDPATH**/ ?>

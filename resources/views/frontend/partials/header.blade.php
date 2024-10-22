@@ -455,7 +455,7 @@
                             </div>
                         @endif
                         @if ($setting->app_country_type === 'multiple_base')
-                            <form action="{{ route('website.job') }}" method="GET" id="search-form"
+                            {{-- <form action="{{ route('website.job') }}" method="GET" id="search-form"
                                 class="mx-width-300 xs:tw-inline-flex tw-hidden">
                                 <div class="d-flex">
                                     @php
@@ -503,7 +503,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </form> --}}
                         @endif
                     </div>
                     <div class="mobile-menu">

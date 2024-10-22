@@ -240,6 +240,96 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row form-group">
+                                    <div class="col-md-6">
+                                        <x-forms.label name="job_mode" for="job_mode_id" :required="true" />
+                                        <select id="job_mode_id" name="job_mode_id"
+                                            class="form-control select2bs4 @error('job_mode_id') is-invalid @enderror"
+                                            required>
+                                            <option value=""> {{ __('job_mode') }}</option>
+                                            @foreach ($modes as $mode)
+                                                <option {{ $mode->id == $job->job_mode_id ? 'selected' : '' }}
+                                                    value="{{ $mode->id }}">{{ $mode->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('job_mode_id')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ __($message) }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-6">
+                                        <x-forms.label name="job_contracts" for="job_contracts_id"
+                                            :required="true" />
+                                        <select id="job_contracts_id" name="job_contracts_id"
+                                            class="form-control select2bs4 @error('job_contracts_id') is-invalid @enderror"
+                                            required>
+                                            <option value=""> {{ __('job_contracts') }}</option>
+                                            @foreach ($contrats as $contrat)
+                                                <option {{ $contrat->id == $job->job_contracts_id ? 'selected' : '' }}
+                                                    value="{{ $contrat->id }}">{{ $contrat->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('job_contracts_id')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ __($message) }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div id="langues-container">
+                                    <button type="button" id="addLangue"
+                                        class="badge badge-primary border border-none">Ajouter</button>
+
+                                    @foreach ($job->languages as $langueChoisi)
+                                        <div class="langues-div">
+                                            <button type="button" class="btn btn-danger remove-langue"
+                                                style="margin-top: 10px;">Supprimer</button>
+                                            <div class="row form-group langues-div">
+                                                <div class="col-md-6">
+                                                    <x-forms.label name="langue" for="job_langue"
+                                                        :required="true" />
+                                                    <select name="langue[]"
+                                                        class="form-control select2bs4 @error('langue') is-invalid @enderror"
+                                                        id="job_langue" required>
+                                                        <option value=""> {{ __('langue') }}</option>
+                                                        @foreach ($langues as $langue)
+                                                            <option
+                                                                {{ $langue->id == $langueChoisi->id ? 'selected' : '' }}
+                                                                value="{{ $langue->id }}">{{ $langue->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('langue')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ __($message) }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <x-forms.label name="level" for="job_level" :required="true" />
+                                                    <select name="level[]"
+                                                        class="form-control select2bs4 @error('level') is-invalid @enderror"
+                                                        id="job_level" required>
+                                                        @foreach ($levels as $level)
+                                                            <option
+                                                                {{ $level->id == $langueChoisi->pivot->level_id ? 'selected' : '' }}
+                                                                value="{{ $level->id }}">{{ $level->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('level')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ __($message) }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
 
                             </div>
                             <div class="row">
@@ -867,6 +957,83 @@
                 
             }
         });
+    });
+</script>
+<script>
+    let langueCounter = 0;
+    document.getElementById('addLangue').addEventListener('click', function() {
+        const langueContainer = document.getElementById('langues-container');
+        if (!langueContainer) {
+            console.error("Element with id 'langues-container' not found!");
+            return;
+        }
+        const divLangue = document.createElement('div');
+        divLangue.classList.add('langues-div');
+        divLangue.innerHTML = `
+        <button type="button" class="btn btn-danger remove-langue" style="margin-top: 10px;">Supprimer</button>
+   
+        <div class='row'>
+        <div class="col-md-6">
+                                           <x-forms.label name="langue" for="job_langue_${langueCounter}" :required="true" />
+                                           <select name="langue[]"
+                                               class="form-control select2bs4 @error('langue') is-invalid @enderror"
+                                               id="job_langue_${langueCounter}" required>
+                                               @foreach ($langues as $langue)
+                                                   <option {{ $langue->id == old('langue') ? 'selected' : '' }}
+                                                       value="{{ $langue->id }}">{{ $langue->name }} </option>
+                                               @endforeach
+                                           </select>
+                                           @error('langue')
+                                               <span class="invalid-feedback" role="alert">
+                                                   <strong>{{ __($message) }}</strong>
+                                               </span>
+                                           @enderror
+                                       </div>
+                                       <div class="col-md-6">
+                                           <x-forms.label name="level" for="job_level_${langueCounter}" :required="true" />
+                                           <select name="level[]"
+                                               class="form-control select2bs4 @error('level') is-invalid @enderror"
+                                               id="job_level_${langueCounter}" required>
+                                               @foreach ($levels as $level)
+                                                   <option {{ $level->id == old('level') ? 'selected' : '' }}
+                                                       value="{{ $level->id }}">{{ $level->name }} </option>
+                                               @endforeach
+                                           </select>
+                                           @error('level')
+                                               <span class="invalid-feedback" role="alert">
+                                                   <strong>{{ __($message) }}</strong>
+                                               </span>
+                                           @enderror
+                                       </div>
+       </div>
+   
+                                       `;
+        langueContainer.appendChild(divLangue);
+        divLangue.querySelector('.remove-langue').addEventListener('click', function() {
+            var languesContainer = $('#langues-container');
+            var languesDivs = languesContainer.children('div');
+            if (languesDivs.length > 1) {
+                langueContainer.removeChild(divLangue);
+        } else {
+            alert("Vous devez laisser au moins une langue.");
+        }
+            
+
+        });
+    });
+
+    $('.remove-langue').on('click', function() {
+
+        var languesContainer = $('#langues-container');
+        var languesDivs = languesContainer.children('div');
+
+
+        if (languesDivs.length > 1) {
+            $(this).closest('.langues-div').remove();
+        } else {
+            alert("Vous devez laisser au moins une langue.");
+        }
+
     });
 </script>
 @endsection

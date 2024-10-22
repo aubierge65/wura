@@ -133,7 +133,7 @@
                                                         @enderror
                                                     </div>
                                                     <div class="col-lg-6 mb-3">
-                                                        <x-forms.label :required="true" name="education_level"
+                                                        <x-forms.label :required="true" name="level_education"
                                                             class="pointer body-font-4 d-block text-gray-900 rt-mb-8" />
                                                         <select name="education" class="select2-taggable w-100-p">
                                                             @foreach ($educations as $education)
@@ -435,7 +435,8 @@
                                         </div>
                                     @endif
                                     <x-website.candidate.tab.candidate-experience-setting-tab :experiences="$candidate->experiences" />
-                                    <br>
+                                    {{-- <br> --}}
+                                    <hr>
                                     <x-website.candidate.tab.candidate-education-setting-tab :educations="$candidate->educations" />
                                 </div>
 
@@ -847,7 +848,7 @@
                                                             </div>
                                                         </div>
                                                         <input disabled type="text" class="form-control"
-                                                            placeholder="Your profile is {{ $candidate->visibility ? 'public' : 'private' }} now"
+                                                            placeholder="Votre profil est {{ $candidate->visibility ? 'public' : 'privé' }} maintenant"
                                                             id="msalary">
                                                     </div>
                                                 </div>
@@ -866,7 +867,7 @@
                                                             </div>
                                                         </div>
                                                         <input disabled type="text" class="form-control"
-                                                            placeholder="Your resume is {{ $candidate->cv_visibility ? 'public' : 'private' }} now"
+                                                            placeholder="Votre Cv est {{ $candidate->cv_visibility ? 'public' : 'privé' }} maintenant   "
                                                             id="msalary">
                                                     </div>
 
@@ -1113,17 +1114,10 @@
                 <form action="{{ route('candidate.educations.store') }}" method="POST">
                     @csrf
                     <div class="modal-body">
-                        <h5 class="modal-title rt-mb-18 f-size-18" id="cvModalLabel">{{ __('add_education') }}</h5>
-                        <div class="from-group rt-mb-18">
-                            <x-forms.label name="education_level" class="rt-mb-8" />
-                            <input type="text" name="level" required class="@error('level') is-invalid @enderror"
-                                placeholder="{{ __('enter') }} {{ __('education_level') }}">
-                            @error('level')
-                                <span class="error invalid-feedback">{{ $message }}</span>
-                            @enderror
-                        </div>
+                        <h5 class="modal-title rt-mb-18 f-size-18" id="cvModalLabel">{{ __('add_educations') }}</h5>
+                        
                         <div class="row rt-mb-18">
-                            <div class="col-lg-6">
+                            {{-- <div class="col-lg-6">
                                 <x-forms.label name="degree" class="rt-mb-8" />
                                 <input type="text" name="degree" required
                                     class="@error('degree') is-invalid @enderror"
@@ -1131,10 +1125,20 @@
                                 @error('degree')
                                     <span class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
+                            </div> --}}
+                            <div class="col-md-9">
+                                <div class="from-group rt-mb-18">
+                                    <x-forms.label name="diploma_or_certificat" class="rt-mb-8" />
+                                    <input type="text" name="level" required class="@error('level') is-invalid @enderror"
+                                        placeholder="{{ __('enter') }} {{ strtolower(__('diploma_or_certificat') ) }}">
+                                    @error('level')
+                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
-                            <div class="col-lg-6">
-                                <x-forms.label name="year" class="rt-mb-8" />
-                                <input type="text" name="year" value="{{ old('year') }}" placeholder="year"
+                            <div class="col-lg-3">
+                                <x-forms.label name="year_obtention" class="rt-mb-8" />
+                                <input type="text" name="year" value="{{ old('year') }}" placeholder="{{__('year')}} "
                                     class="year_picker form-control border-cutom @error('year') is-invalid @enderror">
                             </div>
                         </div>
@@ -1142,7 +1146,7 @@
                             <div class="col-lg-12">
                                 <x-forms.label name="notes" class="rt-mb-8" :required="false" />
                                 <textarea class="form-control @error('notes') is-invalid @enderror"
-                                    placeholder="{{ __('enter') }} {{ __('notes') }}" name="notes" rows="5"></textarea>
+                                   name="notes" rows="5"></textarea>
                             </div>
                         </div>
                         <div class="d-flex tw-flex-wrap tw-gap-4 justify-content-between">
@@ -1184,21 +1188,24 @@
                     <div class="modal-body">
                         <h5 class="modal-title rt-mb-18 f-size-18" id="cvModalLabel">{{ __('edit_education') }}</h5>
                         <input type="hidden" name="education_id" id="education-modal-id">
-                        <div class="from-group rt-mb-18">
-                            <x-forms.label name="education_level" class="rt-mb-8" />
-                            <input id="education-modal-level" type="text" name="level" required
-                                placeholder="{{ __('enter') }} {{ __('education_level') }}">
-                        </div>
+                       
                         <div class="row rt-mb-18">
-                            <div class="col-lg-6">
+                            {{-- <div class="col-lg-6">
                                 <x-forms.label name="degree" class="rt-mb-8" />
                                 <input id="education-modal-degree" type="text" name="degree" required
                                     placeholder="{{ __('enter') }} {{ __('degree') }}">
                                 @error('degree')
                                     <span class="error invalid-feedback">{{ $message }}</span>
                                 @enderror
+                            </div> --}}
+                            <div class="col-md-9">
+                                <div class="from-group rt-mb-18">
+                                    <x-forms.label name="education_level" class="rt-mb-8" />
+                                    <input id="education-modal-level" type="text" name="level" required
+                                        placeholder="{{ __('enter') }} {{ __('education_level') }}">
+                                </div>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-3">
                                 <x-forms.label name="year" class="rt-mb-8" />
                                 <input id="education-modal-year" type="text" name="year"
                                     value="{{ old('year') }}" placeholder="d/m/y"
@@ -1252,7 +1259,7 @@
                         <div class="from-group rt-mb-18">
                             <x-forms.label name="company" class="rt-mb-8" />
                             <input type="text" name="company" required class="@error('company') is-invalid @enderror"
-                                placeholder="{{ __('enter') }} {{ __('company') }}">
+                                placeholder="{{ __('enter') }} {{ strtolower(__('the_company_name'))  }}">
 
                             @error('company')
                                 <span class="error invalid-feedback">{{ $message }}</span>
@@ -1262,12 +1269,12 @@
                             <div class="col-lg-6">
                                 <x-forms.label name="department" class="rt-mb-8" />
                                 <input type="text" name="department" required
-                                    placeholder="{{ __('enter') }} {{ __('department') }}">
+                                    placeholder="{{ __('enter') }} {{ __('the_department') }}">
                             </div>
                             <div class="col-lg-6">
                                 <x-forms.label name="designation" class="rt-mb-8" />
                                 <input type="text" name="designation" required
-                                    placeholder="{{ __('enter') }} {{ __('designation') }}">
+                                    placeholder="{{ __('enter') }} {{ __('the') }} {{ strtolower(__('designation')) }} ">
                             </div>
                         </div>
                         <div class="row rt-mb-18">
@@ -1293,7 +1300,7 @@
                             <div class="col-lg-12">
                                 <x-forms.label name="responsibilities" class="rt-mb-8" :required="false" />
                                 <textarea class="form-control @error('responsibilities') is-invalid @enderror"
-                                    placeholder="{{ __('enter') }} {{ __('responsibilities') }}" name="responsibilities" rows="5"></textarea>
+                                    placeholder="{{ __('enter') }} {{ __('these') }} {{ strtolower(__('responsibilities'))  }}" name="responsibilities" rows="5"></textarea>
                             </div>
                         </div>
                         <div class="d-flex tw-flex-wrap tw-gap-4 justify-content-between">
@@ -1338,18 +1345,18 @@
                         <div class="from-group rt-mb-18">
                             <x-forms.label name="company" class="rt-mb-8" />
                             <input id="experience-modal-company" type="text" name="company" required
-                                placeholder="{{ __('enter') }} {{ __('company') }}">
+                                placeholder="{{ __('enter') }} {{ strtolower(__('the_company_name'))  }}">
                         </div>
                         <div class="row rt-mb-18">
                             <div class="col-lg-6">
                                 <x-forms.label name="department" class="rt-mb-8" />
                                 <input id="experience-modal-department" type="text" name="department" required
-                                    placeholder="{{ __('enter') }} {{ __('department') }}">
+                                    placeholder="{{ __('enter') }} {{ __('the_department') }}">
                             </div>
                             <div class="col-lg-6">
                                 <x-forms.label name="designation" class="rt-mb-8" />
                                 <input id="experience-modal-designation" type="text" name="designation" required
-                                    placeholder="{{ __('enter') }} {{ __('designation') }}">
+                                    placeholder="{{ __('enter') }} {{ __('the') }} {{ strtolower(__('designation')) }}">
                             </div>
                         </div>
                         <div class="row rt-mb-18">
@@ -1377,7 +1384,7 @@
                             <div class="col-lg-12">
                                 <x-forms.label name="responsibilities" class="rt-mb-8" :required="false" />
                                 <textarea id="experience-responsibilities" class="form-control @error('responsibilities') is-invalid @enderror"
-                                    placeholder="{{ __('enter') }} {{ __('responsibilities') }}" name="responsibilities" rows="5"></textarea>
+                                    placeholder="{{ __('enter') }} {{ __('these') }} {{ strtolower(__('responsibilities'))  }}" name="responsibilities" rows="5"></textarea>
                             </div>
                         </div>
                         <div class="d-flex tw-flex-wrap tw-gap-4 justify-content-between">
@@ -1510,6 +1517,7 @@
             format: 'dd-mm-yyyy',
             isRTL: "{{ app()->getLocale() == 'ar' ? true : false }}",
             language: "{{ app()->getLocale() }}",
+            endDate: new Date()
         });
     </script>
     <script>

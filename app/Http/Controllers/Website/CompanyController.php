@@ -8,6 +8,7 @@ use App\Http\Traits\HasCompanyApplication;
 use App\Http\Traits\JobAble;
 use App\Models\Benefit;
 use App\Models\Candidate;
+use App\Models\CandidateLanguage;
 use App\Models\cms;
 use App\Models\CompanyBookmarkCategory;
 use App\Models\CompanyQuestion;
@@ -17,8 +18,11 @@ use App\Models\Experience;
 use App\Models\IndustryType;
 use App\Models\Job;
 use App\Models\JobCategory;
+use App\Models\JobContract;
+use App\Models\JobMode;
 use App\Models\JobRole;
 use App\Models\JobType;
+use App\Models\Level;
 use App\Models\ManualPayment;
 use App\Models\OrganizationType;
 use App\Models\PaymentSetting;
@@ -238,7 +242,10 @@ class CompanyController extends Controller
             $non_company_benefits = $all_benefits->whereNull('company_id');
             $company_benefits = $all_benefits->where('company_id', currentCompany()->id);
             $data['benefits'] = $non_company_benefits->merge($company_benefits);
-
+            $data['modes'] = JobMode::all()->sortBy('name');
+            $data['langues'] = CandidateLanguage::all()->sortBy('name');
+            $data['contrats'] = JobContract::all()->sortBy('name');
+            $data['levels'] = Level::all()->sortBy('name');
             return view('frontend.pages.company.pay-per-job', $data);
         } catch (\Exception $e) {
             flashError('An error occurred: '.$e->getMessage());
@@ -402,7 +409,10 @@ class CompanyController extends Controller
             $company_benefits = $all_benefits->where('company_id', currentCompany()->id);
             $data['benefits'] = $non_company_benefits->merge($company_benefits);
             $data['skills'] = Skill::all()->sortBy('name');
-
+            $data['modes'] = JobMode::all()->sortBy('name');
+            $data['langues'] = CandidateLanguage::all()->sortBy('name');
+            $data['contrats'] = JobContract::all()->sortBy('name');
+            $data['levels'] = Level::all()->sortBy('name');
             return view('frontend.pages.company.postjob', $data);
         } catch (\Exception $e) {
             flashError('An error occurred: '.$e->getMessage());
@@ -460,6 +470,12 @@ class CompanyController extends Controller
                 ->company->questions()
                 ->where('reuse', true)
                 ->get();
+            
+            $data['modes'] = JobMode::all()->sortBy('name');
+            $data['langues'] = CandidateLanguage::all()->sortBy('name');
+            $data['contrats'] = JobContract::all()->sortBy('name');
+            $data['levels'] = Level::all()->sortBy('name');
+
 
             return view('frontend.pages.company.editjob', $data);
         } catch (\Exception $e) {

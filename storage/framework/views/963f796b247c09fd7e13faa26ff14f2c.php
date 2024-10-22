@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('title'); ?>
     <?php echo e(__('edit')); ?> <?php echo e(__('job')); ?>
 
@@ -352,15 +351,15 @@ unset($__errorArgs, $__bag); ?>
                                             <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('country-state-city')->html();
-} elseif ($_instance->childHasBeenRendered('MeohFG6')) {
-    $componentId = $_instance->getRenderedChildComponentId('MeohFG6');
-    $componentTag = $_instance->getRenderedChildComponentTagName('MeohFG6');
+} elseif ($_instance->childHasBeenRendered('YPZ2PSD')) {
+    $componentId = $_instance->getRenderedChildComponentId('YPZ2PSD');
+    $componentTag = $_instance->getRenderedChildComponentTagName('YPZ2PSD');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('MeohFG6');
+    $_instance->preserveRenderedChild('YPZ2PSD');
 } else {
     $response = \Livewire\Livewire::mount('country-state-city');
     $html = $response->html();
-    $_instance->logRenderedChild('MeohFG6', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('YPZ2PSD', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -1504,8 +1503,6 @@ unset($__errorArgs, $__bag); ?>
     <?php echo \Livewire\Livewire::scripts(); ?>
 
     <script>
-     
-           
         let langueCounter = 0;
         document.getElementById('addLangue').addEventListener('click', function() {
             const langueContainer = document.getElementById('langues-container');
@@ -1624,29 +1621,31 @@ unset($__errorArgs, $__bag); ?>
                                            `;
             langueContainer.appendChild(divLangue);
             divLangue.querySelector('.remove-langue').addEventListener('click', function() {
-                var languesDivs = langueContainer.children('div'); 
-                if (languesDivs.length > 1){
+                var languesContainer = $('#langues-container');
+                var languesDivs = languesContainer.children('div');
+                if (languesDivs.length > 1) {
                     langueContainer.removeChild(divLangue);
-                }else{
-                    alert("Vous devez laisser au moins une langue.");
-                }
-             
+            } else {
+                alert("Vous devez laisser au moins une langue.");
+            }
+                
+
             });
         });
 
         $('.remove-langue').on('click', function() {
-        
-                var languesContainer = $('#langues-container');
-                var languesDivs = languesContainer.children('div'); 
-              
-                
-                if (languesDivs.length > 1){
-                    $(this).closest('.langues-div').remove();
-                }else{
-                    alert("Vous devez laisser au moins une langue.");
-                }
-                
-            });
+
+            var languesContainer = $('#langues-container');
+            var languesDivs = languesContainer.children('div');
+
+
+            if (languesDivs.length > 1) {
+                $(this).closest('.langues-div').remove();
+            } else {
+                alert("Vous devez laisser au moins une langue.");
+            }
+
+        });
     </script>
     <script>
         $(document).ready(function() {

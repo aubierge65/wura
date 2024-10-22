@@ -122,8 +122,8 @@ class PayPerJobService
             'highlight_until' => $highlight_days,
             'is_remote' => $request->is_remote ?? 0,
             'status' => setting('job_auto_approved') ? 'active' : 'pending',
-            'disponibilite' => 'Temps plein',
-            'job_type_work_id' => 1
+            'job_mode_id' => $request->job_mode_id,
+            'job_contracts_id' => $request->job_contracts_id
         ]);
 
         // Location
@@ -145,6 +145,13 @@ class PayPerJobService
         if ($tags) {
             $this->jobTagsInsert($request->tags, $jobCreated);
         }
+
+        $langues = $request->langue ?? [];
+        $levels = $request->level ?? [];
+        if($langues && $levels){
+            $this->jobLangueInsert($jobCreated, $langues, $levels);
+        }
+
 
         if ($jobCreated) {
             if (session('job_payment_type') != 'per_job') {

@@ -71,7 +71,36 @@
                             </div>
                         @endif
                     @endif
+                    @if (config('templatecookie.fedapay_active') && config('templatecookie.fedapay_api_secret'))
+                    <div class="col-4 my-2">
+                        <div class="card jobcardStyle1">
+                            <div class="card-body">
+                                <div class="rt-single-icon-box">
+                                    <div class="iconbox-content">
+                                        <div class="body-font-1 rt-mb-12">
+                                            {{ __('fedapay') }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="post-info d-flex">
+                                    <form action="{{ route('fedapay.post') }}" method="POST" class="">
+                                        @csrf
+                                        
+                                        <div class="flex-grow-1">
+                                            <button type="submit" class="btn btn-primary2-50 d-block"><i
+                                                class="fas fa-sync"></i>
+                                            {{ __('pay_now') }}</button>
+                                            
+                                        </div>
+                                    </form>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
 
+           
                     {{-- Stripe payment --}}
                     @if (config('templatecookie.stripe_active') && config('templatecookie.stripe_key') && config('templatecookie.stripe_secret'))
                         <div class="col-4 my-2">

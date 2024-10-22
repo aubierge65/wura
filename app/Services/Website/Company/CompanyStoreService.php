@@ -124,6 +124,8 @@ class CompanyStoreService
             'highlight' => $highlight,
             'is_remote' => $request->is_remote ?? 0,
             'status' => setting('job_auto_approved') ? 'active' : 'pending',
+            'job_mode_id' => $request->job_mode_id,
+            'job_contracts_id' => $request->job_contracts_id
         ]);
 
         // Location
@@ -150,6 +152,11 @@ class CompanyStoreService
         $skills = $request->skills ?? null;
         if ($skills) {
             $this->jobSkillsInsert($request->skills, $jobCreated);
+        }
+        $langues = $request->langue ?? [];
+        $levels = $request->level ?? [];
+        if($langues && $levels){
+            $this->jobLangueInsert($jobCreated, $langues, $levels);
         }
 
         if ($jobCreated) {

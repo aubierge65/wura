@@ -74,7 +74,7 @@ $data = metaData('home');
                 </form>
                 <!--Statistics-->
 
-                <div class="container text-center">
+                {{-- <div class="container text-center">
                     <div class="row" style="margin-top:10%;">
                         <div class="col" style="margin-top:45px!important;">
                             <i class="fas fa-briefcase fa-3x"></i>
@@ -89,7 +89,7 @@ $data = metaData('home');
                             <p style="margin-top:15px;">{{ $candidates }} {{__('candidats_stats')}}</p>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
             </div>
         </div>
@@ -269,7 +269,7 @@ $data = metaData('home');
     <div class="container">
         <div class="row tw-items-center">
             <div class="col-lg-6">
-                <img class="tw-rounded-lg" src="https://jobbox.archielite.com/storage/pages/img-profile.png"
+                <img class="tw-rounded-lg" src="{{asset('frontend/assets/images/start.png')}}"
                     alt="jobBox">
             </div>
             <div class="col-lg-6">

@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('title', __('applications')); ?>
 
 <?php $__env->startSection('main'); ?>

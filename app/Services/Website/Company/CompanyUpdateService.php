@@ -108,6 +108,8 @@ class CompanyUpdateService
                 'apply_url' => $request->apply_url ?? null,
                 'description' => $request->description,
                 'is_remote' => $request->is_remote ?? 0,
+                'job_mode_id' => $request->job_mode_id,
+                'job_contracts_id' => $request->job_contracts_id
             ]);
             $main_job = $job;
         } else {
@@ -140,6 +142,8 @@ class CompanyUpdateService
                     'is_remote' => $request->is_remote ?? 0,
                     'waiting_for_edit_approval' => 1,
                     'status' => 'pending',
+                    'job_mode_id' => $request->job_mode_id,
+                    'job_contracts_id' => $request->job_contracts_id
                 ]);
                 $main_job = $edited_exist;
             } else {
@@ -179,6 +183,8 @@ class CompanyUpdateService
                     'country' => $job->country,
                     'long' => $job->long,
                     'lat' => $job->lat,
+                    'job_mode_id' => $request->job_mode_id,
+                    'job_contracts_id' => $request->job_contracts_id
                 ]);
             }
         }
@@ -195,12 +201,17 @@ class CompanyUpdateService
             $this->jobSkillsSync($request->skills, $main_job);
         }
 
+
         // Location
         $location = session()->get('location');
         if ($location) {
             updateMap($main_job);
         }
-
+        $langues = $request->langue ?? [];
+        $levels = $request->level ?? [];
+        if($langues && $levels){
+            $this->jobLanguageUpdate($main_job, $langues, $levels);
+        }
         // Question
         if (isset($request->companyQuestions) && $request->has('companyQuestions')) {
             $job->questions()->sync($request->get('companyQuestions'));

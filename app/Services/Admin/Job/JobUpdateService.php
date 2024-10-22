@@ -67,6 +67,8 @@ class JobUpdateService
             'highlight' => $highlight,
             'is_remote' => $request->is_remote ?? 0,
             'status' => $status,
+            'job_mode_id' => $request->job_mode_id,
+            'job_contracts_id' => $request->job_contracts_id
         ]);
 
         // Benefits
@@ -81,6 +83,12 @@ class JobUpdateService
             $this->jobSkillsSync($request->skills, $job);
         }
 
+        $langues = $request->langue ?? [];
+        $levels = $request->level ?? [];
+         
+         if(isset($langues) && isset($levels)){
+            // $this->jobLanguageLevelUpdate($job, $langues, $levels);
+         }
         // location
         updateMap($job);
 

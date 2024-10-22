@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('title'); ?>
     <?php echo e(__('settings')); ?>
 
@@ -378,7 +377,7 @@ unset($__errorArgs, $__bag); ?>
                                                     <div class="col-lg-6 mb-3">
                                                         <?php if (isset($component)) { $__componentOriginal89b295b0763c93abe0143426334eb5d6 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal89b295b0763c93abe0143426334eb5d6 = $attributes; } ?>
-<?php $component = App\View\Components\Forms\Label::resolve(['required' => true,'name' => 'education_level','class' => 'pointer body-font-4 d-block text-gray-900 rt-mb-8'] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component = App\View\Components\Forms\Label::resolve(['required' => true,'name' => 'level_education','class' => 'pointer body-font-4 d-block text-gray-900 rt-mb-8'] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
 <?php $component->withName('forms.label'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
@@ -1168,7 +1167,8 @@ unset($__errorArgs, $__bag); ?>
 <?php $component = $__componentOriginal471f5b7181d6db328e94a27b4930ed2f; ?>
 <?php unset($__componentOriginal471f5b7181d6db328e94a27b4930ed2f); ?>
 <?php endif; ?>
-                                    <br>
+                                    
+                                    <hr>
                                     <?php if (isset($component)) { $__componentOriginal0fea6d27f9e826b879631da2854fc807 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal0fea6d27f9e826b879631da2854fc807 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.website.candidate.tab.candidate-education-setting-tab','data' => ['educations' => $candidate->educations]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
@@ -1477,15 +1477,15 @@ unset($__errorArgs, $__bag); ?>
                                                 <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('country-state-city')->html();
-} elseif ($_instance->childHasBeenRendered('mh28YnL')) {
-    $componentId = $_instance->getRenderedChildComponentId('mh28YnL');
-    $componentTag = $_instance->getRenderedChildComponentTagName('mh28YnL');
+} elseif ($_instance->childHasBeenRendered('g1lC7Bs')) {
+    $componentId = $_instance->getRenderedChildComponentId('g1lC7Bs');
+    $componentTag = $_instance->getRenderedChildComponentTagName('g1lC7Bs');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('mh28YnL');
+    $_instance->preserveRenderedChild('g1lC7Bs');
 } else {
     $response = \Livewire\Livewire::mount('country-state-city');
     $html = $response->html();
-    $_instance->logRenderedChild('mh28YnL', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('g1lC7Bs', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -1872,7 +1872,7 @@ unset($__errorArgs, $__bag); ?>
                                                             </div>
                                                         </div>
                                                         <input disabled type="text" class="form-control"
-                                                            placeholder="Your profile is <?php echo e($candidate->visibility ? 'public' : 'private'); ?> now"
+                                                            placeholder="Votre profil est <?php echo e($candidate->visibility ? 'public' : 'privé'); ?> maintenant"
                                                             id="msalary">
                                                     </div>
                                                 </div>
@@ -1909,7 +1909,7 @@ unset($__errorArgs, $__bag); ?>
                                                             </div>
                                                         </div>
                                                         <input disabled type="text" class="form-control"
-                                                            placeholder="Your resume is <?php echo e($candidate->cv_visibility ? 'public' : 'private'); ?> now"
+                                                            placeholder="Votre Cv est <?php echo e($candidate->cv_visibility ? 'public' : 'privé'); ?> maintenant   "
                                                             id="msalary">
                                                     </div>
 
@@ -2504,53 +2504,15 @@ unset($__errorArgs, $__bag); ?>
                 <form action="<?php echo e(route('candidate.educations.store')); ?>" method="POST">
                     <?php echo csrf_field(); ?>
                     <div class="modal-body">
-                        <h5 class="modal-title rt-mb-18 f-size-18" id="cvModalLabel"><?php echo e(__('add_education')); ?></h5>
-                        <div class="from-group rt-mb-18">
-                            <?php if (isset($component)) { $__componentOriginal89b295b0763c93abe0143426334eb5d6 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal89b295b0763c93abe0143426334eb5d6 = $attributes; } ?>
-<?php $component = App\View\Components\Forms\Label::resolve(['name' => 'education_level','class' => 'rt-mb-8'] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
-<?php $component->withName('forms.label'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\Forms\Label::class))->getConstructor()): ?>
-<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
-<?php endif; ?>
-<?php $component->withAttributes([]); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal89b295b0763c93abe0143426334eb5d6)): ?>
-<?php $attributes = $__attributesOriginal89b295b0763c93abe0143426334eb5d6; ?>
-<?php unset($__attributesOriginal89b295b0763c93abe0143426334eb5d6); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal89b295b0763c93abe0143426334eb5d6)): ?>
-<?php $component = $__componentOriginal89b295b0763c93abe0143426334eb5d6; ?>
-<?php unset($__componentOriginal89b295b0763c93abe0143426334eb5d6); ?>
-<?php endif; ?>
-                            <input type="text" name="level" required class="<?php $__errorArgs = ['level'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>"
-                                placeholder="<?php echo e(__('enter')); ?> <?php echo e(__('education_level')); ?>">
-                            <?php $__errorArgs = ['level'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                <span class="error invalid-feedback"><?php echo e($message); ?></span>
-                            <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                        </div>
+                        <h5 class="modal-title rt-mb-18 f-size-18" id="cvModalLabel"><?php echo e(__('add_educations')); ?></h5>
+                        
                         <div class="row rt-mb-18">
-                            <div class="col-lg-6">
-                                <?php if (isset($component)) { $__componentOriginal89b295b0763c93abe0143426334eb5d6 = $component; } ?>
+                            
+                            <div class="col-md-9">
+                                <div class="from-group rt-mb-18">
+                                    <?php if (isset($component)) { $__componentOriginal89b295b0763c93abe0143426334eb5d6 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal89b295b0763c93abe0143426334eb5d6 = $attributes; } ?>
-<?php $component = App\View\Components\Forms\Label::resolve(['name' => 'degree','class' => 'rt-mb-8'] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component = App\View\Components\Forms\Label::resolve(['name' => 'diploma_or_certificat','class' => 'rt-mb-8'] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
 <?php $component->withName('forms.label'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
@@ -2568,8 +2530,7 @@ unset($__errorArgs, $__bag); ?>
 <?php $component = $__componentOriginal89b295b0763c93abe0143426334eb5d6; ?>
 <?php unset($__componentOriginal89b295b0763c93abe0143426334eb5d6); ?>
 <?php endif; ?>
-                                <input type="text" name="degree" required
-                                    class="<?php $__errorArgs = ['degree'];
+                                    <input type="text" name="level" required class="<?php $__errorArgs = ['level'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -2577,22 +2538,23 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                                    placeholder="<?php echo e(__('enter')); ?> <?php echo e(__('degree')); ?>">
-                                <?php $__errorArgs = ['degree'];
+                                        placeholder="<?php echo e(__('enter')); ?> <?php echo e(strtolower(__('diploma_or_certificat') )); ?>">
+                                    <?php $__errorArgs = ['level'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <span class="error invalid-feedback"><?php echo e($message); ?></span>
-                                <?php unset($message);
+                                        <span class="error invalid-feedback"><?php echo e($message); ?></span>
+                                    <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+                                </div>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-3">
                                 <?php if (isset($component)) { $__componentOriginal89b295b0763c93abe0143426334eb5d6 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal89b295b0763c93abe0143426334eb5d6 = $attributes; } ?>
-<?php $component = App\View\Components\Forms\Label::resolve(['name' => 'year','class' => 'rt-mb-8'] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component = App\View\Components\Forms\Label::resolve(['name' => 'year_obtention','class' => 'rt-mb-8'] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
 <?php $component->withName('forms.label'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
@@ -2610,7 +2572,7 @@ unset($__errorArgs, $__bag); ?>
 <?php $component = $__componentOriginal89b295b0763c93abe0143426334eb5d6; ?>
 <?php unset($__componentOriginal89b295b0763c93abe0143426334eb5d6); ?>
 <?php endif; ?>
-                                <input type="text" name="year" value="<?php echo e(old('year')); ?>" placeholder="year"
+                                <input type="text" name="year" value="<?php echo e(old('year')); ?>" placeholder="<?php echo e(__('year')); ?> "
                                     class="year_picker form-control border-cutom <?php $__errorArgs = ['year'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -2651,7 +2613,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                                    placeholder="<?php echo e(__('enter')); ?> <?php echo e(__('notes')); ?>" name="notes" rows="5"></textarea>
+                                   name="notes" rows="5"></textarea>
                             </div>
                         </div>
                         <div class="d-flex tw-flex-wrap tw-gap-4 justify-content-between">
@@ -2694,8 +2656,12 @@ unset($__errorArgs, $__bag); ?>"
                     <div class="modal-body">
                         <h5 class="modal-title rt-mb-18 f-size-18" id="cvModalLabel"><?php echo e(__('edit_education')); ?></h5>
                         <input type="hidden" name="education_id" id="education-modal-id">
-                        <div class="from-group rt-mb-18">
-                            <?php if (isset($component)) { $__componentOriginal89b295b0763c93abe0143426334eb5d6 = $component; } ?>
+                       
+                        <div class="row rt-mb-18">
+                            
+                            <div class="col-md-9">
+                                <div class="from-group rt-mb-18">
+                                    <?php if (isset($component)) { $__componentOriginal89b295b0763c93abe0143426334eb5d6 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal89b295b0763c93abe0143426334eb5d6 = $attributes; } ?>
 <?php $component = App\View\Components\Forms\Label::resolve(['name' => 'education_level','class' => 'rt-mb-8'] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
 <?php $component->withName('forms.label'); ?>
@@ -2715,45 +2681,11 @@ unset($__errorArgs, $__bag); ?>"
 <?php $component = $__componentOriginal89b295b0763c93abe0143426334eb5d6; ?>
 <?php unset($__componentOriginal89b295b0763c93abe0143426334eb5d6); ?>
 <?php endif; ?>
-                            <input id="education-modal-level" type="text" name="level" required
-                                placeholder="<?php echo e(__('enter')); ?> <?php echo e(__('education_level')); ?>">
-                        </div>
-                        <div class="row rt-mb-18">
-                            <div class="col-lg-6">
-                                <?php if (isset($component)) { $__componentOriginal89b295b0763c93abe0143426334eb5d6 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal89b295b0763c93abe0143426334eb5d6 = $attributes; } ?>
-<?php $component = App\View\Components\Forms\Label::resolve(['name' => 'degree','class' => 'rt-mb-8'] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
-<?php $component->withName('forms.label'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\Forms\Label::class))->getConstructor()): ?>
-<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
-<?php endif; ?>
-<?php $component->withAttributes([]); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal89b295b0763c93abe0143426334eb5d6)): ?>
-<?php $attributes = $__attributesOriginal89b295b0763c93abe0143426334eb5d6; ?>
-<?php unset($__attributesOriginal89b295b0763c93abe0143426334eb5d6); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal89b295b0763c93abe0143426334eb5d6)): ?>
-<?php $component = $__componentOriginal89b295b0763c93abe0143426334eb5d6; ?>
-<?php unset($__componentOriginal89b295b0763c93abe0143426334eb5d6); ?>
-<?php endif; ?>
-                                <input id="education-modal-degree" type="text" name="degree" required
-                                    placeholder="<?php echo e(__('enter')); ?> <?php echo e(__('degree')); ?>">
-                                <?php $__errorArgs = ['degree'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                    <span class="error invalid-feedback"><?php echo e($message); ?></span>
-                                <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
+                                    <input id="education-modal-level" type="text" name="level" required
+                                        placeholder="<?php echo e(__('enter')); ?> <?php echo e(__('education_level')); ?>">
+                                </div>
                             </div>
-                            <div class="col-lg-6">
+                            <div class="col-lg-3">
                                 <?php if (isset($component)) { $__componentOriginal89b295b0763c93abe0143426334eb5d6 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal89b295b0763c93abe0143426334eb5d6 = $attributes; } ?>
 <?php $component = App\View\Components\Forms\Label::resolve(['name' => 'year','class' => 'rt-mb-8'] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
@@ -2886,7 +2818,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                                placeholder="<?php echo e(__('enter')); ?> <?php echo e(__('company')); ?>">
+                                placeholder="<?php echo e(__('enter')); ?> <?php echo e(strtolower(__('the_company_name'))); ?>">
 
                             <?php $__errorArgs = ['company'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -2922,7 +2854,7 @@ unset($__errorArgs, $__bag); ?>
 <?php unset($__componentOriginal89b295b0763c93abe0143426334eb5d6); ?>
 <?php endif; ?>
                                 <input type="text" name="department" required
-                                    placeholder="<?php echo e(__('enter')); ?> <?php echo e(__('department')); ?>">
+                                    placeholder="<?php echo e(__('enter')); ?> <?php echo e(__('the_department')); ?>">
                             </div>
                             <div class="col-lg-6">
                                 <?php if (isset($component)) { $__componentOriginal89b295b0763c93abe0143426334eb5d6 = $component; } ?>
@@ -2946,7 +2878,7 @@ unset($__errorArgs, $__bag); ?>
 <?php unset($__componentOriginal89b295b0763c93abe0143426334eb5d6); ?>
 <?php endif; ?>
                                 <input type="text" name="designation" required
-                                    placeholder="<?php echo e(__('enter')); ?> <?php echo e(__('designation')); ?>">
+                                    placeholder="<?php echo e(__('enter')); ?> <?php echo e(__('the')); ?> <?php echo e(strtolower(__('designation'))); ?> ">
                             </div>
                         </div>
                         <div class="row rt-mb-18">
@@ -3068,7 +3000,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                                    placeholder="<?php echo e(__('enter')); ?> <?php echo e(__('responsibilities')); ?>" name="responsibilities" rows="5"></textarea>
+                                    placeholder="<?php echo e(__('enter')); ?> <?php echo e(__('these')); ?> <?php echo e(strtolower(__('responsibilities'))); ?>" name="responsibilities" rows="5"></textarea>
                             </div>
                         </div>
                         <div class="d-flex tw-flex-wrap tw-gap-4 justify-content-between">
@@ -3133,7 +3065,7 @@ unset($__errorArgs, $__bag); ?>"
 <?php unset($__componentOriginal89b295b0763c93abe0143426334eb5d6); ?>
 <?php endif; ?>
                             <input id="experience-modal-company" type="text" name="company" required
-                                placeholder="<?php echo e(__('enter')); ?> <?php echo e(__('company')); ?>">
+                                placeholder="<?php echo e(__('enter')); ?> <?php echo e(strtolower(__('the_company_name'))); ?>">
                         </div>
                         <div class="row rt-mb-18">
                             <div class="col-lg-6">
@@ -3158,7 +3090,7 @@ unset($__errorArgs, $__bag); ?>"
 <?php unset($__componentOriginal89b295b0763c93abe0143426334eb5d6); ?>
 <?php endif; ?>
                                 <input id="experience-modal-department" type="text" name="department" required
-                                    placeholder="<?php echo e(__('enter')); ?> <?php echo e(__('department')); ?>">
+                                    placeholder="<?php echo e(__('enter')); ?> <?php echo e(__('the_department')); ?>">
                             </div>
                             <div class="col-lg-6">
                                 <?php if (isset($component)) { $__componentOriginal89b295b0763c93abe0143426334eb5d6 = $component; } ?>
@@ -3182,7 +3114,7 @@ unset($__errorArgs, $__bag); ?>"
 <?php unset($__componentOriginal89b295b0763c93abe0143426334eb5d6); ?>
 <?php endif; ?>
                                 <input id="experience-modal-designation" type="text" name="designation" required
-                                    placeholder="<?php echo e(__('enter')); ?> <?php echo e(__('designation')); ?>">
+                                    placeholder="<?php echo e(__('enter')); ?> <?php echo e(__('the')); ?> <?php echo e(strtolower(__('designation'))); ?>">
                             </div>
                         </div>
                         <div class="row rt-mb-18">
@@ -3306,7 +3238,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                                    placeholder="<?php echo e(__('enter')); ?> <?php echo e(__('responsibilities')); ?>" name="responsibilities" rows="5"></textarea>
+                                    placeholder="<?php echo e(__('enter')); ?> <?php echo e(__('these')); ?> <?php echo e(strtolower(__('responsibilities'))); ?>" name="responsibilities" rows="5"></textarea>
                             </div>
                         </div>
                         <div class="d-flex tw-flex-wrap tw-gap-4 justify-content-between">
@@ -3479,6 +3411,7 @@ unset($__errorArgs, $__bag); ?>"
             format: 'dd-mm-yyyy',
             isRTL: "<?php echo e(app()->getLocale() == 'ar' ? true : false); ?>",
             language: "<?php echo e(app()->getLocale()); ?>",
+            endDate: new Date()
         });
     </script>
     <script>

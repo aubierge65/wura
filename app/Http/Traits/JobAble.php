@@ -901,6 +901,36 @@ trait JobAble
         }
     }
 
+    public function jobLanguageUpdate($job, $languages, $levels)
+    {
+        $existingLanguages = JobLanguagePivot::where('job_id', $job->id)->pluck('candidate_languages_id')->toArray();
+        $languagesToRemove = array_diff($existingLanguages, $languages);
+        JobLanguagePivot::where('job_id', $job->id)
+            ->whereIn('candidate_languages_id', $languagesToRemove)
+            ->delete();
+
+        for ($i = 0; $i < count($languages); $i++) {
+            if (isset($languages[$i]) && isset($levels[$i])) {
+                $pivot = JobLanguagePivot::where('job_id', $job->id)
+                    ->where('candidate_languages_id', $languages[$i])
+                    ->first();
+
+                if ($pivot) {
+                    $pivot->level_id = $levels[$i];
+                    $pivot->save();
+                } else {
+                $pivot = new JobLanguagePivot();
+                    $pivot->job_id = $job->id;
+                    $pivot->level_id = $levels[$i];
+                    $pivot->candidate_languages_id = $languages[$i]; 
+                    $pivot->save();
+                }
+            }
+        }
+
+        return true;
+    }
+
     public function jobSkillsSync($skills, $job)
     {
         if ($skills) {

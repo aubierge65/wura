@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('title'); ?>
     <?php echo e(__('job_type_list')); ?>
 

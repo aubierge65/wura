@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('title', __('bookmark_category')); ?>
 
 <?php $__env->startSection('main'); ?>
