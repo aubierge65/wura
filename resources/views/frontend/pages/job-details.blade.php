@@ -225,7 +225,7 @@ $long = $job->long;
                                     @auth('user')
                                     @if (auth()->user()->role == 'candidate')
                                     @if (!$job->applied)
-                                    <button onclick="applyJobb({{ $job->id }} '{{ addslashes($job->title) }}')"
+                                    <button onclick="applyJobb({{ $job->id }}, '{{ addslashes($job->title) }}')"
                                         class="btn btn-primary apply">
                                         <span class="button-content-wrapper">
                                             <span class="button-icon align-icon-right">

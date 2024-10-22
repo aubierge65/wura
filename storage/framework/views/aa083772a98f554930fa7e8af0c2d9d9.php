@@ -543,59 +543,7 @@
                             </div>
                         <?php endif; ?>
                         <?php if($setting->app_country_type === 'multiple_base'): ?>
-                            <form action="<?php echo e(route('website.job')); ?>" method="GET" id="search-form"
-                                class="mx-width-300 xs:tw-inline-flex tw-hidden">
-                                <div class="d-flex">
-                                    <?php
-                                        $selected_country = session('selected_country');
-                                    ?>
-                                    <div class="">
-                                        <div class="dropdown">
-                                            <button class="btn dropdown-toggle" type="button" id=""
-                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                <?php if($selected_country && selected_country()): ?>
-                                                    <i class="flag-icon <?php echo e(selected_country()->icon); ?>"></i>
-                                                    <?php echo e(selected_country()->name); ?>
-
-                                                <?php else: ?>
-                                                    <?php echo e(__('all_country')); ?>
-
-                                                <?php endif; ?>
-                                            </button>
-
-                                            <ul class="dropdown-menu mx-height-300 overflow-auto tw-p-2"
-                                                aria-labelledby="dropdownMenuButton1">
-                                                <li>
-                                                    <a class="dropdown-item hover:tw-bg-[#F1F2F4] hover:tw-rounded-[4px]"
-                                                        href="<?php echo e(route('website.set.country')); ?>">
-                                                        <svg width="26" height="26" fill="none"
-                                                            stroke="currentColor" viewBox="0 0 24 24"
-                                                            xmlns="http://www.w3.org/2000/svg">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16">
-                                                            </path>
-                                                        </svg>
-                                                        <span class="marginleft">
-                                                            <?php echo e(__('all_country')); ?>
-
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <?php $__currentLoopData = $headerCountries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $country): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <li id="lang-dropdown-item">
-                                                        <a class="dropdown-item hover:tw-bg-[#F1F2F4] hover:tw-rounded-[4px]"
-                                                            href="<?php echo e(route('website.set.country', ['country' => $country->id])); ?>">
-                                                            <i class="flag-icon <?php echo e($country->icon); ?>"></i>
-                                                            <?php echo e($country->name); ?>
-
-                                                        </a>
-                                                    </li>
-                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
+                            
                         <?php endif; ?>
                     </div>
                     <div class="mobile-menu">

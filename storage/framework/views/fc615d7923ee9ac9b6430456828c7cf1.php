@@ -81,7 +81,7 @@
                     </div>
                     <div class="tw-flex tw-justify-between tw-items-center tw-mb-4">
                         <p class="tw-text-sm tw-text-[#767F8C] tw-mb-0">Min:
-                            <?php echo e($currentCurrency->symbol); ?><span>0</span></p>
+                            <span>0</span><?php echo e($currentCurrency->symbol); ?></p>
                         <p class="tw-text-sm tw-text-[#767F8C] tw-mb-0">Max:
                             <?php echo e($currentCurrency->symbol); ?><span><?php echo e(round($maxSalary, 0)); ?></span></p>
                     </div>

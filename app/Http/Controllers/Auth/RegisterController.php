@@ -113,11 +113,11 @@ class RegisterController extends Controller
 
         if ($data['role'] == 'candidate') {
             $template = EmailTemplate::where('type', 'new_candidate')->first();
-            Mail::to($data['email'])->send(new SendCandidateMail($username, $template->subject, $template->message));
+           // Mail::to($data['email'])->send(new SendCandidateMail($username, $template->subject, $template->message));
 
         } else {
             $template = EmailTemplate::where('type', 'new_company')->first();
-            Mail::to($data['email'])->send(new SendCandidateMail($username, $template->subject, $template->message));
+           // Mail::to($data['email'])->send(new SendCandidateMail($username, $template->subject, $template->message));
         }
 
         $user = User::create([
