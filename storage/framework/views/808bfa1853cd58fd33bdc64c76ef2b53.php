@@ -277,29 +277,6 @@
     </div>
 
     <div class="rt-spacer-100 rt-spacer-md-50"></div>
-
-    
-    <?php if (isset($component)) { $__componentOriginalf832c0f0b551a3ae4f576bd7e1fda30a = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginalf832c0f0b551a3ae4f576bd7e1fda30a = $attributes; } ?>
-<?php $component = App\View\Components\Website\SubscribeNewsletter::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
-<?php $component->withName('website.subscribe-newsletter'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\Website\SubscribeNewsletter::class))->getConstructor()): ?>
-<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
-<?php endif; ?>
-<?php $component->withAttributes([]); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginalf832c0f0b551a3ae4f576bd7e1fda30a)): ?>
-<?php $attributes = $__attributesOriginalf832c0f0b551a3ae4f576bd7e1fda30a; ?>
-<?php unset($__attributesOriginalf832c0f0b551a3ae4f576bd7e1fda30a); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginalf832c0f0b551a3ae4f576bd7e1fda30a)): ?>
-<?php $component = $__componentOriginalf832c0f0b551a3ae4f576bd7e1fda30a; ?>
-<?php unset($__componentOriginalf832c0f0b551a3ae4f576bd7e1fda30a); ?>
-<?php endif; ?>
-
     <!-- ===================================== -->
     <div class="modal fade cadidate-modal" id="aemploye-profile" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-modal="true" role="dialog">
@@ -496,17 +473,21 @@
                                 showCancelButton: true,
                                 confirmButtonColor: '#3085d6',
                                 cancelButtonColor: '#d33',
-                                confirmButtonText: "<?php echo e(__('upgrade_plan')); ?>"
+                                confirmButtonText: "<?php echo e(__('upgrade_plan')); ?>",
+                                cancelButtonText: "Fermer",
+
                             }).then((result) => {
                                 if (result.value) {
                                     window.location.href = response.redirect_url;
                                 }
                             })
                         } else {
+                           
+                            
                             return Swal.fire('Error', response.message, 'error');
                         }
                     }
-
+                    console.log(response);
                     let data = response.data;
                     let social = data.social_info
                     let candidate = response.data.candidate;
@@ -787,7 +768,8 @@
                                 showCancelButton: true,
                                 confirmButtonColor: '#3085d6',
                                 cancelButtonColor: '#d33',
-                                confirmButtonText: "<?php echo e(__('upgrade_plan')); ?>"
+                                confirmButtonText: "<?php echo e(__('upgrade_plan')); ?>",
+                                cancelButtonText: "Fermer",
                             }).then((result) => {
                                 if (result.value) {
                                     window.location.href = response.redirect_url;

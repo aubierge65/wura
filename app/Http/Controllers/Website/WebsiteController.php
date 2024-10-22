@@ -339,6 +339,7 @@ class WebsiteController extends Controller
      */
     public function candidateProfileDetails(Request $request)
     {
+      
         try {
             if (! auth('user')->check()) {
                 return response()->json([
@@ -346,7 +347,7 @@ class WebsiteController extends Controller
                     'success' => false,
                 ]);
             }
-
+      
             $user = authUser();
 
             if ($user->role != 'company') {
@@ -357,19 +358,20 @@ class WebsiteController extends Controller
             } else {
                 $user_plan = $user->company->userPlan;
             }
+           
             if (! $user_plan) {
                 return response()->json([
                     'message' => __('you_dont_have_a_chosen_plan_please_choose_a_plan_to_continue'),
                     'success' => false,
                 ]);
             }
-
+         
             $already_view = CandidateCvView::join('candidates', 'candidate_cv_views.candidate_id', '=', 'candidates.id')
                 ->join('users', 'candidates.user_id', '=', 'users.id')
                 ->where('users.username', $request->username)
                 ->where('candidate_cv_views.company_id', currentCompany()->id)
                 ->first();
-
+//    dd($already_view);
             if (empty($already_view)) {
                 if (isset($user_plan) && $user_plan->candidate_cv_view_limitation == 'limited' && $user_plan->candidate_cv_view_limit <= 0) {
                     return response()->json([
@@ -381,6 +383,8 @@ class WebsiteController extends Controller
             }
 
             $data = (new CandidateProfileDetailsService())->execute($request);
+
+            dd($data);
 
             return response()->json($data);
         } catch (\Exception $e) {

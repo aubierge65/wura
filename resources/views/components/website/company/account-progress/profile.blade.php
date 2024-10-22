@@ -174,6 +174,7 @@
             format: 'dd-mm-yyyy',
             isRTL: "{{ app()->getLocale() == 'ar' ? true : false }}",
             language: "{{ app()->getLocale() }}",
+            endDate: new Date()
         });
     </script>
 @endpush

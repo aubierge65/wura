@@ -296,8 +296,8 @@
 <?php endif; ?>
                                 <div class="tw-m-2">
                                     <button onclick="resumeAddModal()" type="button"
-                                        class=" tw-bg-white tw-tracking-wide tw-text-gray-800 tw-font-bold tw-rounded tw-border-b-2 tw-border-blue-500 hover:tw-border-blue-600 hover:tw-bg-blue-500 hover:tw-text-white tw-shadow-md tw-py-1.5 tw-px-6 tw-inline-flex tw-items-center">
-                                        <span class="tw-mx-auto">Add Resume</span>
+                                        class="btn btn-primary btn-lg">
+                                        <span class="tw-mx-auto">Ajouter un document</span>
                                     </button>
                                 </div>
                             </div>

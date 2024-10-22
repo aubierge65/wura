@@ -84,14 +84,14 @@ trait CandidateSkillAble
 
         $request->validate([
             'level' => 'required',
-            'degree' => 'required',
+            // 'degree' => 'required',
             'year' => 'required',
         ]);
 
         CandidateEducation::create([
             'candidate_id' => currentCandidate()->id,
             'level' => $request->level,
-            'degree' => $request->degree,
+            // 'degree' => $request->degree,
             'year' => $request->year,
             'notes' => $request->notes,
         ]);
@@ -105,7 +105,7 @@ trait CandidateSkillAble
 
         $request->validate([
             'level' => 'required',
-            'degree' => 'required',
+            // 'degree' => 'required',
             'year' => 'required',
         ]);
 
@@ -114,7 +114,7 @@ trait CandidateSkillAble
         $education->update([
             'candidate_id' => currentCandidate()->id,
             'level' => $request->level,
-            'degree' => $request->degree,
+            // 'degree' => $request->degree,
             'year' => $request->year,
             'notes' => $request->notes,
         ]);

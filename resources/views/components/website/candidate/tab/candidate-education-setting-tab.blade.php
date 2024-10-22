@@ -1,6 +1,6 @@
 @props(['educations'])
 <div class="tw-flex rt-mb-32 lg:tw-mt-0 tw-items-center tw-justify-between">
-    <h3 class="f-size-18 lh-1 m-0">{{ __('educations') }}</h3>
+    <h3 class="f-size-18 lh-1 m-0">{{ __('education_list') }}</h3>
     <button id="addEducation" type="button" class="btn btn-primary ">
         {{ __('add_education') }}
     </button>
@@ -10,7 +10,7 @@
         <thead>
             <tr>
                 <th class="!tw-text-base !tw-font-medium">{{ __('education_level') }}</th>
-                <th class="!tw-text-base !tw-font-medium">{{ __('degree') }}</th>
+                {{-- <th class="!tw-text-base !tw-font-medium">{{ __('degree') }}</th> --}}
                 <th class="!tw-text-base !tw-font-medium">{{ __('year') }}</th>
                 <th class="!tw-text-base !tw-font-medium tw-text-right">{{ __('action') }}</th>
             </tr>
@@ -19,7 +19,7 @@
             @forelse ($educations as $education)
                 <tr>
                     <td>{{ $education->level }}</td>
-                    <td>{{ $education->degree }}</td>
+                    {{-- <td>{{ $education->degree }}</td> --}}
                     <td>{{ $education->year }}</td>
                     <td>
                         <div class="d-flex justify-content-end">

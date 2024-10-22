@@ -94,7 +94,7 @@
         </div>
         <a href="{{ url('company/account-progress?profile') }}">
             <button type="button" class="btn previous bg-gray-50 rt-mr-8">
-                Previous
+                {{ __('previous') }}
             </button>
         </a>
         <button type="submit" class="btn next btn-primary">

@@ -12,7 +12,7 @@
 } ?>
 <?php unset($__defined_vars); ?>
 <div class="tw-flex rt-mb-32 lg:tw-mt-0 tw-items-center tw-justify-between">
-    <h3 class="f-size-18 lh-1 m-0"><?php echo e(__('educations')); ?></h3>
+    <h3 class="f-size-18 lh-1 m-0"><?php echo e(__('education_list')); ?></h3>
     <button id="addEducation" type="button" class="btn btn-primary ">
         <?php echo e(__('add_education')); ?>
 
@@ -23,7 +23,7 @@
         <thead>
             <tr>
                 <th class="!tw-text-base !tw-font-medium"><?php echo e(__('education_level')); ?></th>
-                <th class="!tw-text-base !tw-font-medium"><?php echo e(__('degree')); ?></th>
+                
                 <th class="!tw-text-base !tw-font-medium"><?php echo e(__('year')); ?></th>
                 <th class="!tw-text-base !tw-font-medium tw-text-right"><?php echo e(__('action')); ?></th>
             </tr>
@@ -32,7 +32,7 @@
             <?php $__empty_1 = true; $__currentLoopData = $educations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $education): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                 <tr>
                     <td><?php echo e($education->level); ?></td>
-                    <td><?php echo e($education->degree); ?></td>
+                    
                     <td><?php echo e($education->year); ?></td>
                     <td>
                         <div class="d-flex justify-content-end">

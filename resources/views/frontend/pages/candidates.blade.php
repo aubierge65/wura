@@ -293,17 +293,21 @@
                                 showCancelButton: true,
                                 confirmButtonColor: '#3085d6',
                                 cancelButtonColor: '#d33',
-                                confirmButtonText: "{{ __('upgrade_plan') }}"
+                                confirmButtonText: "{{ __('upgrade_plan') }}",
+                                cancelButtonText: "Fermer",
+
                             }).then((result) => {
                                 if (result.value) {
                                     window.location.href = response.redirect_url;
                                 }
                             })
                         } else {
+                           
+                            
                             return Swal.fire('Error', response.message, 'error');
                         }
                     }
-
+                    console.log(response);
                     let data = response.data;
                     let social = data.social_info
                     let candidate = response.data.candidate;
@@ -584,7 +588,8 @@
                                 showCancelButton: true,
                                 confirmButtonColor: '#3085d6',
                                 cancelButtonColor: '#d33',
-                                confirmButtonText: "{{ __('upgrade_plan') }}"
+                                confirmButtonText: "{{ __('upgrade_plan') }}",
+                                cancelButtonText: "Fermer",
                             }).then((result) => {
                                 if (result.value) {
                                     window.location.href = response.redirect_url;

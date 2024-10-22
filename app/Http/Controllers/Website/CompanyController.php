@@ -242,7 +242,10 @@ class CompanyController extends Controller
             $non_company_benefits = $all_benefits->whereNull('company_id');
             $company_benefits = $all_benefits->where('company_id', currentCompany()->id);
             $data['benefits'] = $non_company_benefits->merge($company_benefits);
-
+            $data['modes'] = JobMode::all()->sortBy('name');
+            $data['langues'] = CandidateLanguage::all()->sortBy('name');
+            $data['contrats'] = JobContract::all()->sortBy('name');
+            $data['levels'] = Level::all()->sortBy('name');
             return view('frontend.pages.company.pay-per-job', $data);
         } catch (\Exception $e) {
             flashError('An error occurred: '.$e->getMessage());

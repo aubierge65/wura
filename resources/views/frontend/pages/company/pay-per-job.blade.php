@@ -202,6 +202,39 @@
                                         @enderror
                                     </div>
                                     <div class="col-lg-6 col-md-6 rt-mb-20">
+                                        <x-forms.label name="mode" :required="true" class="tw-text-sm tw-mb-2" />
+                                        <select
+                                            class="select2-taggable form-control @error('job_mode') is-invalid @enderror "
+                                            name="job_mode_id">
+                                            @foreach ($modes as $job_mode)
+                                                <option {{ old('job_mode') == $job_mode->id ? 'selected' : '' }}
+                                                    value="{{ $job_mode->id }}">
+                                                    {{ $job_mode->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('job_mode')
+                                            <span class="error invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 rt-mb-20">
+                                        <x-forms.label name="contract" :required="true"
+                                            class="tw-text-sm tw-mb-2" />
+                                        <select
+                                            class="select2-taggable form-control @error('job_contracts') is-invalid @enderror "
+                                            name="job_contracts_id">
+                                            @foreach ($contrats as $job_contracts)
+                                                <option {{ old('job_contracts') == $job_contracts->id ? 'selected' : '' }}
+                                                    value="{{ $job_contracts->id }}">
+                                                    {{ $job_contracts->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('job_contracts')
+                                            <span class="error invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 rt-mb-20">
                                         <x-forms.label name="vacancies" :required="true" class="tw-text-sm tw-mb-2" />
                                         <input value="{{ old('vacancies', 1) }}" name="vacancies" type="text"
                                             placeholder="{{ __('vacancies') }}"
@@ -234,8 +267,54 @@
                                             {{ $setting->job_deadline_expiration_limit }} {{ __('days') }}
                                         </div>
                                     </div>
-                                </div>
 
+                                </div>
+                                <div id="langues-container">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <h4 class="f-size-18 ft-wt-5 rt-mb-20 lh-1">{{ __('language_wish') }}</h4>
+                                        </div>
+                                        <div class="col-md-3">
+                                             <div class="d-flex justify-content-end">
+                                                <button type="button" id="addLangue"
+                                                class="btn btn-primary rt-mr-10">Ajouter</button>
+                                             </div>
+                                        </div>
+                                    </div>
+                                  
+                                    <div class="row form-group langues-div">
+                                        <div class="col-md-6">
+                                            <x-forms.label name="language" for="job_langue" :required="true" />
+                                            <select name="langue[]" class="select2-taggable select2-search form-control"
+                                                id="job_langue" required>
+                                                @foreach ($langues as $langue)
+                                                    <option {{ $langue->id == old('langue') ? 'selected' : '' }}
+                                                        value="{{ $langue->id }}">{{ $langue->name }} </option>
+                                                @endforeach
+                                            </select>
+                                            @error('langue')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ __($message) }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6">
+                                            <x-forms.label name="level" for="job_level" :required="true" />
+                                            <select name="level[]" class="select2-taggable select2-search form-control"
+                                                id="job_level" required>
+                                                @foreach ($levels as $level)
+                                                    <option {{ $level->id == old('level') ? 'selected' : '' }}
+                                                        value="{{ $level->id }}">{{ $level->name }} </option>
+                                                @endforeach
+                                            </select>
+                                            @error('level')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ __($message) }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-12 rt-mb-15">
@@ -372,7 +451,7 @@
                                                         href="#">{{ __('create_new_screening_question') }}</a>
                                                 </div>
                                                 <input x-show="isAddingNewQuestion" value="" x-model="newQuestion"
-                                                    class="form-control " type="text" placeholder="Add Question">
+                                                    class="form-control " type="text" placeholder="Ajouter une question">
                                             </div>
                                             <div x-show="isAddingNewQuestion"
                                                 class="tw-flex tw-gap-5 mb-3 flex justify-content-between tw-mt-4">
@@ -403,7 +482,7 @@
                                     </div>
                                     <div x-show="isAddingNewQuestion == false" class="q-select">
                                         <select id="questionSelect" multiple="multiple" x-ref="select"
-                                            data-placeholder="Select Questions" name="companyQuestions[]" class="">
+                                            data-placeholder="Selectionner les questions" name="companyQuestions[]" class="">
                                             <option></option>
                                             @foreach ($questions as $question)
                                                 <option value="{{ $question->id }}"> {{ $question->title }}
@@ -633,6 +712,7 @@
                 }
             });
         });
+
         function appQuestion() {
             return {
                 allQuestions: @json($questions),
@@ -892,34 +972,96 @@
         }
     </script>
 
-<script>
-    $(document).ready(function() {
-        $('#category_id').on('change', function() {
-            var categoryId = $(this).val();
+    <script>
+        $(document).ready(function() {
+            $('#category_id').on('change', function() {
+                var categoryId = $(this).val();
 
-            if (categoryId) {
-                console.log(categoryId);
-                
-                $.ajax({
-                    url: 'http://wura.locale/company/create/job/rolebycategorie/' + categoryId,
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function(data) {
-                        $('#role_id').empty(); // Vider la liste actuelle des rôles
-                        $('#role_id').append('<option value="">Sélectionner un rôle</option>');
+                if (categoryId) {
+                    console.log(categoryId);
 
-                        $.each(data, function(key, value) {
-                            $('#role_id').append('<option value="' + value.id + '">' + value.name + '</option>');
-                        });
-                    }
-                });
-            } else {
-                // Si aucune catégorie n'est sélectionnée, réafficher tous les rôles
-                $('#role_id').empty(); 
-                $('#role_id').append('<option value="">Sélectionner un rôle</option>');
-             
-            }
+                    $.ajax({
+                        url: 'http://wura.locale/company/create/job/rolebycategorie/' + categoryId,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            $('#role_id').empty(); // Vider la liste actuelle des rôles
+                            $('#role_id').append(
+                                '<option value="">Sélectionner un rôle</option>');
+
+                            $.each(data, function(key, value) {
+                                $('#role_id').append('<option value="' + value.id +
+                                    '">' + value.name + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    // Si aucune catégorie n'est sélectionnée, réafficher tous les rôles
+                    $('#role_id').empty();
+                    $('#role_id').append('<option value="">Sélectionner un rôle</option>');
+
+                }
+            });
         });
-    });
-</script>
+    </script>
+    <script>
+        let langueCounter = 0;
+        document.getElementById('addLangue').addEventListener('click', function() {
+            const langueContainer = document.getElementById('langues-container');
+            if (!langueContainer) {
+                console.error("Element with id 'langues-container' not found!");
+                return;
+            }
+            const divLangue = document.createElement('div');
+            divLangue.classList.add('langues-div');
+            divLangue.innerHTML = `
+            <hr>
+<div class='d-flex justify-content-end mt-3'>
+    <button type="button" class="btn-close remove-langue" aria-label="Effacer"></button>
+    
+    </div>
+
+
+<div class='row'>
+<div class="col-md-6">
+                                   <x-forms.label name="Langue" for="job_langue_${langueCounter}" :required="true" />
+                                   <select name="langue[]"
+                                       class="form-control select2bs4 @error('langue') is-invalid @enderror"
+                                       id="job_langue_${langueCounter}" required>
+                                       @foreach ($langues as $langue)
+                                           <option {{ $langue->id == old('langue') ? 'selected' : '' }}
+                                               value="{{ $langue->id }}">{{ $langue->name }} </option>
+                                       @endforeach
+                                   </select>
+                                   @error('langue')
+                                       <span class="invalid-feedback" role="alert">
+                                           <strong>{{ __($message) }}</strong>
+                                       </span>
+                                   @enderror
+                               </div>
+                               <div class="col-md-6">
+                                   <x-forms.label name="level" for="job_level_${langueCounter}" :required="true" />
+                                   <select name="level[]"
+                                       class="form-control select2bs4 @error('level') is-invalid @enderror"
+                                       id="job_level_${langueCounter}" required>
+                                       @foreach ($levels as $level)
+                                           <option {{ $level->id == old('level') ? 'selected' : '' }}
+                                               value="{{ $level->id }}">{{ $level->name }} </option>
+                                       @endforeach
+                                   </select>
+                                   @error('level')
+                                       <span class="invalid-feedback" role="alert">
+                                           <strong>{{ __($message) }}</strong>
+                                       </span>
+                                   @enderror
+                               </div>
+</div>
+
+                               `;
+            langueContainer.appendChild(divLangue);
+            divLangue.querySelector('.remove-langue').addEventListener('click', function() {
+                langueContainer.removeChild(divLangue);
+            });
+        });
+    </script>
 @endsection
