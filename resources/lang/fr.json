@@ -856,6 +856,10 @@
     "deadline_expired": "Date d'expiration",
     "default_latitude": "Latitude par défaut",
     "download_invoice": "Télécharger la facture",
+    "invoice_num": "Facture No",
+    "invoice_date": "Date",
+    "invoice_from": "Facture émise par",
+    "invoice_to": "Facturée à",
     "employer_details": "Détails de l'entreprise",
     "experience_level": "Niveau d'expérience",
     "generate_sitemap": "Générer un plan du site",
@@ -1128,7 +1132,7 @@
     "mail_sent_successfully": "Mail envoyé avec succès",
     "manual_payment_methods": "Méthodes de paiement manuelles",
 
-
+    "payment_info": "Informations de payement",
     "money_pay_with_razorpay": "Paiement par Razorpay",
     "online_payment_gatewats": "Passerelles de paiement en ligne",
     "organization_types_list": "Liste des types d'organisation",

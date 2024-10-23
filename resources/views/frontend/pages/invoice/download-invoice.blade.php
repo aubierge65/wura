@@ -264,15 +264,15 @@
                     ?>
                 </div>
                 <div class="ll-invoice-title">
-                    Invoice
+                {{ __('invoice') }}
                 </div>
                 <div class="ll-invoice-bg-shape"></div>
             </div>
             <div class="ll-invoice-info">
                 <div class="ll-invoice-info_left"></div>
                 <div class="ll-invoice-info_right">
-                    <div><span>Invoice No:</span> <b>#{{ $transaction->order_id }}</b></div>
-                    <div style="width: 40%;"><span>Date:</span>
+                    <div><span>{{ __('invoice_num') }}:</span> <b>#{{ $transaction->order_id }}</b></div>
+                    <div style="width: 40%;"><span>{{ __('invoice_date') }}:</span>
                         <b>{{ formatTime($transaction->created_at, 'M d, Y') }}</b></div>
                 </div>
                 <div class="ll-invoice-info_shape"></div>
@@ -280,7 +280,7 @@
             <div class="ll-invoice-pay-to">
                 <div class="left-side">
                     <p style="margin-bottom: 2px; color: #111;">
-                        <b>Invoice From:</b>
+                        <b>{{ __('invoice_from') }}:</b>
                     </p>
                     <p style="margin-bottom: 15px;">
                         {{ config('app.name') }} <br>
@@ -290,7 +290,7 @@
                 </div>
                 <div class="right-side">
                     <p style="margin-bottom: 2px; color: #111;">
-                        <b>Invoice To:</b>
+                        <b>{{ __('invoice_to') }}:</b>
                     </p>
                     @php
                         $company_info = $transaction->company->user;
@@ -322,12 +322,12 @@
                     <table>
                         <thead>
                             <tr class="">
-                                <th style="width: 30%;">Plan</th>
+                                <th style="width: 30%;">{{ __('plan') }}</th>
                                 @if ($transaction->payment_type != 'per_job_based')
-                                    <th style="width: 50%;">Benefits</th>
+                                    <th style="width: 50%;">{{ __('benefits') }}</th>
                                 @endif
-                                <th style="width: 7%;">Price</th>
-                                <th style="width: 6%;">Qty</th>
+                                <th style="width: 7%;">{{ __('price') }}</th>
+                                <th style="width: 6%;">Qté</th>
                                 <th style="width: 7%;" class="text-right">Total</th>
                             </tr>
                         </thead>
@@ -338,12 +338,12 @@
                                 </td>
                                 @if ($transaction->payment_type != 'per_job_based')
                                     <td>
-                                        <span>Job Limit : {{ $transaction->plan->job_limit }}</span> <br>
-                                        <span>Featured Job Limit : {{ $transaction->plan->featured_job_limit }}</span>
+                                        <span>{{ __('job_limit') }}: {{ $transaction->plan->job_limit }}</span> <br>
+                                        <span>{{ __('featured_job_limit') }}: {{ $transaction->plan->featured_job_limit }}</span>
                                         <br>
-                                        <span>Highlight Job Limit :
+                                        <span>{{ __('highlight_job_limit') }} :
                                             {{ $transaction->plan->highlight_job_limit }}</span> <br>
-                                        <span>Candidate CV View Limit :
+                                        <span>{{ __('candidate_cv_view_limitation') }} :
                                             {{ $transaction->plan->candidate_cv_view_limitation == 'limited' ? $transaction->plan->candidate_cv_view_limit : __('unlimited') }}</span>
                                         <br>
                                     </td>
@@ -357,18 +357,18 @@
                 </div>
                 <div class="ll-invoice-footer-table">
                     <div class="left-side">
-                        <p style="margin-bottom: 2px;"><b>Payment info:</b></p>
-                        <p>Payment Method - {{ ucfirst($transaction->payment_provider) }}
-                        <p>Payment Type - {{ str_replace('_', ' ', ucfirst($transaction->payment_type)) }}
-                            <br>Payment Status: {{ ucfirst($transaction->payment_status) }}
-                            <br>Amount: {{ $amount }}
+                        <p style="margin-bottom: 2px;"><b>{{ __('payment_info') }}</b></p>
+                        <p>{{ __('payment_provider') }} - {{ ucfirst($transaction->payment_provider) }}
+                        <p>{{ __('payment_type') }} - {{ str_replace('_', ' ', ucfirst($transaction->payment_type)) }}
+                            <br>{{ __('payment_status') }}: {{ ucfirst($transaction->payment_status) }}
+                            <br>{{ __('amount') }}: {{ $amount }}
                         </p>
                     </div>
                     <div class="right-side">
                         <table>
                             <tbody>
                                 <tr style="background: #f5f6fa;">
-                                    <td style="color: #111; font-weight: 700;border-top: 1px solid #dbdfea;">Subtoal
+                                    <td style="color: #111; font-weight: 700;border-top: 1px solid #dbdfea;">Sous total
                                     </td>
                                     <td class="text-right"
                                         style="color: #111; font-weight: 700;border-top: 1px solid #dbdfea;">
@@ -387,8 +387,8 @@
             </div>
             <div style="position: absolute; bottom: 30px; left:50px; right: 50px; text-align: center;">
                 <hr style="background: #dbdfea; margin-bottom: 15px;">
-                <p style="margin-bottom: 2px"><b style="color:#111">Terms &amp; Conditions:</b></p>
-                <a href="{{ route('website.termsCondition') }}" target="_blank" rel="noopener noreferrer">View Terms &
+                <p style="margin-bottom: 2px"><b style="color:#111">Termes &amp; Conditions:</b></p>
+                <a href="{{ route('website.termsCondition') }}" target="_blank" rel="noopener noreferrer">Voir Termes &
                     Condition</a>
             </div>
         </div>

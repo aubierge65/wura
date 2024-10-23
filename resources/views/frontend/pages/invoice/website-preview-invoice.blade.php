@@ -280,22 +280,22 @@
                     <img src="{{ $setting->dark_logo_url }}" alt="logo">
                 </div>
                 <div class="ll-invoice-title">
-                    Invoice
+                {{ __('invoice') }}
                 </div>
                 <div class="ll-invoice-bg-shape"></div>
             </div>
             <div class="ll-invoice-info">
                 <div class="ll-invoice-info_left"></div>
                 <div class="ll-invoice-info_right">
-                    <div><span class="span-1">Invoice No:</span> <b>#{{ $transaction->order_id }}</b></div>
-                    <div style="width:40%;"><span class="span-1">Date:</span> <b>{{ formatTime($transaction->created_at, 'M d, Y') }}</b></div>
+                    <div><span class="span-1">{{ __('invoice_num') }}:</span> <b>#{{ $transaction->order_id }}</b></div>
+                    <div style="width:40%;"><span class="span-1">{{ __('invoice_date') }}:</span> <b>{{ formatTime($transaction->created_at, 'M d, Y') }}</b></div>
                 </div>
                 <div class="ll-invoice-info_shape"></div>
             </div>
             <div class="ll-invoice-pay-to">
                 <div class="left-side">
                     <p style="margin-bottom: 2px; color: #111;">
-                        <b>Invoice From:</b>
+                        <b>{{ __('invoice_from') }}:</b>
                     </p>
                     <p style="margin-bottom: 15px;">
                         {{ config('app.name') }} <br>
@@ -305,7 +305,7 @@
                 </div>
                 <div class="right-side">
                     <p style="margin-bottom: 2px; color: #111;">
-                        <b>Invoice To:</b>
+                        <b>{{ __('invoice_to') }}</b>
                     </p>
                     @php
                         $company_info = $transaction->company->user;
@@ -337,12 +337,12 @@
                     <table>
                         <thead>
                             <tr class="">
-                                <th class="w-25">Plan</th>
+                                <th class="w-25">{{ __('plan') }}</th>
                                 @if ($transaction->payment_type != 'per_job_based')
-                                <th class="w-32">Benefits</th>
+                                <th class="w-32">{{ __('benefits') }}</th>
                                 @endif
-                                <th class="w-16">Price</th>
-                                <th class="w-8">Qty</th>
+                                <th class="w-16">{{ __('price') }}</th>
+                                <th class="w-8">Qté</th>
                                 <th class="w-8 text-right">Total</th>
                             </tr>
                         </thead>
@@ -353,10 +353,10 @@
                                 </td>
                                 @if ($transaction->payment_type != 'per_job_based')
                                 <td class="w-32">
-                                    <span>Job Limit : {{ $transaction->plan->job_limit }}</span> <br>
-                                    <span>Featured Job Limit : {{ $transaction->plan->featured_job_limit }}</span> <br>
-                                    <span>Highlight Job Limit : {{ $transaction->plan->highlight_job_limit }}</span> <br>
-                                    <span>Candidate CV View Limit : {{ $transaction->plan->candidate_cv_view_limitation == 'limited' ? $transaction->plan->candidate_cv_view_limit: __('unlimited') }}</span>
+                                    <span>{{ __('job_limit') }} : {{ $transaction->plan->job_limit }}</span> <br>
+                                    <span>{{ __('featured_job_limit') }} : {{ $transaction->plan->featured_job_limit }}</span> <br>
+                                    <span>{{ __('highlight_job_limit') }} : {{ $transaction->plan->highlight_job_limit }}</span> <br>
+                                    <span>{{ __('candidate_cv_view_limitation') }}: {{ $transaction->plan->candidate_cv_view_limitation == 'limited' ? $transaction->plan->candidate_cv_view_limit: __('unlimited') }}</span>
                                     <br>
                                 </td>
                                 @endif
@@ -369,18 +369,18 @@
                 </div>
                 <div class="ll-invoice-footer-table">
                     <div class="left-side">
-                        <p style="margin-bottom: 2px;"><b>Payment info:</b></p>
-                        <p>Payment Method - {{ ucfirst($transaction->payment_provider) }}
-                        <p>Payment Type - {{ str_replace('_', ' ', ucfirst($transaction->payment_type)) }}
-                        <br>Payment Status: {{ ucfirst($transaction->payment_status) }}
-                        <br>Amount:  {{ $amount }}
+                        <p style="margin-bottom: 2px;"><b>{{ __('payment_info') }}:</b></p>
+                        <p>{{ __('payment_method') }} - {{ ucfirst($transaction->payment_provider) }}
+                        <p>{{ __('payment_type') }} - {{ str_replace('_', ' ', ucfirst($transaction->payment_type)) }}
+                        <br>{{ __('payment_status') }}: {{ ucfirst($transaction->payment_status) }}
+                        <br>{{ __('amount') }}:  {{ $amount }}
                         </p>
                     </div>
                     <div class="right-side">
                         <table>
                             <tbody>
                                 <tr style="background: #f5f6fa;">
-                                    <td style="color: #111; font-weight: 700;border-top: 1px solid #dbdfea;">Subtoal</td>
+                                    <td style="color: #111; font-weight: 700;border-top: 1px solid #dbdfea;">Sous total</td>
                                     <td class="text-right" style="color: #111; font-weight: 700;border-top: 1px solid #dbdfea;">{{ $amount }}</td>
                                 </tr>
                                 <tr style="background-color: {{ $setting->main_color }}; color: white;">
@@ -396,8 +396,8 @@
             </div>
             <div style="position: absolute; bottom: 30px; left:50px; right: 50px; text-align: center;">
                 <hr style="background: #dbdfea; margin-bottom: 15px;">
-                <p style="margin-bottom: 2px"><b style="color:#111">Terms &amp; Conditions:</b></p>
-                <a href="/terms-condition" target="_blank" rel="noopener noreferrer">View Terms & Condition</a>
+                <p style="margin-bottom: 2px"><b style="color:#111">Termes &amp; Conditions:</b></p>
+                <a href="/terms-condition" target="_blank" rel="noopener noreferrer">Voir Termes & Condition</a>
             </div>
         </div>
         <div class="ll-invoice-download">
@@ -409,7 +409,7 @@
                         <path d="M8 17L12 21M12 21L16 17M12 21V12M20 16.7428C21.2215 15.734 22 14.2079 22 12.5C22 9.46243 19.5376 7 16.5 7C16.2815 7 16.0771 6.886 15.9661 6.69774C14.6621 4.48484 12.2544 3 9.5 3C5.35786 3 2 6.35786 2 10.5C2 12.5661 2.83545 14.4371 4.18695 15.7935" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
 
-                    <span>Download</span>
+                    <span>Télécharger</span>
                 </button>
             </form>
         </div>
