@@ -198,6 +198,24 @@
                                     plus_icon="" icon="fas fa-tasks">
                                     {{ __('job_type') }}
                                 </x-admin.sidebar-list>
+
+                                 <!-- ======= job_type ======== -->
+                                 <x-admin.sidebar-list :linkActive="Request::is('admin/jobMode*') ? true : false" route="jobMode.index" path="jobMode.index"
+                                    plus_icon="" icon="fas fa-building">
+                                    {{ __('job_mode') }}
+                                </x-admin.sidebar-list>
+
+                                 <!-- ======= job_type ======== -->
+                                 <x-admin.sidebar-list :linkActive="Request::is('admin/jobLevel*') ? true : false" route="jobLevel.index" path="jobLevel.index"
+                                    plus_icon="" icon="fas fa-book-open">
+                                    {{ __('level') }}
+                                </x-admin.sidebar-list>
+
+                                  <!-- ======= job_type ======== -->
+                                  <x-admin.sidebar-list :linkActive="Request::is('admin/jobContract*') ? true : false" route="jobContract.index" path="jobContract.index"
+                                    plus_icon="" icon="fas fa-file-signature">
+                                    {{ __('contract') }}
+                                </x-admin.sidebar-list>
                             </ul>
                         </x-admin.sidebar-dropdown>
                     @endif

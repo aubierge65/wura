@@ -616,6 +616,78 @@
 <?php $component = $__componentOriginaledf1b81ada946ad8641eae7399a23a93; ?>
 <?php unset($__componentOriginaledf1b81ada946ad8641eae7399a23a93); ?>
 <?php endif; ?>
+
+                                 <!-- ======= job_type ======== -->
+                                 <?php if (isset($component)) { $__componentOriginaledf1b81ada946ad8641eae7399a23a93 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginaledf1b81ada946ad8641eae7399a23a93 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.admin.sidebar-list','data' => ['linkActive' => Request::is('admin/jobMode*') ? true : false,'route' => 'jobMode.index','path' => 'jobMode.index','plusIcon' => '','icon' => 'fas fa-building']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('admin.sidebar-list'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['linkActive' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(Request::is('admin/jobMode*') ? true : false),'route' => 'jobMode.index','path' => 'jobMode.index','plus_icon' => '','icon' => 'fas fa-building']); ?>
+                                    <?php echo e(__('job_mode')); ?>
+
+                                 <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginaledf1b81ada946ad8641eae7399a23a93)): ?>
+<?php $attributes = $__attributesOriginaledf1b81ada946ad8641eae7399a23a93; ?>
+<?php unset($__attributesOriginaledf1b81ada946ad8641eae7399a23a93); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginaledf1b81ada946ad8641eae7399a23a93)): ?>
+<?php $component = $__componentOriginaledf1b81ada946ad8641eae7399a23a93; ?>
+<?php unset($__componentOriginaledf1b81ada946ad8641eae7399a23a93); ?>
+<?php endif; ?>
+
+                                 <!-- ======= job_type ======== -->
+                                 <?php if (isset($component)) { $__componentOriginaledf1b81ada946ad8641eae7399a23a93 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginaledf1b81ada946ad8641eae7399a23a93 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.admin.sidebar-list','data' => ['linkActive' => Request::is('admin/jobLevel*') ? true : false,'route' => 'jobLevel.index','path' => 'jobLevel.index','plusIcon' => '','icon' => 'fas fa-book-open']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('admin.sidebar-list'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['linkActive' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(Request::is('admin/jobLevel*') ? true : false),'route' => 'jobLevel.index','path' => 'jobLevel.index','plus_icon' => '','icon' => 'fas fa-book-open']); ?>
+                                    <?php echo e(__('level')); ?>
+
+                                 <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginaledf1b81ada946ad8641eae7399a23a93)): ?>
+<?php $attributes = $__attributesOriginaledf1b81ada946ad8641eae7399a23a93; ?>
+<?php unset($__attributesOriginaledf1b81ada946ad8641eae7399a23a93); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginaledf1b81ada946ad8641eae7399a23a93)): ?>
+<?php $component = $__componentOriginaledf1b81ada946ad8641eae7399a23a93; ?>
+<?php unset($__componentOriginaledf1b81ada946ad8641eae7399a23a93); ?>
+<?php endif; ?>
+
+                                  <!-- ======= job_type ======== -->
+                                  <?php if (isset($component)) { $__componentOriginaledf1b81ada946ad8641eae7399a23a93 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginaledf1b81ada946ad8641eae7399a23a93 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.admin.sidebar-list','data' => ['linkActive' => Request::is('admin/jobContract*') ? true : false,'route' => 'jobContract.index','path' => 'jobContract.index','plusIcon' => '','icon' => 'fas fa-file-signature']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('admin.sidebar-list'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['linkActive' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(Request::is('admin/jobContract*') ? true : false),'route' => 'jobContract.index','path' => 'jobContract.index','plus_icon' => '','icon' => 'fas fa-file-signature']); ?>
+                                    <?php echo e(__('contract')); ?>
+
+                                 <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginaledf1b81ada946ad8641eae7399a23a93)): ?>
+<?php $attributes = $__attributesOriginaledf1b81ada946ad8641eae7399a23a93; ?>
+<?php unset($__attributesOriginaledf1b81ada946ad8641eae7399a23a93); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginaledf1b81ada946ad8641eae7399a23a93)): ?>
+<?php $component = $__componentOriginaledf1b81ada946ad8641eae7399a23a93; ?>
+<?php unset($__componentOriginaledf1b81ada946ad8641eae7399a23a93); ?>
+<?php endif; ?>
                             </ul>
                          <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
