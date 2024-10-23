@@ -90,7 +90,7 @@
                     <h2 class="footer-title"><?php echo e(__('reglementation')); ?></h2>
                     <ul class="rt-usefulllinks2">
                         <li><a href="<?php echo e(route('website.termsCondition')); ?>"><?php echo e(__('terms_condition')); ?></a></li>
-                        <li><a href="<?php echo e(route('website.refundPolicy')); ?>"><?php echo e(__('refund_policy')); ?></a></li>
+                        <!-- <li><a href="<?php echo e(route('website.refundPolicy')); ?>"><?php echo e(__('refund_policy')); ?></a></li> -->
                         <?php $__currentLoopData = $custom_pages->where('show_footer', 1)->where('footer_column_position', 4); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $page): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <li><a href="<?php echo e(route('showCustomPage', $page->slug)); ?>"><?php echo e($page->title); ?></a></li>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

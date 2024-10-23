@@ -5,21 +5,21 @@
 @endsection
 
 @section('main')
-    <div class="breadcrumbs breadcrumbs-height">
-        <div class="container">
-            <div class="row align-items-center breadcrumbs-height">
-                <div class="col-12 justify-content-center text-center">
-                    <div class="breadcrumb-title rt-mb-10"> {{ __('privacy_policy') }}</div>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center">
-                            <li class="breadcrumb-item"><a href="{{ route('website.home') }}">{{ __('home') }}</a></li>
-                            <li class="breadcrumb-item active" aria-current="page"> {{ __('privacy_policy') }}</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
+<div class="breadcrumbs-custom breadcrumbs-height">
+    <div class="container">
+        <div class="breadcrumb-menu">
+            <h6 class="f-size-18 m-0" style="display: inline-flex; align-items: center;">
+                <i class="ph ph-arrow-right f-size-25" style="margin-right: 8px;"></i> 
+                {{ __('privacy_policy') }}
+            </h6>
+            <ul>
+                <li><a href="{{ route('website.home') }}">{{ __('home') }}</a></li>
+                <li>/</li>
+                <li>{{ __('privacy_policy') }}</li>
+            </ul>
         </div>
     </div>
+</div>
 
     <section class="terms-condition ">
         <div class="container">
@@ -38,4 +38,14 @@
     </section>
     {{-- Subscribe Newsletter --}}
     <!-- <x-website.subscribe-newsletter /> -->
+@endsection
+@section('css')
+<style>
+    .breadcrumbs-custom {
+        padding: 20px;
+        background-color: var(--gray-50);
+        transition: all 0.24s ease-in-out;
+        height: 12vh;
+    }
+</style>
 @endsection

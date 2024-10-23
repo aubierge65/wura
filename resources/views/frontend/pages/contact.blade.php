@@ -18,7 +18,7 @@ $data = metaData('contact');
     <div class="container">
         <div class="breadcrumb-menu">
             <h6 class="f-size-18 m-0" style="display: inline-flex; align-items: center;">
-                <i class="ph ph-arrow-elbow-down-right f-size-25" style="margin-right: 8px;"></i> 
+                <i class="ph ph-arrow-right f-size-25" style="margin-right: 8px;"></i> 
                 {{ __('contact') }}
             </h6>
             <ul>
@@ -29,8 +29,6 @@ $data = metaData('contact');
         </div>
     </div>
 </div>
-
-
 <div class="card-container">
     <div class="card bg-primary-50">
         <div class="icon-container">

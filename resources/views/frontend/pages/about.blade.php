@@ -16,18 +16,18 @@ $data = metaData('about');
 @section('main')
 <!-- About banner area  start -->
 
-<div class="tw-w-full tw-bg-primary breadcrumbs-custom breadcrumbs-height">
+<div class="breadcrumbs-custom breadcrumbs-height">
     <div class="container">
-        <div class="row align-items-center breadcrumbs-height">
-            <div class="col-12 justify-content-center text-center">
-                <div class="breadcrumb-title rt-mb-10">{{ __('about') }}</div>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb justify-content-center">
-                        <li class="breadcrumb-item"><a href="{{ route('website.home') }}">{{ __('home') }}</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">{{ __('about') }}</li>
-                    </ol>
-                </nav>
-            </div>
+        <div class="breadcrumb-menu">
+            <h6 class="f-size-18 m-0" style="display: inline-flex; align-items: center;">
+                <i class="ph ph-arrow-right f-size-25" style="margin-right: 8px;"></i>
+                {{ __('about') }}
+            </h6>
+            <ul>
+                <li><a href="{{ route('website.home') }}">{{ __('home') }}</a></li>
+                <li>/</li>
+                <li>{{ __('about') }}</li>
+            </ul>
         </div>
     </div>
 </div>
@@ -267,15 +267,23 @@ $data = metaData('about');
 
 @section('css')
 <style>
+    .breadcrumbs-custom {
+        padding: 20px;
+        background-color: var(--gray-50);
+        transition: all 0.24s ease-in-out;
+        height: 12vh;
+    }
+
     .title-container {
         margin: 20px 0;
         padding: 35px;
     }
 
-    .partners{
+    .partners {
         margin: 10px 0;
-        padding: 15px;  
+        padding: 15px;
     }
+
     .brand-img-size {
         max-width: 100% !important;
         height: auto !important;
@@ -295,23 +303,25 @@ $data = metaData('about');
     .statistic {
         gap: 5%;
     }
+
     .card {
-    height: 200px; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-}
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
 
-.col-lg-4, .col-md-6 {
-    margin-bottom: 20px;
-}
+    .col-lg-4,
+    .col-md-6 {
+        margin-bottom: 20px;
+    }
 
-.card img {
-    max-width: 100%;
-    height: auto; 
-    object-fit: cover; 
-}
+    .card img {
+        max-width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
 
     @media (max-width: 576px) {
         .icon-72 {

@@ -162,7 +162,7 @@ Route::controller(WebsiteController::class)->name('website.')->group(function ()
     Route::get('/plans', 'pricing')->name('plan');
     Route::get('/plans/{label}', 'planDetails')->name('plan.details');
     Route::get('/faq', 'faq')->name('faq');
-    Route::get('/termes-et-conditions', 'termsCondition')->name('termsCondition');
+    Route::get('/terms-condition', 'termsCondition')->name('termsCondition');
     Route::get('/politiques-de-confidentialités', 'privacyPolicy')->name('privacyPolicy');
     Route::get('/politique-de-remboursement', 'refundPolicy')->name('refundPolicy');
     Route::get('/prochainement', 'comingSoon')->name('comingsoon');
@@ -201,26 +201,28 @@ Route::controller(WebsiteController::class)->name('website.')->group(function ()
 Route::get('company/create/job/rolebycategorie/{categoryId}', [CompanyController::class, 'getRolesByCategory'] );
     
 Route::middleware('auth:user', 'verified')->group(function () {
+    Route::get('/user/dashboard', [WebsiteController::class, 'dashboard'])->name('user.dashboard');
+
     // Dashboard Route
     Route::get('/utilisateur/tableau-de-bord', [WebsiteController::class, 'dashboard'])->name('user.dashboard');
 
     Route::post('/utilisateur/notification/read', [WebsiteController::class, 'notificationRead'])->name('user.notification.read');
 
     // Candidate Routes
-    Route::controller(CandidateController::class)->prefix('candidate')->middleware('candidate')->name('candidate.')->group(function () {
-        Route::get('tableau-de-bord', 'dashboard')->name('dashboard');
-        Route::get('emplois-candidats', 'appliedjobs')->name('appliedjob');
-        Route::get('favoris', 'bookmarks')->name('bookmark');
-        Route::get('parametres', 'setting')->name('setting');
-        Route::put('parametres/modifier', 'settingUpdate')->name('settingUpdate');
+       Route::controller(CandidateController::class)->prefix('candidate')->middleware('candidate')->name('candidate.')->group(function () {
+        Route::get('dashboard', 'dashboard')->name('dashboard');
+        Route::get('applied-jobs', 'appliedjobs')->name('appliedjob');
+        Route::get('bookmarks', 'bookmarks')->name('bookmark');
+        Route::get('settings', 'setting')->name('setting');
+        Route::put('settings/update', 'settingUpdate')->name('settingUpdate');
         Route::get('/all/notifications', 'allNotification')->name('allNotification');
-        Route::get('/emploi/alertes', 'jobAlerts')->name('job.alerts');
+        Route::get('/job/alerts', 'jobAlerts')->name('job.alerts');
         Route::post('/resume/store', 'resumeStore')->name('resume.store');
         Route::post('/resume/store/ajax', 'resumeStoreAjax')->name('resume.store.ajax');
         Route::post('/get/resume/ajax', 'getResumeAjax')->name('get.resume.ajax');
         Route::post('/resume/update', 'resumeUpdate')->name('resume.update');
         Route::delete('/resume/delete/{resume}', 'resumeDelete')->name('resume.delete');
-        Route::post('/experiences/liste', 'experienceStore')->name('experiences.store');
+        Route::post('/experiences/store', 'experienceStore')->name('experiences.store');
         Route::put('/experiences/update', 'experienceUpdate')->name('experiences.update');
         Route::delete('/experiences/{experience}', 'experienceDelete')->name('experiences.destroy');
         Route::post('/educations/store', 'educationStore')->name('educations.store');
@@ -230,17 +232,17 @@ Route::middleware('auth:user', 'verified')->group(function () {
     });
 
     // Company Routes
-    Route::controller(CompanyController::class)->prefix('company')->middleware(['company', 'has_plan'])->name('company.')->group(function () {
+   Route::controller(CompanyController::class)->prefix('company')->middleware(['company', 'has_plan'])->name('company.')->group(function () {
         Route::middleware('company.profile')->group(function () {
-            Route::get('tableau-de-bord', 'dashboard')->name('dashboard');
-            Route::get('tarification', 'plan')->name('plan')->middleware('user_active');
-            Route::post('telecharger/facture/transaction/{transaction}', 'downloadTransactionInvoice')->name('transaction.invoice.download');
-            Route::get('voir/facture/transaction/{transaction:order_id}', 'viewTransactionInvoice')->name('transaction.invoice.view');
-            Route::get('mes-emplois', 'myjobs')->name('myjob')->withoutMiddleware('has_plan');
-            Route::get('emplois-en-attente-de-modification', 'pendingEditedJobs')->name('pending.edited.jobs');
-            Route::get('create/payement-par-emploi', 'payPerJob')->name('job.payPerJobCreate')->withoutMiddleware('has_plan');
+            Route::get('dashboard', 'dashboard')->name('dashboard');
+            Route::get('plans', 'plan')->name('plan')->middleware('user_active');
+            Route::post('download/transaction/invoice/{transaction}', 'downloadTransactionInvoice')->name('transaction.invoice.download');
+            Route::get('view/transaction/invoice/{transaction:order_id}', 'viewTransactionInvoice')->name('transaction.invoice.view');
+            Route::get('my-jobs', 'myjobs')->name('myjob')->withoutMiddleware('has_plan');
+            Route::get('pending-edited-jobs', 'pendingEditedJobs')->name('pending.edited.jobs');
+            Route::get('create/pay-per-job', 'payPerJob')->name('job.payPerJobCreate')->withoutMiddleware('has_plan');
             Route::post('/store/payper/job', 'storePayPerJob')->name('payperjob.store')->withoutMiddleware('has_plan');
-            Route::get('create/emploi', 'createJob')->name('job.create')->middleware('user_active');
+            Route::get('create/job', 'createJob')->name('job.create')->middleware('user_active');
 			
             Route::post('/store/job', 'storeJob')->name('job.store');
             Route::get('/job/payment', 'payPerJobPayment')->name('payperjob.payment')->withoutMiddleware('has_plan');
@@ -257,10 +259,10 @@ Route::middleware('auth:user', 'verified')->group(function () {
             Route::post('applications/column/store', 'applicationColumnStore')->name('applications.column.store');
             Route::delete('applications/group/delete/{group}', 'applicationColumnDelete')->name('applications.column.delete');
             Route::put('applications/group/update', 'applicationColumnUpdate')->name('applications.column.update');
-            Route::delete('supprimer/{job:id}/application', 'destroyApplication')->name('application.delete');
-            Route::get('favoris', 'bookmarks')->name('bookmark');
-            Route::get('parametres', 'setting')->name('setting')->withoutMiddleware('has_plan');
-            Route::put('parametres/update', 'settingUpdateInformation')->name('settingUpdateInformation')->withoutMiddleware('has_plan');
+            Route::delete('delete/{job:id}/application', 'destroyApplication')->name('application.delete');
+            Route::get('bookmarks', 'bookmarks')->name('bookmark');
+            Route::get('settings', 'setting')->name('setting')->withoutMiddleware('has_plan');
+            Route::put('settings/update', 'settingUpdateInformation')->name('settingUpdateInformation')->withoutMiddleware('has_plan');
             Route::get('/all/notifications', 'allNotification')->name('allNotification');
             Route::post('applications/group/store', 'applicationsGroupStore')->name('applications.group.store');
             Route::put('applications/group/update/{group}', 'applicationsGroupUpdate')->name('applications.group.update');
@@ -271,10 +273,10 @@ Route::middleware('auth:user', 'verified')->group(function () {
             Route::delete('/questions/{question}', 'deleteQuestion')->name('questions.delete');
         });
 
-        Route::post('/entreprise/bookmark/{candidate}', 'companyBookmarkCandidate')->name('companybookmarkcandidate')->middleware('user_active');
-        Route::get('progession-du-compte', 'accountProgress')->name('account-progress')->withoutMiddleware('has_plan');
-        Route::put('/profil/complete/{id}', 'profileCompleteProgress')->name('profile.complete')->withoutMiddleware('has_plan');
-        Route::get('/categories/favoris', 'bookmarkCategories')->name('bookmark.category.index');
+        Route::post('/company/bookmark/{candidate}', 'companyBookmarkCandidate')->name('companybookmarkcandidate')->middleware('user_active');
+        Route::get('account-progress', 'accountProgress')->name('account-progress')->withoutMiddleware('has_plan');
+        Route::put('/profile/complete/{id}', 'profileCompleteProgress')->name('profile.complete')->withoutMiddleware('has_plan');
+        Route::get('/bookmark/categories', 'bookmarkCategories')->name('bookmark.category.index');
         Route::post('/bookmark/categories/store', 'bookmarkCategoriesStore')->name('bookmark.category.store');
         Route::get('/bookmark/categories/edit/{category}', 'bookmarkCategoriesEdit')->name('bookmark.category.edit');
         Route::put('/bookmark/categories/update/{category}', 'bookmarkCategoriesUpdate')->name('bookmark.category.update');
@@ -283,16 +285,16 @@ Route::middleware('auth:user', 'verified')->group(function () {
 		
 		
 		Route::get('blogs',  'blog')->name('blog.liste');
-        Route::get('blog/creer',  'blogCreate')->name('blog.create');
+        Route::get('blog/create',  'blogCreate')->name('blog.create');
         Route::post('blog/store',  'blogStore')->name('blog.store');
-        Route::get('blog/modifier/{post}',  'blogEdit')->name('blog.edit');
+        Route::get('blog/edit/{post}',  'blogEdit')->name('blog.edit');
         Route::put('blog/update/{post}',  'blogUpdate')->name('blog.update');
-        Route::delete('blog/supprimer/{post}',  'blogDestroy')->name('blog.destroy');
+        Route::delete('blog/destroy/{post}',  'blogDestroy')->name('blog.destroy');
     });
 
-    Route::prefix('entreprise')->middleware(['company', 'has_plan'])->group(function () {
-        Route::get('verification-documents', [CompanyVerifyDocuments::class, 'index'])->name('company.verify.documents.index');
-        Route::post('verification-documents', [CompanyVerifyDocuments::class, 'store'])->name('company.verify.documents.store');
+    Route::prefix('company')->middleware(['company', 'has_plan'])->group(function () {
+        Route::get('verify-documents', [CompanyVerifyDocuments::class, 'index'])->name('company.verify.documents.index');
+        Route::post('verify-documents', [CompanyVerifyDocuments::class, 'store'])->name('company.verify.documents.store');
     });
 });
 

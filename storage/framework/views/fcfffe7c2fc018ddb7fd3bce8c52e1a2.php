@@ -1,2 +1,0 @@
-<link rel="stylesheet" href="<?php echo e(asset('frontend/plugins/leaflet/autocomplete.min.css')); ?>">
-<?php /**PATH /opt/lampp/htdocs/MEGATECH/wura/resources/views/components/map/leaflet/autocomplete_links.blade.php ENDPATH**/ ?>

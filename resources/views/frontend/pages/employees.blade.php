@@ -14,22 +14,22 @@
 @endsection
 
 @section('main')
-    <div class="breadcrumbs style-two">
-        <div class="container">
-            <div class="row align-items-center ">
-                <div class="col-12 position-relative ">
-                    <div class="breadcrumb-menu">
-                        <h6 class="f-size-18 m-0">{{ __('find_employers') }}</h6>
-                        <ul>
-                            <li><a href="{{ route('website.home') }}">{{ __('home') }}</a></li>
-                            <li>/</li>
-                            <li>{{ __('companies') }}</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+<div class="breadcrumbs-custom breadcrumbs-height">
+    <div class="container">
+        <div class="breadcrumb-menu">
+            <h6 class="f-size-18 m-0" style="display: inline-flex; align-items: center;">
+                <i class="ph ph-arrow-right f-size-25" style="margin-right: 8px;"></i> 
+                {{ __('companies') }}
+            </h6>
+            <ul>
+                <li><a href="{{ route('website.home') }}">{{ __('home') }}</a></li>
+                <li>/</li>
+                <li>{{ __('companies') }}</li>
+            </ul>
         </div>
     </div>
+</div>
+
     <div>
         <div class="container">
             <div class="row">
@@ -598,6 +598,14 @@
         .candidate-profession+.select2-container--default .select2-selection--single {
             border: none !important;
         }
+
+    .breadcrumbs-custom {
+        padding: 20px;
+        background-color: var(--gray-50);
+        transition: all 0.24s ease-in-out;
+        height: 12vh;
+    }
+
     </style>
 @endpush
 
