@@ -310,7 +310,9 @@
                     @php
                         $company_info = $transaction->company->user;
                         $company = $transaction->company;
-                        $amount = $transaction->currency_symbol.''.$transaction->amount;
+                     //   $amount = $transaction->currency_symbol.''.$transaction->amount;
+                     $amount = $transaction->amount . '' . $transaction->currency_symbol;
+
                     @endphp
 
                     <p style="margin-bottom: 15px;">

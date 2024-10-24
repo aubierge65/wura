@@ -23,8 +23,7 @@ use Modules\Currency\Entities\Currency;
 use Modules\Language\Entities\Language;
 use Modules\Location\Entities\Country;
 use Modules\Seo\Entities\Seo;
-use NumberFormatter;
-
+//use NumberFormatter;
 use Stevebauman\Location\Facades\Location;
 use Stichoza\GoogleTranslate\GoogleTranslate;
 use Torann\GeoIP\Facades\GeoIP;
@@ -905,7 +904,7 @@ if (! function_exists('metaData')) {
     function metaData($page)
     {
         $current_language = currentLanguage(); // current session language
-        $language_code = $current_language ? $current_language->code : 'en'; // language code or default one
+        $language_code = $current_language ? $current_language->code : 'fr'; // language code or default one
         $page = Seo::where('page_slug', $page)->first(); // get page
         $exist_content = $page ? $page->contents()->where('language_code', $language_code)->first() : null; // get page content orderBy page && language
         $content = '';

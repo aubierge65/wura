@@ -115,7 +115,7 @@ $long = $job->long;
 <!--Single job content Area-->
 <div class="single-job-content h-auto pb-5">
     <div class="breadcrumbs-height job-details-title-box rt-pt-50 bg-white"
-        style="background-image: url('{{ asset('frontend/assets/images/job-bg1.jpg') }}'); background-size: cover; background-position: center; height: 45vh;">
+        style="background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('{{ asset('frontend/assets/images/job-bg1.jpg') }}'); background-size: cover; background-position: center; height: 45vh;">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-12">
