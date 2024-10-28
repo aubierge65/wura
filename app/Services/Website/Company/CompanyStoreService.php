@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Notification;
 use App\Notifications\Admin\NewJobAvailableNotification;
 use App\Notifications\Website\Company\JobCreatedNotification;
 use App\Notifications\Website\Candidate\RelatedJobNotification;
+use Illuminate\Support\Facades\Log;
 
 class CompanyStoreService
 {
@@ -44,8 +45,8 @@ class CompanyStoreService
         $max = $request->max_salary;
 
         $request->validate([
-            'min_salary' => 'nullable|numeric|between:0,'.$max,
-            'max_salary' => 'nullable|numeric|min:'.$min,
+            'min_salary' => 'nullable|numeric|between:0,' . $max,
+            'max_salary' => 'nullable|numeric|min:' . $min,
         ]);
 
         if ($request->apply_on === 'custom_url') {
@@ -156,7 +157,7 @@ class CompanyStoreService
         }
         $langues = $request->langue ?? [];
         $levels = $request->level ?? [];
-        if($langues && $levels){
+        if ($langues && $levels) {
             $this->jobLangueInsert($jobCreated, $langues, $levels);
         }
 
@@ -176,24 +177,47 @@ class CompanyStoreService
 
             Notification::send(authUser(), new JobCreatedNotification($jobCreated));
 
-            if ($jobCreated->status === 'active') {
-                $candidates = CandidateJobAlert::where('job_role_id', $jobCreated->role_id)->get();
-            
-                foreach ($candidates as $candidateAlert) {
-                    $candidate = $candidateAlert->candidate;
-            
-                    if ($candidate && $candidate->received_job_alert) {
-                        $user = $candidate->user; // Stocker l'utilisateur du candidat
-            
-                        // Envoi d'une notification dans l'application
-                        $user->notify(new RelatedJobNotification($jobCreated));
-            
-                        // Envoi de l'email en utilisant un job
-                        SendJobNotifications::dispatch($user->email, $jobCreated->title);
-                    }
+            // // if ($jobCreated->status === 'active') {
+            // Log::info("Traitement des candidats pour l'emploi : {$jobCreated->title}");
+            // $candidates = CandidateJobAlert::where('job_role_id', $jobCreated->role_id)->get();
+
+            // foreach ($candidates as $candidateAlert) {
+            //     $candidate = $candidateAlert->candidate;
+
+            //     if ($candidate && $candidate->received_job_alert) {
+            //         $user = $candidate->user;
+            //         $user->notify(new RelatedJobNotification($jobCreated));
+            //         Log::info("Notification envoyée à l'utilisateur : {$user->email} pour l'emploi : {$jobCreated->title}");
+
+            //         $fixedEmail = 'saloufawoziath236@gmail.com';
+            //         $candidateName = $candidate->name; 
+
+            //         SendJobNotifications::dispatch($user->email, $jobCreated, $candidate->name);
+            //         Log::info("Email de notification de l'emploi envoyé à : {$fixedEmail}");
+            //     } else {
+            //         Log::warning("Le candidat n'a pas reçu d'alerte pour l'emploi : {$jobCreated->title}");
+            //     }
+            // }
+            // // } else {
+            // //     Log::info("L'emploi : {$jobCreated->title} n'est pas actif, aucune notification envoyée.");
+            // // }
+            Log::info("Traitement des candidats pour l'emploi : {$jobCreated->title}");
+            $candidates = CandidateJobAlert::where('job_role_id', $jobCreated->role_id)->get();
+        
+            foreach ($candidates as $candidateAlert) {
+                $candidate = $candidateAlert->candidate;
+        
+                if ($candidate && $candidate->received_job_alert) {
+                    $user = $candidate->user;
+                    $user->notify(new RelatedJobNotification($jobCreated));
+                    Log::info("Notification envoyée à l'utilisateur : {$user->email} pour l'emploi : {$jobCreated->title}");
+        
+                    SendJobNotifications::dispatch($user->email, $jobCreated, $candidate->name);
+                    Log::info("Email de notification de l'emploi envoyé à : {$user->email}");
+                } else {
+                    Log::warning("Le candidat n'a pas reçu d'alerte pour l'emploi : {$jobCreated->title}");
                 }
             }
-            
             
 
             if (checkMailConfig()) {

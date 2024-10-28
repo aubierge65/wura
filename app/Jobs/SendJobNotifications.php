@@ -29,9 +29,11 @@ class SendJobNotifications implements ShouldQueue
     public function handle()
     {
         try {
-            Mail::to($this->email)->send(new JobNotificationMail($this->job, $this->candidateName)); // Inclure le nom du candidat
+            Log::info("Envoi de l'e-mail à {$this->email} pour l'lerte d emploi ");
+            Mail::to($this->email)->send(new JobNotificationMail($this->job, $this->candidateName));
         } catch (\Exception $e) {
             Log::error("Échec de l'envoi de la notification de l'emploi à {$this->email}: " . $e->getMessage());
         }
     }
+    
 }

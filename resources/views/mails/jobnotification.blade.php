@@ -3,14 +3,14 @@
 
 {{ $body }}
 
-**Détails du poste :**
+<!-- **Détails du poste :**
 - **Titre :** {{ $job->title }}
 - **Entreprise :** {{ $job->company_name }}
 - **Localisation :** {{ $job->location }}
 - **Type :** {{ $job->type }}
-- **Description :** {{ $job->description }}
+- **Description :** {{ $job->description }} -->
 
-Pour plus de détails, veuillez [cliquer ici]({{ route('job.show', $job->id) }}).
+Pour plus de détails, rendez-vous sur wura.africa.
 
 Cordialement,<br>
 L'équipe de {{ config('app.name') }}

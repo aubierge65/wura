@@ -427,44 +427,44 @@ class CompanyController extends Controller
      *
      * @return Response
      */
+     public function storeJob(JobCreateRequest $request)
+     {
+         try {
+             $jobCreated = (new CompanyStoreService())->execute($request);
+
+             flashSuccess(__('job_created_successfully'));
+
+             return redirect()->route('company.job.promote.show', $jobCreated->slug);
+         } catch (\Exception $e) {
+             flashError('An error occurred: '.$e->getMessage());
+
+             return back();
+         }
+     }
+
     // public function storeJob(JobCreateRequest $request)
     // {
     //     try {
+    //         // Création du job via le service
     //         $jobCreated = (new CompanyStoreService())->execute($request);
-
+    
+    //         $subscribers = User::where(' 	received_job_alert', $jobCreated->type_id)
+    //             ->pluck('email'); // Récupérer les emails des candidats
+    
+    //         // Envoyer les notifications
+    //         foreach ($subscribers as $email) {
+    //             SendJobNotifications::dispatch($email, $jobCreated->title);
+    //         }
+    
     //         flashSuccess(__('job_created_successfully'));
-
+    
     //         return redirect()->route('company.job.promote.show', $jobCreated->slug);
     //     } catch (\Exception $e) {
-    //         flashError('An error occurred: '.$e->getMessage());
-
+    //         flashError('An error occurred: ' . $e->getMessage());
+    
     //         return back();
     //     }
     // }
-
-    public function storeJob(JobCreateRequest $request)
-    {
-        try {
-            // Création du job via le service
-            $jobCreated = (new CompanyStoreService())->execute($request);
-    
-            $subscribers = User::where(' 	received_job_alert', $jobCreated->type_id)
-                ->pluck('email'); // Récupérer les emails des candidats
-    
-            // Envoyer les notifications
-            foreach ($subscribers as $email) {
-                SendJobNotifications::dispatch($email, $jobCreated->title);
-            }
-    
-            flashSuccess(__('job_created_successfully'));
-    
-            return redirect()->route('company.job.promote.show', $jobCreated->slug);
-        } catch (\Exception $e) {
-            flashError('An error occurred: ' . $e->getMessage());
-    
-            return back();
-        }
-    }
     
 
     /**
