@@ -2,56 +2,57 @@
 
 namespace App\Http\Controllers\Website;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\JobCreateRequest;
-use App\Http\Traits\HasCompanyApplication;
-use App\Http\Traits\JobAble;
-use App\Models\Benefit;
-use App\Models\Candidate;
-use App\Models\CandidateLanguage;
+use PDF;
 use App\Models\cms;
-use App\Models\CompanyBookmarkCategory;
-use App\Models\CompanyQuestion;
-use App\Models\Earning;
-use App\Models\Education;
-use App\Models\Experience;
-use App\Models\IndustryType;
 use App\Models\Job;
-use App\Models\JobCategory;
-use App\Models\JobContract;
+use App\Models\Tag;
+use App\Models\User;
+use App\Models\Level;
+use App\Models\Skill;
+use App\Models\Benefit;
+use App\Models\Earning;
 use App\Models\JobMode;
 use App\Models\JobRole;
 use App\Models\JobType;
-use App\Models\Level;
-use App\Models\ManualPayment;
-use App\Models\OrganizationType;
-use App\Models\PaymentSetting;
-use App\Models\SalaryType;
-use App\Models\Skill;
-use App\Models\Tag;
 use App\Models\TeamSize;
-use App\Models\User;
 use App\Models\UserPlan;
-use App\Notifications\Website\Company\CandidateBookmarkNotification;
-use App\Services\Midtrans\CreateSnapTokenService;
-use App\Services\Website\Company\CompanyAccountProgressService;
-use App\Services\Website\Company\CompanyPromoteJobService;
-use App\Services\Website\Company\CompanySettingUpdateService;
-use App\Services\Website\Company\CompanyStoreService;
-use App\Services\Website\Company\CompanyUpdateService;
+use App\Models\Candidate;
+use App\Models\Education;
+use App\Models\Experience;
+use App\Models\SalaryType;
+use App\Models\JobCategory;
+use App\Models\JobContract;
+use App\Http\Traits\JobAble;
+use App\Models\IndustryType;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\ManualPayment;
+use App\Models\PaymentSetting;
+use App\Models\CompanyQuestion;
+use Modules\Blog\Entities\Post;
+use App\Models\OrganizationType;
+use App\Models\CandidateLanguage;
+use App\Jobs\SendJobNotifications;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Notification;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Modules\Blog\Actions\CreatePost;
 use Modules\Blog\Actions\DeletePost;
 use Modules\Blog\Actions\UpdatePost;
-use Modules\Blog\Entities\Post;
-use Modules\Blog\Entities\PostCategory;
-use Modules\Blog\Http\Requests\PostFormRequest;
-use Modules\Currency\Entities\Currency;
 use Modules\Location\Entities\Country;
-use PDF;
+use App\Http\Requests\JobCreateRequest;
+use App\Models\CompanyBookmarkCategory;
+use Modules\Blog\Entities\PostCategory;
+use Modules\Currency\Entities\Currency;
+use App\Http\Traits\HasCompanyApplication;
+use Illuminate\Support\Facades\Notification;
+use Modules\Blog\Http\Requests\PostFormRequest;
+use App\Services\Midtrans\CreateSnapTokenService;
+use App\Services\Website\Company\CompanyStoreService;
+use App\Services\Website\Company\CompanyUpdateService;
+use App\Services\Website\Company\CompanyPromoteJobService;
+use App\Services\Website\Company\CompanySettingUpdateService;
+use App\Services\Website\Company\CompanyAccountProgressService;
+use App\Notifications\Website\Company\CandidateBookmarkNotification;
 
 class CompanyController extends Controller
 {
@@ -382,7 +383,6 @@ class CompanyController extends Controller
     public function createJob()
     {
         try {
-            // Check if user has reached the job limit
             storePlanInformation();
             $userPlan = session('user_plan');
 
@@ -421,25 +421,51 @@ class CompanyController extends Controller
         }
     }
 
+
     /**
      * Company store job
      *
      * @return Response
      */
+    // public function storeJob(JobCreateRequest $request)
+    // {
+    //     try {
+    //         $jobCreated = (new CompanyStoreService())->execute($request);
+
+    //         flashSuccess(__('job_created_successfully'));
+
+    //         return redirect()->route('company.job.promote.show', $jobCreated->slug);
+    //     } catch (\Exception $e) {
+    //         flashError('An error occurred: '.$e->getMessage());
+
+    //         return back();
+    //     }
+    // }
+
     public function storeJob(JobCreateRequest $request)
     {
         try {
+            // Création du job via le service
             $jobCreated = (new CompanyStoreService())->execute($request);
-
+    
+            $subscribers = User::where(' 	received_job_alert', $jobCreated->type_id)
+                ->pluck('email'); // Récupérer les emails des candidats
+    
+            // Envoyer les notifications
+            foreach ($subscribers as $email) {
+                SendJobNotifications::dispatch($email, $jobCreated->title);
+            }
+    
             flashSuccess(__('job_created_successfully'));
-
+    
             return redirect()->route('company.job.promote.show', $jobCreated->slug);
         } catch (\Exception $e) {
-            flashError('An error occurred: '.$e->getMessage());
-
+            flashError('An error occurred: ' . $e->getMessage());
+    
             return back();
         }
     }
+    
 
     /**
      * job edit

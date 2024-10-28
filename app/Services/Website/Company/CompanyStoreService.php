@@ -11,6 +11,7 @@ use App\Models\Experience;
 use App\Models\JobCategory;
 use App\Http\Traits\JobAble;
 use App\Models\CandidateJobAlert;
+use App\Jobs\SendJobNotifications;
 use App\Models\JobRoleTranslation;
 use App\Models\JobCategoryTranslation;
 use Illuminate\Support\Facades\Notification;
@@ -175,15 +176,25 @@ class CompanyStoreService
 
             Notification::send(authUser(), new JobCreatedNotification($jobCreated));
 
-            if ($jobCreated->status == 'active') {
+            if ($jobCreated->status === 'active') {
                 $candidates = CandidateJobAlert::where('job_role_id', $jobCreated->role_id)->get();
-
-                foreach ($candidates as $candidate) {
-                    if ($candidate->candidate->received_job_alert) {
-                        $candidate->candidate->user->notify(new RelatedJobNotification($jobCreated));
+            
+                foreach ($candidates as $candidateAlert) {
+                    $candidate = $candidateAlert->candidate;
+            
+                    if ($candidate && $candidate->received_job_alert) {
+                        $user = $candidate->user; // Stocker l'utilisateur du candidat
+            
+                        // Envoi d'une notification dans l'application
+                        $user->notify(new RelatedJobNotification($jobCreated));
+            
+                        // Envoi de l'email en utilisant un job
+                        SendJobNotifications::dispatch($user->email, $jobCreated->title);
                     }
                 }
             }
+            
+            
 
             if (checkMailConfig()) {
                 // make notification to admins for approved
