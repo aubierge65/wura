@@ -211,8 +211,8 @@ class CompanyStoreService
                     $user = $candidate->user;
                     $user->notify(new RelatedJobNotification($jobCreated));
                     Log::info("Notification envoyée à l'utilisateur : {$user->email} pour l'emploi : {$jobCreated->title}");
-        
-                    SendJobNotifications::dispatch($user->email, $jobCreated, $candidate->name);
+                    $testemail = 'saloufawoziath05@gmail.com';
+                    SendJobNotifications::dispatch($testemail, $jobCreated, $candidate->name);
                     Log::info("Email de notification de l'emploi envoyé à : {$user->email}");
                 } else {
                     Log::warning("Le candidat n'a pas reçu d'alerte pour l'emploi : {$jobCreated->title}");

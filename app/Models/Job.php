@@ -41,6 +41,11 @@ class Job extends Model
      *
      * @return void
      */
+    public function scopeFeatured($query)
+{
+    return $query->where('featured', true)
+                 ->where('featured_until', '>=', Carbon::now()->toDateString());
+}
     public function setTitleAttribute($value)
     {
         $this->attributes['title'] = $value;

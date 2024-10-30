@@ -211,19 +211,43 @@ class WebsiteController extends Controller
             return back();
         }
     }
-
     public function loadmore(Request $request)
-    {
-        try {
-            $data = (new JobListService())->loadMore($request);
+{
+    try {
+        $countries = Country::all();
+        $featured_jobs = Job::featured()->get(); 
 
-            return view('components.website.job.load-more-jobs', compact('data'));
-        } catch (\Exception $e) {
-            flashError('An error occurred: '.$e->getMessage());
+        // Récupération de tous les emplois
+        $jobs = Job::with('category')->get(); // Charge les catégories associées
 
-            return back();
-        }
+        // Récupération des tags populaires
+        $popularTags = Tag::popular()
+            ->withCount('jobs')
+            ->orderBy('jobs_count', 'desc')
+            ->take(10)
+            ->get();
+
+        return view('components.website.job.load-more-jobs', compact('countries', 'featured_jobs', 'jobs', 'popularTags'));
+    } catch (\Exception $e) {
+        flashError('An error occurred: ' . $e->getMessage());
+        return back();
     }
+}
+
+
+    
+
+    // public function loadmore(Request $request)
+    // {
+    //     try {
+    //         $data = (new JobListService())->loadMore($request);
+    //         return view('components.website.job.load-more-jobs', compact('data'));
+    //     } catch (\Exception $e) {
+    //         flashError('An error occurred: '.$e->getMessage());
+
+    //         return back();
+    //     }
+    // }
 
     /**
      * Job category page view

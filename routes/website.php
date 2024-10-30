@@ -157,6 +157,11 @@ Route::controller(SocialLoginController::class)->group(function () {
 // ======================================================================
 Route::controller(WebsiteController::class)->name('website.')->group(function () {
     Route::get('/', 'index')->name('home');
+    Route::get('/load-more-jobs', 'loadmore')->name('load_more_jobs');
+
+    // Route::get('/jobs',  'loadsJobs')->name('jobs.loads');
+    // Route::get('/load-all-jobs',  'loadAllJobs')->name('jobs.loadAll');
+
     Route::get('/a-propos', 'about')->name('about');
     Route::get('/contact', 'contact')->name('contact');
     Route::get('/plans', 'pricing')->name('plan');
@@ -169,7 +174,8 @@ Route::controller(WebsiteController::class)->name('website.')->group(function ()
     Route::get('/careerjet/emplois', 'careerjetJobs')->name('careerjet.job');
     Route::get('/indeed/emplois', 'indeedJobs')->name('indeed.job');
     Route::get('/emplois', 'jobs')->name('job');
-    Route::get('/charger-plus', 'loadmore');
+    // Route::get('/charger-plus', 'loadmore');
+
     Route::get('/emplois/categorie/{category}', 'jobsCategory')->name('job.category.slug');
     Route::get('/emploi/{job:slug}', 'jobDetails')->name('job.details');
     Route::get('/emplois/{job:slug}/bookmark', 'toggleBookmarkJob')->name('job.bookmark')->middleware('user_active');
@@ -191,15 +197,14 @@ Route::controller(WebsiteController::class)->name('website.')->group(function ()
     Route::get('job/autocomplete', 'jobAutocomplete')->name('job.autocomplete');
     Route::post('/job/benefits/create', 'jobBenefitCreate')->name('job.benefit.create');
     Route::get('succes-transaction', 'successTransaction')->name('paypal.successTransaction');
-
 });
 
 
 // ======================================================================
 // =============================Authenticated Routes=====================
 // ======================================================================
-Route::get('company/create/job/rolebycategorie/{categoryId}', [CompanyController::class, 'getRolesByCategory'] );
-    
+Route::get('company/create/job/rolebycategorie/{categoryId}', [CompanyController::class, 'getRolesByCategory']);
+
 Route::middleware('auth:user', 'verified')->group(function () {
     Route::get('/user/dashboard', [WebsiteController::class, 'dashboard'])->name('user.dashboard');
 
@@ -209,7 +214,7 @@ Route::middleware('auth:user', 'verified')->group(function () {
     Route::post('/utilisateur/notification/read', [WebsiteController::class, 'notificationRead'])->name('user.notification.read');
 
     // Candidate Routes
-       Route::controller(CandidateController::class)->prefix('candidate')->middleware('candidate')->name('candidate.')->group(function () {
+    Route::controller(CandidateController::class)->prefix('candidate')->middleware('candidate')->name('candidate.')->group(function () {
         Route::get('dashboard', 'dashboard')->name('dashboard');
         Route::get('applied-jobs', 'appliedjobs')->name('appliedjob');
         Route::get('bookmarks', 'bookmarks')->name('bookmark');
@@ -232,7 +237,7 @@ Route::middleware('auth:user', 'verified')->group(function () {
     });
 
     // Company Routes
-   Route::controller(CompanyController::class)->prefix('company')->middleware(['company', 'has_plan'])->name('company.')->group(function () {
+    Route::controller(CompanyController::class)->prefix('company')->middleware(['company', 'has_plan'])->name('company.')->group(function () {
         Route::middleware('company.profile')->group(function () {
             Route::get('dashboard', 'dashboard')->name('dashboard');
             Route::get('plans', 'plan')->name('plan')->middleware('user_active');
@@ -243,7 +248,7 @@ Route::middleware('auth:user', 'verified')->group(function () {
             Route::get('create/pay-per-job', 'payPerJob')->name('job.payPerJobCreate')->withoutMiddleware('has_plan');
             Route::post('/store/payper/job', 'storePayPerJob')->name('payperjob.store')->withoutMiddleware('has_plan');
             Route::get('create/job', 'createJob')->name('job.create')->middleware('user_active');
-			
+
             Route::post('/store/job', 'storeJob')->name('job.store');
             Route::get('/job/payment', 'payPerJobPayment')->name('payperjob.payment')->withoutMiddleware('has_plan');
             Route::get('/promote/job/{job:slug}', 'showPromoteJob')->name('job.promote.show');
@@ -282,9 +287,9 @@ Route::middleware('auth:user', 'verified')->group(function () {
         Route::put('/bookmark/categories/update/{category}', 'bookmarkCategoriesUpdate')->name('bookmark.category.update');
         Route::delete('/bookmark/categories/destroy/{category}', 'bookmarkCategoriesDestroy')->name('bookmark.category.destroy');
         Route::post('username/change', 'usernameUpdate')->name('username.change');
-		
-		
-		Route::get('blogs',  'blog')->name('blog.liste');
+
+
+        Route::get('blogs',  'blog')->name('blog.liste');
         Route::get('blog/create',  'blogCreate')->name('blog.create');
         Route::post('blog/store',  'blogStore')->name('blog.store');
         Route::get('blog/edit/{post}',  'blogEdit')->name('blog.edit');
@@ -334,4 +339,4 @@ Route::controller(FedapayController::class)->group(function () {
     Route::get('fedapay/success-transaction', 'successTransaction')->name('fedapay.successTransaction');
     Route::get('fedapay/cancel-transaction', 'cancelTransaction')->name('fedapay.cancelTransaction');
 });
-Route::get('/payment-from-app/{label}',[ApiCompanyController::class, 'payment']);
+Route::get('/payment-from-app/{label}', [ApiCompanyController::class, 'payment']);
