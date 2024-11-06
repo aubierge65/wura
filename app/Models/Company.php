@@ -25,6 +25,7 @@ class Company extends Model implements HasMedia
         'establishment_date' => 'datetime',
         'profile_completion' => 'boolean',
         'is_profile_verified' => 'boolean',
+        'age' => 'string'
     ];
 
     protected static function booted()

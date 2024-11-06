@@ -137,12 +137,7 @@ $data = metaData('jobs');
                 @endforelse
                 <div id="mix-job" class="row"></div>
 
-                @if (count($mix_jobs) <= 9)
-                <a href="{{ route('website.load_more_jobs') }}" class="newsButton btn btn-primary px-4 py-2 m-auto">
-                    {{ __('load_more') }}
-                </a>
-                @endif
-
+               
             </div>
         </div>
     </div>
@@ -230,50 +225,50 @@ $data = metaData('jobs');
 
 @section('script')
 <script>
-    // function loadMoreJobs() {
-    //     let currentUrl = window.location.href;
-    //     let urlWithoutQueryString = currentUrl.split('?')[0];
-    //     let queryString = window.location.search;
+    function loadMoreJobs() {
+        let currentUrl = window.location.href;
+        let urlWithoutQueryString = currentUrl.split('?')[0];
+        let queryString = window.location.search;
 
-    //     let id = parseInt(document.getElementById('load-more-button').getAttribute('data-id'));
-    //     let page = parseInt(document.getElementById('load-more-button').getAttribute('data-page'));
+        let id = parseInt(document.getElementById('load-more-button').getAttribute('data-id'));
+        let page = parseInt(document.getElementById('load-more-button').getAttribute('data-page'));
 
-    //     // Extract existing "keyword" and "location" parameters from the query string
-    //     let searchParams = new URLSearchParams(queryString);
-    //     let existingKeyword = searchParams.get('keyword');
-    //     let existingLocation = searchParams.get('location');
+        // Extract existing "keyword" and "location" parameters from the query string
+        let searchParams = new URLSearchParams(queryString);
+        let existingKeyword = searchParams.get('keyword');
+        let existingLocation = searchParams.get('location');
 
-    //     // Convert null values to empty strings if they are null
-    //     existingKeyword = existingKeyword === null ? '' : existingKeyword;
-    //     existingLocation = existingLocation === null ? '' : existingLocation;
+        // Convert null values to empty strings if they are null
+        existingKeyword = existingKeyword === null ? '' : existingKeyword;
+        existingLocation = existingLocation === null ? '' : existingLocation;
 
-    //     // Construct the updated query string with all parameters
-    //     let updatedQueryString = `?page=${page}&id=${id}&keyword=${existingKeyword}&location=${existingLocation}`;
+        // Construct the updated query string with all parameters
+       let updatedQueryString = `?page=${page}&id=${id}&keyword=${existingKeyword}&location=${existingLocation}`;
 
-    //     let newUrl = `${urlWithoutQueryString.replace('/jobs', '/loadmore')}${updatedQueryString}`;
+      //  let newUrl = `${urlWithoutQueryString.replace('/jobs', '/loadmore')}${updatedQueryString}`;
 
-    //     $('#load-more-button').prop('disabled', true).text('Loading...');
-    //     axios.get(newUrl).then((response) => {
-    //         $('#mix-job').append(response.data);
-    //         $('#load-more-button').prop('disabled', false).text('Load More');
-    //         let newId = parseInt(document.getElementById('get-id-page').getAttribute('data-id'));
-    //         document.getElementById('load-more-button').setAttribute('data-id', newId);
-    //         if (newId == 0) {
-    //             document.getElementById('load-more-button').setAttribute('data-page', page + 1);
-    //         }
-    //         $('#get-id-page').remove();
-    //     }).catch((error) => {
-    //         $('#load-more-button').prop('disabled', true).text('No jobs found').removeClass('btn-primary')
-    //             .addClass('btn-secondary');
-    //     })
-    // }
+        $('#load-more-button').prop('disabled', true).text('Loading...');
+        axios.get(newUrl).then((response) => {
+            $('#mix-job').append(response.data);
+            $('#load-more-button').prop('disabled', false).text('Load More');
+            let newId = parseInt(document.getElementById('get-id-page').getAttribute('data-id'));
+            document.getElementById('load-more-button').setAttribute('data-id', newId);
+            if (newId == 0) {
+                document.getElementById('load-more-button').setAttribute('data-page', page + 1);
+            }
+            $('#get-id-page').remove();
+        }).catch((error) => {
+            $('#load-more-button').prop('disabled', true).text('No jobs found').removeClass('btn-primary')
+                .addClass('btn-secondary');
+        })
+    }
 
-    // $(document).ready(function() {
-    //     $('#load-more-button').click(function(e) {
-    //         e.preventDefault();
-    //         loadMoreJobs();
-    //     });
-    // });
+    $(document).ready(function() {
+        $('#load-more-button').click(function(e) {
+            e.preventDefault();
+            loadMoreJobs();
+        });
+    });
 </script>
 
 

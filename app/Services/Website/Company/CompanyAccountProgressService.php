@@ -50,6 +50,7 @@ class CompanyAccountProgressService
                     'establishment_date' => 'nullable',
                     'website' => 'nullable|url',
                     'vision' => 'required',
+                    'age' => 'nullable|string|regex:/^\d{1,2}$/|integer|min:0|max:99'
                 ]);
 
                 $update = $this->companyProfileUpdate($request);

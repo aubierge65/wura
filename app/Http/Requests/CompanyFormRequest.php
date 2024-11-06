@@ -39,6 +39,7 @@ class CompanyFormRequest extends FormRequest
                 'visibility' => 'required|max:1',
                 'team_size' => 'nullable|string|max:255',
                 'bio' => 'nullable',
+                
                 'industry_type_id' => 'required',
                 'vision' => 'nullable',
             ];

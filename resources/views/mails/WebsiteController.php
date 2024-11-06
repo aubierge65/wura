@@ -2,54 +2,53 @@
 
 namespace App\Http\Controllers\Website;
 
-use Carbon\Carbon;
-use App\Models\Job;
-use App\Models\Tag;
-use App\Models\User;
-use App\Models\Skill;
-use App\Models\Company;
-use App\Models\Candidate;
-use App\Models\Education;
-use App\Models\Experience;
-use App\Models\Profession;
-use Illuminate\Support\Str;
+use App\Http\Controllers\Controller;
+use App\Http\Traits\CandidateAble;
+use App\Http\Traits\HasCountryBasedJobs;
 use App\Http\Traits\JobAble;
-use Illuminate\Http\Request;
-use Modules\Faq\Entities\Faq;
+use App\Http\Traits\ResetCvViewsHistoryTrait;
+use App\Models\Candidate;
 use App\Models\CandidateCvView;
 use App\Models\CandidateResume;
-use Modules\Blog\Entities\Post;
-use Modules\Plan\Entities\Plan;
-use App\Http\Traits\CandidateAble;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
-use Srmklive\PayPal\Services\PayPal;
-use Illuminate\Support\Facades\Cache;
-use Modules\Faq\Entities\FaqCategory;
-use Modules\Blog\Entities\PostComment;
-use Modules\Location\Entities\Country;
-use Modules\Blog\Entities\PostCategory;
-use Modules\Language\Entities\Language;
-use App\Http\Traits\HasCountryBasedJobs;
-use Illuminate\Support\Facades\Validator;
-use App\Services\Website\IndexPageService;
-use App\Services\Website\PricePlanService;
-use Stevebauman\Location\Facades\Location;
-use App\Services\Website\Job\JobListService;
-use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Support\Facades\Notification;
-use App\Http\Traits\ResetCvViewsHistoryTrait;
-use App\Services\Website\RefundPolicyService;
-use Modules\Testimonial\Entities\Testimonial;
-use App\Services\Website\PrivacyPolicyService;
-use App\Services\Website\TermsConditionService;
-use App\Services\Website\Company\CompanyListService;
-use App\Services\Website\Company\CompanyDetailsService;
-use Modules\Currency\Entities\Currency as CurrencyModel;
+use App\Models\Company;
+use App\Models\Education;
+use App\Models\Experience;
+use App\Models\Job;
+use App\Models\Profession;
+use App\Models\Skill;
+use App\Models\Tag;
+use App\Models\User;
 use App\Notifications\Website\Candidate\ApplyJobNotification;
-use App\Notifications\Website\Company\CompanyJobNotification;
 use App\Notifications\Website\Candidate\BookmarkJobNotification;
 use App\Services\Website\Candidate\CandidateProfileDetailsService;
+use App\Services\Website\Company\CompanyDetailsService;
+use App\Services\Website\Company\CompanyListService;
+use App\Services\Website\IndexPageService;
+use App\Services\Website\Job\JobListService;
+use App\Services\Website\PricePlanService;
+use App\Services\Website\PrivacyPolicyService;
+use App\Services\Website\RefundPolicyService;
+use App\Services\Website\TermsConditionService;
+use Carbon\Carbon;
+use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Modules\Blog\Entities\Post;
+use Modules\Blog\Entities\PostCategory;
+use Modules\Blog\Entities\PostComment;
+use Modules\Currency\Entities\Currency as CurrencyModel;
+use Modules\Faq\Entities\Faq;
+use Modules\Faq\Entities\FaqCategory;
+use Modules\Language\Entities\Language;
+use Modules\Location\Entities\Country;
+use Modules\Plan\Entities\Plan;
+use Modules\Testimonial\Entities\Testimonial;
+use Srmklive\PayPal\Services\PayPal;
+use Stevebauman\Location\Facades\Location;
 
 class WebsiteController extends Controller
 {
@@ -216,14 +215,36 @@ class WebsiteController extends Controller
     public function loadmore(Request $request)
     {
         try {
-            $data = (new JobListService())->loadMore($request);
-            return view('components.website.job.load-more-jobs', compact('data'));
-        } catch (\Exception $e) {
-            flashError('An error occurred: '.$e->getMessage());
+            $countries = Country::all();
+            $featured_jobs = Job::featured()->get();
 
+            $jobs = Job::with('category')->get();
+
+            $popularTags = Tag::popular()
+                ->withCount('jobs')
+                ->orderBy('jobs_count', 'desc')
+                ->take(10)
+                ->get();
+
+            return view('components.website.job.load-more-jobs', compact('countries', 'featured_jobs', 'jobs', 'popularTags'));
+        } catch (\Exception $e) {
+            flashError('An error occurred: ' . $e->getMessage());
             return back();
         }
     }
+
+    // public function loadmore(Request $request)
+    // {
+    //     try {
+    //         $data = (new JobListService())->loadMore($request);
+
+    //         return view('components.website.job.load-more-jobs', compact('data'));
+    //     } catch (\Exception $e) {
+    //         flashError('An error occurred: '.$e->getMessage());
+
+    //         return back();
+    //     }
+    // }
 
     /**
      * Job category page view
@@ -384,7 +405,7 @@ class WebsiteController extends Controller
 
             $data = (new CandidateProfileDetailsService())->execute($request);
 
-            dd($data);
+       
 
             return response()->json($data);
         } catch (\Exception $e) {
@@ -638,28 +659,28 @@ class WebsiteController extends Controller
     {
         try {
             $check = $job->bookmarkJobs()->toggle(auth('user')->user()->candidate);
-    
-            if (count($check['attached']) > 0) {
+
+            if ($check['attached'] == [1]) {
                 $user = auth('user')->user();
+                // make notification to company candidate bookmark job
                 Notification::send($job->company->user, new BookmarkJobNotification($user, $job));
-    
-                if ($user->recent_activities_alert) {
-                    Notification::send($user, new BookmarkJobNotification($user, $job));
+                // make notification to candidate for notify
+                if (auth()->user()->recent_activities_alert) {
+                    Notification::send(auth('user')->user(), new BookmarkJobNotification($user, $job));
                 }
-    
-                $message = __('job_added_to_favorite_list');
-            } else {
-                $message = __('job_removed_from_favorite_list');
             }
-    
+
+            $check['attached'] == [1] ? ($message = __('job_added_to_favorite_list')) : ($message = __('job_removed_from_favorite_list'));
+
             flashSuccess($message);
+
             return back();
         } catch (\Exception $e) {
-            flashError('An error occurred: ' . $e->getMessage());
+            flashError('An error occurred: '.$e->getMessage());
+
             return back();
         }
     }
-    
 
     public function toggleApplyJob(Request $request)
     {
@@ -702,7 +723,7 @@ class WebsiteController extends Controller
             ]);
 
             // make notification to candidate and company for notify
-            $job->company->user->notify(new CompanyJobNotification(auth('user')->user(), $job->company->user, $job));
+            $job->company->user->notify(new ApplyJobNotification(auth('user')->user(), $job->company->user, $job));
 
             if (auth('user')->user()->recent_activities_alert) {
                 auth('user')

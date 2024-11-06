@@ -19,26 +19,6 @@ $data = metaData('jobs');
 <?php $__env->startSection('main'); ?>
 <form action="<?php echo e(route('website.job')); ?>" method="GET" id="job_search_form">
     
-    <?php if (isset($component)) { $__componentOriginal9be393980769b3910cfe2d00633b410a = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal9be393980769b3910cfe2d00633b410a = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.website.job.job-filtering','data' => ['countries' => $countries,'categories' => $categories,'jobRoles' => $job_roles,'minSalary' => $min_salary,'currentCurrency' => $current_currency,'maxSalary' => $max_salary,'experiences' => $experiences,'educations' => $educations,'jobTypes' => $job_types,'totalJobs' => $jobs->total()]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
-<?php $component->withName('website.job.job-filtering'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
-<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['countries' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($countries),'categories' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($categories),'job-roles' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($job_roles),'min-salary' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($min_salary),'currentCurrency' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($current_currency),'max-salary' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($max_salary),'experiences' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($experiences),'educations' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($educations),'job-types' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($job_types),'total-jobs' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($jobs->total())]); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal9be393980769b3910cfe2d00633b410a)): ?>
-<?php $attributes = $__attributesOriginal9be393980769b3910cfe2d00633b410a; ?>
-<?php unset($__attributesOriginal9be393980769b3910cfe2d00633b410a); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal9be393980769b3910cfe2d00633b410a)): ?>
-<?php $component = $__componentOriginal9be393980769b3910cfe2d00633b410a; ?>
-<?php unset($__componentOriginal9be393980769b3910cfe2d00633b410a); ?>
-<?php endif; ?>
 
     <div class="job-filter-overlay"></div>
 

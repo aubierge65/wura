@@ -136,6 +136,13 @@
                     <div class="divider">
                         <hr>
                     </div>
+                    <div class="body-font-1 ft-wt-5 rt-mb-20">{{ __('company_vision') }}</div>
+                    <div class="body-font-3 text-gray-500" style="overflow: hidden;">
+                        {!! $user->company->vision !!}
+                    </div>
+                    <div class="divider">
+                        <hr>
+                    </div>
                     <div class="body-font-1 ft-wt-5 rt-mb-20">{{ __('posts') }}</div>
                     
                     <div class="row">

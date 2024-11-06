@@ -177,6 +177,10 @@ class CompanySettingUpdateService
             $company->update(['bio' => $request->about_us]);
         }
 
+        if($company){
+            $company->update(['age' => $request->age]);
+        }
+
         return true;
     }
 

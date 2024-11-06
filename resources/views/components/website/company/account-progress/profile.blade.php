@@ -17,17 +17,17 @@
                             class="select2-taggable @error('organization_type_id') is-invalid @enderror"
                             id="organization_type_id">
                             @foreach ($organizationTypes as $type)
-                                <option
-                                    {{ $type->id == old('organization_type_id', $user->company->organization_type_id) ? 'selected' : '' }}
-                                    value="{{ $type->id }}">
-                                    {{ $type->name }}
-                                </option>
+                            <option
+                                {{ $type->id == old('organization_type_id', $user->company->organization_type_id) ? 'selected' : '' }}
+                                value="{{ $type->id }}">
+                                {{ $type->name }}
+                            </option>
                             @endforeach
                         </select>
                         @error('organization_type_id')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
                         @enderror
                     </div>
                     <div class="col-lg-6 mb-3">
@@ -38,15 +38,15 @@
                             class="select2-taggable @error('industry_type_id') is-invalid @enderror text-uppercase"
                             name="industry_type_id" id="industry_type">
                             @foreach ($industryTypes as $type)
-                                <option
-                                    {{ $type->id == old('industry_type_id', $user->company->industry_type_id) ? 'selected' : '' }}
-                                    value="{{ $type->id }}">
-                                    {{ $type->name }}
-                                </option>
+                            <option
+                                {{ $type->id == old('industry_type_id', $user->company->industry_type_id) ? 'selected' : '' }}
+                                value="{{ $type->id }}">
+                                {{ $type->name }}
+                            </option>
                             @endforeach
                         </select>
                         @error('industry_type_id')
-                            <span class="invalid-feedback" role="alert"><strong>{{ __($message) }}</strong></span>
+                        <span class="invalid-feedback" role="alert"><strong>{{ __($message) }}</strong></span>
                         @enderror
                     </div>
                     <div class="col-lg-6 mb-3">
@@ -55,17 +55,17 @@
                         </label>
                         <select type="text" name="team_size_id"
                             class="rt-selectactive @error('team_size_id') is-invalid @enderror" id="team_size">
-                            <option value="" >{{ __('select_one') }}</option>
+                            <option value="">{{ __('select_one') }}</option>
                             @foreach ($teamSizes as $size)
-                                <option
-                                    {{ $size->id == old('team_size_id', $user->company->team_size_id) ? 'selected' : '' }}
-                                    value="{{ $size->id }}">
-                                    {{ $size->name }}
-                                </option>
+                            <option
+                                {{ $size->id == old('team_size_id', $user->company->team_size_id) ? 'selected' : '' }}
+                                value="{{ $size->id }}">
+                                {{ $size->name }}
+                            </option>
                             @endforeach
                         </select>
                         @error('team_size_id')
-                            <span class="invalid-feedback" role="alert"><strong>{{ __($message) }}</strong></span>
+                        <span class="invalid-feedback" role="alert"><strong>{{ __($message) }}</strong></span>
                         @enderror
                     </div>
                     <div class="col-lg-6 mb-3">
@@ -83,12 +83,12 @@
                             </div>
                         </div>
                         @error('website')
-                            <span class="invalid-feedback d-block" role="alert">
-                                <strong>{{ __($message) }}</strong>
-                            </span>
+                        <span class="invalid-feedback d-block" role="alert">
+                            <strong>{{ __($message) }}</strong>
+                        </span>
                         @enderror
                     </div>
-                    <div class="col-lg-6 mb-3">
+                    <!-- <div class="col-lg-6 mb-3">
                         <label class="pointer body-font-4 d-block text-gray-900 rt-mb-8">
                             {{ __('year_of_establishment') }}
                         </label>
@@ -108,6 +108,39 @@
                                 @enderror
                             </div>
                         </div>
+                    </div> -->
+                    <div class="col-lg-6 mb-3">
+                        <label class="pointer body-font-4 d-block text-gray-900 rt-mb-8">
+                            {{ __('year_of_establishment') }}
+                        </label>
+                        <div class="form-control-icon date datepicker">
+                            <input autocomplete="off" name="establishment_date" placeholder="m/d/y" type="text"
+                                class="form-control @error('establishment_date') is-invalid @enderror"
+                                id="date"
+                                value="{{ $user->company->establishment_date ? date('d-m-Y', strtotime($user->company->establishment_date)) : old('establishment_date') }}" />
+                            <span class="input-group-addon has-badge">
+                                <x-svg.calendar-icon />
+                            </span>
+                            @error('establishment_date')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ __($message) }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                   <div class="col-lg-6 mb-3">
+                        <label class="pointer body-font-4 d-block text-gray-900 rt-mb-8">
+                            {{ __('age_moyenne') }}
+                        </label>
+                        <input type="text" name="age" placeholder="00"
+                            maxlength="2" pattern="\d{2}"
+                            oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 2)"
+                            class="form-control @error('age') is-invalid @enderror" />
+                        @error('age')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ __($message) }}</strong>
+                        </span>
+                        @enderror
                     </div>
                     <div class="col-12">
                         <label class="body-font-4 d-block text-gray-900 rt-mb-8">
@@ -117,9 +150,9 @@
                         <textarea id="default" name="vision" class="ckeditor @error('vision') is-invalid @enderror"
                             placeholder="{{ __('company_vision') }}">{{ old('vision', $user->company->vision) }}</textarea>
                         @error('vision')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ __($message) }}</strong>
-                            </span>
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ __($message) }}</strong>
+                        </span>
                         @enderror
                     </div>
                 </div>
@@ -150,31 +183,31 @@
 "></script>
 @endif
 <script>
-        function UploadMode(param) {
-            if (param === 'photo') {
-                $('#photo-uploadMode').removeClass('d-none');
-                $('#photo-oldMode').addClass('d-none');
-            } else {
-                $('#banner-uploadMode').removeClass('d-none');
-                $('#banner-oldMode').addClass('d-none');
-            }
+    function UploadMode(param) {
+        if (param === 'photo') {
+            $('#photo-uploadMode').removeClass('d-none');
+            $('#photo-oldMode').addClass('d-none');
+        } else {
+            $('#banner-uploadMode').removeClass('d-none');
+            $('#banner-oldMode').addClass('d-none');
         }
-    </script>
-    <script src="{{ asset('frontend') }}/assets/js/ckeditor.min.js"></script>
-    <script>
-        ClassicEditor
-            .create(document.querySelector('#default'))
-            .catch(error => {
-                console.error(error);
-            });
-        //init datepicker
-        $("#date").attr("autocomplete", "off");
-        //init datepicker
-        $('#date').datepicker({
-            format: 'dd-mm-yyyy',
-            isRTL: "{{ app()->getLocale() == 'ar' ? true : false }}",
-            language: "{{ app()->getLocale() }}",
-            endDate: new Date()
+    }
+</script>
+<script src="{{ asset('frontend') }}/assets/js/ckeditor.min.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#default'))
+        .catch(error => {
+            console.error(error);
         });
-    </script>
+    //init datepicker
+    $("#date").attr("autocomplete", "off");
+    //init datepicker
+    $('#date').datepicker({
+        format: 'dd-mm-yyyy',
+        isRTL: "{{ app()->getLocale() == 'ar' ? true : false }}",
+        language: "{{ app()->getLocale() }}",
+        endDate: new Date()
+    });
+</script>
 @endpush

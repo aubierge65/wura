@@ -27,6 +27,7 @@ class CreateCompaniesTable extends Migration
             $table->string('logo')->nullable();
             $table->string('banner')->nullable();
             $table->date('establishment_date')->nullable();
+            $table->string('age')->nullable();
             $table->string('website')->nullable();
             $table->boolean('visibility')->default(1);
             $table->boolean('profile_completion')->default(0);

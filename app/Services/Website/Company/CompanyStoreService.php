@@ -13,12 +13,13 @@ use App\Http\Traits\JobAble;
 use App\Models\CandidateJobAlert;
 use App\Jobs\SendJobNotifications;
 use App\Models\JobRoleTranslation;
+use Illuminate\Support\Facades\Log;
 use App\Models\JobCategoryTranslation;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\Admin\NewJobAvailableNotification;
 use App\Notifications\Website\Company\JobCreatedNotification;
 use App\Notifications\Website\Candidate\RelatedJobNotification;
-use Illuminate\Support\Facades\Log;
+use App\Notifications\Website\Candidate\NewJobAlertNotification;
 
 class CompanyStoreService
 {
@@ -202,23 +203,24 @@ class CompanyStoreService
             // //     Log::info("L'emploi : {$jobCreated->title} n'est pas actif, aucune notification envoyée.");
             // // }
             Log::info("Traitement des candidats pour l'emploi : {$jobCreated->title}");
+            // Traitement des candidats pour la notification des alertes d'emploi
             $candidates = CandidateJobAlert::where('job_role_id', $jobCreated->role_id)->get();
-        
+
             foreach ($candidates as $candidateAlert) {
                 $candidate = $candidateAlert->candidate;
-        
+
                 if ($candidate && $candidate->received_job_alert) {
                     $user = $candidate->user;
-                    $user->notify(new RelatedJobNotification($jobCreated));
-                    Log::info("Notification envoyée à l'utilisateur : {$user->email} pour l'emploi : {$jobCreated->title}");
-                    $testemail = 'saloufawoziath05@gmail.com';
-                    SendJobNotifications::dispatch($testemail, $jobCreated, $candidate->name);
-                    Log::info("Email de notification de l'emploi envoyé à : {$user->email}");
+
+                    $user->notify(new NewJobAlertNotification($user, $jobCreated));
+
+                    Log::info("Notification envoyée en temps réel à l'utilisateur : {$user->email} pour l'emploi : {$jobCreated->title}");
                 } else {
                     Log::warning("Le candidat n'a pas reçu d'alerte pour l'emploi : {$jobCreated->title}");
                 }
             }
-            
+
+
 
             if (checkMailConfig()) {
                 // make notification to admins for approved

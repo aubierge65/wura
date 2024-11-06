@@ -18,8 +18,6 @@ $data = metaData('jobs');
 @section('main')
 <form action="{{ route('website.job') }}" method="GET" id="job_search_form">
     {{-- job filtering --}}
-    <x-website.job.job-filtering :countries="$countries" :categories="$categories" :job-roles="$job_roles" :min-salary="$min_salary"
-        :currentCurrency="$current_currency" :max-salary="$max_salary" :experiences="$experiences" :educations="$educations" :job-types="$job_types" :total-jobs="$jobs->total()" />
 
     <div class="job-filter-overlay"></div>
 
@@ -33,7 +31,7 @@ $data = metaData('jobs');
                 <h5>{{ __('latest_jobs') }}</h5>
 
                 <div class="row">
-                    @forelse ($jobs as $job) <!-- Utilisation directe de $jobs -->
+                    @forelse ($jobs as $job)
                         <div class="col-xl-4 col-md-6 fade-in-bottom rt-mb-24 cat-1 cat-3">
                             <x-website.job.job-card :job="$job" />
                         </div>

@@ -97,6 +97,19 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-lg-6 mb-3">
+                                                <x-forms.label name="Age moyen du personnel de l'entreprise" required="False"
+                                                    class="pointer body-font-4 d-block text-gray-900 rt-mb-8" />
+                                                <div class="fromGroup">
+                                                    <div class="form-control-icon">
+                                                        <x-forms.input type="number" name="age"
+                                                            value="{{ $user->age }}" placeholder="" />
+                                                        @error('age')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
                                                 <div class="col-lg-12 mb-3">
                                                     <x-forms.label :required="false" name="about_us"
                                                         class="pointer body-font-4 d-block text-gray-900 rt-mb-8" />
@@ -517,20 +530,12 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6 tw-mb-3 md:tw-mb-0">
-                                                    <x-forms.label :required="false" name="phone"
-                                                        class="pointer tw-text-sm d-block text-gray-900 rt-mb-8" />
-                                                    <x-forms.input type="text" id="phone" name="phone"
-                                                        value="{{ $contact->phone }}"
-                                                        placeholder="{{ __('phone_number') }}" class="phonecode" />
-                                                </div>
 
                                             </div>
                                             <button type="submit" class="btn btn-primary">
                                                 {{ __('save_changes') }}
                                             </button>
                                         </div>
-                                        
 
                                     </form>
                                     <form action="{{ route('company.settingUpdateInformation') }}" method="POST">
