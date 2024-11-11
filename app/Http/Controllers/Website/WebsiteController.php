@@ -35,6 +35,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Services\Website\IndexPageService;
 use App\Services\Website\PricePlanService;
 use Stevebauman\Location\Facades\Location;
+use App\Notifications\CVServiceNotification;
 use App\Services\Website\Job\JobListService;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Facades\Notification;
@@ -739,6 +740,17 @@ class WebsiteController extends Controller
 
             return back();
         }
+    }
+
+    public function sendEmailToAdmin(Request $request)
+    {
+        $formData = $request->all(); 
+
+        $adminEmail = config('mail.admin_address'); 
+
+        Notification::route('mail', $adminEmail)->notify(new CVServiceNotification($formData));
+
+        return response()->json(['success' => true]);
     }
 
     public function register($role)
