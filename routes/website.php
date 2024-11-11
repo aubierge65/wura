@@ -161,7 +161,9 @@ Route::controller(WebsiteController::class)->name('website.')->group(function ()
 
     // Route::get('/jobs',  'loadsJobs')->name('jobs.loads');
     // Route::get('/load-all-jobs',  'loadAllJobs')->name('jobs.loadAll');
-
+    Route::get('/nos-services', 'services')->name('services');
+    Route::get('/service', 'service')->name('service');
+    Route::get('/nos-services/coaching/{service}', 'servicesCoacg')->name('services');
     Route::get('/a-propos', 'about')->name('about');
     Route::get('/contact', 'contact')->name('contact');
     Route::get('/plans', 'pricing')->name('plan');

@@ -295,116 +295,58 @@
             <div class="col-xl-12" id="togglclass1">
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                        <div class="row">
-                            <?php if($companies->count() > 0): ?>
-                                <?php $__currentLoopData = $companies; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $company): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <div class="col-md-4 fade-in-bottom  condition_class rt-mb-24">
-                                        <a 
-                                        <?php if($company->activejobs == 0): ?>
-                                           href="<?php echo e(route('website.employe.details', $company->user->username)); ?>" 
-                                        <?php else: ?>
-                                            href="<?php echo e(route('website.employe.details', $company->user->username)); ?>#open_position"
-                                        <?php endif; ?>
-                                        
-                                        
-                                            class="card jobcardStyle1">
-                                            <div class="tw-p-6">
-                                                <div class="tw-flex tw-gap-4 tw-items-center">
-                                                    <div class="tw-w-[56px] tw-h-[56px]">
-                                                        <img src="<?php echo e(url($company->logo_url)); ?>" alt="logo"
-                                                            draggable="false"
-                                                            class="tw-w-full tw-h-full tw-rounded-[4px]">
-                                                    </div>
-                                                    <div class="">
-                                                        <div class="tw-mb-1.5">
-                                                            <div
-                                                                class="tw-flex tw-gap-3 tw-justify-start tw-items-center text-primary">
-                                                                <p
-                                                                    class="tw-text-[#191F33] tw-text-lg tw-font-medium tw-mb-0">
-                                                                    <?php echo e($company->user->name); ?></p>
-                                                                <?php if($company->is_profile_verified): ?>
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                        height="24" fill="currentColor"
-                                                                        viewBox="0 0 256 256">
-                                                                        <path
-                                                                            d="M225.86,102.82c-3.77-3.94-7.67-8-9.14-11.57-1.36-3.27-1.44-8.69-1.52-13.94-.15-9.76-.31-20.82-8-28.51s-18.75-7.85-28.51-8c-5.25-.08-10.67-.16-13.94-1.52-3.56-1.47-7.63-5.37-11.57-9.14C146.28,23.51,138.44,16,128,16s-18.27,7.51-25.18,14.14c-3.94,3.77-8,7.67-11.57,9.14C88,40.64,82.56,40.72,77.31,40.8c-9.76.15-20.82.31-28.51,8S41,67.55,40.8,77.31c-.08,5.25-.16,10.67-1.52,13.94-1.47,3.56-5.37,7.63-9.14,11.57C23.51,109.72,16,117.56,16,128s7.51,18.27,14.14,25.18c3.77,3.94,7.67,8,9.14,11.57,1.36,3.27,1.44,8.69,1.52,13.94.15,9.76.31,20.82,8,28.51s18.75,7.85,28.51,8c5.25.08,10.67.16,13.94,1.52,3.56,1.47,7.63,5.37,11.57,9.14C109.72,232.49,117.56,240,128,240s18.27-7.51,25.18-14.14c3.94-3.77,8-7.67,11.57-9.14,3.27-1.36,8.69-1.44,13.94-1.52,9.76-.15,20.82-.31,28.51-8s7.85-18.75,8-28.51c.08-5.25.16-10.67,1.52-13.94,1.47-3.56,5.37-7.63,9.14-11.57C232.49,146.28,240,138.44,240,128S232.49,109.73,225.86,102.82Zm-52.2,6.84-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32Z">
-                                                                        </path>
-                                                                    </svg>
-                                                                <?php endif; ?>
-                                                            </div>
-                                                            <p class="tw-text-[#767F8C] tw-text-sm tw-mb-0">
-                                                                <span class="tw-flex tw-items-center tw-gap-1">
-                                                                    <i class="ph-map-pin"></i>
-                                                                    <?php echo e($company->exact_location ? $company->exact_location : $company->full_address); ?>
+                         <div class="row">
+            <?php $__currentLoopData = $companies; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $company): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <div class="col-xl-3 col-md-4 mb-4">
+                <a href="<?php echo e(route('website.employe.details', $company->user->username)); ?>"
+                    class="card jobcardStyle1 tw-h-full hover:!-tw-translate-y-1">
 
-                                                                </span>
-                                                            </p>
-                                                            <span
-                                                            class="tw-px-3 tw-py-1 tw-inline-block tw-text-sm tw-font-medium tw-text-[#474C54] tw-rounded-[52px] ll-gray-border mt-1"><?php echo e($company?->industry?->name ?? ''); ?></span>
+                    <!-- Section de l'image de la bannière -->
+                    <div class="card-img-top position-relative" style="height: 18vh;">
+                        <img src="<?php echo e($company->banner_url); ?>"
+                            alt="<?php echo e($company->user->name); ?>"
+                            class="tw-w-full tw-h-full tw-object-cover tw-rounded-lg">
 
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="post-info d-flex">
-                                                    <div class="flex-grow-1">
-                                                        <?php if($company->activejobs == 0): ?>
-                                                            <div class="d-block text-dark border-0 text-center">
-                                                                <div class="button-content-wrapper ">
-                                                                    <span class="button-text btn btn-primary2-50 d-block mt-2">
-                                                                        <?php echo e(__('no_open_position')); ?>
+                        <!-- Logo sur la limite en bas à gauche -->
+                        <img src="<?php echo e($company->logo_url); ?>"
+                            alt="Company Logo"
+                            class="logo-bottom-left"
+                            style="position: absolute; bottom:-30%; left: 20px; width: 80px; height: 70px; border-radius: 0; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+                    </div>
 
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        <?php else: ?>
-                                                            <span>
-                                                                <button type="button"
-                                                                    class="btn btn-primary2-50 d-block mt-2">
-                                                                    <div class="button-content-wrapper ">
-                                                                        <span class="button-icon align-icon-right">
-                                                                            <i class="ph-arrow-right"></i>
-                                                                        </span>
-                                                                        <span class="button-text">
-                                                                            <?php echo e(__('open_position')); ?> (<?php echo e($company->activejobs); ?>)
-                                                                        </span>
-                                                                    </div>
-                                                                </button>
-                                                            </span>
-                                                        <?php endif; ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            <?php else: ?>
-                                <div class="col-md-12">
-                                    <div class="card text-center">
-                                        <?php if (isset($component)) { $__componentOriginal29785112a59eec7800237cc87bc86e3e = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal29785112a59eec7800237cc87bc86e3e = $attributes; } ?>
-<?php $component = App\View\Components\NotFound::resolve(['message' => ''.e(__('no_data_found')).''] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
-<?php $component->withName('not-found'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\NotFound::class))->getConstructor()): ?>
-<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
-<?php endif; ?>
-<?php $component->withAttributes([]); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal29785112a59eec7800237cc87bc86e3e)): ?>
-<?php $attributes = $__attributesOriginal29785112a59eec7800237cc87bc86e3e; ?>
-<?php unset($__attributesOriginal29785112a59eec7800237cc87bc86e3e); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal29785112a59eec7800237cc87bc86e3e)): ?>
-<?php $component = $__componentOriginal29785112a59eec7800237cc87bc86e3e; ?>
-<?php unset($__componentOriginal29785112a59eec7800237cc87bc86e3e); ?>
-<?php endif; ?>
-                                    </div>
-                                </div>
-                            <?php endif; ?>
+                    <!-- Section du corps de la carte -->
+                    <div class="card-body carte tw-flex tw-flex-col">
+                        <h5 class="tw-text-lg tw-font-medium tw-text-[#191F33] mt-4"><?php echo e($company->user->name); ?></h5>
+                        <div class="">
+                            <span class="badge bg-primary-50 tw-text-xs tw-font-medium text-dark">
+                                <?php echo e($company->industry->name ?? ''); ?>
+
+                            </span>
                         </div>
+                        <p class="tw-text-sm text-gray-400 tw-mb-6">
+                            <i class="ph-map-pin"></i> <?php echo e($company->country); ?>
+
+                        </p>
+                        <p class="tw-text-sm text-gray-400 tw-mb-7">
+                            <i class="ph-users-three"></i> <?php echo e($company->team_size ? $company->team_size->name : 'Non spécifié'); ?>
+
+                        </p>
+                        <div class="d-flex justify-content-between mt-4">
+                            <div class="tw-text-sm text-gray-500">
+                                <?php echo e($company->jobs_count); ?> <?php echo e(__('open_position')); ?>
+
+                               
+                            </div>
+                            <button class="btn btn-primary tw-text-xs tw-font-medium" style="height: 30px; padding: 0 10px;">
+                                <?php echo e(__('follow')); ?>
+
+                            </button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </div>
                         <div class="rt-pt-30">
                             <nav>
                                 <?php echo e($companies->links('vendor.pagination.frontend')); ?>

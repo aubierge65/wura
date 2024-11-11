@@ -535,6 +535,9 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 <?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('footer'); ?>
+<?php $__env->stopSection(); ?>
 <?php $__env->startSection('script'); ?>
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <script>

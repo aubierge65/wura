@@ -1,6 +1,7 @@
 {
     "cv": "CV",
     "no": "Non",
+    "benefit_words": "de la flexibilité",
     "on": "Activé",
     "or": "Ou",
     "to": "À",
@@ -1549,7 +1550,7 @@
     "use_character_number_hypen_only": "Utilisez uniquement des caractères, des chiffres et des tirets",
     "footer_column_position": "Position de la colonne du pied de page",
     "choose_landing_page": "Choisissez la page de destination",
-    "no_1_job_portal_home_2": "Trouvez des <span class='tw-font-bold tw-text-lime-200'> emplois qui vous inspirent<\/span>",
+    "no_1_job_portal_home_2": "Trouvez des emplois qui vous inspirent<\/span>",
     "no_1_job_portal_home_3": "Trouvez des <span class='tw-font-bold tw-text-lime-200'> emplois qui vous inspirent<\/span>",
     "job_seekers_stats": "Découvrez l'emploi de vos rêves dès aujourd'hui. Parcourez des milliers d'opportunités et laissez-nous vous accompagner pour obtenir votre prochain poste en toute simplicité.",
     "create_profile": "Créer un profil",

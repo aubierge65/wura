@@ -539,7 +539,28 @@ class WebsiteController extends Controller
             return back();
         }
     }
+    public function services()
+    {
+        try {
+         
 
+            return view('frontend.pages.services');
+        } catch (\Exception $e) {
+            flashError('An error occurred: ' . $e->getMessage());
+
+            return back();
+        }
+    }
+    public function service()
+    {
+        try {
+            return view('frontend.pages.all-service');
+        } catch (\Exception $e) {
+            flashError('An error occurred: ' . $e->getMessage());
+
+            return back();
+        }
+    }
     /**
      * Plan page
      *

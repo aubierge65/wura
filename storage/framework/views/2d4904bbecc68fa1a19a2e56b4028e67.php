@@ -99,9 +99,30 @@
             </div><!-- /.row -->
         </div><!-- /.container -->
     </div><!-- /.footer-top -->
+    <div class=" bg-gray-900 py-3">
+        <div class="container">
+            <div class="text-center text-gray-500">
+                <a href="<?php echo e(route('website.privacyPolicy')); ?>" class="text-gray-500 mx-2"><?php echo e(__('privacy_policy')); ?></a> |
+                <a href="<?php echo e(route('website.termsCondition')); ?>" class="text-gray-500 mx-2"><?php echo e(__('terms_condition')); ?></a> |
+                <a href="https://wura.africa/mention-legale" class="text-gray-500 mx-2"><?php echo e(__('mention-legale')); ?></a>
+            </div>
+        </div>
+    </div>
     <div class="footer-bottom bg-gray-900">
         <div class="container">
             <div class="row align-items-center">
+                <div class="col-12 text-center my-3 text-white mb-2">
+                    <p class="f-size-14">Nouvelles Entreprises :
+                        <span>
+                            <a href="#" class="letter-link">A</a>
+                            <a href="#" class="letter-link">B</a>
+                            <a href="#" class="letter-link">C</a>
+                            <!-- Continuez avec le reste des lettres et chiffres -->
+                            <a href="#" class="letter-link">1-9</a>
+                        </span>
+                    </p>
+
+                </div>
                 <div class="col-lg-6 text-center text-lg-start f-size-14 text-gray-500">
                     <?php if (isset($component)) { $__componentOriginal3d3a2a154c37220f944698284f758b7a = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal3d3a2a154c37220f944698284f758b7a = $attributes; } ?>
@@ -238,8 +259,8 @@
 
 <?php $__env->startSection('style'); ?>
 <style>
-    .rt-usefulllinks2{
-        color: green!important;
+    .rt-usefulllinks2 {
+        color: green !important;
         font-size: 10px;
     }
 </style>

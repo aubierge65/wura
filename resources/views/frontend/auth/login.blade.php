@@ -313,6 +313,9 @@
         </div>
     </div>
 @endsection
+
+@section('footer')
+@endsection
 @section('script')
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <script>

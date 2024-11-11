@@ -1,0 +1,72 @@
+<?php $__env->startSection('title'); ?>
+<?php echo e(__('refund_policy')); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('main'); ?>
+<div class="breadcrumbs-custom breadcrumbs-height">
+    <div class="container">
+        <div class="breadcrumb-menu">
+            <h6 class="f-size-18 m-0" style="display: inline-flex; align-items: center;">
+                <i class="ph ph-arrow-right f-size-25" style="margin-right: 8px;"></i>
+                <?php echo e(__('refund_policy')); ?>
+
+            </h6>
+            <ul>
+                <li><a href="<?php echo e(route('website.home')); ?>"><?php echo e(__('home')); ?></a></li>
+                <li>/</li>
+                <li><?php echo e(__('refund_policy')); ?></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<section class="terms-condition ">
+    <div class="container">
+        <div class="row">
+            <div class=" col-lg-12 order-1 order-lg-0 rt-mb-lg-20">
+                <div>
+                    <div class="rt-spacer-50"></div>
+                    <div class="privacy-page body-font-3 text-gray-500 rt-mb-24">
+                        <?php echo $page == null ? $page_default->refund_page : $page; ?>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- <?php if (isset($component)) { $__componentOriginalf832c0f0b551a3ae4f576bd7e1fda30a = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalf832c0f0b551a3ae4f576bd7e1fda30a = $attributes; } ?>
+<?php $component = App\View\Components\Website\SubscribeNewsletter::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('website.subscribe-newsletter'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(App\View\Components\Website\SubscribeNewsletter::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalf832c0f0b551a3ae4f576bd7e1fda30a)): ?>
+<?php $attributes = $__attributesOriginalf832c0f0b551a3ae4f576bd7e1fda30a; ?>
+<?php unset($__attributesOriginalf832c0f0b551a3ae4f576bd7e1fda30a); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalf832c0f0b551a3ae4f576bd7e1fda30a)): ?>
+<?php $component = $__componentOriginalf832c0f0b551a3ae4f576bd7e1fda30a; ?>
+<?php unset($__componentOriginalf832c0f0b551a3ae4f576bd7e1fda30a); ?>
+<?php endif; ?> -->
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('css'); ?>
+<style>
+    .breadcrumbs-custom {
+        padding: 20px;
+        background-color: var(--gray-50);
+        transition: all 0.24s ease-in-out;
+        height: 12vh;
+    }
+</style>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('frontend.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /opt/lampp/htdocs/MEGATECH/wura1/resources/views/frontend/pages/refund-policy.blade.php ENDPATH**/ ?>

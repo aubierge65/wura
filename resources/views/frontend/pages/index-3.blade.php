@@ -19,7 +19,10 @@ $data = metaData('home');
     <div class="container">
         <div class="tw-flex tw-justify-center tw-items-center tw-relative tw-z-50">
             <div class="tw-max-w-3xl tw-text-white tw-text-center">
-                <h1 class="tw-text-white">{!! __('no_1_job_portal_home_3') !!}</h1>
+                <h1 class="tw-text-white">
+                    {!! __('no_1_job_portal_home_3') !!}
+                    <span id="dynamic-text" class="tw-font-bold tw-text-lime-200">{!! __('benefit_words') !!}</span>
+                </h1>
                 <p>{{ __('job_seekers_stats') }}</p>
                 <form action="{{ route('website.job') }}" method="GET" id="job_search_form" style="margin-top:10%!important">
                     <div class="jobsearchBox d-flex flex-column flex-md-row bg-gray-10 input-transparent rt-mb-24"
@@ -399,31 +402,27 @@ $data = metaData('home');
 <!-- google adsense area end -->
 <!-- top companaies -->
 @if ($top_companies && count($top_companies) > 0)
-@if (!auth('user')->check() || (auth('user')->check() && authUser()->role == 'candidate'))
-<section class=" tw-bg-primary-50 md:tw-py-20 tw-py-12">
+<section class="md:tw-py-20 tw-py-12">
     <div class="container">
         <div class="row md:tw-pb-12 tw-pb-8">
             <div class="col-12">
                 <div class="d-flex flex-wrap">
                     <div class="flex-grow-1">
                         <h4>
-                            <!-- {{ __('top') }} -->
-                            <span
-                                class="text-primary-700 tw-text-3xl has-title-shape">{{ __('companies') }}
-                                <img src="{{ asset('frontend') }}/assets/images/all-img/title-shape.png"
-                                    alt="">
+                            <span class="text-primary-700 tw-text-3xl has-title-shape">
+                                Explorez des entreprises inspirantes.
+                                <img src="{{ asset('frontend') }}/assets/images/all-img/title-shape.png" alt="">
                             </span>
                         </h4>
+                        <p>Découvrez les coulisses de votre future entreprise</p>
                     </div>
                     <a href="{{ route('website.company') }}" class="flex-grow-0 rt-pt-md-10">
                         <button class="btn btn-primary">
-                            <span class="button-content-wrapper ">
+                            <span class="button-content-wrapper">
                                 <span class="button-icon align-icon-right">
                                     <i class="ph-arrow-right"></i>
                                 </span>
-                                <span>
-                                    {{ __('view_all') }}
-                                </span>
+                                <span>{{ __('view_all') }}</span>
                             </span>
                         </button>
                     </a>
@@ -432,33 +431,45 @@ $data = metaData('home');
         </div>
         <div class="row">
             @foreach ($top_companies as $company)
-            <div class="col-xl-3 col-md-4 fade-in-bottom  condition_class rt-mb-24 tw-self-stretch">
+            <div class="col-xl-3 col-md-4 mb-4">
                 <a href="{{ route('website.employe.details', $company->user->username) }}"
                     class="card jobcardStyle1 tw-h-full hover:!-tw-translate-y-1">
-                    <div class="tw-p-6 tw-flex tw-flex-col tw-gap-1.5">
-                        <div class="tw-w-14 tw-h-14 tw-rounded-lg">
-                            <img class="tw-w-full tw-h-full tw-object-cover tw-rounded-lg"
-                                src="{{ $company->logo_url }}" alt="" draggable="false">
+
+                    <!-- Section de l'image de la bannière -->
+                    <div class="card-img-top position-relative" style="height: 18vh;">
+                        <img src="{{ $company->banner_url }}"
+                            alt="{{ $company->user->name }}"
+                            class="tw-w-full tw-h-full tw-object-cover tw-rounded-lg">
+
+                        <!-- Logo sur la limite en bas à gauche -->
+                        <img src="{{ $company->logo_url }}"
+                            alt="Company Logo"
+                            class="logo-bottom-left"
+                            style="position: absolute; bottom:-30%; left: 20px; width: 80px; height: 70px; border-radius: 0; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+                    </div>
+
+                    <!-- Section du corps de la carte -->
+                    <div class="card-body carte tw-flex tw-flex-col">
+                        <h5 class="tw-text-lg tw-font-medium tw-text-[#191F33] mt-4">{{ $company->user->name }}</h5>
+                        <div class="">
+                            <span class="badge bg-primary-50 tw-text-xs tw-font-medium text-dark">
+                                {{ $company->industry->name ?? '' }}
+                            </span>
                         </div>
-                        <div>
-                            <div class="">
-                                <span
-                                    class="tw-text-[#191F33] tw-text-base tw-font-medium">{{ $company->user->name }}</span>
+                        <p class="tw-text-sm text-gray-400 tw-mb-6">
+                            <i class="ph-map-pin"></i> {{ $company->country }}
+                        </p>
+                        <p class="tw-text-sm text-gray-400 tw-mb-7">
+                            <i class="ph-users-three"></i> {{ $company->team_size ? $company->team_size->name : 'Non spécifié' }}
+                        </p>
+                        <div class="d-flex justify-content-between mt-4">
+                            <div class="tw-text-sm text-gray-500">
+                                {{ $company->jobs_count }} {{ __('open_position') }}
+
                             </div>
-                            <span
-                                class="tw-inline-flex tw-text-sm tw-gap-1 tw-items-center text-gray-400 ">
-                                <i class="ph-map-pin"></i>
-                                {{ $company->country }}
-                            </span>
-                        </div>
-                        <div class="tw-flex tw-flex-wrap tw-gap-1.5">
-                            <span
-                                class="tw-px-2 tw-py-0.5 tw-inline-block tw-text-xs tw-font-medium tw-text-[#474C54] tw-rounded-[52px] tw-bg-primary-50 ll-primary-border">
-                                {{ $company?->industry?->name ?? '' }}
-                            </span>
-                            <span
-                                class="tw-px-2 tw-py-0.5 tw-inline-block tw-text-xs tw-font-medium tw-text-[#474C54] tw-rounded-[52px] tw-bg-primary-50 ll-primary-border">{{ $company->jobs_count }}
-                                {{ __('open_position') }}</span>
+                            <button class="btn btn-primary tw-text-xs tw-font-medium" style="height: 30px; padding: 0 10px;">
+                                {{__('follow')}}
+                            </button>
                         </div>
                     </div>
                 </a>
@@ -468,7 +479,7 @@ $data = metaData('home');
     </div>
 </section>
 @endif
-@endif
+
 <!--Testimonials section-->
 <section class="md:tw-py-20 tw-py-12">
     <div class="container">
@@ -531,7 +542,7 @@ $data = metaData('home');
                             @endfor
                     </div>
 
-                
+
                     <!-- Section utilisateur avec image, nom et poste -->
                     <div class="rt-single-icon-box">
                         <div class="icon-thumb rt-mr-12">
@@ -569,6 +580,18 @@ $data = metaData('home');
 <x-map.leaflet.autocomplete_links />
 @include('map::links')
 <style>
+    .tw-mb-6 {
+        margin-top: 0.5rem;
+    }
+
+    .tw-mb-7 {
+        margin-top: -20px;
+    }
+
+    .card .carte {
+        margin-left: -5px;
+    }
+
     .hero-section-3 {
         padding: 100px 0;
         background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
@@ -644,6 +667,25 @@ $data = metaData('home');
 
 @section('script')
 <script>
+    // Tableau de valeurs à afficher après 5 secondes
+    const dynamicValues = [
+        'Goodness',
+        'Excellence',
+        'Success',
+        'Innovation',
+        'Growth'
+    ];
+
+    let currentIndex = 0;
+
+    // Fonction pour changer le texte toutes les 5 secondes
+    setInterval(function() {
+        const dynamicTextElement = document.getElementById('dynamic-text');
+        dynamicTextElement.textContent = dynamicValues[currentIndex];
+
+        // Passer à l'élément suivant dans le tableau
+        currentIndex = (currentIndex + 1) % dynamicValues.length; // Retour à zéro après la dernière valeur
+    }, 5000);
     /** For all categorie slide */
     $(document).ready(function() {
         $('.category-slider').slick({
