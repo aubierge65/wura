@@ -44,7 +44,7 @@ Services
             </div>
         </div>
         <div class="row">
-            <div class="col-xl-4 col-lg-4 col-md-6 rt-mb-24">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
                 <div class="single-price-table mb-4 mb-md-0 ">
                     <div class="price-header">
                         <h6 class="rt-mb-10">Argent</h6>
@@ -240,20 +240,22 @@ Services
                         </ul>
                     </div>
                     <div class="price-footer">
-                        <button type="button" class="btn btn-primary-50 d-block">
-                            <span class="button-content-wrapper ">
+                        <button type="button" class="btn btn-primary-50 d-block"
+                            data-plan="Argent"
+                            data-amount="30000"
+                            onclick="openEntrevueModal(this)">
+                            <span class="button-content-wrapper">
                                 <span class="button-icon align-icon-right">
                                     <i class="ph-arrow-right"></i>
                                 </span>
-                                <span class="button-text">
-                                    Choisir
-                                </span>
+                                <span class="button-text">Choisir</span>
                             </span>
                         </button>
+
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-6 rt-mb-24">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
                 <div class="single-price-table mb-4 mb-md-0 ">
                     <div class="price-header">
                         <h6 class="rt-mb-10">Bronze</h6>
@@ -459,7 +461,7 @@ Services
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-6 rt-mb-24">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
                 <div class="single-price-table mb-4 mb-md-0 ">
                     <div class="price-header">
                         <h6 class="rt-mb-10">Or</h6>
@@ -661,7 +663,7 @@ Services
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-6 rt-mb-24">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
                 <div class="single-price-table mb-4 mb-md-0 ">
                     <div class="price-header">
                         <h6 class="rt-mb-10">Diamant</h6>
@@ -1135,6 +1137,40 @@ Services
         </div>
     </div>
 </section>
+<div class="modal fade" id="entrevueModal" tabindex="-1" aria-labelledby="entrevueModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="entrevueModalLabel">Informations de Contact</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="contactEntrevueForm">
+                    <input type="hidden" id="plan" name="plan">
+                    <input type="hidden" id="amount" name="amount">
+
+                    <?php echo csrf_field(); ?>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nom et Prénom(s) <span style="color:red!important;">*</span></label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Adresse Email <span style="color:red!important;">*</span></label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="contact" class="form-label">Numéro de Téléphone <span style="color:red!important;">*</span></label>
+                        <input type="tel" class="form-control" id="contact" name="contact" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" onclick="sendNotification()">Envoyer la demande</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Modal -->
 <!-- Premier Modal pour les Options -->
@@ -1147,6 +1183,7 @@ Services
             </div>
             <div class="modal-body">
                 <form id="extraOptionsForm">
+                    <?php echo csrf_field(); ?>
                     <!-- Choix du type de montant -->
                     <div class="mb-3">
                         <h5 class="form-label font-weight-bold">Quel type de montant préférez-vous ?</h5>
@@ -1221,30 +1258,28 @@ Services
             </div>
             <div class="modal-body">
                 <form id="contactForm">
+                    <?php echo csrf_field(); ?>
                     <div class="mb-3">
-                        <label for="customerName" class="form-label">Nom et Prénom</label>
+                        <label for="customerName" class="form-label">Nom et Prénom(s) <span style="color:red!important;">*</span></label>
                         <input type="text" class="form-control" id="customerName" required>
                     </div>
                     <div class="mb-3">
-                        <label for="customerEmail" class="form-label">Adresse Email</label>
+                        <label for="customerEmail" class="form-label">Adresse Email <span style="color:red!important;">*</span></label>
                         <input type="email" class="form-control" id="customerEmail" required>
                     </div>
                     <div class="mb-3">
-                        <label for="customerPhone" class="form-label">Numéro de Téléphone</label>
+                        <label for="customerPhone" class="form-label">Numéro de Téléphone <span style="color:red!important;">*</span></label>
                         <input type="tel" class="form-control" id="customerPhone" required>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                <button type="button" class="btn btn-primary" onclick="sendOrderDetails()">Envoyer la commande</button>
+                <button type="button" class="btn btn-primary" onclick="saveOptions()">Envoyer la commande</button>
             </div>
         </div>
     </div>
 </div>
-
-
-
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('css'); ?>
@@ -1337,6 +1372,47 @@ Services
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('script'); ?>
 <script>
+    function openEntrevueModal(button) {
+    // Récupérer les informations du plan et du montant depuis le bouton
+    const plan = button.getAttribute('data-plan');
+    const amount = button.getAttribute('data-amount');
+
+    // Pré-remplir les champs cachés dans le modal
+    document.getElementById('plan').value = plan;
+    document.getElementById('amount').value = amount;
+
+    // Ouvrir le modal
+    const modal = new bootstrap.Modal(document.getElementById('entrevueModal'));
+    modal.show();
+}
+
+function sendNotification() {
+    const form = document.getElementById('contactEntrevueForm');
+    const formData = new FormData(form);
+
+    fetch('/send-entrevue-notification', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Notification envoyée avec succès');
+            const modal = bootstrap.Modal.getInstance(document.getElementById('entrevueModal'));
+            modal.hide(); // Fermer le modal
+        } else {
+            alert('Erreur lors de l\'envoi de la notification');
+        }
+    })
+    .catch(error => {
+        console.error('Erreur:', error);
+    });
+}
+
+
     function openContactModal() {
         const optionsModal = bootstrap.Modal.getInstance(document.getElementById('optionsModal'));
         optionsModal.hide();
@@ -1346,6 +1422,7 @@ Services
             contactModal.show();
         }, 300);
     }
+
     const amounts = {
         "debutant": {
             "24h": {
@@ -1423,7 +1500,6 @@ Services
     let currentPriceOption = "standard";
     let currentDeliveryTime = "24h";
 
-    // Fonction pour gérer la sélection du niveau et ouvrir le modal
     function selectCard(button) {
         currentLevel = button.getAttribute("data-level");
         const modal = new bootstrap.Modal(document.getElementById('optionsModal'));
@@ -1435,7 +1511,6 @@ Services
         const deliveryTime = document.getElementById("deliveryTime").value;
         const priceOption = document.querySelector('input[name="priceOption"]:checked').value;
         const baseAmount = amounts[currentLevel][deliveryTime][priceOption];
-
         let totalAmount = baseAmount;
 
         if (document.getElementById("englishTranslation").checked) {
@@ -1454,7 +1529,6 @@ Services
         document.getElementById("totalAmount").innerText = `${totalAmount.toFixed(2)} FCFA`;
     }
 
-    // Écouter les changements sur les options et recalculer le total
     document.addEventListener("DOMContentLoaded", function() {
         document.querySelectorAll('input[name="priceOption"]').forEach(input => {
             input.addEventListener('change', calculateTotal);
@@ -1463,11 +1537,10 @@ Services
             checkbox.addEventListener('change', calculateTotal);
         });
         document.getElementById("deliveryTime").addEventListener('change', function() {
-            currentDeliveryTime = this.value; // Mettre à jour le délai sélectionné
-            calculateTotal(); // Recalculer le montant dès que le délai change
+            currentDeliveryTime = this.value;
+            calculateTotal();
         });
     });
-
 
     function saveOptions() {
         const optionsData = {
@@ -1481,13 +1554,13 @@ Services
             totalAmount: document.getElementById("totalAmount").innerText
         };
 
-        // Collecte des informations de contact
-        const contactEmail = document.getElementById("contactEmail").value;
-        const contactPhone = document.getElementById("contactPhone").value;
+        const contactName = document.getElementById("customerName").value;
+        const contactEmail = document.getElementById("customerEmail").value;
+        const contactPhone = document.getElementById("customerPhone").value;
 
-        // Combine les données d'options et de contact
         const formData = {
             ...optionsData,
+            contactName,
             contactEmail,
             contactPhone
         };
@@ -1495,7 +1568,8 @@ Services
         fetch('/send-email-to-admin', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Correct ici
                 },
                 body: JSON.stringify(formData)
             })
@@ -1503,6 +1577,8 @@ Services
             .then(data => {
                 if (data.success) {
                     alert('Commande envoyée avec succès!');
+                    const contactModal = bootstrap.Modal.getInstance(document.getElementById('contactModal'));
+                    contactModal.hide();
                 } else {
                     alert('Erreur lors de l\'envoi de la commande.');
                 }
@@ -1511,7 +1587,12 @@ Services
                 console.error('Erreur:', error);
                 alert('Une erreur est survenue.');
             });
+
     }
+
+    // document.getElementById("contactModal").addEventListener("shown.bs.modal", function () {
+    //     document.getElementById("sendOrderButton").addEventListener("click", saveOptions);
+    // });
 </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('frontend.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /opt/lampp/htdocs/MEGATECH/wura1/resources/views/frontend/pages/services.blade.php ENDPATH**/ ?>

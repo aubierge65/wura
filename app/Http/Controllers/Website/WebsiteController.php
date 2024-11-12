@@ -22,6 +22,7 @@ use Modules\Blog\Entities\Post;
 use Modules\Plan\Entities\Plan;
 use App\Http\Traits\CandidateAble;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Srmklive\PayPal\Services\PayPal;
 use Illuminate\Support\Facades\Cache;
@@ -44,6 +45,7 @@ use App\Services\Website\RefundPolicyService;
 use Modules\Testimonial\Entities\Testimonial;
 use App\Services\Website\PrivacyPolicyService;
 use App\Services\Website\TermsConditionService;
+use App\Notifications\EntrevueServiceNotification;
 use App\Services\Website\Company\CompanyListService;
 use App\Services\Website\Company\CompanyDetailsService;
 use Modules\Currency\Entities\Currency as CurrencyModel;
@@ -743,7 +745,7 @@ class WebsiteController extends Controller
     }
 
 
-    public function sendEmailToAdmin(Request $request)
+    public function sendCVEmailToAdmin(Request $request)
     {
         try {
             $formData = $request->all(); 
@@ -767,6 +769,28 @@ class WebsiteController extends Controller
         }
     }
     
+    public function sendEntrevueNotification(Request $request)
+    {
+        try {
+            $formData = $request->all();
+            $adminEmail = config('mail.admin_address'); 
+    
+            Notification::route('mail', $adminEmail)->notify(new EntrevueServiceNotification($formData));
+    
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            Log::error('Erreur lors de l\'envoi de l\'email à l\'administrateur : ' . $e->getMessage(), [
+                'exception' => $e,
+                'formData' => $formData,
+            ]);
+    
+            // Retourner une réponse d'erreur
+            return response()->json([
+                'success' => false,
+                'message' => 'Une erreur est survenue lors de l\'envoi de l\'email.',
+            ], 500);
+        }
+    }
 
     public function register($role)
     {

@@ -46,7 +46,7 @@ Services
             </div>
         </div>
         <div class="row">
-            <div class="col-xl-4 col-lg-4 col-md-6 rt-mb-24">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
                 <div class="single-price-table mb-4 mb-md-0 ">
                     <div class="price-header">
                         <h6 class="rt-mb-10">Argent</h6>
@@ -242,20 +242,22 @@ Services
                         </ul>
                     </div>
                     <div class="price-footer">
-                        <button type="button" class="btn btn-primary-50 d-block">
-                            <span class="button-content-wrapper ">
+                        <button type="button" class="btn btn-primary-50 d-block"
+                            data-plan="Argent"
+                            data-amount="30000"
+                            onclick="openEntrevueModal(this)">
+                            <span class="button-content-wrapper">
                                 <span class="button-icon align-icon-right">
                                     <i class="ph-arrow-right"></i>
                                 </span>
-                                <span class="button-text">
-                                    Choisir
-                                </span>
+                                <span class="button-text">Choisir</span>
                             </span>
                         </button>
+
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-6 rt-mb-24">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
                 <div class="single-price-table mb-4 mb-md-0 ">
                     <div class="price-header">
                         <h6 class="rt-mb-10">Bronze</h6>
@@ -461,7 +463,7 @@ Services
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-6 rt-mb-24">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
                 <div class="single-price-table mb-4 mb-md-0 ">
                     <div class="price-header">
                         <h6 class="rt-mb-10">Or</h6>
@@ -663,7 +665,7 @@ Services
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-6 rt-mb-24">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
                 <div class="single-price-table mb-4 mb-md-0 ">
                     <div class="price-header">
                         <h6 class="rt-mb-10">Diamant</h6>
@@ -1137,6 +1139,40 @@ Services
         </div>
     </div>
 </section>
+<div class="modal fade" id="entrevueModal" tabindex="-1" aria-labelledby="entrevueModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="entrevueModalLabel">Informations de Contact</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="contactEntrevueForm">
+                    <input type="hidden" id="plan" name="plan">
+                    <input type="hidden" id="amount" name="amount">
+
+                    @csrf
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nom et Prénom(s) <span style="color:red!important;">*</span></label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Adresse Email <span style="color:red!important;">*</span></label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="contact" class="form-label">Numéro de Téléphone <span style="color:red!important;">*</span></label>
+                        <input type="tel" class="form-control" id="contact" name="contact" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" onclick="sendNotification()">Envoyer la demande</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Modal -->
 <!-- Premier Modal pour les Options -->
@@ -1149,7 +1185,7 @@ Services
             </div>
             <div class="modal-body">
                 <form id="extraOptionsForm">
-                @csrf
+                    @csrf
                     <!-- Choix du type de montant -->
                     <div class="mb-3">
                         <h5 class="form-label font-weight-bold">Quel type de montant préférez-vous ?</h5>
@@ -1224,7 +1260,7 @@ Services
             </div>
             <div class="modal-body">
                 <form id="contactForm">
-                @csrf
+                    @csrf
                     <div class="mb-3">
                         <label for="customerName" class="form-label">Nom et Prénom(s) <span style="color:red!important;">*</span></label>
                         <input type="text" class="form-control" id="customerName" required>
@@ -1338,6 +1374,47 @@ Services
 @endsection
 @section('script')
 <script>
+    function openEntrevueModal(button) {
+    // Récupérer les informations du plan et du montant depuis le bouton
+    const plan = button.getAttribute('data-plan');
+    const amount = button.getAttribute('data-amount');
+
+    // Pré-remplir les champs cachés dans le modal
+    document.getElementById('plan').value = plan;
+    document.getElementById('amount').value = amount;
+
+    // Ouvrir le modal
+    const modal = new bootstrap.Modal(document.getElementById('entrevueModal'));
+    modal.show();
+}
+
+function sendNotification() {
+    const form = document.getElementById('contactEntrevueForm');
+    const formData = new FormData(form);
+
+    fetch('/send-entrevue-notification', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Notification envoyée avec succès');
+            const modal = bootstrap.Modal.getInstance(document.getElementById('entrevueModal'));
+            modal.hide(); // Fermer le modal
+        } else {
+            alert('Erreur lors de l\'envoi de la notification');
+        }
+    })
+    .catch(error => {
+        console.error('Erreur:', error);
+    });
+}
+
+
     function openContactModal() {
         const optionsModal = bootstrap.Modal.getInstance(document.getElementById('optionsModal'));
         optionsModal.hide();
@@ -1491,11 +1568,11 @@ Services
         };
 
         fetch('/send-email-to-admin', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Correct ici
-        },
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Correct ici
+                },
                 body: JSON.stringify(formData)
             })
             .then(response => response.json())
@@ -1514,7 +1591,7 @@ Services
             });
 
     }
-    
+
     // document.getElementById("contactModal").addEventListener("shown.bs.modal", function () {
     //     document.getElementById("sendOrderButton").addEventListener("click", saveOptions);
     // });

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<?php echo $__env->yieldContent('description'); ?>">
     <meta property="og:image" content="<?php echo $__env->yieldContent('og:image'); ?>">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
     
     <title><?php echo $__env->yieldContent('title'); ?> - <?php echo e(config('app.name')); ?></title>
 
