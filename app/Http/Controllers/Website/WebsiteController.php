@@ -742,16 +742,31 @@ class WebsiteController extends Controller
         }
     }
 
+
     public function sendEmailToAdmin(Request $request)
     {
-        $formData = $request->all(); 
-
-        $adminEmail = config('mail.admin_address'); 
-
-        Notification::route('mail', $adminEmail)->notify(new CVServiceNotification($formData));
-
-        return response()->json(['success' => true]);
+        try {
+            $formData = $request->all(); 
+            $adminEmail = config('mail.admin_address'); 
+    
+            Notification::route('mail', $adminEmail)->notify(new CVServiceNotification($formData));
+    
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            // Enregistrer l'erreur dans les logs
+            Log::error('Erreur lors de l\'envoi de l\'email à l\'administrateur : ' . $e->getMessage(), [
+                'exception' => $e,
+                'formData' => $formData,
+            ]);
+    
+            // Retourner une réponse d'erreur
+            return response()->json([
+                'success' => false,
+                'message' => 'Une erreur est survenue lors de l\'envoi de l\'email.',
+            ], 500);
+        }
     }
+    
 
     public function register($role)
     {

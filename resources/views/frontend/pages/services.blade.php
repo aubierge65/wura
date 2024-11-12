@@ -1149,6 +1149,7 @@ Services
             </div>
             <div class="modal-body">
                 <form id="extraOptionsForm">
+                @csrf
                     <!-- Choix du type de montant -->
                     <div class="mb-3">
                         <h5 class="form-label font-weight-bold">Quel type de montant préférez-vous ?</h5>
@@ -1207,7 +1208,7 @@ Services
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                <button type="button" class="btn btn-primary" onclick="openContactModal()">Commandez maintenant</button>
+                <button type="button" class="btn btn-primary" onclick="openContactModal()">Commander maintenant</button>
             </div>
         </div>
     </div>
@@ -1223,30 +1224,28 @@ Services
             </div>
             <div class="modal-body">
                 <form id="contactForm">
+                @csrf
                     <div class="mb-3">
-                        <label for="customerName" class="form-label">Nom et Prénom</label>
+                        <label for="customerName" class="form-label">Nom et Prénom(s) <span style="color:red!important;">*</span></label>
                         <input type="text" class="form-control" id="customerName" required>
                     </div>
                     <div class="mb-3">
-                        <label for="customerEmail" class="form-label">Adresse Email</label>
+                        <label for="customerEmail" class="form-label">Adresse Email <span style="color:red!important;">*</span></label>
                         <input type="email" class="form-control" id="customerEmail" required>
                     </div>
                     <div class="mb-3">
-                        <label for="customerPhone" class="form-label">Numéro de Téléphone</label>
+                        <label for="customerPhone" class="form-label">Numéro de Téléphone <span style="color:red!important;">*</span></label>
                         <input type="tel" class="form-control" id="customerPhone" required>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                <button type="button" class="btn btn-primary" onclick="sendOrderDetails()">Envoyer la commande</button>
+                <button type="button" class="btn btn-primary" onclick="saveOptions()">Envoyer la commande</button>
             </div>
         </div>
     </div>
 </div>
-
-
-
 @endsection
 
 @section('css')
@@ -1348,6 +1347,7 @@ Services
             contactModal.show();
         }, 300);
     }
+
     const amounts = {
         "debutant": {
             "24h": {
@@ -1425,7 +1425,6 @@ Services
     let currentPriceOption = "standard";
     let currentDeliveryTime = "24h";
 
-    // Fonction pour gérer la sélection du niveau et ouvrir le modal
     function selectCard(button) {
         currentLevel = button.getAttribute("data-level");
         const modal = new bootstrap.Modal(document.getElementById('optionsModal'));
@@ -1437,7 +1436,6 @@ Services
         const deliveryTime = document.getElementById("deliveryTime").value;
         const priceOption = document.querySelector('input[name="priceOption"]:checked').value;
         const baseAmount = amounts[currentLevel][deliveryTime][priceOption];
-
         let totalAmount = baseAmount;
 
         if (document.getElementById("englishTranslation").checked) {
@@ -1456,7 +1454,6 @@ Services
         document.getElementById("totalAmount").innerText = `${totalAmount.toFixed(2)} FCFA`;
     }
 
-    // Écouter les changements sur les options et recalculer le total
     document.addEventListener("DOMContentLoaded", function() {
         document.querySelectorAll('input[name="priceOption"]').forEach(input => {
             input.addEventListener('change', calculateTotal);
@@ -1465,11 +1462,10 @@ Services
             checkbox.addEventListener('change', calculateTotal);
         });
         document.getElementById("deliveryTime").addEventListener('change', function() {
-            currentDeliveryTime = this.value; // Mettre à jour le délai sélectionné
-            calculateTotal(); // Recalculer le montant dès que le délai change
+            currentDeliveryTime = this.value;
+            calculateTotal();
         });
     });
-
 
     function saveOptions() {
         const optionsData = {
@@ -1483,29 +1479,31 @@ Services
             totalAmount: document.getElementById("totalAmount").innerText
         };
 
-        // Collecte des informations de contact
-        const contactEmail = document.getElementById("contactEmail").value;
-        const contactPhone = document.getElementById("contactPhone").value;
+        const contactName = document.getElementById("customerName").value;
+        const contactEmail = document.getElementById("customerEmail").value;
+        const contactPhone = document.getElementById("customerPhone").value;
 
-        // Combine les données d'options et de contact
         const formData = {
             ...optionsData,
+            contactName,
             contactEmail,
             contactPhone
         };
 
-        // Envoi de la requête AJAX pour envoyer l'email
         fetch('/send-email-to-admin', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Correct ici
+        },
                 body: JSON.stringify(formData)
             })
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
                     alert('Commande envoyée avec succès!');
+                    const contactModal = bootstrap.Modal.getInstance(document.getElementById('contactModal'));
+                    contactModal.hide();
                 } else {
                     alert('Erreur lors de l\'envoi de la commande.');
                 }
@@ -1514,6 +1512,11 @@ Services
                 console.error('Erreur:', error);
                 alert('Une erreur est survenue.');
             });
+
     }
+    
+    // document.getElementById("contactModal").addEventListener("shown.bs.modal", function () {
+    //     document.getElementById("sendOrderButton").addEventListener("click", saveOptions);
+    // });
 </script>
 @endsection
