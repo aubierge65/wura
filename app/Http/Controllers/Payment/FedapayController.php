@@ -62,8 +62,6 @@ class FedapayController extends Controller
         return redirect()->away($token->url);
 
 
-
-
         if (isset($customer) && $customer != null) {
 
             session()->flash('error', 'Unable to find the approval link. Please try again later.');

@@ -491,20 +491,14 @@ $data = metaData('home');
                 <a href="<?php echo e(route('website.employe.details', $company->user->username)); ?>"
                     class="card jobcardStyle1 tw-h-full hover:!-tw-translate-y-1">
 
-                    <!-- Section de l'image de la bannière -->
                     <div class="card-img-top position-relative" style="height: 18vh;">
-                        <img src="<?php echo e($company->banner_url); ?>"
-                            alt="<?php echo e($company->user->name); ?>"
+                        <img src="<?php echo e($company->banner_url); ?>" alt="<?php echo e($company->user->name); ?>"
                             class="tw-w-full tw-h-full tw-object-cover tw-rounded-lg">
-
-                        <!-- Logo sur la limite en bas à gauche -->
-                        <img src="<?php echo e($company->logo_url); ?>"
-                            alt="Company Logo"
+                        <img src="<?php echo e($company->logo_url); ?>" alt="Company Logo"
                             class="logo-bottom-left"
                             style="position: absolute; bottom:-30%; left: 20px; width: 80px; height: 70px; border-radius: 0; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
                     </div>
 
-                    <!-- Section du corps de la carte -->
                     <div class="card-body carte tw-flex tw-flex-col">
                         <h5 class="tw-text-lg tw-font-medium tw-text-[#191F33] mt-4"><?php echo e($company->user->name); ?></h5>
                         <div class="">
@@ -525,18 +519,28 @@ $data = metaData('home');
                             <div class="tw-text-sm text-gray-500">
                                 <?php echo e($company->jobs_count); ?> <?php echo e(__('open_position')); ?>
 
-
                             </div>
-                            <button class="btn btn-primary tw-text-xs tw-font-medium" style="height: 30px; padding: 0 10px;">
-                                <?php echo e(__('follow')); ?>
 
-                            </button>
                         </div>
                     </div>
                 </a>
+
+                <?php if(auth('user')->check() && auth()->user()->role == 'candidate'): ?>
+                <!-- Votre bouton de suivi -->
+                <button class="tw-text-xs tw-font-medium follow-btn" data-company-id="<?php echo e($company->id); ?>" style="height: 30px;">
+                    Suivre
+                </button>
+                <?php else: ?>
+                <!-- Si l'utilisateur n'est pas authentifié ou n'a pas le rôle 'candidate', on peut le rediriger -->
+                <a href="<?php echo e(route('login')); ?>" class="btn btn-primary tw-text-xs tw-font-medium">
+                    <!-- <?php echo e(__('You must be logged in as a candidate to follow this company')); ?> -->
+                </a>
+                <?php endif; ?>
+
             </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
+
     </div>
 </section>
 <?php endif; ?>
@@ -591,12 +595,12 @@ $data = metaData('home');
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div> -->
         <div class="testimonail_active slick-bullet deafult_style_dot">
-            <?php $__currentLoopData = $top_companies; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $company): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php $__currentLoopData = $testimonials; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $testimonial): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="single-item">
                 <div class="testimonals-box">
                     <!-- Affichage dynamique des étoiles en fonction du nombre défini dans $company->stars -->
                     <div class="rt-mb-12">
-                        <?php for($i = 0; $i < $company->stars; $i++): ?>
+                        <?php for($i = 0; $i < $testimonial->stars; $i++): ?>
                             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M12.9241 4.51321C13.3643 3.62141 14.636 3.62141 15.0762 4.51321L17.3262 9.07149C17.5009 9.42531 17.8383 9.67066 18.2287 9.72773L23.2623 10.4635C24.2462 10.6073 24.6383 11.8167 23.926 12.5105L20.2856 16.0562C20.0026 16.3319 19.8734 16.7292 19.9402 17.1187L20.7991 22.1264C20.9672 23.1068 19.9382 23.8543 19.0578 23.3913L14.5587 21.0253C14.209 20.8414 13.7913 20.8414 13.4416 21.0253L8.94252 23.3913C8.06217 23.8543 7.03311 23.1068 7.20125 22.1264L8.06013 17.1187C8.12693 16.7292 7.99773 16.3319 7.71468 16.0562L4.07431 12.5105C3.362 11.8167 3.75414 10.6073 4.73804 10.4635L9.7716 9.72773C10.162 9.67066 10.4995 9.42531 10.6741 9.07149L12.9241 4.51321Z"
@@ -606,22 +610,96 @@ $data = metaData('home');
                     </div>
 
 
-                    <!-- Section utilisateur avec image, nom et poste -->
                     <div class="rt-single-icon-box">
                         <div class="icon-thumb rt-mr-12">
                             <div class="userimage">
-                                <img src="<?php echo e(asset($company->logo_url)); ?>" alt="Logo <?php echo e($company->name); ?>" draggable="false" loading="lazy">
+                                <img src="<?php echo e(asset($testimonial->image)); ?>" alt="Logo <?php echo e($testimonial->name); ?>" draggable="false" loading="lazy">
                             </div>
                         </div>
                         <div class="iconbox-content">
-                            <div class="body-font-3"><?php echo e($company->user->name); ?></div>
-                            <div class="body-font-4 text-gray-400"><?php echo e($company->position); ?></div>
+                            <div class="body-font-3"><?php echo e($testimonial->name); ?></div>
+                            <div class="body-font-4 text-gray-400"><?php echo e($testimonial->position); ?></div>
                         </div>
                     </div>
                 </div>
             </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
+
+    </div>
+</section>
+<section class="md:tw-py-20 tw-py-12">
+    <div class="container">
+        <div class="row md:tw-pb-12 tw-pb-8">
+            <div class="col-12">
+                <div class="d-flex flex-wrap">
+                    <div class="flex-grow-1">
+                        <h4>
+                            <span class="text-primary-700 tw-text-3xl has-title-shape">
+                                Pourquoi nous font-ils confiance?
+                                <img src="<?php echo e(asset('frontend')); ?>/assets/images/all-img/title-shape.png"
+                                    alt="">
+                            </span>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row category-slider">
+            <?php if($testimonials->isEmpty()): ?>
+            <!-- Affichage par défaut lorsqu'il n'y a pas de témoignages -->
+            <div class="col-12 fade-in-bottom rt-mb-24 tw-self-stretch">
+                <div class="card jobcardStyle1 tw-bg-primary-50 tw-h-full tw-flex tw-justify-center tw-items-center">
+                    <div class="tw-p-6 tw-text-center">
+                        <p class="tw-text-gray-500 tw-text-lg">
+                            Aucun témoignage disponible pour le moment.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <?php else: ?>
+            <?php $__currentLoopData = $testimonials; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $testimonial): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <div class="col-xl-3 col-md-4 fade-in-bottom condition_class rt-mb-24 tw-self-stretch">
+                <a href="" class="card jobcardStyle1 tw-bg-primary-50 tw-h-full hover:!-tw-translate-y-1">
+                    <div class="tw-p-6 tw-flex tw-flex-col tw-items-center">
+                        <!-- Étoiles jaunes -->
+                        <div class="tw-flex tw-gap-1 tw-mb-3">
+                            <?php for($i = 0; $i < ($testimonial->stars ?? 0); $i++): ?>
+                                <span class="tw-text-yellow-500">&#9733;</span>
+                                <?php endfor; ?>
+                        </div>
+
+                        <!-- Description -->
+                        <p class="tw-text-gray-500 tw-text-center tw-mb-4">
+                            <?php echo e($testimonial->description ?? 'Aucune description disponible'); ?>
+
+                        </p>
+
+                        <!-- Logo et nom -->
+                        <div class="tw-flex tw-items-center tw-gap-2">
+                            <div class="tw-w-10 tw-h-10 tw-rounded-full tw-overflow-hidden">
+                                <img class="tw-w-full tw-h-full tw-object-cover"
+                                    src="<?php echo e($testimonial->image ?? asset('images/default-logo.png')); ?>"
+                                    alt="Logo de <?php echo e($testimonial->name ?? 'Utilisateur'); ?>"
+                                    draggable="false">
+                            </div>
+                            <span class="tw-text-[#191F33] tw-text-base tw-font-medium">
+                                <?php echo e($testimonial->name ?? 'Nom inconnu'); ?>
+
+                            </span>
+                        </div>
+
+                        <p class="tw-text-gray-500 tw-text-center tw-mb-4">
+                            <?php echo e($testimonial->position ?? 'Aucune description disponible'); ?>
+
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php endif; ?>
+        </div>
+
 
     </div>
 </section>
@@ -750,6 +828,45 @@ $data = metaData('home');
 
 <?php $__env->startSection('script'); ?>
 <script>
+    document.querySelectorAll('.follow-btn').forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            const companyId = this.getAttribute('data-company-id');
+            const followStatus = this.getAttribute('data-follow-status') === 'true'; // Suivi actuel (true = suivi)
+
+            fetch(`<?php echo e(route('candidate.bookmarkCompany', '')); ?>/${companyId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '<?php echo e(csrf_token()); ?>'
+                    },
+                    body: JSON.stringify({
+                        _method: 'POST'
+                    }) // Ajoutez l'option _method pour utiliser une méthode POST
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Basculer l'état du bouton
+                        if (followStatus) {
+                            this.textContent = "<?php echo e(__('Follow')); ?>";
+                            this.setAttribute('data-follow-status', 'false');
+                        } else {
+                            this.textContent = "<?php echo e(__('Unfollow')); ?>";
+                            this.setAttribute('data-follow-status', 'true');
+                        }
+                    } else {
+                        alert('An error occurred.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    });
+
+
     // Tableau de valeurs à afficher après 5 secondes
     const dynamicValues = [
         'Goodness',

@@ -20,9 +20,9 @@
             </svg>
         @endif
         <div class="notification-bar">
-            <a href="#" onclick="ReadNotification()" class="notification-header">
+            <a  href="" class="notification-header">
                 <h2>{{ __('notifications') }}</h2>
-                <p>{{ __('mark_all_as_read') }}</p>
+                <p onclick="ReadNotification()">{{ __('mark_all_as_read') }}</p>
             </a>
             <div class="devider">
             </div>
@@ -233,3 +233,6 @@
         </div>
     </div>
 </li>
+@section('script')
+
+@endsection

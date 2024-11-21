@@ -2,22 +2,23 @@
 
 namespace App;
 
-use App\Http\Controllers\Admin\PageController;
-use App\Http\Controllers\Auth\SocialLoginController;
-use App\Http\Controllers\Payment\PayPalController;
-use App\Http\Controllers\Website\CandidateController;
-use App\Http\Controllers\Website\CompanyController;
-use App\Http\Controllers\Website\CompanyVerifyDocuments;
-use App\Http\Controllers\Website\GlobalController;
-use App\Http\Controllers\Website\MessengerController;
-use App\Http\Controllers\Website\WebsiteController;
-use App\Http\Requests\EmailVerificationUpdateRequest;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Modules\Seo\Entities\Seo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Modules\Seo\Entities\Seo;
-use App\Http\Controllers\Api\CompanyController as ApiCompanyController;
+use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Payment\PayPalController;
+use App\Http\Controllers\Payment\ServicePaymentController;
+use App\Http\Controllers\Website\GlobalController;
 use App\Http\Controllers\Payment\FedapayController;
+use App\Http\Controllers\Website\CompanyController;
+use App\Http\Controllers\Website\WebsiteController;
+use App\Http\Controllers\Auth\SocialLoginController;
+use App\Http\Controllers\Website\CandidateController;
+use App\Http\Controllers\Website\MessengerController;
+use App\Http\Requests\EmailVerificationUpdateRequest;
+use App\Http\Controllers\Website\CompanyVerifyDocuments;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Controllers\Api\CompanyController as ApiCompanyController;
 
 // Route::get('/test', function () {
 //     Seo::query()->delete();
@@ -164,6 +165,8 @@ Route::controller(WebsiteController::class)->name('website.')->group(function ()
     Route::post('/send-email-to-admin', 'sendCVEmailToAdmin');
     Route::post('/send-entrevue-notification', 'sendEntrevueNotification');
     Route::get('/nos-services', 'services')->name('services');
+    Route::get('/services-pro', 'servicespro')->name('servicespro');
+
     Route::get('/service', 'service')->name('service');
     Route::get('/nos-services/coaching/{service}', 'servicesCoacg')->name('services');
     Route::get('/a-propos', 'about')->name('about');
@@ -222,6 +225,7 @@ Route::middleware('auth:user', 'verified')->group(function () {
         Route::get('dashboard', 'dashboard')->name('dashboard');
         Route::get('applied-jobs', 'appliedjobs')->name('appliedjob');
         Route::get('bookmarks', 'bookmarks')->name('bookmark');
+        Route::post('/bookmarkCompany', 'bookmarkCompany')->name('bookmarkCompany');
         Route::get('settings', 'setting')->name('setting');
         Route::put('settings/update', 'settingUpdate')->name('settingUpdate');
         Route::get('/all/notifications', 'allNotification')->name('allNotification');
@@ -344,3 +348,8 @@ Route::controller(FedapayController::class)->group(function () {
     Route::get('fedapay/cancel-transaction', 'cancelTransaction')->name('fedapay.cancelTransaction');
 });
 Route::get('/payment-from-app/{label}', [ApiCompanyController::class, 'payment']);
+
+Route::controller(ServicePaymentController::class)->group(function(){
+    Route::post('/initiate-payment',  'initiatePayment')->name('fedapay.initiate');
+    Route::get('/payment/callback', 'proccessTransactionCallback')->name('payment.callback');    
+});

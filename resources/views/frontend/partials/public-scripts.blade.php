@@ -132,35 +132,26 @@
         }
     }
 
-    // read notification by ajax
-    function ReadNotification() {
-        $.ajax({
-            url: "{{ route('user.notification.read') }}",
-            type: "POST",
-            data: {
-                _token: '{{ csrf_token() }}'
-            },
-            dataType: 'json',
-            success: function(data) {
-                $('#unNotifications').hide();
-            }
-        });
-    }
+   
     // read single notification by ajax
-    function readSingleNotification(url, id) {
-        $.ajax({
-            url: "{{ route('website.markread.notification') }}",
-            type: "POST",
-            data: {
-                id: id,
-                _token: '{{ csrf_token() }}'
-            },
-            dataType: 'json',
-            success: function(data) {
-                window.location.href = url;
-            }
-        });
-    }
+    function ReadNotification() {
+    $.ajax({
+        url: "{{ route('user.notification.read') }}",
+        type: "POST",
+        data: {
+            _token: '{{ csrf_token() }}'
+        },
+        dataType: 'json',
+        success: function(data) {
+            $('#unNotifications').hide();
+            window.location.reload();        },
+        error: function(xhr, status, error) {
+            console.error("Une erreur s'est produite : ", error);
+        }
+    });
+}
+
+
 
     function setLocationSession(form) {
         $.ajax({

@@ -36,9 +36,10 @@ class IndexPageService
                     $q = $this->filterCountryBasedJobs($q);
                 },
             ])
-            ->latest('jobs_count')
+            //->latest('jobs_count')
+            ->orderByDesc('created_at')
             ->get()
-            ->take(9);
+            ->take(8);
             
 	//dd(currentLanguage());
         // Featured Jobs With Single && Multiple Country Base

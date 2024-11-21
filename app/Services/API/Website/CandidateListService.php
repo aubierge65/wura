@@ -46,6 +46,7 @@ class CandidateListService
                 $query->where('role', 'candidate');
             }))
                 ->with('user.contactInfo')
+                ->orderByDesc('created_at')
                 ->latest()
                 ->where('visibility', 1);
         }

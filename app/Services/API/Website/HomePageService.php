@@ -41,7 +41,7 @@ class HomePageService
                 $q->where('candidate_id',  auth('sanctum')->check() && auth('sanctum')->user()->candidate ? auth('sanctum')->user()->candidate->id : '');
             }
         ]);
-        $featured_jobs = $this->filterCountryBasedJobs($featured_jobs_query)->where('featured', 1)->active()->get()->take(6);
+        $featured_jobs = $this->filterCountryBasedJobs($featured_jobs_query)->where('featured', 1)->active()->orderBy('created_at', 'desc') ->get()->take(6);
 
         $setting = Setting::first();
         $is_single_base_country_type = $setting->app_country_type == 'single_base' ? true : false;

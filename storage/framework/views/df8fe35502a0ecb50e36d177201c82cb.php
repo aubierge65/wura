@@ -20,9 +20,9 @@
             </svg>
         <?php endif; ?>
         <div class="notification-bar">
-            <a href="#" onclick="ReadNotification()" class="notification-header">
+            <a  href="" class="notification-header">
                 <h2><?php echo e(__('notifications')); ?></h2>
-                <p><?php echo e(__('mark_all_as_read')); ?></p>
+                <p onclick="ReadNotification()"><?php echo e(__('mark_all_as_read')); ?></p>
             </a>
             <div class="devider">
             </div>
@@ -233,4 +233,6 @@
         </div>
     </div>
 </li>
-<?php /**PATH /opt/lampp/htdocs/MEGATECH/wura1/resources/views/components/website/company/notifications-component.blade.php ENDPATH**/ ?>
+<?php $__env->startSection('script'); ?>
+
+<?php $__env->stopSection(); ?><?php /**PATH /opt/lampp/htdocs/MEGATECH/wura1/resources/views/components/website/company/notifications-component.blade.php ENDPATH**/ ?>

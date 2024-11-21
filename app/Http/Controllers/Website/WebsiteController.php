@@ -554,10 +554,10 @@ class WebsiteController extends Controller
             return back();
         }
     }
-    public function service()
+    public function servicespro()
     {
         try {
-            return view('frontend.pages.all-service');
+            return view('frontend.pages.servicespro');
         } catch (\Exception $e) {
             flashError('An error occurred: ' . $e->getMessage());
 
@@ -618,6 +618,23 @@ class WebsiteController extends Controller
      
 
             return view('frontend.pages.plan-details', $data);
+        } catch (\Exception $e) {
+            flashError('An error occurred: '.$e->getMessage());
+
+            return back();
+        }
+    }
+
+    public function serviceDetails($label)
+    {
+        try {
+            // abort_if(! auth('user')->check(), 404);
+            // abort_if(auth('user')->check() && auth('user')->user()->role == 'candidate', 404);
+
+            $data = (new PricePlanService())->details($label);
+     
+
+            return view('frontend.pages.service-details', $data);
         } catch (\Exception $e) {
             flashError('An error occurred: '.$e->getMessage());
 

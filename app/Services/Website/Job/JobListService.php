@@ -54,7 +54,7 @@ class JobListService
         } else {
             $data['all_jobs'] = [];
         }
-
+  
         $data['resumes'] = $this->getResumes();
 
         return $data;

@@ -41,7 +41,7 @@ class CompanySettingUpdateService
         if ($request->type == 'social') {
 
             $this->socialUpdate($request);
-            
+
             flashSuccess(__('profile_updated'));
 
             return back();
@@ -133,7 +133,7 @@ class CompanySettingUpdateService
     public function personalUpdate($request, $user): bool
     {
         $request->validate([
-            'name' => 'required|unique:users,name,'.auth()->id(),
+            'name' => 'required|unique:users,name,' . auth()->id(),
         ]);
 
         $company = Company::where('user_id', auth()->id())->first();
@@ -177,7 +177,7 @@ class CompanySettingUpdateService
             $company->update(['bio' => $request->about_us]);
         }
 
-        if($company){
+        if ($company) {
             $company->update(['age' => $request->age]);
         }
 
@@ -190,6 +190,19 @@ class CompanySettingUpdateService
      * @param  Request  $request
      * @return Response
      */
+
+     public function normalizeYoutubeUrl($url)
+     {
+         $pattern = '/(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|embed|shorts)\/|\S*?[?&]v=)|youtu\.be\/|youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/';
+         if (preg_match($pattern, $url, $matches)) {
+             $videoId = $matches[1]; 
+             return "https://www.youtube.com/embed/{$videoId}";
+         }
+         
+         // Si aucun ID valide n'est trouvé
+         return null;
+     }
+
     public function profileUpdate($request)
     {
         $request->validate([
@@ -236,7 +249,7 @@ class CompanySettingUpdateService
         } else {
             $industry_type_id = $industry_type->industry_type_id;
         }
-
+        $videoUrl = $this->normalizeYoutubeUrl($request->video);
         if ($company) {
             $company->update([
                 'organization_type_id' => $organization_type_id,
@@ -245,7 +258,7 @@ class CompanySettingUpdateService
                 'establishment_date' => $request->establishment_date ?? null,
                 'website' => $request->website,
                 'vision' => $request->vision,
-                'video_url' => $request->video
+                'video_url' => $videoUrl
             ]);
         }
 
@@ -261,7 +274,7 @@ class CompanySettingUpdateService
     public function socialUpdate($request)
     {
         $user = User::find(auth()->id());
-        
+
 
         $user->socialInfo()->delete();
 
@@ -278,7 +291,7 @@ class CompanySettingUpdateService
                 }
             }
         }
-       
+
 
         return true;
     }
@@ -322,8 +335,8 @@ class CompanySettingUpdateService
         $setting = Setting::query()->first();
 
         $validated = $request->validate([
-            'account_email' => 'required|email|unique:users,email,'.$user->id,
-            'username' => 'required|unique:users,username,'.$user->id,
+            'account_email' => 'required|email|unique:users,email,' . $user->id,
+            'username' => 'required|unique:users,username,' . $user->id,
         ]);
 
         $user->update([
@@ -350,7 +363,6 @@ class CompanySettingUpdateService
         session()->put('requested_email', $validated['account_email']);
 
         return true;
-
     }
 
     /**

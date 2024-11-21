@@ -9,13 +9,12 @@ class EntrevueServiceNotification extends Notification
 {
     use Queueable;
 
-    public $formData;
+    public $payment;
 
-    public function __construct($formData)
-    {
-        $this->formData = $formData; 
-    }
-
+    public function __construct($payment)
+{
+    $this->payment = $payment; 
+}
     public function via($notifiable)
     {
         return ['mail']; 
@@ -28,11 +27,12 @@ class EntrevueServiceNotification extends Notification
                     ->greeting('Bonjour Administrateur de WURA,')
                     ->line('Vous avez reçu une nouvelle demande de coaching.')
                     ->line('Voici les détails de la demande:')
-                    ->line('<strong>Nom et prénom du client:</strong>  ' . $this->formData['name'])
-                    ->line('Email du client: ' . $this->formData['email'])
-                    ->line('Contact du client: ' . $this->formData['contact'])
-                    ->line('Plan de choix: ' . $this->formData['plan'])
-                    ->line('Montant total de la prestation: ' . $this->formData['amount'])
+                    ->line('<strong>Nom et prénom du client:</strong> ' . $this->payment->username)
+                    ->line('Email du client: ' . $this->payment->email)
+                    ->line('Contact du client: ' . $this->payment->contact)
+                    ->line('Service choisi: ' . $this->payment->service_name)
+                    ->line('Montant total: ' . $this->payment->amount)
                     ->line('Merci de consulter les détails pour prendre les mesures nécessaires.');
     }
 }
+

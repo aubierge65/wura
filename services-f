@@ -46,7 +46,7 @@ Services
             </div>
         </div>
         <div class="row">
-            <div class="col-xl-4 col-lg-4 col-md-6 rt-mb-24">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
                 <div class="single-price-table mb-4 mb-md-0 ">
                     <div class="price-header">
                         <h6 class="rt-mb-10">Argent</h6>
@@ -242,20 +242,21 @@ Services
                         </ul>
                     </div>
                     <div class="price-footer">
-                        <button type="button" class="btn btn-primary-50 d-block">
-                            <span class="button-content-wrapper ">
+                        <button type="button" class="btn btn-primary-50 d-block"
+                            data-plan="Argent"
+                            data-amount="30000 FCFA"
+                            onclick="openEntrevueModal(this)">
+                            <span class="button-content-wrapper">
                                 <span class="button-icon align-icon-right">
                                     <i class="ph-arrow-right"></i>
                                 </span>
-                                <span class="button-text">
-                                    Choisir
-                                </span>
+                                <span class="button-text">Choisir</span>
                             </span>
                         </button>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-6 rt-mb-24">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
                 <div class="single-price-table mb-4 mb-md-0 ">
                     <div class="price-header">
                         <h6 class="rt-mb-10">Bronze</h6>
@@ -448,20 +449,21 @@ Services
                         </ul>
                     </div>
                     <div class="price-footer">
-                        <button type="button" class="btn btn-primary-50 d-block">
-                            <span class="button-content-wrapper ">
+                        <button type="button" class="btn btn-primary-50 d-block"
+                            data-plan="Bronze"
+                            data-amount="60000 FCFA"
+                            onclick="openEntrevueModal(this)">
+                            <span class="button-content-wrapper">
                                 <span class="button-icon align-icon-right">
                                     <i class="ph-arrow-right"></i>
                                 </span>
-                                <span class="button-text">
-                                    Choisir
-                                </span>
+                                <span class="button-text">Choisir</span>
                             </span>
                         </button>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-6 rt-mb-24">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
                 <div class="single-price-table mb-4 mb-md-0 ">
                     <div class="price-header">
                         <h6 class="rt-mb-10">Or</h6>
@@ -650,20 +652,21 @@ Services
                         </ul>
                     </div>
                     <div class="price-footer">
-                        <button type="button" class="btn btn-primary-50 d-block">
-                            <span class="button-content-wrapper ">
+                        <button type="button" class="btn btn-primary-50 d-block"
+                            data-plan="Or"
+                            data-amount="85000 FCFA"
+                            onclick="openEntrevueModal(this)">
+                            <span class="button-content-wrapper">
                                 <span class="button-icon align-icon-right">
                                     <i class="ph-arrow-right"></i>
                                 </span>
-                                <span class="button-text">
-                                    Choisir
-                                </span>
+                                <span class="button-text">Choisir</span>
                             </span>
                         </button>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-6 rt-mb-24">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-4">
                 <div class="single-price-table mb-4 mb-md-0 ">
                     <div class="price-header">
                         <h6 class="rt-mb-10">Diamant</h6>
@@ -850,14 +853,15 @@ Services
                         </ul>
                     </div>
                     <div class="price-footer">
-                        <button type="button" class="btn btn-primary-50 d-block">
-                            <span class="button-content-wrapper ">
+                        <button type="button" class="btn btn-primary-50 d-block"
+                            data-plan="Diament"
+                            data-amount="105000 FCFA"
+                            onclick="openEntrevueModal(this)">
+                            <span class="button-content-wrapper">
                                 <span class="button-icon align-icon-right">
                                     <i class="ph-arrow-right"></i>
                                 </span>
-                                <span class="button-text">
-                                    Choisir
-                                </span>
+                                <span class="button-text">Choisir</span>
                             </span>
                         </button>
                     </div>
@@ -1071,7 +1075,7 @@ Services
 
                         <div class="card-footer">
                             <button type="button" class="btn btn-primary-50 d-block"
-                                data-level="epert"
+                                data-level="expert"
                                 onclick="selectCard(this)">
                                 <span class="button-content-wrapper">
                                     <span class="button-icon align-icon-right">
@@ -1137,8 +1141,60 @@ Services
         </div>
     </div>
 </section>
-
 <!-- Modal -->
+<div class="modal fade" id="entrevueModal" tabindex="-1" aria-labelledby="entrevueModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="entrevueModalLabel">Informations de Contact</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="contactEntrevueForm">
+                    <input type="hidden" id="plan" name="plan">
+                    <input type="hidden" id="amount" name="amount">
+
+                    @csrf
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nom et Prénom(s) <span style="color:red!important;">*</span></label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Adresse Email <span style="color:red!important;">*</span></label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="contact" class="form-label">Numéro de Téléphone <span style="color:red!important;">*</span></label>
+                        <input type="tel" class="form-control" id="contact" name="contact" required>
+                    </div>
+
+                    <!-- Nouvelle question avec les boutons radio sur la même ligne -->
+                    <div class="mb-3">
+                        <label for="psychometric_test" class="form-label">Voulez-vous Préparation aux tests psychométriques et techniques ?(+ 24999 FCFA)</label>
+                        <div class="d-inline-block me-3">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="psychometric_test" id="psychometric_test_oui" value="oui">
+                                <label class="form-check-label" for="psychometric_test_oui">Oui</label>
+                            </div>
+                        </div>
+                        <div class="d-inline-block">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="psychometric_test" id="psychometric_test_non" value="non">
+                                <label class="form-check-label" for="psychometric_test_non">Non</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" id="sendButton" onclick="sendNotification()">Envoyer la demande</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Premier Modal pour les Options -->
 <div class="modal fade" id="optionsModal" tabindex="-1" aria-labelledby="optionsModalLabel" aria-hidden="true">
     <div class="modal-dialog" style="margin-top: 13vh;">
@@ -1149,6 +1205,7 @@ Services
             </div>
             <div class="modal-body">
                 <form id="extraOptionsForm">
+                    @csrf
                     <div class="mb-3">
                         <h5 class="form-label font-weight-bold">Quel type de montant préférez-vous ?</h5>
                         <div class="d-flex">
@@ -1158,11 +1215,10 @@ Services
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="priceOption" value="adapted" id="adaptedPrice">
-                                <label class="form-check-label" for="adaptedPrice">Montant adapté</label>
+                                <label class="form-check-label" for="adaptedPrice">Adapataion à une offre</label>
                             </div>
                         </div>
                     </div>
-
                     <div class="mb-3">
                         <h5 for="deliveryTime" class="form-label">Choisissez un délai de livraison</h5>
                         <select class="form-select" id="deliveryTime">
@@ -1203,12 +1259,44 @@ Services
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                <button type="button" class="btn btn-primary" onclick="saveOptions()">Commandez maintenant</button>
+                <button type="button" class="btn btn-primary" onclick="openContactModal()">Commander maintenant</button>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Deuxième Modal pour les informations de contact -->
+<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true" novalidate>
+    <div class="modal-dialog" style="margin-top: 15vh;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="contactModalLabel">Informations de Contact</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="contactForm">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="customerName" class="form-label">Nom et Prénom(s) <span style="color:red!important;">*</span></label>
+                        <input type="text" class="form-control" id="customerName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="customerEmail" class="form-label">Adresse Email <span style="color:red!important;">*</span></label>
+                        <input type="email" class="form-control" id="customerEmail" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="customerPhone" class="form-label">Numéro de Téléphone <span style="color:red!important;">*</span></label>
+                        <input type="tel" class="form-control" id="customerPhone" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-primary" onclick="saveOptions()">Envoyer la commande</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('css')
@@ -1301,6 +1389,69 @@ Services
 @endsection
 @section('script')
 <script>
+    function openEntrevueModal(button) {
+        const plan = button.getAttribute('data-plan');
+        const amount = button.getAttribute('data-amount');
+
+        document.getElementById('plan').value = plan;
+        document.getElementById('amount').value = amount;
+
+        const modal = new bootstrap.Modal(document.getElementById('entrevueModal'));
+        modal.show();
+    }
+    async function sendNotification() {
+        const sendButton = document.getElementById('sendButton');
+        const form = document.getElementById('contactEntrevueForm');
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const contact = document.getElementById('contact').value.trim();
+
+        if (!name || !email || !contact) {
+            alert('Veuillez remplir tous les champs.');
+            return;
+        }
+
+        try {
+            sendButton.disabled = true;
+            sendButton.innerHTML = 'Envoi en cours...';
+
+            const formData = new FormData(form);
+            const response = await fetch('/send-entrevue-notification', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                alert('Votre demande a été envoyée avec succès');
+                const modal = bootstrap.Modal.getInstance(document.getElementById('entrevueModal'));
+                modal.hide();
+            } else {
+                alert('Erreur lors de l\'envoi de la demande');
+            }
+        } catch (error) {
+            console.error('Erreur:', error);
+            alert('Une erreur est survenue. Veuillez réessayer.');
+        } finally {
+            sendButton.disabled = false;
+            sendButton.innerHTML = 'Envoyer la demande';
+        }
+    }
+
+
+    function openContactModal() {
+        const optionsModal = bootstrap.Modal.getInstance(document.getElementById('optionsModal'));
+        optionsModal.hide();
+
+        setTimeout(() => {
+            const contactModal = new bootstrap.Modal(document.getElementById('contactModal'));
+            contactModal.show();
+        }, 300);
+    }
     const amounts = {
         "debutant": {
             "24h": {
@@ -1374,65 +1525,127 @@ Services
         }
     };
 
-    function selectCard(button) {
-        // Récupérer le niveau à partir de l'attribut data-level du bouton
-        currentLevel = button.getAttribute("data-level");
+    let currentLevel = "";
+    let currentPriceOption = "standard";
+    let currentDeliveryTime = "24h";
 
-        // Ouvrir le modal
+    function selectCard(button) {
+        currentLevel = button.getAttribute("data-level");
         const modal = new bootstrap.Modal(document.getElementById('optionsModal'));
         modal.show();
-
-        // Calculer le montant initial basé sur le niveau par défaut et délai
         calculateTotal();
     }
 
-    // Calcul du montant total
     function calculateTotal() {
-        // Récupérer la valeur du délai et du type de montant
         const deliveryTime = document.getElementById("deliveryTime").value;
         const priceOption = document.querySelector('input[name="priceOption"]:checked').value;
-
-        // Récupérer le montant de base pour le niveau, le délai et le type de montant
         const baseAmount = amounts[currentLevel][deliveryTime][priceOption];
-
         let totalAmount = baseAmount;
 
-        // Ajouter les options supplémentaires
         if (document.getElementById("englishTranslation").checked) {
-            totalAmount += baseAmount * 0.75; // Traduction anglaise
+            totalAmount += baseAmount * 0.75;
         }
         if (document.getElementById("modifiableVersion").checked) {
-            totalAmount += baseAmount * 0.50; // Version modifiable
+            totalAmount += baseAmount * 0.50;
         }
         if (document.getElementById("motivationLetter").checked) {
-            totalAmount += 5000; // Lettre de motivation
+            totalAmount += 5000;
         }
         if (document.getElementById("designCustomization").checked) {
-            totalAmount += baseAmount * 0.50; // Personnalisation du design
+            totalAmount += baseAmount * 0.50;
         }
 
-        // Mettre à jour l'affichage du montant total
         document.getElementById("totalAmount").innerText = `${totalAmount.toFixed(2)} FCFA`;
     }
 
-    // Écouter les changements sur les options et recalculer le total
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
         document.querySelectorAll('input[name="priceOption"]').forEach(input => {
             input.addEventListener('change', calculateTotal);
         });
         document.querySelectorAll('#extraOptionsForm input[type="checkbox"]').forEach(checkbox => {
             checkbox.addEventListener('change', calculateTotal);
         });
-        document.getElementById("deliveryTime").addEventListener('change', function () {
-            currentDeliveryTime = this.value; // Mettre à jour le délai sélectionné
-            calculateTotal(); // Recalculer le montant dès que le délai change
+        document.getElementById("deliveryTime").addEventListener('change', function() {
+            currentDeliveryTime = this.value;
+            calculateTotal();
         });
     });
 
-    // Fonction de sauvegarde des options
-    function saveOptions() {
-        alert('Options sauvegardées');
-        // Ici tu peux ajouter la logique pour enregistrer les options sélectionnées, si nécessaire
+    async function saveOptions() {
+    const sendButton = document.getElementById("cvSendButton");
+    const customerName = document.getElementById("customerName");
+    const customerEmail = document.getElementById("customerEmail");
+    const customerPhone = document.getElementById("customerPhone");
+
+    // Vérification des champs obligatoires
+    if (!customerName.value.trim()) {
+        alert('Veuillez renseigner votre nom et prénom(s).');
+        customerName.focus();
+        return;
     }
+    if (!customerEmail.value.trim()) {
+        alert('Veuillez renseigner votre adresse email.');
+        customerEmail.focus();
+        return;
+    }
+    if (!customerPhone.value.trim()) {
+        alert('Veuillez renseigner votre numéro de téléphone');
+        customerPhone.focus();
+        return;
+    }
+
+    // Désactiver le bouton et changer le texte
+    sendButton.disabled = true;
+    sendButton.innerHTML = 'Envoi en cours...';
+
+    const optionsData = {
+        level: currentLevel,
+        deliveryTime: document.getElementById("deliveryTime").value,
+        priceOption: document.querySelector('input[name="priceOption"]:checked').value,
+        englishTranslation: document.getElementById("englishTranslation").checked ? "Oui" : "Non",
+        modifiableVersion: document.getElementById("modifiableVersion").checked ? "Oui" : "Non",
+        motivationLetter: document.getElementById("motivationLetter").checked ? "Oui" : "Non",
+        designCustomization: document.getElementById("designCustomization").checked ? "Oui" : "Non",
+        totalAmount: document.getElementById("totalAmount").innerText
+    };
+
+    const formData = {
+        ...optionsData,
+        contactName: customerName.value,
+        contactEmail: customerEmail.value,
+        contactPhone: customerPhone.value
+    };
+
+    try {
+        const response = await fetch('/send-email-to-admin', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: JSON.stringify(formData)
+        });
+        const data = await response.json();
+        
+        if (data.success) {
+            alert('Commande envoyée avec succès!');
+            const contactModal = bootstrap.Modal.getInstance(document.getElementById('contactModal'));
+            contactModal.hide();
+        } else {
+            alert('Erreur lors de l\'envoi de la commande.');
+        }
+    } catch (error) {
+        console.error('Erreur:', error);
+        alert('Une erreur est survenue.');
+    } finally {
+        // Réactiver le bouton et restaurer le texte
+        sendButton.disabled = false;
+        sendButton.innerHTML = 'Envoyer la commande';
+    }
+}
+
+    // document.getElementById("contactModal").addEventListener("shown.bs.modal", function () {
+    //     document.getElementById("sendOrderButton").addEventListener("click", saveOptions);
+    // });
 </script>
 @endsection

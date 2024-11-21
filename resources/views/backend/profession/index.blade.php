@@ -17,10 +17,10 @@
                         <div class="d-flex flex-wrap justify-content-between">
                             <h3 class="card-title line-height-36">{{ __('profession_list') }}
                                 ({{ count($professions) }})</h3>
-                            <button data-toggle="modal" data-target="#bulk_import_modal" class="btn bg-info"><i
+                            <!-- <button data-toggle="modal" data-target="#bulk_import_modal" class="btn bg-info"><i
                                     class="fas fa-plus mr-1"></i>
                                 {{ __('bulk_import') }}
-                            </button>
+                            </button> -->
                         </div>
                     </div>
                     <div class="card-body table-responsive p-0">
