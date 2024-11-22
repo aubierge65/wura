@@ -19,7 +19,7 @@ class CreateServicePaymentsTable extends Migration
             $table->string('email');
             $table->string('contact');
             $table->string('service_name');
-            $table->decimal('amount', 10, 2); // Ajuste la taille en fonction de ton besoin
+            $table->string('amount'); 
             $table->string('transaction_id')->unique();
             $table->enum('payment_status', ['pending', 'approved', 'declined', 'canceled', 'refunded', 'failed'])->default('pending');
             $table->timestamps();

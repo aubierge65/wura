@@ -350,6 +350,6 @@ Route::controller(FedapayController::class)->group(function () {
 Route::get('/payment-from-app/{label}', [ApiCompanyController::class, 'payment']);
 
 Route::controller(ServicePaymentController::class)->group(function(){
-    Route::post('/initiate-payment',  'initiatePayment')->name('fedapay.initiate');
+    Route::post('/initiate-payment',  'initiatePayment');
     Route::get('/payment/callback', 'proccessTransactionCallback')->name('payment.callback');    
 });

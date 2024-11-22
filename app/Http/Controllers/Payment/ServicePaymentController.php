@@ -6,6 +6,7 @@ use FedaPay\FedaPay;
 use FedaPay\Transaction;
 use Illuminate\Http\Request;
 use App\Models\ServicePayment;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
@@ -18,48 +19,41 @@ class ServicePaymentController extends Controller
      */
     public function initiatePayment(Request $request)
     {
-        // Validation des données de la requête
-        $validated = $request->validate([
-            'username' => 'required|string|max:255',
-            'email' => 'required|email',
-            'contact' => 'required|string|max:15',
-            'service_name' => 'required|string',
-            'amount' => 'required|numeric',
+        //die;
+                // $validated = $request->validate([
+        //     'username' => 'required|string|max:255',
+        //     'email' => 'required|email',
+        //     'contact' => 'required|string|max:15',
+        //     'service_name' => 'required|string',
+        //     'amount' => 'required|string|max:255'
+        // ]);            'callback_url' => route('payment.callback'),
 
-        ]);
 
-        // Initialisation de l'API FedaPay
-        FedaPay::setApiKey(config('templatecookie.fedapay_api_secret'));
-        FedaPay::setEnvironment(config('templatecookie.fedapay_live_mode'));
-
-        try {
-            // Création de la transaction
-            $transaction = Transaction::create([
-                'description' => $validated['service_name'],
-                'amount' => $validated['amount'],
-                'currency' => 'XOF',
-                'callback_url' => route('payment.callback'),
-                'customer' => [
-                    'firstname' => $validated['name'],
-                    'email' => $validated['email'],
-                    'phone_number' => $validated['contact'],
-                ],
-            ]);
-
-            // Enregistrement des détails de la transaction dans la session (pour l'utiliser après la confirmation)
-            session(['transaction_details' => $validated]);
-
-            return response()->json([
-                'success' => true,
-                'payment_url' => $transaction->generateToken()->url
-            ]);
-        } catch (\Exception $e) {
-            // Capture les erreurs et renvoie un message détaillé
-            return response()->json([
-                'success' => false,
-                'message' => 'Une erreur est survenue pendant l\'initiation du paiement : ' . $e->getMessage()
-            ], 500);
-        }
+        FedaPay::setApiKey('sk_live_UpJDxwcPFyS9AMkbzRx8aK7_');
+        FedaPay::setEnvironment('live');
+        $transaction = Transaction::create(array(
+            "description" => "Transaction for john.doe@example.com",
+            "amount" => 2000,
+            "currency" => ["iso" => "XOF"],
+            "callback_url" => route('payment.callback'),
+            "customer" => [
+                "firstname" => "John",
+                "lastname" => "Doe",
+                "email" => "john.doe@example.com",
+                "phone_number" => [
+                    "number" => "+22997808080",
+                    "country" => "bj"
+                ]
+            ]
+          ));
+        // Loggue la réponse brute de l'API
+        Log::debug('FedaPay Response: ', (array)$transaction);
+    
+        $paymentUrl = $transaction->generateToken()->url;
+    
+        return $paymentUrl;
+        
+        
     }
 
     /**
@@ -83,7 +77,6 @@ class ServicePaymentController extends Controller
         try {
             switch ($status) {
                 case 'approved':
-                    // Enregistrer dans la base de données
                     $payment = ServicePayment::create([
                         'username' => $paymentDetails['name'],
                         'email' => $paymentDetails['email'],
@@ -93,8 +86,6 @@ class ServicePaymentController extends Controller
                         'transaction_id' => $transaction_id,
                         'payment_status' => 'success',
                     ]);
-
-                    // Envoi de la notification
                     Notification::route('mail', config('app.admin_email'))
                         ->notify(new EntrevueServiceNotification($paymentDetails));
 
@@ -116,7 +107,6 @@ class ServicePaymentController extends Controller
                     return response()->json(['error' => __('Le paiement a échoué.')], 400);
             }
         } catch (\Exception $e) {
-            // Gestion des erreurs
             return response()->json(['error' => __('Une erreur est survenue : ') . $e->getMessage()], 500);
         }
     }

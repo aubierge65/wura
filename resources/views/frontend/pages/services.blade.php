@@ -1162,11 +1162,11 @@ Services Professionnels
                 <form id="contactEntrevueForm">
                     <input type="hidden" id="plan" name="plan">
                     <input type="hidden" id="amount" name="amount">
-                    <input type="hidden" id="service" name="service">
+                    <input type="hidden" id="service_name" name="service_name">
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Nom et Prénom(s) <span style="color:red!important;">*</span></label>
-                        <input type="text" class="form-control" id="name" name="name" required>
+                        <input type="text" class="form-control" id="username" name="username" required>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Adresse Email <span style="color:red!important;">*</span></label>
@@ -1198,7 +1198,7 @@ Services Professionnels
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                <button type="button" class="btn btn-primary" id="sendButton" onclick="sendNotification()">Payer maintenant</button>
+                <button type="button" class="btn btn-primary" id="payButton" onclick="initiatePayment()">Payer maintenant</button>
             </div>
         </div>
     </div>
@@ -1401,55 +1401,112 @@ Services Professionnels
     function openEntrevueModal(button) {
         const plan = button.getAttribute('data-plan');
         const amount = button.getAttribute('data-amount');
-
+        const service = button.getAttribute('data-service');
         document.getElementById('plan').value = plan;
         document.getElementById('amount').value = amount;
-
+        document.getElementById('service_name').value = service;
         const modal = new bootstrap.Modal(document.getElementById('entrevueModal'));
         modal.show();
     }
-    async function sendNotification() {
-        const sendButton = document.getElementById('sendButton');
-        const form = document.getElementById('contactEntrevueForm');
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const contact = document.getElementById('contact').value.trim();
+    async function initiatePayment() {
+    const sendButton = document.getElementById('payButton');
+    const form = document.getElementById('contactEntrevueForm');
+    const name = document.getElementById('username').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const contact = document.getElementById('contact').value.trim();
+    const amount = document.getElementById('amount').value.trim();
+    const service = document.getElementById('service_name').value.trim();
 
-        if (!name || !email || !contact) {
-            alert('Veuillez remplir tous les champs.');
-            return;
-        }
-
-        try {
-            sendButton.disabled = true;
-            sendButton.innerHTML = 'Envoi en cours...';
-
-            const formData = new FormData(form);
-            const response = await fetch('/send-entrevue-notification', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                }
-            });
-
-            const data = await response.json();
-
-            if (data.success) {
-                alert('Votre demande a été envoyée avec succès');
-                const modal = bootstrap.Modal.getInstance(document.getElementById('entrevueModal'));
-                modal.hide();
-            } else {
-                alert('Erreur lors de l\'envoi de la demande');
-            }
-        } catch (error) {
-            console.error('Erreur:', error);
-            alert('Une erreur est survenue. Veuillez réessayer.');
-        } finally {
-            sendButton.disabled = false;
-            sendButton.innerHTML = 'Envoyer la demande';
-        }
+    // Validation de base pour les champs obligatoires
+    if (!name || !email || !contact || !amount || !service) {
+        alert('Veuillez remplir tous les champs.');
+        return;
     }
+
+    try {
+        sendButton.disabled = true;
+        sendButton.innerHTML = 'Paiement en cours...';
+
+        const payload = {
+            plan: document.getElementById('plan').value,
+            amount: amount,
+            service_name: service,
+            username: name,
+            email: email,
+            contact: contact,
+            psychometric_test: document.querySelector('input[name="psychometric_test"]:checked')?.value // Ajouter la valeur du test psychométrique si sélectionné
+        };
+
+        const response = await fetch('/initiate-payment', {
+            method: 'POST',
+            body: JSON.stringify(payload), 
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                'Content-Type': 'application/json', 
+                'Accept': 'application/json' 
+            }
+        });
+        console.log(response.data);
+        const data = await response.json();
+        //console.log(response.data);
+        if (data.success) {
+            // Rediriger l'utilisateur vers le lien de paiement généré par FedaPay
+            console.log(data.payment_url);
+            window.location.href = data.payment_url;
+        
+        } else {
+            alert('Erreur lors de l\'initiation du paiement');
+        }
+    } catch (error) {
+        console.error('Erreur:', error);
+        alert('Une erreur est survenue. Veuillez réessayer.');
+    } finally {
+        sendButton.disabled = false;
+        sendButton.innerHTML = 'Payer maintenant';
+    }
+}
+    // async function sendNotification() {
+    //     const sendButton = document.getElementById('sendButton');
+    //     const form = document.getElementById('contactEntrevueForm');
+    //     const name = document.getElementById('name').value.trim();
+    //     const email = document.getElementById('email').value.trim();
+    //     const contact = document.getElementById('contact').value.trim();
+
+    //     if (!name || !email || !contact) {
+    //         alert('Veuillez remplir tous les champs.');
+    //         return;
+    //     }
+
+    //     try {
+    //         sendButton.disabled = true;
+    //         sendButton.innerHTML = 'Envoi en cours...';
+
+    //         const formData = new FormData(form);
+    //         const response = await fetch('/send-entrevue-notification', {
+    //             method: 'POST',
+    //             body: formData,
+    //             headers: {
+    //                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    //             }
+    //         });
+
+    //         const data = await response.json();
+
+    //         if (data.success) {
+    //             alert('Votre demande a été envoyée avec succès');
+    //             const modal = bootstrap.Modal.getInstance(document.getElementById('entrevueModal'));
+    //             modal.hide();
+    //         } else {
+    //             alert('Erreur lors de l\'envoi de la demande');
+    //         }
+    //     } catch (error) {
+    //         console.error('Erreur:', error);
+    //         alert('Une erreur est survenue. Veuillez réessayer.');
+    //     } finally {
+    //         sendButton.disabled = false;
+    //         sendButton.innerHTML = 'Envoyer la demande';
+    //     }
+    // }
 
 
     function openContactModal() {
@@ -1581,81 +1638,81 @@ Services Professionnels
     });
 
     async function saveOptions() {
-    console.log("La fonction saveOptions est appelée");
+        console.log("La fonction saveOptions est appelée");
 
-    const sendButton = document.getElementById("cvSendButton");
-    const customerName = document.getElementById("customerName");
-    const customerEmail = document.getElementById("customerEmail");
-    const customerPhone = document.getElementById("customerPhone");
+        const sendButton = document.getElementById("cvSendButton");
+        const customerName = document.getElementById("customerName");
+        const customerEmail = document.getElementById("customerEmail");
+        const customerPhone = document.getElementById("customerPhone");
 
-    if (!customerName.value.trim()) {
-        alert('Veuillez renseigner votre nom et prénom(s).');
-        customerName.focus();
-        return;
-    }
-    if (!customerEmail.value.trim()) {
-        alert('Veuillez renseigner votre adresse email.');
-        customerEmail.focus();
-        return;
-    }
-    if (!customerPhone.value.trim()) {
-        alert('Veuillez renseigner votre numéro de téléphone');
-        customerPhone.focus();
-        return;
-    }
-
-    sendButton.disabled = true;
-    sendButton.innerHTML = 'Envoi en cours...';
-    console.log("Bouton désactivé et texte modifié");
-
-    const optionsData = {
-        level: currentLevel,
-        deliveryTime: document.getElementById("deliveryTime").value,
-        priceOption: document.querySelector('input[name="priceOption"]:checked').value,
-        englishTranslation: document.getElementById("englishTranslation").checked ? "Oui" : "Non",
-        modifiableVersion: document.getElementById("modifiableVersion").checked ? "Oui" : "Non",
-        motivationLetter: document.getElementById("motivationLetter").checked ? "Oui" : "Non",
-        designCustomization: document.getElementById("designCustomization").checked ? "Oui" : "Non",
-        totalAmount: document.getElementById("totalAmount").innerText
-    };
-
-    const formData = {
-        ...optionsData,
-        contactName: customerName.value,
-        contactEmail: customerEmail.value,
-        contactPhone: customerPhone.value
-    };
-    
-    console.log("Données envoyées :", formData);
-
-    try {
-        const response = await fetch('/send-email-to-admin', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            },
-            body: JSON.stringify(formData)
-        });
-        const data = await response.json();
-        
-        console.log("Réponse du serveur :", data);
-        
-        if (data.success) {
-            alert('Commande envoyée avec succès!');
-            const contactModal = bootstrap.Modal.getInstance(document.getElementById('contactModal'));
-            contactModal.hide();
-        } else {
-            alert('Erreur lors de l\'envoi de la commande.');
+        if (!customerName.value.trim()) {
+            alert('Veuillez renseigner votre nom et prénom(s).');
+            customerName.focus();
+            return;
         }
-    } catch (error) {
-        console.error('Erreur:', error);
-        alert('Une erreur est survenue.');
-    } finally {
-        sendButton.disabled = false;
-        sendButton.innerHTML = 'Envoyer la commande';
+        if (!customerEmail.value.trim()) {
+            alert('Veuillez renseigner votre adresse email.');
+            customerEmail.focus();
+            return;
+        }
+        if (!customerPhone.value.trim()) {
+            alert('Veuillez renseigner votre numéro de téléphone');
+            customerPhone.focus();
+            return;
+        }
+
+        sendButton.disabled = true;
+        sendButton.innerHTML = 'Envoi en cours...';
+        console.log("Bouton désactivé et texte modifié");
+
+        const optionsData = {
+            level: currentLevel,
+            deliveryTime: document.getElementById("deliveryTime").value,
+            priceOption: document.querySelector('input[name="priceOption"]:checked').value,
+            englishTranslation: document.getElementById("englishTranslation").checked ? "Oui" : "Non",
+            modifiableVersion: document.getElementById("modifiableVersion").checked ? "Oui" : "Non",
+            motivationLetter: document.getElementById("motivationLetter").checked ? "Oui" : "Non",
+            designCustomization: document.getElementById("designCustomization").checked ? "Oui" : "Non",
+            totalAmount: document.getElementById("totalAmount").innerText
+        };
+
+        const formData = {
+            ...optionsData,
+            contactName: customerName.value,
+            contactEmail: customerEmail.value,
+            contactPhone: customerPhone.value
+        };
+
+        console.log("Données envoyées :", formData);
+
+        try {
+            const response = await fetch('/send-email-to-admin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify(formData)
+            });
+            const data = await response.json();
+
+            console.log("Réponse du serveur :", data);
+
+            if (data.success) {
+                alert('Commande envoyée avec succès!');
+                const contactModal = bootstrap.Modal.getInstance(document.getElementById('contactModal'));
+                contactModal.hide();
+            } else {
+                alert('Erreur lors de l\'envoi de la commande.');
+            }
+        } catch (error) {
+            console.error('Erreur:', error);
+            alert('Une erreur est survenue.');
+        } finally {
+            sendButton.disabled = false;
+            sendButton.innerHTML = 'Envoyer la commande';
+        }
     }
-}
 
     // document.getElementById("contactModal").addEventListener("shown.bs.modal", function () {
     //     document.getElementById("sendOrderButton").addEventListener("click", saveOptions);
